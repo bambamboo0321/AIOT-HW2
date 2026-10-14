@@ -1,0 +1,536 @@
+{
+  "dataset_name": "Appliances Energy Prediction",
+  "csv_path": "data/raw/KAG_energydata_complete.csv",
+  "sha256": "2820bf712ad0275cb18b85a05250926100d8e65ebb9f4d2d016ca91ea152a25d",
+  "shape": {
+    "rows": 19735,
+    "columns": 29
+  },
+  "columns": [
+    {
+      "name": "date",
+      "dtype": "object"
+    },
+    {
+      "name": "Appliances",
+      "dtype": "int64"
+    },
+    {
+      "name": "lights",
+      "dtype": "int64"
+    },
+    {
+      "name": "T1",
+      "dtype": "float64"
+    },
+    {
+      "name": "RH_1",
+      "dtype": "float64"
+    },
+    {
+      "name": "T2",
+      "dtype": "float64"
+    },
+    {
+      "name": "RH_2",
+      "dtype": "float64"
+    },
+    {
+      "name": "T3",
+      "dtype": "float64"
+    },
+    {
+      "name": "RH_3",
+      "dtype": "float64"
+    },
+    {
+      "name": "T4",
+      "dtype": "float64"
+    },
+    {
+      "name": "RH_4",
+      "dtype": "float64"
+    },
+    {
+      "name": "T5",
+      "dtype": "float64"
+    },
+    {
+      "name": "RH_5",
+      "dtype": "float64"
+    },
+    {
+      "name": "T6",
+      "dtype": "float64"
+    },
+    {
+      "name": "RH_6",
+      "dtype": "float64"
+    },
+    {
+      "name": "T7",
+      "dtype": "float64"
+    },
+    {
+      "name": "RH_7",
+      "dtype": "float64"
+    },
+    {
+      "name": "T8",
+      "dtype": "float64"
+    },
+    {
+      "name": "RH_8",
+      "dtype": "float64"
+    },
+    {
+      "name": "T9",
+      "dtype": "float64"
+    },
+    {
+      "name": "RH_9",
+      "dtype": "float64"
+    },
+    {
+      "name": "T_out",
+      "dtype": "float64"
+    },
+    {
+      "name": "Press_mm_hg",
+      "dtype": "float64"
+    },
+    {
+      "name": "RH_out",
+      "dtype": "float64"
+    },
+    {
+      "name": "Windspeed",
+      "dtype": "float64"
+    },
+    {
+      "name": "Visibility",
+      "dtype": "float64"
+    },
+    {
+      "name": "Tdewpoint",
+      "dtype": "float64"
+    },
+    {
+      "name": "rv1",
+      "dtype": "float64"
+    },
+    {
+      "name": "rv2",
+      "dtype": "float64"
+    }
+  ],
+  "missing_values": {
+    "total": 0,
+    "by_column": {
+      "date": 0,
+      "Appliances": 0,
+      "lights": 0,
+      "T1": 0,
+      "RH_1": 0,
+      "T2": 0,
+      "RH_2": 0,
+      "T3": 0,
+      "RH_3": 0,
+      "T4": 0,
+      "RH_4": 0,
+      "T5": 0,
+      "RH_5": 0,
+      "T6": 0,
+      "RH_6": 0,
+      "T7": 0,
+      "RH_7": 0,
+      "T8": 0,
+      "RH_8": 0,
+      "T9": 0,
+      "RH_9": 0,
+      "T_out": 0,
+      "Press_mm_hg": 0,
+      "RH_out": 0,
+      "Windspeed": 0,
+      "Visibility": 0,
+      "Tdewpoint": 0,
+      "rv1": 0,
+      "rv2": 0
+    }
+  },
+  "duplicates": {
+    "complete_duplicate_rows": 0
+  },
+  "target": {
+    "name": "Appliances",
+    "exists": true,
+    "dtype": "int64",
+    "is_numeric": true,
+    "missing_count": 0,
+    "nan_count": 0,
+    "positive_infinity_count": 0,
+    "negative_infinity_count": 0,
+    "all_finite": true
+  },
+  "feature_counts": {
+    "original_input_feature_count": 28,
+    "candidate_feature_count_exclude_date": 27,
+    "candidate_feature_count_exclude_date_rv1_rv2": 25,
+    "teacher_constraint": "13 < original_input_feature_count < 40",
+    "meets_teacher_constraint": true,
+    "feature_selection_performed": false
+  },
+  "date_validation": {
+    "exists": true,
+    "format": "%Y-%m-%d %H:%M:%S",
+    "all_parseable": true,
+    "invalid_or_missing_count": 0,
+    "invalid_non_missing_count": 0,
+    "missing_count": 0,
+    "earliest": "2016-01-11T17:00:00",
+    "latest": "2016-05-27T18:00:00",
+    "duplicate_timestamps": 0,
+    "is_monotonic_increasing": true,
+    "interval_basis": "原始資料列順序中，相鄰且皆可解析的時間戳記差值；不重新排序。",
+    "interval_distribution": [
+      {
+        "seconds": 600.0,
+        "count": 19734
+      }
+    ],
+    "interval_observation_count": 19734
+  },
+  "rv_validation": {
+    "rv1": {
+      "exists": true,
+      "dtype": "float64",
+      "count": 19735,
+      "mean": 24.988033485049435,
+      "standard_deviation": 14.496633860415857,
+      "min": 0.0053216819651424,
+      "max": 49.9965296825394,
+      "is_numeric": true,
+      "standard_deviation_ddof": 1
+    },
+    "rv2": {
+      "exists": true,
+      "dtype": "float64",
+      "count": 19735,
+      "mean": 24.988033485049435,
+      "standard_deviation": 14.496633860415857,
+      "min": 0.0053216819651424,
+      "max": 49.9965296825394,
+      "is_numeric": true,
+      "standard_deviation_ddof": 1
+    },
+    "rv1_rv2_identical": true
+  },
+  "numeric_validation": {
+    "non_numeric_columns_excluding_date": [],
+    "columns": {
+      "Appliances": {
+        "dtype": "int64",
+        "nan_count": 0,
+        "positive_infinity_count": 0,
+        "negative_infinity_count": 0
+      },
+      "lights": {
+        "dtype": "int64",
+        "nan_count": 0,
+        "positive_infinity_count": 0,
+        "negative_infinity_count": 0
+      },
+      "T1": {
+        "dtype": "float64",
+        "nan_count": 0,
+        "positive_infinity_count": 0,
+        "negative_infinity_count": 0
+      },
+      "RH_1": {
+        "dtype": "float64",
+        "nan_count": 0,
+        "positive_infinity_count": 0,
+        "negative_infinity_count": 0
+      },
+      "T2": {
+        "dtype": "float64",
+        "nan_count": 0,
+        "positive_infinity_count": 0,
+        "negative_infinity_count": 0
+      },
+      "RH_2": {
+        "dtype": "float64",
+        "nan_count": 0,
+        "positive_infinity_count": 0,
+        "negative_infinity_count": 0
+      },
+      "T3": {
+        "dtype": "float64",
+        "nan_count": 0,
+        "positive_infinity_count": 0,
+        "negative_infinity_count": 0
+      },
+      "RH_3": {
+        "dtype": "float64",
+        "nan_count": 0,
+        "positive_infinity_count": 0,
+        "negative_infinity_count": 0
+      },
+      "T4": {
+        "dtype": "float64",
+        "nan_count": 0,
+        "positive_infinity_count": 0,
+        "negative_infinity_count": 0
+      },
+      "RH_4": {
+        "dtype": "float64",
+        "nan_count": 0,
+        "positive_infinity_count": 0,
+        "negative_infinity_count": 0
+      },
+      "T5": {
+        "dtype": "float64",
+        "nan_count": 0,
+        "positive_infinity_count": 0,
+        "negative_infinity_count": 0
+      },
+      "RH_5": {
+        "dtype": "float64",
+        "nan_count": 0,
+        "positive_infinity_count": 0,
+        "negative_infinity_count": 0
+      },
+      "T6": {
+        "dtype": "float64",
+        "nan_count": 0,
+        "positive_infinity_count": 0,
+        "negative_infinity_count": 0
+      },
+      "RH_6": {
+        "dtype": "float64",
+        "nan_count": 0,
+        "positive_infinity_count": 0,
+        "negative_infinity_count": 0
+      },
+      "T7": {
+        "dtype": "float64",
+        "nan_count": 0,
+        "positive_infinity_count": 0,
+        "negative_infinity_count": 0
+      },
+      "RH_7": {
+        "dtype": "float64",
+        "nan_count": 0,
+        "positive_infinity_count": 0,
+        "negative_infinity_count": 0
+      },
+      "T8": {
+        "dtype": "float64",
+        "nan_count": 0,
+        "positive_infinity_count": 0,
+        "negative_infinity_count": 0
+      },
+      "RH_8": {
+        "dtype": "float64",
+        "nan_count": 0,
+        "positive_infinity_count": 0,
+        "negative_infinity_count": 0
+      },
+      "T9": {
+        "dtype": "float64",
+        "nan_count": 0,
+        "positive_infinity_count": 0,
+        "negative_infinity_count": 0
+      },
+      "RH_9": {
+        "dtype": "float64",
+        "nan_count": 0,
+        "positive_infinity_count": 0,
+        "negative_infinity_count": 0
+      },
+      "T_out": {
+        "dtype": "float64",
+        "nan_count": 0,
+        "positive_infinity_count": 0,
+        "negative_infinity_count": 0
+      },
+      "Press_mm_hg": {
+        "dtype": "float64",
+        "nan_count": 0,
+        "positive_infinity_count": 0,
+        "negative_infinity_count": 0
+      },
+      "RH_out": {
+        "dtype": "float64",
+        "nan_count": 0,
+        "positive_infinity_count": 0,
+        "negative_infinity_count": 0
+      },
+      "Windspeed": {
+        "dtype": "float64",
+        "nan_count": 0,
+        "positive_infinity_count": 0,
+        "negative_infinity_count": 0
+      },
+      "Visibility": {
+        "dtype": "float64",
+        "nan_count": 0,
+        "positive_infinity_count": 0,
+        "negative_infinity_count": 0
+      },
+      "Tdewpoint": {
+        "dtype": "float64",
+        "nan_count": 0,
+        "positive_infinity_count": 0,
+        "negative_infinity_count": 0
+      },
+      "rv1": {
+        "dtype": "float64",
+        "nan_count": 0,
+        "positive_infinity_count": 0,
+        "negative_infinity_count": 0
+      },
+      "rv2": {
+        "dtype": "float64",
+        "nan_count": 0,
+        "positive_infinity_count": 0,
+        "negative_infinity_count": 0
+      }
+    },
+    "all_numeric_values_finite": true
+  },
+  "environment": {
+    "python": "3.10.17",
+    "pandas": "2.3.3",
+    "numpy": "2.2.6"
+  },
+  "checks": [
+    {
+      "name": "csv_readable",
+      "status": "PASS",
+      "message": "CSV 成功讀取；原始內容未修改。"
+    },
+    {
+      "name": "unique_column_names",
+      "status": "PASS",
+      "message": "原始 CSV 標頭不得有重複欄名。"
+    },
+    {
+      "name": "expected_columns",
+      "status": "PASS",
+      "message": "驗證 29 個預期欄名與順序。"
+    },
+    {
+      "name": "expected_rows",
+      "status": "PASS",
+      "message": "預期 19735 rows；實際 19735。"
+    },
+    {
+      "name": "expected_column_count",
+      "status": "PASS",
+      "message": "預期 29 columns；實際 29。"
+    },
+    {
+      "name": "no_missing_values",
+      "status": "PASS",
+      "message": "總缺失值：0。"
+    },
+    {
+      "name": "no_duplicate_rows",
+      "status": "PASS",
+      "message": "完全重複資料列：0。"
+    },
+    {
+      "name": "target_exists",
+      "status": "PASS",
+      "message": "必要 Target 欄位為 Appliances。"
+    },
+    {
+      "name": "target_numeric",
+      "status": "PASS",
+      "message": "Target dtype：int64。"
+    },
+    {
+      "name": "target_finite",
+      "status": "PASS",
+      "message": "Target 必須沒有 NaN 或正負無窮值。"
+    },
+    {
+      "name": "expected_original_features",
+      "status": "PASS",
+      "message": "預期 28 original input features；實際 28。"
+    },
+    {
+      "name": "teacher_feature_constraint",
+      "status": "PASS",
+      "message": "原始輸入 Features 必須 >13 且 <40；包含 date，排除 Target。"
+    },
+    {
+      "name": "expected_candidate_features_exclude_date",
+      "status": "PASS",
+      "message": "排除 Target 與 date 後，預期 27 個候選欄位；僅統計。"
+    },
+    {
+      "name": "expected_candidate_features_exclude_date_rv1_rv2",
+      "status": "PASS",
+      "message": "排除 Target、date、rv1、rv2 後，預期 25 個候選欄位；僅統計。"
+    },
+    {
+      "name": "date_exists",
+      "status": "PASS",
+      "message": "必要時間欄位為 date。"
+    },
+    {
+      "name": "date_parseable",
+      "status": "PASS",
+      "message": "不可解析或缺失的時間戳記：0。"
+    },
+    {
+      "name": "date_unique",
+      "status": "PASS",
+      "message": "重複時間戳記：0。"
+    },
+    {
+      "name": "date_ordered",
+      "status": "PASS",
+      "message": "時間應依原始資料列順序遞增。"
+    },
+    {
+      "name": "date_ten_minute_intervals",
+      "status": "PASS",
+      "message": "預期所有相鄰時間間隔皆為 600 秒；異常只回報，不修正。"
+    },
+    {
+      "name": "rv1_exists",
+      "status": "PASS",
+      "message": "驗證隨機變數 rv1 存在。"
+    },
+    {
+      "name": "rv2_exists",
+      "status": "PASS",
+      "message": "驗證隨機變數 rv2 存在。"
+    },
+    {
+      "name": "rv1_rv2_distinct",
+      "status": "WARN",
+      "message": "rv1、rv2 完全相同；記錄為 WARN，是否保留由後續實驗決定。"
+    },
+    {
+      "name": "numeric_columns_except_date",
+      "status": "PASS",
+      "message": "date 以外的非數值欄位：[]。"
+    },
+    {
+      "name": "numeric_values_finite",
+      "status": "PASS",
+      "message": "逐欄檢查數值欄位 NaN 與正負無窮值。"
+    },
+    {
+      "name": "csv_unchanged_during_validation",
+      "status": "PASS",
+      "message": "驗證前後 CSV SHA-256 必須一致。"
+    }
+  ],
+  "overall_status": "WARN",
+  "csv_size_bytes": 11979363
+}
