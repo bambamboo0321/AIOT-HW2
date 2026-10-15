@@ -1,0 +1,268 @@
+{
+  "schema_version": 1,
+  "purpose": "Phase 2 Notebook final synchronization",
+  "status": "PASS",
+  "verified_client_date": "2026-10-15",
+  "completed_at_utc": "2026-10-15T11:54:45.328084+00:00",
+  "notebook_execution_report": "reports/phase2/notebook_execution.json",
+  "current_execution": {
+    "status": "PASS",
+    "notebook": "notebooks/phase2_exploration.ipynb",
+    "purpose": "phase2_notebook_sync",
+    "started_at_utc": "2026-10-15T11:49:28.250746+00:00",
+    "finished_at_utc": "2026-10-15T11:49:34.563905+00:00",
+    "execution_mode": "fresh kernel; cleared outputs; Run All",
+    "code_cells_executed": 12,
+    "error_outputs": 0,
+    "kernel": "aiot-hw2",
+    "kernel_environment": ".venv",
+    "cli_eda_and_baseline_json_equal": true,
+    "reference_reports_compared": [
+      "eda_statistics.json",
+      "baseline_metrics.json"
+    ],
+    "eda_figure_count": 9,
+    "evaluation_figure_count": 7,
+    "baseline_execution": "load saved models; verify predictions and metrics; no fit or model writes",
+    "protected_file_sha256": {
+      "data/raw/KAG_energydata_complete.csv": "2820bf712ad0275cb18b85a05250926100d8e65ebb9f4d2d016ca91ea152a25d",
+      "KAG_energydata_complete.csv": "2820bf712ad0275cb18b85a05250926100d8e65ebb9f4d2d016ca91ea152a25d",
+      "reports/phase1/data_validation.json": "5c332221dacbd0a1e2a404bb76c6ed22e270016b082eea16cebe9e0242b3235f",
+      "reports/phase2/baseline_metrics.json": "866010d204a7c4f305217206a3a80082e06841ee1138e59f1f621b333062c691",
+      "reports/phase2/model_evaluation.md": "33ed70855f304b7805016d1972f6d9cf4115b7bce1d700e87df294f995b28b29",
+      "reports/phase2/split_indices.json": "d764a17eea8862590c362141cdc075fc08ccaa6480d46a3eb063ce78fa83ba63",
+      "reports/phase2/models/chronological_baseline.joblib": "9f9330522d7b52d6d279bf4b05f9a5f9123e1693e760dbd540910d74cd6a33ed",
+      "reports/phase2/models/chronological_baseline.json": "8bcf7285887627ab24eac3667eefdee2724d1a8c23a924b93dae10783d33c2cf",
+      "reports/phase2/models/random_baseline.joblib": "1df09b4eb709aa9048f6db5b16e3519fca31a96b9a5991154e6275b123c8ccf9",
+      "reports/phase2/models/random_baseline.json": "bee7a3dc0800558a183d9f99c993c29c78c8112459f142b0d03d9fdfe5b2a05e",
+      "reports/phase2/predictions_chronological.csv": "2eb2ec21b6935c3b8e4602df8687467e86c46ebf1dc24d085e8f44067ac4a5f5",
+      "reports/phase2/predictions_random.csv": "1ae82f1b7bf4efa16dc3f753dda1a446a005d7475c792fd4985e05bd5f876e2e"
+    },
+    "protected_files_unchanged": true
+  },
+  "previous_notebook_execution": {
+    "status": "PASS",
+    "notebook": "notebooks/phase2_exploration.ipynb",
+    "execution_mode": "fresh kernel; cleared outputs; Run All",
+    "code_cells_executed": 11,
+    "error_outputs": 0,
+    "kernel": "aiot-hw2",
+    "kernel_environment": ".venv",
+    "cli_eda_and_baseline_json_equal": true,
+    "reference_reports_compared": [
+      "eda_statistics.json",
+      "baseline_metrics.json"
+    ]
+  },
+  "historical_verification": {
+    "path": "reports/phase2/verification.json",
+    "unchanged": false,
+    "scope": "Earlier core-development validation; current Run All and test results are recorded here.",
+    "original_sha256": "f2c20ef2e56c630998bb0328bd611384bf57c0d8565fd119bd8f64317e1e20af",
+    "current_sha256": "4cf5ef8e18665a7593d0637c6bd890f656092445fea3ef0d810aa48fdea63a44",
+    "normalization": "16 artifact-index keys changed to repository-relative paths; all historical values retained",
+    "original_copy_ignored_path": ".venv/phase2_notebook_sync/previous_verification.json"
+  },
+  "initial_kernel_attempt": {
+    "status": "sandbox_blocked_before_cell_execution",
+    "cause": "Local Jupyter TCP socket bind returned PermissionError",
+    "resolution": "Same command rerun with approved local-kernel permissions"
+  },
+  "tests": {
+    "tests_run": 40,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "successful": true,
+    "runtime_seconds": 1.35,
+    "equivalent_command": ".venv/bin/python -B -m unittest discover -s tests -v",
+    "invocation": "unittest.defaultTestLoader.discover(\"tests\") with TextTestRunner(verbosity=2)",
+    "unittest_reported_runtime_seconds": 0.503,
+    "output": "test_changed_source_checksum_is_rejected (test_phase2.Phase2Validation) ... ok\ntest_heldout_target_cannot_change_fitted_model (test_phase2.Phase2Validation) ... ok\ntest_predefined_features_exclude_target_time_and_random_columns (test_phase2.Phase2Validation) ... ok\ntest_random_split_repeats_and_manifest_matches_fitted_partitions (test_phase2.Phase2Validation) ... ok\ntest_saved_models_predictions_residuals_and_metrics_agree (test_phase2.Phase2Validation) ... ok\ntest_time_holdout_is_after_training_and_partitions_cover_dataset (test_phase2.Phase2Validation) ... ok\ntest_invalid_target_features_and_unused_override_rejected (test_preprocessing.ConfigTests) ... ok\ntest_invalid_values_rejected (test_preprocessing.ConfigTests) ... ok\ntest_json_roundtrip_and_unknown_keys (test_preprocessing.ConfigTests) ... ok\ntest_all_missing_features_keep_stable_names (test_preprocessing.PipelineTests) ... ok\ntest_calendar_cyclical_and_exclude (test_preprocessing.PipelineTests) ... ok\ntest_categorical_imputation_unknown_and_drop (test_preprocessing.PipelineTests) ... ok\ntest_explicit_date_format_missing_and_invalid (test_preprocessing.PipelineTests) ... ok\ntest_feature_names_mapping_and_count_match_actual_output (test_preprocessing.PipelineTests) ... ok\ntest_free_text_and_zero_active_features_rejected (test_preprocessing.PipelineTests) ... ok\ntest_iqr_clip_flag_and_keep_are_learned_from_training (test_preprocessing.PipelineTests) ... ok\ntest_mean_median_and_no_imputation (test_preprocessing.PipelineTests) ... ok\ntest_reproducible_transforms (test_preprocessing.PipelineTests) ... ok\ntest_row_removal_cannot_be_silently_used_in_plain_pipeline (test_preprocessing.PipelineTests) ... ok\ntest_sklearn_pipeline_clone_serialization_and_predict_reuse (test_preprocessing.PipelineTests) ... ok\ntest_standard_scaler_is_fit_to_training_only (test_preprocessing.PipelineTests) ... ok\ntest_test_perturbations_cannot_change_training_state (test_preprocessing.PipelineTests) ... ok\ntest_type_override_and_failed_numeric_conversion (test_preprocessing.PipelineTests) ... ok\ntest_bad_headers_and_empty_frame_rejected (test_preprocessing.ProfilingTests) ... ok\ntest_date_detection_does_not_parse_numbers_or_ambiguous_dates (test_preprocessing.ProfilingTests) ... ok\ntest_missing_unique_outliers_constants_and_duplicates (test_preprocessing.ProfilingTests) ... ok\ntest_normal_csv_readonly_and_json_without_data_rows (test_preprocessing.ProfilingTests) ... ok\ntest_recommendations_are_reviewable_and_overridable (test_preprocessing.ProfilingTests) ... ok\ntest_text_ids_and_high_cardinality_are_not_silently_categories (test_preprocessing.ProfilingTests) ... ok\ntest_type_override_preserves_source_and_summary_is_finite_json (test_preprocessing.ProfilingTests) ... ok\ntest_alignment_overlap_and_unprocessed_target_rejected (test_preprocessing.SplittingTests) ... ok\ntest_chronological_sort_and_time_series_gap (test_preprocessing.SplittingTests) ... ok\ntest_cv_fit_observes_only_current_training_rows (test_preprocessing.SplittingTests) ... ok\ntest_drop_rows_retains_alignment_and_reports_validation_coverage (test_preprocessing.SplittingTests) ... ok\ntest_duplicate_or_missing_times_and_duplicate_index_rejected (test_preprocessing.SplittingTests) ... ok\ntest_iqr_removal_training_only_and_fold_local (test_preprocessing.SplittingTests) ... ok\ntest_no_imputation_validation_missing_fails_clearly (test_preprocessing.SplittingTests) ... ok\ntest_random_split_reproducible_no_overlap_and_alignment (test_preprocessing.SplittingTests) ... ok\ntest_raw_energy_csv_hash_matches_phase1 (test_preprocessing.SplittingTests) ... ok\ntest_target_missing_is_separate_and_never_imputed (test_preprocessing.SplittingTests) ... ok\n\n----------------------------------------------------------------------\nRan 40 tests in 0.503s\n\nOK\n"
+  },
+  "phase1": {
+    "report": "reports/phase2/notebook_sync_phase1_validation.json",
+    "exit_code": 0,
+    "overall_status": "WARN",
+    "checks": {
+      "PASS": 24,
+      "WARN": 1,
+      "FAIL": 0
+    },
+    "warning_names": [
+      "rv1_rv2_distinct"
+    ]
+  },
+  "invariants": {
+    "baseline_metrics_byte_identical": true,
+    "baseline_models_byte_identical": true,
+    "baseline_model_fit_in_notebook": false,
+    "baseline_model_writes_in_notebook": false,
+    "original_training_implementation_unchanged": true,
+    "raw_csv_sha256_unchanged": true,
+    "phase1_original_report_unchanged": true,
+    "preprocessing_implementation_unchanged": true,
+    "eda_and_preprocessing_reports_byte_identical": true,
+    "existing_16_figures_byte_identical": true
+  },
+  "protected_files": {
+    "reports/phase2/split_indices.json": {
+      "before_sha256": "d764a17eea8862590c362141cdc075fc08ccaa6480d46a3eb063ce78fa83ba63",
+      "after_sha256": "d764a17eea8862590c362141cdc075fc08ccaa6480d46a3eb063ce78fa83ba63"
+    },
+    "reports/phase2/baseline_metrics.json": {
+      "before_sha256": "866010d204a7c4f305217206a3a80082e06841ee1138e59f1f621b333062c691",
+      "after_sha256": "866010d204a7c4f305217206a3a80082e06841ee1138e59f1f621b333062c691"
+    },
+    "reports/phase2/model_evaluation.md": {
+      "before_sha256": "33ed70855f304b7805016d1972f6d9cf4115b7bce1d700e87df294f995b28b29",
+      "after_sha256": "33ed70855f304b7805016d1972f6d9cf4115b7bce1d700e87df294f995b28b29"
+    },
+    "reports/phase2/predictions_random.csv": {
+      "before_sha256": "1ae82f1b7bf4efa16dc3f753dda1a446a005d7475c792fd4985e05bd5f876e2e",
+      "after_sha256": "1ae82f1b7bf4efa16dc3f753dda1a446a005d7475c792fd4985e05bd5f876e2e"
+    },
+    "reports/phase2/predictions_chronological.csv": {
+      "before_sha256": "2eb2ec21b6935c3b8e4602df8687467e86c46ebf1dc24d085e8f44067ac4a5f5",
+      "after_sha256": "2eb2ec21b6935c3b8e4602df8687467e86c46ebf1dc24d085e8f44067ac4a5f5"
+    },
+    "reports/phase2/models/chronological_baseline.joblib": {
+      "before_sha256": "9f9330522d7b52d6d279bf4b05f9a5f9123e1693e760dbd540910d74cd6a33ed",
+      "after_sha256": "9f9330522d7b52d6d279bf4b05f9a5f9123e1693e760dbd540910d74cd6a33ed"
+    },
+    "reports/phase2/models/random_baseline.json": {
+      "before_sha256": "bee7a3dc0800558a183d9f99c993c29c78c8112459f142b0d03d9fdfe5b2a05e",
+      "after_sha256": "bee7a3dc0800558a183d9f99c993c29c78c8112459f142b0d03d9fdfe5b2a05e"
+    },
+    "reports/phase2/models/random_baseline.joblib": {
+      "before_sha256": "1df09b4eb709aa9048f6db5b16e3519fca31a96b9a5991154e6275b123c8ccf9",
+      "after_sha256": "1df09b4eb709aa9048f6db5b16e3519fca31a96b9a5991154e6275b123c8ccf9"
+    },
+    "reports/phase2/models/chronological_baseline.json": {
+      "before_sha256": "8bcf7285887627ab24eac3667eefdee2724d1a8c23a924b93dae10783d33c2cf",
+      "after_sha256": "8bcf7285887627ab24eac3667eefdee2724d1a8c23a924b93dae10783d33c2cf"
+    },
+    "reports/phase1/data_validation.json": {
+      "before_sha256": "5c332221dacbd0a1e2a404bb76c6ed22e270016b082eea16cebe9e0242b3235f",
+      "after_sha256": "5c332221dacbd0a1e2a404bb76c6ed22e270016b082eea16cebe9e0242b3235f"
+    },
+    "data/raw/KAG_energydata_complete.csv": {
+      "before_sha256": "2820bf712ad0275cb18b85a05250926100d8e65ebb9f4d2d016ca91ea152a25d",
+      "after_sha256": "2820bf712ad0275cb18b85a05250926100d8e65ebb9f4d2d016ca91ea152a25d"
+    },
+    "KAG_energydata_complete.csv": {
+      "before_sha256": "2820bf712ad0275cb18b85a05250926100d8e65ebb9f4d2d016ca91ea152a25d",
+      "after_sha256": "2820bf712ad0275cb18b85a05250926100d8e65ebb9f4d2d016ca91ea152a25d"
+    }
+  },
+  "modified_since_sync_start": [
+    "README.md",
+    "notebooks/phase2_exploration.ipynb",
+    "reports/phase2/notebook_execution.json",
+    "reports/phase2/verification.json",
+    "src/run_phase2_notebook.py",
+    "src/train_baseline.py"
+  ],
+  "created_for_sync": [
+    "reports/phase2/notebook_sync_phase1_validation.json",
+    "reports/phase2/notebook_sync_verification.json"
+  ],
+  "scope": {
+    "feature_selection_performed": false,
+    "phase3_started": false,
+    "git_add_commit_push_performed": false
+  },
+  "safety_checks": {
+    "status": "PASS",
+    "git_diff_check": {
+      "exit_code": 0,
+      "output": ""
+    },
+    "scanned_git_eligible_files": 60,
+    "scan_includes_untracked_files": true,
+    "secret_private_path_email_pattern_findings": [],
+    "scan_limit": "Pattern-based scan; PNG compressed pixel data excluded. Does not prove absence of every possible secret.",
+    "reviewed_false_positive": {
+      "file": "reports/phase2/figures/11_random_actual_vs_predicted.png",
+      "pattern": "email_address",
+      "count": 1,
+      "location": "IDAT compressed pixels; no text metadata match; image unchanged"
+    },
+    "historical_private_paths_normalized": 16,
+    "text_whitespace_findings": [],
+    "large_file_threshold_bytes": 10485760,
+    "large_files": [
+      {
+        "path": "data/raw/KAG_energydata_complete.csv",
+        "bytes": 11979363,
+        "already_tracked": true
+      }
+    ],
+    "files_over_50_mib": [],
+    "notebook_bytes": 2270646,
+    "head": "8839430c2defa99a961976cb002cc94390a904c0",
+    "branch": "main",
+    "staged_files": [],
+    "git_status": [
+      " M README.md",
+      " M requirements.txt",
+      "?? docs/preprocessing_wizard.md",
+      "?? notebooks/phase2_exploration.ipynb",
+      "?? reports/phase2/baseline_metrics.json",
+      "?? reports/phase2/business_understanding.md",
+      "?? reports/phase2/data_profile.json",
+      "?? reports/phase2/eda_statistics.json",
+      "?? reports/phase2/eda_summary.md",
+      "?? reports/phase2/energy_config.json",
+      "?? reports/phase2/figures/01_appliances_histogram.png",
+      "?? reports/phase2/figures/02_appliances_boxplot.png",
+      "?? reports/phase2/figures/03_appliances_time_series.png",
+      "?? reports/phase2/figures/04_numerical_correlation_heatmap.png",
+      "?? reports/phase2/figures/05_feature_target_correlation_ranking.png",
+      "?? reports/phase2/figures/06_hourly_appliances_pattern.png",
+      "?? reports/phase2/figures/07_weekday_appliances_pattern.png",
+      "?? reports/phase2/figures/08_chronological_actual_vs_predicted.png",
+      "?? reports/phase2/figures/09_chronological_residual_vs_predicted.png",
+      "?? reports/phase2/figures/10_chronological_residual_distribution.png",
+      "?? reports/phase2/figures/11_random_actual_vs_predicted.png",
+      "?? reports/phase2/figures/12_random_residual_vs_predicted.png",
+      "?? reports/phase2/figures/13_random_residual_distribution.png",
+      "?? reports/phase2/figures/14_split_performance_comparison.png",
+      "?? reports/phase2/figures/15_numerical_distributions.png",
+      "?? reports/phase2/figures/16_monthly_and_autocorrelation.png",
+      "?? reports/phase2/model_evaluation.md",
+      "?? reports/phase2/models/chronological_baseline.joblib",
+      "?? reports/phase2/models/chronological_baseline.json",
+      "?? reports/phase2/models/random_baseline.joblib",
+      "?? reports/phase2/models/random_baseline.json",
+      "?? reports/phase2/notebook_execution.json",
+      "?? reports/phase2/notebook_sync_phase1_validation.json",
+      "?? reports/phase2/notebook_sync_verification.json",
+      "?? reports/phase2/phase2_report.md",
+      "?? reports/phase2/predictions_chronological.csv",
+      "?? reports/phase2/predictions_random.csv",
+      "?? reports/phase2/preprocessing_summary.json",
+      "?? reports/phase2/repository_review.json",
+      "?? reports/phase2/split_indices.json",
+      "?? reports/phase2/verification.json",
+      "?? reports/phase2/wizard_recommendations.json",
+      "?? src/data_splitting.py",
+      "?? src/eda.py",
+      "?? src/phase2_common.py",
+      "?? src/phase2_report.py",
+      "?? src/preprocessing.py",
+      "?? src/preprocessing_config.py",
+      "?? src/profiling.py",
+      "?? src/run_phase2_notebook.py",
+      "?? src/run_preprocessing.py",
+      "?? src/train_baseline.py",
+      "?? tests/test_phase2.py",
+      "?? tests/test_preprocessing.py"
+    ],
+    "working_tree_counts": {
+      "modified_tracked": 2,
+      "untracked": 52
+    },
+    "ignored_cache_or_secrets_in_candidate_list": []
+  }
+}

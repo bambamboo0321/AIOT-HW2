@@ -1,6 +1,8 @@
 # AIOT HW2：Python Machine Learning
 
-本專案研究 Appliances Energy Prediction 資料集，目標為了解室內溫濕度、照明與外部天氣等觀測資訊，能否用於預測家電能源消耗 `Appliances`。後續依作業要求使用 sklearn Multiple Linear Regression（多元線性迴歸）。目前只完成 Phase 1「環境建立與資料驗證」。
+本專案研究 Appliances Energy Prediction 資料集，目標為了解室內溫濕度、照明與外部天氣等觀測資訊，能否用於預測家電能源消耗 `Appliances`。依作業要求使用 sklearn Multiple Linear Regression（多元線性迴歸）。目前完成 Phase 1「環境建立與資料驗證」，本次 Phase 2 為「Data Understanding & Configurable Preprocessing」。目標是逐步建立 Interactive Multiple Linear Regression & Feature Selection Lab；本次只交付 Python 核心、EDA、設定契約及驗收，尚未開始正式五種 Feature Selection、前端或部署。
+
+接手時 main 的 HEAD 為 `8839430c2defa99a961976cb002cc94390a904c0`，但 working tree 已有未提交的 Baseline／Notebook／模型評估。這些檔案保留供追溯，本次未重跑其正式訓練或評估。現在的驗收入口是 [Phase 2 主報告](reports/phase2/phase2_report.md) 與 [Wizard 契約](docs/preprocessing_wizard.md)。Notebook 已另完成同步收尾，最新執行與安全檢查見 [Notebook 同步驗收](reports/phase2/notebook_sync_verification.json)；主報告中「未執行 Notebook runner」描述的是先前核心開發階段。既有 Baseline 模型與 Metrics 保持不變。
 
 ## 資料來源與原始檔
 
@@ -30,11 +32,11 @@ Candanedo, L. M., Feldheim, V., & Deramaix, D. (2017). Data driven prediction mo
 
 | 階段 | 本專案對應工作 | 目前狀態 |
 | --- | --- | --- |
-| Business Understanding（商業理解） | 確認家電能源消耗研究目標與作業限制 | Phase 1 記錄目標 |
-| Data Understanding（資料理解） | 檢查原始資料結構、品質、時間欄位與候選欄位數量 | Phase 1 驗證 |
-| Data Preparation（資料準備） | 後續決定資料切分、時間處理與 Feature Selection | 尚未執行 |
-| Modeling（建模） | 後續使用 sklearn 多元線性迴歸 | 尚未執行 |
-| Evaluation（評估） | 後續 Model Evaluation 與 95% Confidence／Prediction Interval 圖 | 尚未執行 |
+| Business Understanding（商業理解） | 確認家電能源消耗研究目標與作業限制 | 已有背景文件；本次範圍見 Phase 2 主報告 |
+| Data Understanding（資料理解） | 原始品質驗證、分布、相關性與時間 EDA | Phase 1 驗證與 Phase 2 EDA 已完成 |
+| Data Preparation（資料準備） | 可設定補值、編碼、縮放、日期、異常值與 fold 內前處理 | Phase 2 已完成；正式 Feature Selection 留待後續 |
+| Modeling（建模） | 最終固定使用 sklearn LinearRegression | 接手前已有 Baseline；本次未新增正式模型 |
+| Evaluation（評估） | CV 比較與最終評估 | 接手前已有評估檔；本次只驗收前處理核心 |
 | Deployment（部署） | 彙整可重現的交付成果與研究報告 | 尚未執行 |
 
 CRISP-DM 的六階段是研究方法論，與作業的 Phase 1–4 執行範圍不同。
@@ -49,31 +51,26 @@ CRISP-DM 的六階段是研究方法論，與作業的 Phase 1–4 執行範圍�
 | Candidate Feature Count（Exclude date） | `Appliances`、`date` | 27 |
 | Candidate Feature Count（Exclude date, rv1, rv2） | `Appliances`、`date`、`rv1`、`rv2` | 25 |
 
-候選數量只依欄名統計，沒有執行 Feature Selection，也沒有從資料中刪除欄位。模型 Features 是後續實驗決定實際輸入模型的欄位；尚未選定或計算。
+Phase 1 的候選數量只依欄名統計，沒有執行 Feature Selection，也沒有從資料中刪除欄位。本次預設前處理示例使用 25 個數值特徵，排除 Target、date、rv1、rv2；使用者可覆寫排除與型態。未依測試分數挑選設定。加入 date 的 calendar 示例會得到 29 個轉換欄位。Phase 3 的 k 一律指轉換後數值欄位數，原始欄位 mapping 另行保存。
 
-`date` 是時間欄位，只解析以驗證品質；未當作一般連續數值，也未建立衍生時間特徵。`rv1`、`rv2` 是隨機變數，是否保留由後續實驗決定。
+`date` 保留供時間切分，另提供 calendar／cyclical 衍生選項，不能直接當作 Unix Timestamp 數值。`rv1`、`rv2` 為完全相同的隨機變數，建議排除且允許覆寫；沒有在本階段正式比較其預測表現。
 
 ## 專案結構
 
-```text
-AIOT-HW2/
-├── KAG_energydata_complete.csv       # 本機原檔保留，Git 忽略
-├── data/
-│   └── raw/
-│       └── KAG_energydata_complete.csv
-├── src/
-│   ├── __init__.py
-│   └── validate_data.py
-├── reports/
-│   └── phase1/
-│       └── data_validation.json
-├── notebooks/
-│   └── .gitkeep
-├── .venv/                           # 本機環境，不納入 Git
-├── .gitignore
-├── requirements.txt
-└── README.md
-```
+- `data/raw/`：唯一 Git 追蹤的原始 CSV。
+- `src/validate_data.py`：原 Phase 1 驗證，保持未修改。
+- `src/eda.py`：可重現 EDA；`phase2_common.py` 沿用共用 I/O。
+- `src/profiling.py`：一般 CSV 剖析與保守型態推測。
+- `src/preprocessing_config.py`：Wizard v1 設定、驗證、建議、保存。
+- `src/preprocessing.py`：sklearn Pipeline、IQR、日期與 Feature mapping。
+- `src/data_splitting.py`：random／chronological、X/y 同步過濾、fold-local 前處理。
+- `src/run_preprocessing.py`、`src/phase2_report.py`：能源示例與主報告。
+- `tests/test_preprocessing.py`：本次核心測試；`test_phase2.py` 是既存 Baseline 回歸測試。
+- `docs/preprocessing_wizard.md`：前端無關的 JSON 契約、API、k 定義與限制。
+- `reports/phase1/`：原驗證報告，保持未修改。
+- `reports/phase2/`：EDA 圖表、profile、設定、mapping、主報告及驗收紀錄。
+- `src/train_baseline.py`、`reports/phase2/models/`、predictions／baseline_metrics 等：既有 Baseline 成果；新增唯讀核對函式供 Notebook 重用，不改變訓練邏輯或模型。
+- `src/run_phase2_notebook.py`、Notebook：全新 Kernel 執行目前 EDA／前處理，核對既有 Baseline，不重新 fit 或寫入模型。
 
 ## Mac Python 環境
 
@@ -91,7 +88,7 @@ cd AIOT-HW2
 .venv/bin/python -m pip check
 ```
 
-`requirements.txt` 僅記錄實際安裝並驗證成功的四項直接依賴版本；傳遞依賴由 pip 解析。跨平台或其他 Python 版本尚未驗證。
+`requirements.txt` 記錄實際安裝並驗證成功的分析、模型保存與 Notebook 執行直接依賴版本；傳遞依賴由 pip 解析。跨平台或其他 Python 版本尚未驗證。
 
 本機實際安裝並成功匯入的版本：
 
@@ -102,8 +99,12 @@ cd AIOT-HW2
 | numpy | 2.2.6 |
 | scikit-learn | 1.7.2 |
 | matplotlib | 3.10.9 |
+| joblib | 1.6.0 |
+| nbformat | 5.11.1 |
+| nbclient | 0.11.0 |
+| ipykernel | 7.3.0 |
 
-`pip check` 通過，沒有依賴衝突。未匯入繪圖介面或訓練模型；套件匯入驗收時以 `.venv/matplotlib-config` 作為 Matplotlib 的設定快取位置。
+`pip check` 通過，沒有依賴衝突。Phase 2 的圖表程式以 `.venv/matplotlib-config` 作為 Matplotlib 設定快取位置；Notebook 執行的 Jupyter／IPython 設定與快取也限定在 `.venv`。
 
 ## 執行資料驗證
 
@@ -175,6 +176,33 @@ cd AIOT-HW2
 
 已對兩份 CSV、程式與文件檢查常見私鑰、AWS／GitHub／OpenAI 金鑰及電子郵件樣式，未發現符合樣式的內容。資料欄位為觀測時間、能源消耗、溫濕度、天氣與隨機變數，沒有姓名、地址、聯絡方式或帳號識別欄位。資料來源已依 UCI 官方原檔完整比對確認，README 保留 CC BY 4.0 署名與授權資訊。
 
+## Phase 2 執行與驗收
+
+沿用現有 `.venv` 與 requirements，不需新增套件。於專案根目錄執行：
+
+```bash
+.venv/bin/python -m src.eda
+.venv/bin/python -m src.run_preprocessing
+.venv/bin/python -m src.phase2_report
+.venv/bin/python -m src.run_phase2_notebook
+.venv/bin/python -m unittest discover -s tests -v
+.venv/bin/python -m pip check
+```
+
+前兩個命令更新 EDA／前處理報告，第三個由實際 JSON 統計重建繁體中文主報告；Notebook runner 以全新 Kernel 顯示 9 張 EDA 與 7 張評估圖，並核對已儲存模型的指標。這些流程不訓練正式模型或修改原始 CSV。測試中的 LinearRegression 只作合成資料整合與既有 Baseline 回歸驗收，不輸出新模型評估檔。`train_baseline.py` 的 CLI 仍會重新訓練並寫入模型，Notebook 同步驗收不使用該入口。Notebook runner 已改為透過共用函式載入既有模型，重算並核對預測指標但不改寫 Baseline；以 SHA-256 檢查 CSV、Phase 1、模型、Metrics、預測檔與切分索引未變。
+
+若驗證 Phase 1，請將輸出另外存到忽略目錄，以保留原報告：
+
+```bash
+.venv/bin/python -m src.validate_data --report .venv/phase2_checks/phase1_validation.json
+```
+
+目前核心預設為 25 個轉換欄位，calendar 示例為 29。訓練 15,788／測試 3,947；只在 training fit，test 只 transform。詳細統計、時間依賴、範圍差異與限制見 [Phase 2 主報告](reports/phase2/phase2_report.md)。[verification.json](reports/phase2/verification.json) 保留核心開發階段的驗收；[notebook_sync_verification.json](reports/phase2/notebook_sync_verification.json) 記錄本次 Run All、重跑測試與 Git 安全檢查；[repository_review.json](reports/phase2/repository_review.json) 記錄本次與接手前檔案差異。
+
+設定示例見 [energy_config.json](reports/phase2/energy_config.json)，使用者可更換 Target／Features、覆寫型態、選擇補值／編碼／縮放／異常值／日期策略，以及 random／chronological split。k 定義、原始欄位 mapping、刪列的 X/y 對齊與 CV 限制均在 [Wizard Contract](docs/preprocessing_wizard.md)。
+
+接手前已有 holdout 評估報告，該資料不能再宣稱是完全未查看的最終測試集。後續正式比較只使用 training CV；若需全新最終泛化證據，應使用另取得的獨立時間資料。舊評估檔保留，但本次不以其分數調參或宣稱演算法優劣。
+
 ## 後續工作範圍
 
-**Phase 2–4 尚未執行。** 未進行 Feature Selection、資料切分、模型訓練、Model Evaluation、95% 區間預測圖、NotebookLM 文獻研究或至少 100 字摘要，也尚未匯出 GPT 對話 PDF。本 README 僅記錄環境與原始資料驗證，不包含虛構的模型成果。後續報告仍需說明 GPT 輔助過程並附相關對話 PDF。
+Phase 3 的五種 Feature Selection 比較、巢狀 CV、Performance 曲線與模型挑選尚未實作。Dashboard、上傳介面、Vercel、Prediction Playground、95% 區間與 PDF 均留待後續。Phase 2 完成後停止，等待人工驗收；不 Commit、Push 或部署。

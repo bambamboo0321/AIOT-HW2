@@ -1,0 +1,376 @@
+{
+  "dataset_sha256": "2820bf712ad0275cb18b85a05250926100d8e65ebb9f4d2d016ca91ea152a25d",
+  "environment": {
+    "python": "3.10.17",
+    "pandas": "2.3.3",
+    "numpy": "2.2.6",
+    "scikit-learn": "1.7.2",
+    "matplotlib": "3.10.9",
+    "joblib": "1.6.0",
+    "nbformat": "5.11.1",
+    "nbclient": "0.11.0",
+    "ipykernel": "7.3.0"
+  },
+  "config_path": "reports/phase2/energy_config.json",
+  "config": {
+    "target_column": "Appliances",
+    "feature_columns": [
+      "lights",
+      "T1",
+      "RH_1",
+      "T2",
+      "RH_2",
+      "T3",
+      "RH_3",
+      "T4",
+      "RH_4",
+      "T5",
+      "RH_5",
+      "T6",
+      "RH_6",
+      "T7",
+      "RH_7",
+      "T8",
+      "RH_8",
+      "T9",
+      "RH_9",
+      "T_out",
+      "Press_mm_hg",
+      "RH_out",
+      "Windspeed",
+      "Visibility",
+      "Tdewpoint"
+    ],
+    "column_types": {
+      "lights": "numeric",
+      "T1": "numeric",
+      "RH_1": "numeric",
+      "T2": "numeric",
+      "RH_2": "numeric",
+      "T3": "numeric",
+      "RH_3": "numeric",
+      "T4": "numeric",
+      "RH_4": "numeric",
+      "T5": "numeric",
+      "RH_5": "numeric",
+      "T6": "numeric",
+      "RH_6": "numeric",
+      "T7": "numeric",
+      "RH_7": "numeric",
+      "T8": "numeric",
+      "RH_8": "numeric",
+      "T9": "numeric",
+      "RH_9": "numeric",
+      "T_out": "numeric",
+      "Press_mm_hg": "numeric",
+      "RH_out": "numeric",
+      "Windspeed": "numeric",
+      "Visibility": "numeric",
+      "Tdewpoint": "numeric"
+    },
+    "missing_numeric": "median",
+    "missing_categorical": "most_frequent",
+    "missing_target": "error",
+    "categorical_constant": "__UNKNOWN__",
+    "categorical_encoding": "onehot",
+    "numerical_scaling": "standard",
+    "outlier_strategy": "keep",
+    "iqr_multiplier": 1.5,
+    "datetime_strategy": "exclude",
+    "datetime_formats": {},
+    "split_strategy": "chronological",
+    "split_column": "date",
+    "test_size": 0.2,
+    "random_state": 42,
+    "cv_splits": 5,
+    "cv_gap": 6,
+    "schema_version": 1
+  },
+  "target": "Appliances",
+  "original_candidate_count": 28,
+  "training_rows": 15788,
+  "test_rows": 3947,
+  "training_index_sha256": "22bd5e42f6f18f3e18433eded5894176d817977296be4df4ddc6fa6527584a67",
+  "test_index_sha256": "48dc82c4bea9e8e880cf50bc34f08430e0042ceaf994c76e05c6832cdd2b13ea",
+  "training_time_range": [
+    "2016-01-11 17:00:00",
+    "2016-04-30 08:10:00"
+  ],
+  "test_time_range": [
+    "2016-04-30 08:20:00",
+    "2016-05-27 18:00:00"
+  ],
+  "feature_summary": {
+    "selected_original_feature_count": 25,
+    "active_original_feature_count": 25,
+    "transformed_feature_count": 25,
+    "feature_names": [
+      "c0__lights",
+      "c1__T1",
+      "c2__RH_1",
+      "c3__T2",
+      "c4__RH_2",
+      "c5__T3",
+      "c6__RH_3",
+      "c7__T4",
+      "c8__RH_4",
+      "c9__T5",
+      "c10__RH_5",
+      "c11__T6",
+      "c12__RH_6",
+      "c13__T7",
+      "c14__RH_7",
+      "c15__T8",
+      "c16__RH_8",
+      "c17__T9",
+      "c18__RH_9",
+      "c19__T_out",
+      "c20__Press_mm_hg",
+      "c21__RH_out",
+      "c22__Windspeed",
+      "c23__Visibility",
+      "c24__Tdewpoint"
+    ],
+    "original_to_transformed": {
+      "lights": [
+        "c0__lights"
+      ],
+      "T1": [
+        "c1__T1"
+      ],
+      "RH_1": [
+        "c2__RH_1"
+      ],
+      "T2": [
+        "c3__T2"
+      ],
+      "RH_2": [
+        "c4__RH_2"
+      ],
+      "T3": [
+        "c5__T3"
+      ],
+      "RH_3": [
+        "c6__RH_3"
+      ],
+      "T4": [
+        "c7__T4"
+      ],
+      "RH_4": [
+        "c8__RH_4"
+      ],
+      "T5": [
+        "c9__T5"
+      ],
+      "RH_5": [
+        "c10__RH_5"
+      ],
+      "T6": [
+        "c11__T6"
+      ],
+      "RH_6": [
+        "c12__RH_6"
+      ],
+      "T7": [
+        "c13__T7"
+      ],
+      "RH_7": [
+        "c14__RH_7"
+      ],
+      "T8": [
+        "c15__T8"
+      ],
+      "RH_8": [
+        "c16__RH_8"
+      ],
+      "T9": [
+        "c17__T9"
+      ],
+      "RH_9": [
+        "c18__RH_9"
+      ],
+      "T_out": [
+        "c19__T_out"
+      ],
+      "Press_mm_hg": [
+        "c20__Press_mm_hg"
+      ],
+      "RH_out": [
+        "c21__RH_out"
+      ],
+      "Windspeed": [
+        "c22__Windspeed"
+      ],
+      "Visibility": [
+        "c23__Visibility"
+      ],
+      "Tdewpoint": [
+        "c24__Tdewpoint"
+      ]
+    },
+    "warnings": [],
+    "k_definition": "轉換後的單一數值欄位數；OneHot、日期衍生與 IQR flag 各自計數。"
+  },
+  "row_audit": {
+    "train_input_rows": 15788,
+    "validation_input_rows": 3947,
+    "train_retained_rows": 15788,
+    "validation_retained_rows": 3947,
+    "train_missing_dropped_indices": [],
+    "validation_missing_dropped_indices": [],
+    "train_outlier_dropped_indices": [],
+    "validation_outlier_removal": false,
+    "column_types_from_training": {
+      "lights": "numeric",
+      "T1": "numeric",
+      "RH_1": "numeric",
+      "T2": "numeric",
+      "RH_2": "numeric",
+      "T3": "numeric",
+      "RH_3": "numeric",
+      "T4": "numeric",
+      "RH_4": "numeric",
+      "T5": "numeric",
+      "RH_5": "numeric",
+      "T6": "numeric",
+      "RH_6": "numeric",
+      "T7": "numeric",
+      "RH_7": "numeric",
+      "T8": "numeric",
+      "RH_8": "numeric",
+      "T9": "numeric",
+      "RH_9": "numeric",
+      "T_out": "numeric",
+      "Press_mm_hg": "numeric",
+      "RH_out": "numeric",
+      "Windspeed": "numeric",
+      "Visibility": "numeric",
+      "Tdewpoint": "numeric"
+    }
+  },
+  "calendar_example": {
+    "selected_original_feature_count": 26,
+    "active_original_feature_count": 26,
+    "transformed_feature_count": 29,
+    "feature_names": [
+      "c0__lights",
+      "c1__T1",
+      "c2__RH_1",
+      "c3__T2",
+      "c4__RH_2",
+      "c5__T3",
+      "c6__RH_3",
+      "c7__T4",
+      "c8__RH_4",
+      "c9__T5",
+      "c10__RH_5",
+      "c11__T6",
+      "c12__RH_6",
+      "c13__T7",
+      "c14__RH_7",
+      "c15__T8",
+      "c16__RH_8",
+      "c17__T9",
+      "c18__RH_9",
+      "c19__T_out",
+      "c20__Press_mm_hg",
+      "c21__RH_out",
+      "c22__Windspeed",
+      "c23__Visibility",
+      "c24__Tdewpoint",
+      "c25__date__month",
+      "c25__date__day",
+      "c25__date__weekday",
+      "c25__date__hour"
+    ],
+    "original_to_transformed": {
+      "lights": [
+        "c0__lights"
+      ],
+      "T1": [
+        "c1__T1"
+      ],
+      "RH_1": [
+        "c2__RH_1"
+      ],
+      "T2": [
+        "c3__T2"
+      ],
+      "RH_2": [
+        "c4__RH_2"
+      ],
+      "T3": [
+        "c5__T3"
+      ],
+      "RH_3": [
+        "c6__RH_3"
+      ],
+      "T4": [
+        "c7__T4"
+      ],
+      "RH_4": [
+        "c8__RH_4"
+      ],
+      "T5": [
+        "c9__T5"
+      ],
+      "RH_5": [
+        "c10__RH_5"
+      ],
+      "T6": [
+        "c11__T6"
+      ],
+      "RH_6": [
+        "c12__RH_6"
+      ],
+      "T7": [
+        "c13__T7"
+      ],
+      "RH_7": [
+        "c14__RH_7"
+      ],
+      "T8": [
+        "c15__T8"
+      ],
+      "RH_8": [
+        "c16__RH_8"
+      ],
+      "T9": [
+        "c17__T9"
+      ],
+      "RH_9": [
+        "c18__RH_9"
+      ],
+      "T_out": [
+        "c19__T_out"
+      ],
+      "Press_mm_hg": [
+        "c20__Press_mm_hg"
+      ],
+      "RH_out": [
+        "c21__RH_out"
+      ],
+      "Windspeed": [
+        "c22__Windspeed"
+      ],
+      "Visibility": [
+        "c23__Visibility"
+      ],
+      "Tdewpoint": [
+        "c24__Tdewpoint"
+      ],
+      "date": [
+        "c25__date__month",
+        "c25__date__day",
+        "c25__date__weekday",
+        "c25__date__hour"
+      ]
+    },
+    "warnings": [],
+    "k_definition": "轉換後的單一數值欄位數；OneHot、日期衍生與 IQR flag 各自計數。"
+  },
+  "test_used_for_fitting": false,
+  "model_training_performed": false,
+  "formal_feature_selection_performed": false,
+  "raw_csv_unchanged": true
+}

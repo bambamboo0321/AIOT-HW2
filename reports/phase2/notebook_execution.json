@@ -1,0 +1,49 @@
+{
+  "status": "PASS",
+  "notebook": "notebooks/phase2_exploration.ipynb",
+  "purpose": "phase2_notebook_sync",
+  "started_at_utc": "2026-10-15T11:49:28.250746+00:00",
+  "finished_at_utc": "2026-10-15T11:49:34.563905+00:00",
+  "execution_mode": "fresh kernel; cleared outputs; Run All",
+  "code_cells_executed": 12,
+  "error_outputs": 0,
+  "kernel": "aiot-hw2",
+  "kernel_environment": ".venv",
+  "cli_eda_and_baseline_json_equal": true,
+  "reference_reports_compared": [
+    "eda_statistics.json",
+    "baseline_metrics.json"
+  ],
+  "eda_figure_count": 9,
+  "evaluation_figure_count": 7,
+  "baseline_execution": "load saved models; verify predictions and metrics; no fit or model writes",
+  "protected_file_sha256": {
+    "data/raw/KAG_energydata_complete.csv": "2820bf712ad0275cb18b85a05250926100d8e65ebb9f4d2d016ca91ea152a25d",
+    "KAG_energydata_complete.csv": "2820bf712ad0275cb18b85a05250926100d8e65ebb9f4d2d016ca91ea152a25d",
+    "reports/phase1/data_validation.json": "5c332221dacbd0a1e2a404bb76c6ed22e270016b082eea16cebe9e0242b3235f",
+    "reports/phase2/baseline_metrics.json": "866010d204a7c4f305217206a3a80082e06841ee1138e59f1f621b333062c691",
+    "reports/phase2/model_evaluation.md": "33ed70855f304b7805016d1972f6d9cf4115b7bce1d700e87df294f995b28b29",
+    "reports/phase2/split_indices.json": "d764a17eea8862590c362141cdc075fc08ccaa6480d46a3eb063ce78fa83ba63",
+    "reports/phase2/models/chronological_baseline.joblib": "9f9330522d7b52d6d279bf4b05f9a5f9123e1693e760dbd540910d74cd6a33ed",
+    "reports/phase2/models/chronological_baseline.json": "8bcf7285887627ab24eac3667eefdee2724d1a8c23a924b93dae10783d33c2cf",
+    "reports/phase2/models/random_baseline.joblib": "1df09b4eb709aa9048f6db5b16e3519fca31a96b9a5991154e6275b123c8ccf9",
+    "reports/phase2/models/random_baseline.json": "bee7a3dc0800558a183d9f99c993c29c78c8112459f142b0d03d9fdfe5b2a05e",
+    "reports/phase2/predictions_chronological.csv": "2eb2ec21b6935c3b8e4602df8687467e86c46ebf1dc24d085e8f44067ac4a5f5",
+    "reports/phase2/predictions_random.csv": "1ae82f1b7bf4efa16dc3f753dda1a446a005d7475c792fd4985e05bd5f876e2e"
+  },
+  "protected_files_unchanged": true,
+  "previous_execution": {
+    "status": "PASS",
+    "notebook": "notebooks/phase2_exploration.ipynb",
+    "execution_mode": "fresh kernel; cleared outputs; Run All",
+    "code_cells_executed": 11,
+    "error_outputs": 0,
+    "kernel": "aiot-hw2",
+    "kernel_environment": ".venv",
+    "cli_eda_and_baseline_json_equal": true,
+    "reference_reports_compared": [
+      "eda_statistics.json",
+      "baseline_metrics.json"
+    ]
+  }
+}

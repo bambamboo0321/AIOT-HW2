@@ -1,0 +1,382 @@
+{
+  "dataset_information": {
+    "name": "Appliances Energy Prediction",
+    "csv_path": "data/raw/KAG_energydata_complete.csv",
+    "sha256": "2820bf712ad0275cb18b85a05250926100d8e65ebb9f4d2d016ca91ea152a25d",
+    "shape": {
+      "rows": 19735,
+      "columns": 29
+    },
+    "target": "Appliances",
+    "target_unit": "Wh (energy observation; not power in W)",
+    "sampling_interval_seconds": 600,
+    "date_range": {
+      "start": "2016-01-11T17:00:00",
+      "end": "2016-05-27T18:00:00"
+    },
+    "timezone": "原始資料未標示時區；保留原始時間，不推定或轉換時區。",
+    "original_input_feature_count": 28
+  },
+  "feature_names": [
+    "lights",
+    "T1",
+    "RH_1",
+    "T2",
+    "RH_2",
+    "T3",
+    "RH_3",
+    "T4",
+    "RH_4",
+    "T5",
+    "RH_5",
+    "T6",
+    "RH_6",
+    "T7",
+    "RH_7",
+    "T8",
+    "RH_8",
+    "T9",
+    "RH_9",
+    "T_out",
+    "Press_mm_hg",
+    "RH_out",
+    "Windspeed",
+    "Visibility",
+    "Tdewpoint"
+  ],
+  "baseline_feature_count": 25,
+  "excluded_columns": [
+    "Appliances",
+    "date",
+    "rv1",
+    "rv2"
+  ],
+  "feature_selection_performed": false,
+  "scaling_performed": false,
+  "environment_versions": {
+    "python": "3.10.17",
+    "pandas": "2.3.3",
+    "numpy": "2.2.6",
+    "scikit-learn": "1.7.2",
+    "matplotlib": "3.10.9",
+    "joblib": "1.6.0",
+    "nbformat": "5.11.1",
+    "nbclient": "0.11.0",
+    "ipykernel": "7.3.0"
+  },
+  "metric_units": {
+    "mae": "Wh",
+    "mse": "Wh^2",
+    "rmse": "Wh",
+    "r2": "dimensionless"
+  },
+  "baselines": {
+    "chronological": {
+      "split_metadata": {
+        "method": "chronological_first_80_percent",
+        "role": "primary_future_holdout",
+        "shuffle": false,
+        "random_state": null,
+        "requested_train_fraction": 0.8,
+        "requested_test_fraction": 0.2,
+        "train": {
+          "count": 15788,
+          "date_range": {
+            "start": "2016-01-11T17:00:00",
+            "end": "2016-04-30T08:10:00"
+          },
+          "row_index_sha256": "545b26dd08140bf93ebc623cd9bc9785a6ae0ca063e49723299f51677c7ef441",
+          "target_statistics": {
+            "mean_wh": 98.02444894856853,
+            "std_wh": 105.19829058604034,
+            "std_ddof": 1
+          }
+        },
+        "test": {
+          "count": 3947,
+          "date_range": {
+            "start": "2016-04-30T08:20:00",
+            "end": "2016-05-27T18:00:00"
+          },
+          "row_index_sha256": "c1a4bd090574df37a49ed6be2d809f7d819a79c5a8c9be02a5a9afe7ba8e53db",
+          "target_statistics": {
+            "mean_wh": 96.37699518621739,
+            "std_wh": 91.05006480421763,
+            "std_ddof": 1
+          }
+        },
+        "feature_names": [
+          "lights",
+          "T1",
+          "RH_1",
+          "T2",
+          "RH_2",
+          "T3",
+          "RH_3",
+          "T4",
+          "RH_4",
+          "T5",
+          "RH_5",
+          "T6",
+          "RH_6",
+          "T7",
+          "RH_7",
+          "T8",
+          "RH_8",
+          "T9",
+          "RH_9",
+          "T_out",
+          "Press_mm_hg",
+          "RH_out",
+          "Windspeed",
+          "Visibility",
+          "Tdewpoint"
+        ],
+        "row_index_manifest": "reports/phase2/split_indices.json"
+      },
+      "train_metrics": {
+        "mae": 54.28918787278201,
+        "mse": 9152.687408646965,
+        "rmse": 95.66967862727964,
+        "r2": 0.1728985669935369
+      },
+      "test_metrics": {
+        "mae": 52.01410537697308,
+        "mse": 7522.6026240807805,
+        "rmse": 86.73293851865496,
+        "r2": 0.09235159638436585
+      },
+      "model_parameters": {
+        "estimator": "sklearn.linear_model.LinearRegression",
+        "settings": {
+          "copy_X": true,
+          "fit_intercept": true,
+          "n_jobs": null,
+          "positive": false,
+          "tol": 1e-06
+        },
+        "intercept": -67.29485206520928,
+        "coefficients": {
+          "lights": 2.1394243522855985,
+          "T1": -6.374034660965458,
+          "RH_1": 12.854339301808961,
+          "T2": -13.205355291950106,
+          "RH_2": -12.410980520621658,
+          "T3": 27.70927613529102,
+          "RH_3": 8.634363271393992,
+          "T4": -3.795283228987081,
+          "RH_4": -2.445068079099215,
+          "T5": -1.6752214054782333,
+          "RH_5": 0.10571355555376134,
+          "T6": 7.636709787121139,
+          "RH_6": 0.3419845671169515,
+          "T7": 1.075957876730592,
+          "RH_7": -0.48921524475938605,
+          "T8": 9.038519145541215,
+          "RH_8": -5.960233808819544,
+          "T9": -14.350565657638159,
+          "RH_9": -0.9986668821247491,
+          "T_out": -8.626429688191596,
+          "Press_mm_hg": 0.22338083418468152,
+          "RH_out": -0.5209177347669983,
+          "Windspeed": 1.2734556768973428,
+          "Visibility": 0.18968395418621667,
+          "Tdewpoint": 3.6996992281163448
+        },
+        "matrix_rank": 25,
+        "singular_values": [
+          3813.087814574436,
+          1559.1113063661123,
+          1319.5991974141746,
+          1159.2061665515123,
+          1069.571514594709,
+          972.6758620492154,
+          913.9628498064587,
+          406.3885619251538,
+          329.7778039438694,
+          292.38384127032487,
+          246.63806102670864,
+          218.3024574832025,
+          202.52326678832634,
+          200.63259529444747,
+          142.6992686790947,
+          111.04836078940716,
+          103.15279795141542,
+          93.29216064590769,
+          85.25502528268545,
+          72.88001706132071,
+          63.13931015609798,
+          55.2410546418178,
+          44.067607460642414,
+          31.13525578313643,
+          24.018036785658285
+        ]
+      },
+      "model_file": "reports/phase2/models/chronological_baseline.joblib",
+      "prediction_file": "reports/phase2/predictions_chronological.csv",
+      "prediction_diagnostics": {
+        "negative_test_prediction_count": 45,
+        "mean_test_residual_wh": -6.354935007335051,
+        "residual_definition": "actual - predicted"
+      }
+    },
+    "random": {
+      "split_metadata": {
+        "method": "random_train_test_split",
+        "role": "comparison_only",
+        "shuffle": true,
+        "random_state": 42,
+        "requested_train_fraction": 0.8,
+        "requested_test_fraction": 0.2,
+        "train": {
+          "count": 15788,
+          "date_range": {
+            "start": "2016-01-11T17:10:00",
+            "end": "2016-05-27T18:00:00"
+          },
+          "row_index_sha256": "9d5009f0bb9adcaa861601efe673d74d62ac4b5c22272cffc380c08d1b990f6e",
+          "target_statistics": {
+            "mean_wh": 97.94970863947302,
+            "std_wh": 103.13632811489292,
+            "std_ddof": 1
+          }
+        },
+        "test": {
+          "count": 3947,
+          "date_range": {
+            "start": "2016-01-11T17:00:00",
+            "end": "2016-05-27T17:50:00"
+          },
+          "row_index_sha256": "ba6043c005e6eb4287b7c4a44f8b7138ed109be12409f509f5a140dc86488580",
+          "target_statistics": {
+            "mean_wh": 96.67595642259944,
+            "std_wh": 100.04812393521446,
+            "std_ddof": 1
+          }
+        },
+        "feature_names": [
+          "lights",
+          "T1",
+          "RH_1",
+          "T2",
+          "RH_2",
+          "T3",
+          "RH_3",
+          "T4",
+          "RH_4",
+          "T5",
+          "RH_5",
+          "T6",
+          "RH_6",
+          "T7",
+          "RH_7",
+          "T8",
+          "RH_8",
+          "T9",
+          "RH_9",
+          "T_out",
+          "Press_mm_hg",
+          "RH_out",
+          "Windspeed",
+          "Visibility",
+          "Tdewpoint"
+        ],
+        "row_index_manifest": "reports/phase2/split_indices.json"
+      },
+      "train_metrics": {
+        "mae": 53.217383065933596,
+        "mse": 8897.953795713318,
+        "rmse": 94.32896583612755,
+        "r2": 0.16344533755537327
+      },
+      "test_metrics": {
+        "mae": 52.547077972163486,
+        "mse": 8312.271343525232,
+        "rmse": 91.17165866389199,
+        "r2": 0.1693618789522977
+      },
+      "model_parameters": {
+        "estimator": "sklearn.linear_model.LinearRegression",
+        "settings": {
+          "copy_X": true,
+          "fit_intercept": true,
+          "n_jobs": null,
+          "positive": false,
+          "tol": 1e-06
+        },
+        "intercept": 23.193744223162014,
+        "coefficients": {
+          "lights": 1.930225953105003,
+          "T1": 0.07397872544841026,
+          "RH_1": 15.905544215261806,
+          "T2": -17.595725431183034,
+          "RH_2": -13.618769077252356,
+          "T3": 25.87040045594981,
+          "RH_3": 4.484463797774925,
+          "T4": -3.8787849316770533,
+          "RH_4": -0.4075023968923265,
+          "T5": -0.8677053445615064,
+          "RH_5": 0.2123724143407431,
+          "T6": 7.386886411747823,
+          "RH_6": 0.3414260987274368,
+          "T7": 2.241512062088166,
+          "RH_7": -1.6629803533161174,
+          "T8": 7.449571493938167,
+          "RH_8": -4.560437458872151,
+          "T9": -15.16564204547029,
+          "RH_9": -1.0300429479428435,
+          "T_out": -10.501871449924598,
+          "Press_mm_hg": 0.16221791000881686,
+          "RH_out": -1.0726191932910163,
+          "Windspeed": 1.7779006221281053,
+          "Visibility": 0.161676487775684,
+          "Tdewpoint": 5.007593894304849
+        },
+        "matrix_rank": 25,
+        "singular_values": [
+          4313.526501194755,
+          1558.993371029136,
+          1459.682907530009,
+          1267.0482514874625,
+          1038.421428856119,
+          956.7761873951945,
+          868.1763287959529,
+          423.29895100167283,
+          349.334973492317,
+          342.4948108558262,
+          248.828554509831,
+          226.03239714367896,
+          203.47538815246,
+          199.8634341009407,
+          143.2627294008705,
+          118.98701988801092,
+          105.0275544762975,
+          98.65686645275355,
+          85.77747298885282,
+          77.10755517304551,
+          67.56515981182622,
+          56.9870755646564,
+          45.46580690149721,
+          38.71380997084284,
+          33.631669471613094
+        ]
+      },
+      "model_file": "reports/phase2/models/random_baseline.joblib",
+      "prediction_file": "reports/phase2/predictions_random.csv",
+      "prediction_diagnostics": {
+        "negative_test_prediction_count": 2,
+        "mean_test_residual_wh": -2.571513969402347,
+        "residual_definition": "actual - predicted"
+      }
+    }
+  },
+  "figures": [
+    "reports/phase2/figures/08_chronological_actual_vs_predicted.png",
+    "reports/phase2/figures/09_chronological_residual_vs_predicted.png",
+    "reports/phase2/figures/10_chronological_residual_distribution.png",
+    "reports/phase2/figures/11_random_actual_vs_predicted.png",
+    "reports/phase2/figures/12_random_residual_vs_predicted.png",
+    "reports/phase2/figures/13_random_residual_distribution.png",
+    "reports/phase2/figures/14_split_performance_comparison.png"
+  ]
+}
