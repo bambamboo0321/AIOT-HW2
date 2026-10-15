@@ -1,0 +1,139 @@
+{
+  "status": "projection_not_full_experiment",
+  "n_training": 15788,
+  "p": 25,
+  "outer": 5,
+  "inner": 3,
+  "mean_formal_outer_training_rows": 7889.0,
+  "mean_formal_outer_validation_rows": 2631.0,
+  "assumptions": [
+    "各 k 獨立執行，未假設跨 k 快取。k=p 無搜尋。",
+    "依已測的 selector unit／path 與樣本數作線性 n 外推；未實測完整資料。",
+    "未建模 cache、BLAS、MI 的 n log n、Lasso convergence 或不同子集寬度影響。",
+    "0.5x..4x 只為敏感度示例，不是統計信賴區間。"
+  ],
+  "methods": {
+    "f_test": {
+      "workload": {
+        "selector_units": 120,
+        "downstream_fits": 125
+      },
+      "selector_seconds": 8.997280460560464,
+      "downstream_fit_seconds": 34.54001074849792,
+      "outer_preprocessing_seconds": 98.81507494848222,
+      "downstream_evaluation_seconds": 16.70680755896683,
+      "estimated_seconds": 159.05917371650742,
+      "sensitivity_seconds": [
+        79.52958685825371,
+        636.2366948660297
+      ],
+      "calibration_warning_count": 0,
+      "calibration_zero_feature_folds": 0,
+      "calibration_cases": 3
+    },
+    "mutual_information": {
+      "workload": {
+        "selector_units": 120,
+        "downstream_fits": 125
+      },
+      "selector_seconds": 67.75080548535682,
+      "downstream_fit_seconds": 34.0506356348703,
+      "outer_preprocessing_seconds": 93.90953015027996,
+      "downstream_evaluation_seconds": 16.60222111074745,
+      "estimated_seconds": 212.3131923812545,
+      "sensitivity_seconds": [
+        106.15659619062725,
+        849.252769525018
+      ],
+      "calibration_warning_count": 0,
+      "calibration_zero_feature_folds": 0,
+      "calibration_cases": 3
+    },
+    "forward_sfs": {
+      "workload": {
+        "selector_units": 78000,
+        "downstream_fits": 125
+      },
+      "selector_seconds": 11039.516035041257,
+      "downstream_fit_seconds": 32.87487049691018,
+      "outer_preprocessing_seconds": 106.50321101931897,
+      "downstream_evaluation_seconds": 15.909071161433987,
+      "estimated_seconds": 11194.803187718919,
+      "sensitivity_seconds": [
+        5597.401593859459,
+        44779.212750875675
+      ],
+      "calibration_warning_count": 0,
+      "calibration_zero_feature_folds": 0,
+      "calibration_cases": 2
+    },
+    "rfe": {
+      "workload": {
+        "selector_units": 1620,
+        "downstream_fits": 125
+      },
+      "selector_seconds": 784.8645079382592,
+      "downstream_fit_seconds": 32.61347364429491,
+      "outer_preprocessing_seconds": 90.42224306808373,
+      "downstream_evaluation_seconds": 16.00268033987504,
+      "estimated_seconds": 923.9029049905129,
+      "sensitivity_seconds": [
+        461.95145249525643,
+        3695.6116199620515
+      ],
+      "calibration_warning_count": 0,
+      "calibration_zero_feature_folds": 0,
+      "calibration_cases": 3
+    },
+    "lasso_cv": {
+      "workload": {
+        "selector_units": 5,
+        "downstream_fits": 5,
+        "cv_paths": 15,
+        "alpha_path_points": 90,
+        "discarded_stack_refits": 5,
+        "support_refits": 5
+      },
+      "selector_seconds": 26.349033432865653,
+      "downstream_fit_seconds": 1.3285013632816522,
+      "outer_preprocessing_seconds": 3.8862315628256723,
+      "downstream_evaluation_seconds": 0.668383600019297,
+      "estimated_seconds": 32.232149958992274,
+      "sensitivity_seconds": [
+        16.116074979496137,
+        128.9285998359691
+      ],
+      "calibration_warning_count": 7,
+      "calibration_zero_feature_folds": 1,
+      "calibration_cases": 1
+    },
+    "rfecv": {
+      "workload": {
+        "selector_units_range": [
+          385,
+          505
+        ],
+        "downstream_fits": 5
+      },
+      "selector_seconds": 233.57702507871423,
+      "downstream_fit_seconds": 1.2806807068627055,
+      "outer_preprocessing_seconds": 3.6150084948067707,
+      "downstream_evaluation_seconds": 0.6358181897521717,
+      "estimated_seconds": 239.10853247013588,
+      "sensitivity_seconds": [
+        119.55426623506794,
+        956.4341298805435
+      ],
+      "calibration_warning_count": 0,
+      "calibration_zero_feature_folds": 0,
+      "calibration_cases": 1
+    }
+  },
+  "nested_k_tuning_workload": {
+    "filter_selector_calls_upper_bound_per_method": 365,
+    "rfe_selector_lr_fits_upper_bound": 4985,
+    "sfs_selector_lr_fits_upper_bound": 238860,
+    "fixed_method_downstream_fits": 380,
+    "explanation": "正式 inner k tuning 每個候選都重新 fit 完整流程；SFS 因自身 CV 再增加一層。成本不可等同各 k 描述曲線。"
+  }
+}
