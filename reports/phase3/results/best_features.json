@@ -1,0 +1,785 @@
+{
+  "selection_level": "final_selection_cv (3 folds on Training only)",
+  "winner": {
+    "requested_k": 6,
+    "status": "ok",
+    "fold_count": 3,
+    "mean_selected_k": 6.0,
+    "rmse": 98.46179625048934,
+    "mae": 59.87167178427203,
+    "r2": 0.04321822858897476,
+    "runtime_seconds": 0.054432818919885904,
+    "method": "mutual_information"
+  },
+  "by_method": [
+    {
+      "requested_k": 6,
+      "status": "ok",
+      "fold_count": 3,
+      "mean_selected_k": 6.0,
+      "rmse": 99.16449011683467,
+      "mae": 60.703080466414114,
+      "r2": 0.028912378800332334,
+      "runtime_seconds": 0.007143544626887887,
+      "method": "f_test"
+    },
+    {
+      "requested_k": 6,
+      "status": "ok",
+      "fold_count": 3,
+      "mean_selected_k": 6.0,
+      "rmse": 98.46179625048934,
+      "mae": 59.87167178427203,
+      "r2": 0.04321822858897476,
+      "runtime_seconds": 0.054432818919885904,
+      "method": "mutual_information"
+    },
+    {
+      "requested_k": 10,
+      "status": "ok",
+      "fold_count": 3,
+      "mean_selected_k": 10.0,
+      "rmse": 99.16565588118364,
+      "mae": 59.85833780764322,
+      "r2": 0.027904302566790922,
+      "runtime_seconds": 3.993112185911741,
+      "method": "forward_sfs"
+    },
+    {
+      "requested_k": 6,
+      "status": "ok",
+      "fold_count": 3,
+      "mean_selected_k": 6.0,
+      "rmse": 101.27525577191368,
+      "mae": 61.09115878954602,
+      "r2": -0.01440287354988364,
+      "runtime_seconds": 0.059902702311519535,
+      "method": "rfe"
+    },
+    {
+      "requested_k": null,
+      "status": "ok",
+      "fold_count": 3,
+      "mean_selected_k": 7.333333333333333,
+      "rmse": 100.13185225698487,
+      "mae": 63.80676830410673,
+      "r2": 0.008115698232166365,
+      "runtime_seconds": 0.6195063749910332,
+      "method": "lasso_cv"
+    },
+    {
+      "requested_k": null,
+      "status": "ok",
+      "fold_count": 3,
+      "mean_selected_k": 11.333333333333334,
+      "rmse": 103.00227480712688,
+      "mae": 65.5167006945511,
+      "r2": -0.051349960338356815,
+      "runtime_seconds": 5.528329208027571,
+      "method": "rfecv"
+    }
+  ],
+  "full_training_refits": [
+    {
+      "method": "f_test",
+      "requested_k": 6,
+      "selected_k": 6,
+      "selection": {
+        "method": "f_test",
+        "requested_k": 6,
+        "selected_k": 6,
+        "selected_feature_indices": [
+          0,
+          3,
+          5,
+          11,
+          16,
+          21
+        ],
+        "selected_feature_names": [
+          "c0__lights",
+          "c3__T2",
+          "c5__T3",
+          "c11__T6",
+          "c16__RH_8",
+          "c21__RH_out"
+        ],
+        "original_feature_mapping": {
+          "lights": [
+            "c0__lights"
+          ],
+          "T1": [],
+          "RH_1": [],
+          "T2": [
+            "c3__T2"
+          ],
+          "RH_2": [],
+          "T3": [
+            "c5__T3"
+          ],
+          "RH_3": [],
+          "T4": [],
+          "RH_4": [],
+          "T5": [],
+          "RH_5": [],
+          "T6": [
+            "c11__T6"
+          ],
+          "RH_6": [],
+          "T7": [],
+          "RH_7": [],
+          "T8": [],
+          "RH_8": [
+            "c16__RH_8"
+          ],
+          "T9": [],
+          "RH_9": [],
+          "T_out": [],
+          "Press_mm_hg": [],
+          "RH_out": [
+            "c21__RH_out"
+          ],
+          "Windspeed": [],
+          "Visibility": [],
+          "Tdewpoint": []
+        },
+        "scaling": "standard",
+        "k_definition": "preprocessed numeric columns passed to independent LinearRegression",
+        "status": "ok"
+      },
+      "status": "ok",
+      "rmse": 100.52604454215728,
+      "mae": 57.48639987768926,
+      "r2": 0.08679699483987335,
+      "runtime_seconds": 0.07511475001228973,
+      "level": "final_refit_training",
+      "outer_fold": null,
+      "inner_fold": null,
+      "train_range": [
+        0,
+        15788
+      ],
+      "validation_range": null,
+      "random_state": 42,
+      "checkpoint_id": "9a6cd3327c3d244401dbe789173bf32a8314c81df6d643e54f514cf6c89aa255"
+    },
+    {
+      "method": "mutual_information",
+      "requested_k": 6,
+      "selected_k": 6,
+      "selection": {
+        "method": "mutual_information",
+        "requested_k": 6,
+        "selected_k": 6,
+        "selected_feature_indices": [
+          5,
+          7,
+          9,
+          12,
+          15,
+          17
+        ],
+        "selected_feature_names": [
+          "c5__T3",
+          "c7__T4",
+          "c9__T5",
+          "c12__RH_6",
+          "c15__T8",
+          "c17__T9"
+        ],
+        "original_feature_mapping": {
+          "lights": [],
+          "T1": [],
+          "RH_1": [],
+          "T2": [],
+          "RH_2": [],
+          "T3": [
+            "c5__T3"
+          ],
+          "RH_3": [],
+          "T4": [
+            "c7__T4"
+          ],
+          "RH_4": [],
+          "T5": [
+            "c9__T5"
+          ],
+          "RH_5": [],
+          "T6": [],
+          "RH_6": [
+            "c12__RH_6"
+          ],
+          "T7": [],
+          "RH_7": [],
+          "T8": [
+            "c15__T8"
+          ],
+          "RH_8": [],
+          "T9": [
+            "c17__T9"
+          ],
+          "RH_9": [],
+          "T_out": [],
+          "Press_mm_hg": [],
+          "RH_out": [],
+          "Windspeed": [],
+          "Visibility": [],
+          "Tdewpoint": []
+        },
+        "scaling": "standard",
+        "k_definition": "preprocessed numeric columns passed to independent LinearRegression",
+        "status": "ok"
+      },
+      "status": "ok",
+      "rmse": 102.32677150116135,
+      "mae": 60.09601269710763,
+      "r2": 0.053787486889167124,
+      "runtime_seconds": 0.9326328749884851,
+      "level": "final_refit_training",
+      "outer_fold": null,
+      "inner_fold": null,
+      "train_range": [
+        0,
+        15788
+      ],
+      "validation_range": null,
+      "random_state": 42,
+      "checkpoint_id": "80ed8734edf98349836599b9d193b91ee680025e7982f5377f5a1a69a5b68754"
+    },
+    {
+      "method": "forward_sfs",
+      "requested_k": 10,
+      "selected_k": 10,
+      "selection": {
+        "method": "forward_sfs",
+        "requested_k": 10,
+        "selected_k": 10,
+        "selected_feature_indices": [
+          2,
+          3,
+          5,
+          9,
+          10,
+          14,
+          15,
+          16,
+          17,
+          21
+        ],
+        "selected_feature_names": [
+          "c2__RH_1",
+          "c3__T2",
+          "c5__T3",
+          "c9__T5",
+          "c10__RH_5",
+          "c14__RH_7",
+          "c15__T8",
+          "c16__RH_8",
+          "c17__T9",
+          "c21__RH_out"
+        ],
+        "original_feature_mapping": {
+          "lights": [],
+          "T1": [],
+          "RH_1": [
+            "c2__RH_1"
+          ],
+          "T2": [
+            "c3__T2"
+          ],
+          "RH_2": [],
+          "T3": [
+            "c5__T3"
+          ],
+          "RH_3": [],
+          "T4": [],
+          "RH_4": [],
+          "T5": [
+            "c9__T5"
+          ],
+          "RH_5": [
+            "c10__RH_5"
+          ],
+          "T6": [],
+          "RH_6": [],
+          "T7": [],
+          "RH_7": [
+            "c14__RH_7"
+          ],
+          "T8": [
+            "c15__T8"
+          ],
+          "RH_8": [
+            "c16__RH_8"
+          ],
+          "T9": [
+            "c17__T9"
+          ],
+          "RH_9": [],
+          "T_out": [],
+          "Press_mm_hg": [],
+          "RH_out": [
+            "c21__RH_out"
+          ],
+          "Windspeed": [],
+          "Visibility": [],
+          "Tdewpoint": []
+        },
+        "scaling": "standard",
+        "k_definition": "preprocessed numeric columns passed to independent LinearRegression",
+        "status": "ok"
+      },
+      "status": "ok",
+      "rmse": 98.64993910192419,
+      "mae": 56.02806502302209,
+      "r2": 0.1205649184378349,
+      "runtime_seconds": 6.175200249999762,
+      "level": "final_refit_training",
+      "outer_fold": null,
+      "inner_fold": null,
+      "train_range": [
+        0,
+        15788
+      ],
+      "validation_range": null,
+      "random_state": 42,
+      "checkpoint_id": "c0146045bf8aa47386f8b2541a7d2aa044e7ff486e285f97969a831be3c3315d"
+    },
+    {
+      "method": "rfe",
+      "requested_k": 6,
+      "selected_k": 6,
+      "selection": {
+        "method": "rfe",
+        "requested_k": 6,
+        "selected_k": 6,
+        "selected_feature_indices": [
+          2,
+          3,
+          4,
+          5,
+          6,
+          16
+        ],
+        "selected_feature_names": [
+          "c2__RH_1",
+          "c3__T2",
+          "c4__RH_2",
+          "c5__T3",
+          "c6__RH_3",
+          "c16__RH_8"
+        ],
+        "original_feature_mapping": {
+          "lights": [],
+          "T1": [],
+          "RH_1": [
+            "c2__RH_1"
+          ],
+          "T2": [
+            "c3__T2"
+          ],
+          "RH_2": [
+            "c4__RH_2"
+          ],
+          "T3": [
+            "c5__T3"
+          ],
+          "RH_3": [
+            "c6__RH_3"
+          ],
+          "T4": [],
+          "RH_4": [],
+          "T5": [],
+          "RH_5": [],
+          "T6": [],
+          "RH_6": [],
+          "T7": [],
+          "RH_7": [],
+          "T8": [],
+          "RH_8": [
+            "c16__RH_8"
+          ],
+          "T9": [],
+          "RH_9": [],
+          "T_out": [],
+          "Press_mm_hg": [],
+          "RH_out": [],
+          "Windspeed": [],
+          "Visibility": [],
+          "Tdewpoint": []
+        },
+        "scaling": "standard",
+        "k_definition": "preprocessed numeric columns passed to independent LinearRegression",
+        "status": "ok"
+      },
+      "status": "ok",
+      "rmse": 98.42645079177007,
+      "mae": 56.759218376912045,
+      "r2": 0.12454506947626631,
+      "runtime_seconds": 0.6366143340128474,
+      "level": "final_refit_training",
+      "outer_fold": null,
+      "inner_fold": null,
+      "train_range": [
+        0,
+        15788
+      ],
+      "validation_range": null,
+      "random_state": 42,
+      "checkpoint_id": "894c3ba62f76214e611613cddf7cf0ce5ca899fd1c105b3351a83d5feab102a8"
+    },
+    {
+      "method": "lasso_cv",
+      "requested_k": null,
+      "selected_k": 16,
+      "selection": {
+        "method": "lasso_cv",
+        "requested_k": null,
+        "selected_k": 16,
+        "selected_feature_indices": [
+          0,
+          1,
+          2,
+          4,
+          5,
+          6,
+          7,
+          9,
+          11,
+          14,
+          15,
+          16,
+          17,
+          18,
+          22,
+          23
+        ],
+        "selected_feature_names": [
+          "c0__lights",
+          "c1__T1",
+          "c2__RH_1",
+          "c4__RH_2",
+          "c5__T3",
+          "c6__RH_3",
+          "c7__T4",
+          "c9__T5",
+          "c11__T6",
+          "c14__RH_7",
+          "c15__T8",
+          "c16__RH_8",
+          "c17__T9",
+          "c18__RH_9",
+          "c22__Windspeed",
+          "c23__Visibility"
+        ],
+        "original_feature_mapping": {
+          "lights": [
+            "c0__lights"
+          ],
+          "T1": [
+            "c1__T1"
+          ],
+          "RH_1": [
+            "c2__RH_1"
+          ],
+          "T2": [],
+          "RH_2": [
+            "c4__RH_2"
+          ],
+          "T3": [
+            "c5__T3"
+          ],
+          "RH_3": [
+            "c6__RH_3"
+          ],
+          "T4": [
+            "c7__T4"
+          ],
+          "RH_4": [],
+          "T5": [
+            "c9__T5"
+          ],
+          "RH_5": [],
+          "T6": [
+            "c11__T6"
+          ],
+          "RH_6": [],
+          "T7": [],
+          "RH_7": [
+            "c14__RH_7"
+          ],
+          "T8": [
+            "c15__T8"
+          ],
+          "RH_8": [
+            "c16__RH_8"
+          ],
+          "T9": [
+            "c17__T9"
+          ],
+          "RH_9": [
+            "c18__RH_9"
+          ],
+          "T_out": [],
+          "Press_mm_hg": [],
+          "RH_out": [],
+          "Windspeed": [
+            "c22__Windspeed"
+          ],
+          "Visibility": [
+            "c23__Visibility"
+          ],
+          "Tdewpoint": []
+        },
+        "scaling": "standard",
+        "k_definition": "preprocessed numeric columns passed to independent LinearRegression",
+        "status": "ok",
+        "alpha": 1.0,
+        "alpha_grid": [
+          100.0,
+          10.0,
+          1.0,
+          0.1,
+          0.01,
+          0.001
+        ],
+        "support_coefficients": [
+          18.299353195573705,
+          -10.247957642482618,
+          31.82841877378623,
+          -0.0,
+          -22.056521805439864,
+          31.897106915333126,
+          10.839014594381005,
+          -4.947879952709789,
+          -0.0,
+          -5.9291038215336656,
+          0.0,
+          2.735112300562929,
+          0.0,
+          -0.0,
+          -3.575479019362513,
+          6.4459987752691585,
+          -26.607815532248672,
+          -12.810209480928465,
+          -1.213843953525101,
+          -0.0,
+          -0.0,
+          -0.0,
+          1.9143537697783792,
+          1.199125391626142,
+          -0.0
+        ],
+        "stacked_rows": 35505,
+        "discarded_lassocv_refit": true,
+        "zero_feature_policy": "report_no_features_and_skip_predictor; no forced fallback"
+      },
+      "status": "ok",
+      "rmse": 96.04221296930919,
+      "mae": 54.80427605974702,
+      "r2": 0.1664446182830619,
+      "runtime_seconds": 0.2762343329959549,
+      "level": "final_refit_training",
+      "outer_fold": null,
+      "inner_fold": null,
+      "train_range": [
+        0,
+        15788
+      ],
+      "validation_range": null,
+      "random_state": 42,
+      "checkpoint_id": "c4b4bd3f64cbe91eee8576f45d86a66dac94b73abaf46b4fd8ab89b51a7f8ed9"
+    },
+    {
+      "method": "rfecv",
+      "requested_k": null,
+      "selected_k": 6,
+      "selection": {
+        "method": "rfecv",
+        "requested_k": null,
+        "selected_k": 6,
+        "selected_feature_indices": [
+          2,
+          3,
+          4,
+          5,
+          6,
+          16
+        ],
+        "selected_feature_names": [
+          "c2__RH_1",
+          "c3__T2",
+          "c4__RH_2",
+          "c5__T3",
+          "c6__RH_3",
+          "c16__RH_8"
+        ],
+        "original_feature_mapping": {
+          "lights": [],
+          "T1": [],
+          "RH_1": [
+            "c2__RH_1"
+          ],
+          "T2": [
+            "c3__T2"
+          ],
+          "RH_2": [
+            "c4__RH_2"
+          ],
+          "T3": [
+            "c5__T3"
+          ],
+          "RH_3": [
+            "c6__RH_3"
+          ],
+          "T4": [],
+          "RH_4": [],
+          "T5": [],
+          "RH_5": [],
+          "T6": [],
+          "RH_6": [],
+          "T7": [],
+          "RH_7": [],
+          "T8": [],
+          "RH_8": [
+            "c16__RH_8"
+          ],
+          "T9": [],
+          "RH_9": [],
+          "T_out": [],
+          "Press_mm_hg": [],
+          "RH_out": [],
+          "Windspeed": [],
+          "Visibility": [],
+          "Tdewpoint": []
+        },
+        "scaling": "standard",
+        "k_definition": "preprocessed numeric columns passed to independent LinearRegression",
+        "status": "ok"
+      },
+      "status": "ok",
+      "rmse": 98.42645079177007,
+      "mae": 56.759218376912045,
+      "r2": 0.12454506947626631,
+      "runtime_seconds": 2.3272016249829903,
+      "level": "final_refit_training",
+      "outer_fold": null,
+      "inner_fold": null,
+      "train_range": [
+        0,
+        15788
+      ],
+      "validation_range": null,
+      "random_state": 42,
+      "checkpoint_id": "0b81a8016556c99c97ca02043c5bceab2b8ae02b24f9f5e415912d7dcabc5e28"
+    }
+  ],
+  "nested_outer_assessment": [
+    {
+      "method": "f_test",
+      "level": "outer_evaluation",
+      "requested_k": null,
+      "folds": 5,
+      "valid_folds": 5,
+      "selected_k": [
+        1.0,
+        10.0,
+        9.0,
+        5.0,
+        7.0
+      ],
+      "rmse": 101.18425541515492,
+      "mae": 63.09261145484495,
+      "r2": 0.012189739340268697
+    },
+    {
+      "method": "mutual_information",
+      "level": "outer_evaluation",
+      "requested_k": null,
+      "folds": 5,
+      "valid_folds": 5,
+      "selected_k": [
+        1.0,
+        3.0,
+        24.0,
+        3.0,
+        10.0
+      ],
+      "rmse": 103.32827774586437,
+      "mae": 66.58609755910229,
+      "r2": -0.032965691614061196
+    },
+    {
+      "method": "forward_sfs",
+      "level": "outer_evaluation",
+      "requested_k": null,
+      "folds": 5,
+      "valid_folds": 5,
+      "selected_k": [
+        1.0,
+        13.0,
+        5.0,
+        3.0,
+        5.0
+      ],
+      "rmse": 100.8513866569464,
+      "mae": 61.24895214083765,
+      "r2": 0.01876116676216236
+    },
+    {
+      "method": "rfe",
+      "level": "outer_evaluation",
+      "requested_k": null,
+      "folds": 5,
+      "valid_folds": 5,
+      "selected_k": [
+        11.0,
+        9.0,
+        11.0,
+        10.0,
+        9.0
+      ],
+      "rmse": 100.75636701101897,
+      "mae": 62.932506946409106,
+      "r2": 0.01974355457749418
+    },
+    {
+      "method": "lasso_cv",
+      "level": "outer_evaluation",
+      "requested_k": null,
+      "folds": 5,
+      "valid_folds": 5,
+      "selected_k": [
+        2.0,
+        16.0,
+        3.0,
+        14.0,
+        16.0
+      ],
+      "rmse": 99.07592825845404,
+      "mae": 60.4385428010901,
+      "r2": 0.05337861034541378
+    },
+    {
+      "method": "rfecv",
+      "level": "outer_evaluation",
+      "requested_k": null,
+      "folds": 5,
+      "valid_folds": 5,
+      "selected_k": [
+        11.0,
+        9.0,
+        11.0,
+        10.0,
+        9.0
+      ],
+      "rmse": 100.75636701101897,
+      "mae": 62.932506946409106,
+      "r2": 0.01974355457749418
+    }
+  ],
+  "model_path": "reports/phase3/results/models/final_linear_regression.joblib",
+  "predictor_class": "sklearn.linear_model.LinearRegression",
+  "holdout_used": false,
+  "warning": "Method choice uses Training CV; outer scores describe each method, not an unbiased estimate of choosing the best of six."
+}

@@ -1,0 +1,131 @@
+{
+  "phase": "3B",
+  "status": "PASS",
+  "verified_at_utc": "2026-10-15T16:09:25.494694+00:00",
+  "branch": "main",
+  "head": "8f83cd336e02dfb026d1979c835d5c5e871b22de",
+  "tests": {
+    "run": 82,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "phase2": 40,
+    "phase3a": 27,
+    "phase3b": 15
+  },
+  "phase1_validation": {
+    "overall_status": "WARN",
+    "checks": {
+      "PASS": 24,
+      "WARN": 1
+    },
+    "note": "Existing rv1/rv2 duplicate WARN retained; zero failures."
+  },
+  "integrity": {
+    "compared_to_commit": "8f83cd336e02dfb026d1979c835d5c5e871b22de",
+    "original_tracked_files_checked": 70,
+    "changed_original_files": [],
+    "raw_csv_sha256": "2820bf712ad0275cb18b85a05250926100d8e65ebb9f4d2d016ca91ea152a25d",
+    "phase1_2_3a_artifacts_unchanged": true,
+    "baseline_metrics_and_models_unchanged": true
+  },
+  "records": {
+    "records_checked": 1974,
+    "levels": {
+      "inner_k_cv": 1260,
+      "outer_k_curve": 420,
+      "outer_evaluation": 30,
+      "final_selection_cv": 258,
+      "final_refit_training": 6
+    },
+    "status_counts": {
+      "ok": 1974
+    },
+    "range_and_gap_checks": "PASS",
+    "all_predeclared_k_executed": true,
+    "common_outer_folds": {
+      "1": {
+        "train_range": [
+          0,
+          2627
+        ],
+        "validation_range": [
+          2633,
+          5264
+        ]
+      },
+      "2": {
+        "train_range": [
+          0,
+          5258
+        ],
+        "validation_range": [
+          5264,
+          7895
+        ]
+      },
+      "3": {
+        "train_range": [
+          0,
+          7889
+        ],
+        "validation_range": [
+          7895,
+          10526
+        ]
+      },
+      "4": {
+        "train_range": [
+          0,
+          10520
+        ],
+        "validation_range": [
+          10526,
+          13157
+        ]
+      },
+      "5": {
+        "train_range": [
+          0,
+          13151
+        ],
+        "validation_range": [
+          13157,
+          15788
+        ]
+      }
+    },
+    "inner_choices_match_outer_evaluation": true,
+    "winner_uses_final_selection_cv_only": true,
+    "holdout_used_for_selection": false,
+    "limitation": "Range checks, loader contract and fold-local integration tests; not a claim of unbiased best-of-six assessment."
+  },
+  "figures": {
+    "figures_verified": 7,
+    "points_compared_to_csv": 270,
+    "csv_hash_matches": true,
+    "selected_features_and_runtime_match_csv": true,
+    "sfs_missing_values_interpolated": false
+  },
+  "reproduction_and_resume": {
+    "independent_winner_full_training_refit_matches_saved_model": true,
+    "independent_real_data_sfs_k10_matches_reused_prefix_and_metrics": true,
+    "completed_cases_resumed_without_reexecution": 114,
+    "timeout_and_no_retry": "covered by real subprocess tests",
+    "timings_are_nondeterministic": true
+  },
+  "git_operations": {
+    "add": false,
+    "commit": false,
+    "push": false
+  },
+  "phase3c_started": false,
+  "safety": {
+    "findings": [],
+    "new_files_over_5_mib": [],
+    "untracked_files_scanned": 23,
+    "diff_check": "PASS",
+    "staging_empty": true,
+    "scan_limit": "Pattern-based text/PNG-metadata/decompressed-joblib scan; model emails scanned on actual string metadata to exclude BININT2 numerical false positives; binary image pixels excluded; not exhaustive."
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "level": "all executed formal training-only stages, shared path costs counted once",
+  "pilot_excluded": true,
+  "methods": {
+    "f_test": {
+      "worker_seconds": 6.740164457063656,
+      "wall_seconds_including_startup": 28.03606708504958,
+      "csv_fit_seconds": 1.5068206237046695,
+      "cases": 24,
+      "timeouts": 0
+    },
+    "mutual_information": {
+      "worker_seconds": 13.661022919928655,
+      "wall_seconds_including_startup": 34.989266040036455,
+      "csv_fit_seconds": 8.391291787906056,
+      "cases": 24,
+      "timeouts": 0
+    },
+    "forward_sfs": {
+      "worker_seconds": 269.3108134989743,
+      "wall_seconds_including_startup": 290.51426687516505,
+      "csv_fit_seconds": 267.2235041304375,
+      "cases": 24,
+      "timeouts": 0
+    },
+    "rfe": {
+      "worker_seconds": 16.644719707081094,
+      "wall_seconds_including_startup": 38.003893252054695,
+      "csv_fit_seconds": 11.16347858781225,
+      "cases": 24,
+      "timeouts": 0
+    },
+    "lasso_cv": {
+      "worker_seconds": 2.172697209054604,
+      "wall_seconds_including_startup": 10.155937042960431,
+      "csv_fit_seconds": 1.9535602080286478,
+      "cases": 9,
+      "timeouts": 0
+    },
+    "rfecv": {
+      "worker_seconds": 17.413614877150394,
+      "wall_seconds_including_startup": 25.35669137700461,
+      "csv_fit_seconds": 17.19380758306943,
+      "cases": 9,
+      "timeouts": 0
+    }
+  }
+}
