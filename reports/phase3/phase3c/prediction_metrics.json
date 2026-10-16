@@ -1,0 +1,217 @@
+{
+  "evaluation": "fixed chronological holdout, descriptive",
+  "metric_implementation": "sklearn.metrics",
+  "metric_units": {
+    "mae": "Wh",
+    "mse": "Wh^2",
+    "rmse": "Wh",
+    "r2": "dimensionless"
+  },
+  "environment": {
+    "python": "3.10.17",
+    "numpy": "2.2.6",
+    "pandas": "2.3.3",
+    "scikit-learn": "1.7.2",
+    "scipy": "1.15.3",
+    "statsmodels": "0.14.6",
+    "patsy": "1.0.2",
+    "joblib": "1.6.0",
+    "matplotlib": "3.10.9"
+  },
+  "plan": {
+    "alpha": 0.05,
+    "nominal_coverage": 0.95,
+    "training_rows": 15788,
+    "holdout_rows": 3947,
+    "split": "reuse Phase 2 chronological manifest, unchanged row order",
+    "plot_window": {
+      "holdout_start_position": 0,
+      "consecutive_samples": 144
+    },
+    "rank_policy": "eps(float64)*max(n,p)*s_max, SVD of training design",
+    "width_std_ddof": 0,
+    "intervals_clipped": false,
+    "method_or_parameter_selection_using_holdout": false,
+    "interval_estimation_inputs": "training design, training y, saved training predictions only",
+    "holdout_role": "single fixed descriptive evaluation; already viewed in Phase 2",
+    "no_fit_guard": true,
+    "thread_limit": 1
+  },
+  "models": {
+    "baseline": {
+      "training_metrics": {
+        "mae": 54.28918787278201,
+        "mse": 9152.687408646965,
+        "rmse": 95.66967862727964,
+        "r2": 0.1728985669935369
+      },
+      "model_name": "Baseline LinearRegression",
+      "feature_count": 25,
+      "selected_features": [
+        "lights",
+        "T1",
+        "RH_1",
+        "T2",
+        "RH_2",
+        "T3",
+        "RH_3",
+        "T4",
+        "RH_4",
+        "T5",
+        "RH_5",
+        "T6",
+        "RH_6",
+        "T7",
+        "RH_7",
+        "T8",
+        "RH_8",
+        "T9",
+        "RH_9",
+        "T_out",
+        "Press_mm_hg",
+        "RH_out",
+        "Windspeed",
+        "Visibility",
+        "Tdewpoint"
+      ],
+      "transformed_feature_names": [
+        "lights",
+        "T1",
+        "RH_1",
+        "T2",
+        "RH_2",
+        "T3",
+        "RH_3",
+        "T4",
+        "RH_4",
+        "T5",
+        "RH_5",
+        "T6",
+        "RH_6",
+        "T7",
+        "RH_7",
+        "T8",
+        "RH_8",
+        "T9",
+        "RH_9",
+        "T_out",
+        "Press_mm_hg",
+        "RH_out",
+        "Windspeed",
+        "Visibility",
+        "Tdewpoint"
+      ],
+      "coefficients_in_saved_model_space": [
+        2.1394243522855985,
+        -6.374034660965458,
+        12.854339301808961,
+        -13.205355291950106,
+        -12.410980520621658,
+        27.70927613529102,
+        8.634363271393992,
+        -3.795283228987081,
+        -2.445068079099215,
+        -1.6752214054782333,
+        0.10571355555376134,
+        7.636709787121139,
+        0.3419845671169515,
+        1.075957876730592,
+        -0.48921524475938605,
+        9.038519145541215,
+        -5.960233808819544,
+        -14.350565657638159,
+        -0.9986668821247491,
+        -8.626429688191596,
+        0.22338083418468152,
+        -0.5209177347669983,
+        1.2734556768973428,
+        0.18968395418621667,
+        3.6996992281163448
+      ],
+      "intercept_in_saved_model_space": -67.29485206520928,
+      "model_file": "reports/phase2/models/chronological_baseline.joblib",
+      "model_sha256": "9f9330522d7b52d6d279bf4b05f9a5f9123e1693e760dbd540910d74cd6a33ed",
+      "holdout_metrics": {
+        "mae": 52.01410537697308,
+        "mse": 7522.6026240807805,
+        "rmse": 86.73293851865496,
+        "r2": 0.09235159638436585
+      },
+      "training_period": {
+        "rows": 15788,
+        "start": "2016-01-11T17:00:00",
+        "end": "2016-04-30T08:10:00"
+      },
+      "holdout_period": {
+        "rows": 3947,
+        "start": "2016-04-30T08:20:00",
+        "end": "2016-05-27T18:00:00"
+      }
+    },
+    "selected": {
+      "training_metrics": {
+        "mae": 60.09601269710763,
+        "mse": 10470.768165850885,
+        "rmse": 102.32677150116135,
+        "r2": 0.053787486889167124
+      },
+      "model_name": "MI + LinearRegression",
+      "feature_count": 6,
+      "selected_features": [
+        "T3",
+        "T4",
+        "T5",
+        "RH_6",
+        "T8",
+        "T9"
+      ],
+      "transformed_feature_names": [
+        "c5__T3",
+        "c7__T4",
+        "c9__T5",
+        "c12__RH_6",
+        "c15__T8",
+        "c17__T9"
+      ],
+      "coefficients_in_saved_model_space": [
+        37.61691638936094,
+        5.342186225906018,
+        -13.74166320863436,
+        -15.34063577326688,
+        12.50250932455796,
+        -42.479861610476
+      ],
+      "intercept_in_saved_model_space": 98.02444894856868,
+      "model_file": "reports/phase3/results/models/final_linear_regression.joblib",
+      "model_sha256": "8be97c965b56fed6d4a665703b44faf57508fd9a759b837d48cf3a2ad418eb12",
+      "holdout_metrics": {
+        "mae": 53.60586130503112,
+        "mse": 8179.71435314757,
+        "rmse": 90.44177327511646,
+        "r2": 0.013067013416318884
+      },
+      "training_period": {
+        "rows": 15788,
+        "start": "2016-01-11T17:00:00",
+        "end": "2016-04-30T08:10:00"
+      },
+      "holdout_period": {
+        "rows": 3947,
+        "start": "2016-04-30T08:20:00",
+        "end": "2016-05-27T18:00:00"
+      }
+    }
+  },
+  "transformation_checks": {
+    "baseline": {
+      "space": "raw numeric features, no scaler or imputer",
+      "matches_saved_input_order": true
+    },
+    "selected": {
+      "space": "saved Phase 2 median imputer + StandardScaler, then saved MI support",
+      "training_scaler_and_imputer_statistics_match": true,
+      "matches_saved_input_order": true,
+      "selection_or_preprocessing_refit": false
+    }
+  }
+}

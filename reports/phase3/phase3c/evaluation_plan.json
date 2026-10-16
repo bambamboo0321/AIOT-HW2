@@ -1,0 +1,42 @@
+{
+  "plan": {
+    "alpha": 0.05,
+    "nominal_coverage": 0.95,
+    "training_rows": 15788,
+    "holdout_rows": 3947,
+    "split": "reuse Phase 2 chronological manifest, unchanged row order",
+    "plot_window": {
+      "holdout_start_position": 0,
+      "consecutive_samples": 144
+    },
+    "rank_policy": "eps(float64)*max(n,p)*s_max, SVD of training design",
+    "width_std_ddof": 0,
+    "intervals_clipped": false,
+    "method_or_parameter_selection_using_holdout": false,
+    "interval_estimation_inputs": "training design, training y, saved training predictions only",
+    "holdout_role": "single fixed descriptive evaluation; already viewed in Phase 2",
+    "no_fit_guard": true,
+    "thread_limit": 1
+  },
+  "parent_commit": "4093655dd3db1395b090c99e3ea0a5bc0d64fddc",
+  "environment": {
+    "python": "3.10.17",
+    "numpy": "2.2.6",
+    "pandas": "2.3.3",
+    "scikit-learn": "1.7.2",
+    "scipy": "1.15.3",
+    "statsmodels": "0.14.6",
+    "patsy": "1.0.2",
+    "joblib": "1.6.0",
+    "matplotlib": "3.10.9"
+  },
+  "dataset_sha256": "2820bf712ad0275cb18b85a05250926100d8e65ebb9f4d2d016ca91ea152a25d",
+  "models": {
+    "baseline": "reports/phase2/models/chronological_baseline.joblib",
+    "selected": "reports/phase3/results/models/final_linear_regression.joblib"
+  },
+  "model_sha256": {
+    "baseline": "9f9330522d7b52d6d279bf4b05f9a5f9123e1693e760dbd540910d74cd6a33ed",
+    "selected": "8be97c965b56fed6d4a665703b44faf57508fd9a759b837d48cf3a2ad418eb12"
+  }
+}

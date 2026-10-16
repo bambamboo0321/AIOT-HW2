@@ -1,0 +1,245 @@
+{
+  "phase": "3C",
+  "status": "PASS",
+  "verified_at_utc": "2026-10-16T01:31:03.904344+00:00",
+  "client_timezone": "Asia/Taipei",
+  "branch": "main",
+  "head": "4093655dd3db1395b090c99e3ea0a5bc0d64fddc",
+  "environment": {
+    "python": "3.10.17",
+    "numpy": "2.2.6",
+    "pandas": "2.3.3",
+    "scikit-learn": "1.7.2",
+    "scipy": "1.15.3",
+    "statsmodels": "0.14.6",
+    "patsy": "1.0.2",
+    "joblib": "1.6.0",
+    "matplotlib": "3.10.9"
+  },
+  "dependency_additions": {
+    "statsmodels": "0.14.6",
+    "patsy": "1.0.2",
+    "record": "requirements-phase3c.txt",
+    "original_requirements_unchanged": true
+  },
+  "tests": {
+    "run": 115,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "phase2": 40,
+    "phase3a": 27,
+    "phase3b": 15,
+    "phase3c_interval": 16,
+    "phase3c_evaluation": 17
+  },
+  "phase1_validation": {
+    "overall_status": "WARN",
+    "checks": {
+      "PASS": 24,
+      "WARN": 1
+    },
+    "note": "24 PASS, inherited rv1/rv2 duplicate WARN, zero failures; existing Phase 1 report not rewritten"
+  },
+  "integrity": {
+    "compared_to_commit": "4093655dd3db1395b090c99e3ea0a5bc0d64fddc",
+    "existing_tracked_files_checked": 93,
+    "changed_existing_files": [],
+    "raw_dataset_sha256": "2820bf712ad0275cb18b85a05250926100d8e65ebb9f4d2d016ca91ea152a25d",
+    "baseline_metrics_unchanged": true,
+    "all_phase1_2_3a_3b_artifacts_unchanged": true,
+    "model_sha256": {
+      "baseline": "9f9330522d7b52d6d279bf4b05f9a5f9123e1693e760dbd540910d74cd6a33ed",
+      "selected": "8be97c965b56fed6d4a665703b44faf57508fd9a759b837d48cf3a2ad418eb12"
+    },
+    "phase3b_results_csv_sha256": "9f04ea0855d6b6cccb52f4fb5345f46f282301b4e08d40ffa512279d046e9754"
+  },
+  "mathematical_reference": {
+    "statsmodels_version": "0.14.6",
+    "reference_columns": [
+      "obs_ci_lower",
+      "obs_ci_upper"
+    ],
+    "synthetic_only": true,
+    "cases": {
+      "full_rank": {
+        "lower_max_abs_error": 1.1546319456101628e-14,
+        "upper_max_abs_error": 1.0658141036401503e-14,
+        "rtol": 1e-10,
+        "atol": 1e-10,
+        "rank": 4,
+        "degrees_of_freedom": 86,
+        "samples": 90
+      },
+      "rank_deficient": {
+        "lower_max_abs_error": 6.217248937900877e-15,
+        "upper_max_abs_error": 6.439293542825908e-15,
+        "rtol": 1e-10,
+        "atol": 1e-10,
+        "rank": 3,
+        "degrees_of_freedom": 87,
+        "samples": 90
+      }
+    }
+  },
+  "numerical_diagnostics": {
+    "baseline": {
+      "method": "SVD of training design; no inversion of X.T@X",
+      "alpha": 0.05,
+      "nominal_coverage": 0.95,
+      "training_rows": 15788,
+      "design_columns_including_intercept": 26,
+      "rank": 26,
+      "degrees_of_freedom": 15762,
+      "rank_deficient": false,
+      "rank_threshold": 3.411839207501366e-07,
+      "rank_policy": "eps(float64)*max(n,p)*s_max",
+      "singular_values": [
+        97324.28289556118,
+        3785.7811902180774,
+        1554.503743937935,
+        1308.3850309808954,
+        1151.723258734033,
+        1068.9047407565702,
+        971.7067000286946,
+        406.4094619309231,
+        335.68583350643013,
+        302.38286799290364,
+        259.88103868747675,
+        219.08999722473337,
+        207.87379293900403,
+        202.45499454381815,
+        142.77748839226902,
+        112.40467484756753,
+        103.63583689383552,
+        99.15342973156699,
+        85.28982547256221,
+        73.11543702063872,
+        63.16487425395671,
+        55.43946177135861,
+        44.312068960904014,
+        31.387028488667838,
+        27.073482695416455,
+        0.8441370303496613
+      ],
+      "effective_condition_number": 115294.4123956358,
+      "sse": 144502628.8077183,
+      "sigma_squared": 9167.78510390295,
+      "sigma": 95.74855144545504,
+      "t_critical": 1.9601145016261097,
+      "residual_mean": 4.7398799127107e-13,
+      "normalized_residual_orthogonality_error": 4.956373758602797e-15,
+      "svd_reconstruction_relative_error": 1.1530346122214547e-15,
+      "training_leverage_sum": 25.999999999999968,
+      "training_leverage_min": 0.00039148119043999825,
+      "training_leverage_max": 0.020535757470275577,
+      "holdout_residuals_used": false,
+      "bounds_clipped_to_zero": false,
+      "interpretation": "pointwise observation prediction interval, not a mean confidence interval or simultaneous band"
+    },
+    "selected": {
+      "method": "SVD of training design; no inversion of X.T@X",
+      "alpha": 0.05,
+      "nominal_coverage": 0.95,
+      "training_rows": 15788,
+      "design_columns_including_intercept": 7,
+      "rank": 7,
+      "degrees_of_freedom": 15781,
+      "rank_deficient": false,
+      "rank_threshold": 9.4137340020819e-10,
+      "rank_policy": "eps(float64)*max(n,p)*s_max",
+      "singular_values": [
+        268.53109288029526,
+        125.65030839596058,
+        91.79426312891118,
+        73.72799605481802,
+        65.49469039170347,
+        52.72169321651231,
+        41.08426226372075
+      ],
+      "effective_condition_number": 6.536105994957107,
+      "sse": 165312487.80245376,
+      "sigma_squared": 10475.412698970518,
+      "sigma": 102.3494635988412,
+      "t_critical": 1.9601143203929652,
+      "residual_mean": 1.3825609857201848e-15,
+      "normalized_residual_orthogonality_error": 1.789559291008524e-15,
+      "svd_reconstruction_relative_error": 4.836474865885457e-15,
+      "training_leverage_sum": 7.000000000000001,
+      "training_leverage_min": 8.41793076556448e-05,
+      "training_leverage_max": 0.0038866286550242467,
+      "holdout_residuals_used": false,
+      "bounds_clipped_to_zero": false,
+      "interpretation": "pointwise observation prediction interval, not a mean confidence interval or simultaneous band"
+    }
+  },
+  "data_and_interval_checks": {
+    "holdout_samples_each": 3947,
+    "all_bounds_finite_ordered_positive_width": true,
+    "csv_json_metrics_predictions_and_figures_consistent": true,
+    "independent_qr_leverage_matches_svd": true,
+    "saved_model_prediction_matches_design": true,
+    "baseline_training_and_holdout_match_phase2": true,
+    "selected_training_metrics_match_phase3b": true,
+    "holdout_not_used_for_sigma_or_scaler_estimation": true,
+    "holdout_calibration": false,
+    "feature_selection_reexecuted_in_official_evaluation": false,
+    "saved_models_refitted": false,
+    "official_evaluation_fit_guard": true,
+    "regression_test_scope": "Existing suite retains its in-memory fitting isolation tests; no saved artifact is refitted or overwritten. Phase 3C statsmodels fits synthetic data only.",
+    "reproducibility": "Saved-model predictions and Training-only interval math reproduce the exported values; no new model selection or holdout tuning."
+  },
+  "figures": {
+    "count": 5,
+    "files": [
+      "baseline_prediction_interval.png",
+      "selected_prediction_interval.png",
+      "model_performance_comparison.png",
+      "interval_coverage_comparison.png",
+      "interval_width_comparison.png"
+    ],
+    "source_csv_hashes_verified": true,
+    "plot_window": [
+      0,
+      144
+    ],
+    "metrics_window": [
+      0,
+      3947
+    ]
+  },
+  "frozen_comparison": {
+    "baseline": {
+      "mae": 52.01410537697308,
+      "mse": 7522.6026240807805,
+      "rmse": 86.73293851865496,
+      "r2": 0.09235159638436585
+    },
+    "selected": {
+      "mae": 53.60586130503112,
+      "mse": 8179.71435314757,
+      "rmse": 90.44177327511646,
+      "r2": 0.013067013416318884
+    }
+  },
+  "git_operations": {
+    "add": false,
+    "commit": false,
+    "push": false
+  },
+  "phase4_started": false,
+  "safety": {
+    "status": "PASS",
+    "new_files_scanned": 20,
+    "secret_private_path_email_findings": [],
+    "files_over_5_mib": [],
+    "new_csv_files_utf8_lf": [
+      "reports/phase3/phase3c/prediction_comparison.csv",
+      "reports/phase3/phase3c/prediction_interval_predictions.csv"
+    ],
+    "untracked_text_cr_and_trailing_whitespace_checked": true,
+    "git_diff_check": "PASS",
+    "staging_empty": true,
+    "scan_limit": "Pattern-based text/PNG-metadata scan; not exhaustive; image pixels excluded."
+  }
+}
