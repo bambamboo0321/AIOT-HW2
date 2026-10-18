@@ -1,0 +1,17 @@
+import { parseComparisonReport, type Compared } from "./custom-comparison-result.ts";
+import { csvCell, type DownloadArtifact } from "./custom-result-export.ts";
+import type { PreprocessingPlan } from "./custom-dataset.ts";
+export function comparisonJson(value:Compared,config:PreprocessingPlan):DownloadArtifact {
+  const r=parseComparisonReport(value);if(r.status!=="compared"||config.numerical_scaling!=="standard"||config.target_column!==r.target||JSON.stringify(config.feature_columns)!==JSON.stringify(r.features)||config.cv_splits!==r.validation.split.cv_folds.length||config.split_strategy!==r.validation.split.strategy)throw new Error("設定與比較版本不一致。");
+  const keys=["schema_version","target_column","feature_columns","column_types","missing_numeric","missing_categorical","missing_target","categorical_constant","categorical_encoding","numerical_scaling","outlier_strategy","iqr_multiplier","datetime_strategy","datetime_formats","split_strategy","split_column","test_size","random_state","cv_splits","cv_gap"] as const;
+  return {filename:"custom-feature-comparison.json",mime:"application/json;charset=utf-8",content:JSON.stringify({artifact_type:"custom_dataset_feature_comparison",preprocessing:Object.fromEntries(keys.map(k=>[k,config[k]])),...r},null,2)+"\n"};
+}
+export function comparisonCsv(value:Compared):DownloadArtifact {
+  const r=parseComparisonReport(value);if(r.status!=="compared")throw new Error("比較未完成。");
+  const rows:(string|number|null)[][]=[["evaluation","method","k","fold","training_rows","validation_rows","metric","value","std_ddof0","defined_folds","total_folds","selected_features_json","target","dataset_sha256","config_sha256"]];
+  for(const p of r.points)for(const metric of ["rmse","mae","r2"] as const){const a=p.metrics[metric];rows.push(["training_cv_summary",p.method,p.k,null,null,null,metric,a.mean,a.std,a.defined_folds,p.folds.length,null,r.target,r.validation.dataset.sha256,r.validation.config_sha256]);for(const f of p.folds)rows.push(["training_cv_fold",p.method,p.k,f.fold,f.training_rows,f.validation_rows,metric,f.scores[metric],null,f.scores[metric]===null?0:1,1,JSON.stringify(f.features),r.target,r.validation.dataset.sha256,r.validation.config_sha256]);}
+  for(const p of r.automatic)for(const metric of ["rmse","mae","r2"] as const){const a=p.metrics[metric];rows.push(["automatic_training_cv_summary",p.method,null,null,null,null,metric,a.mean,a.std,a.defined_folds,p.folds.length,null,r.target,r.validation.dataset.sha256,r.validation.config_sha256]);for(const f of p.folds)rows.push(["automatic_training_cv_fold",p.method,f.features.length,f.fold,f.training_rows,f.validation_rows,metric,f.scores?.[metric]??null,null,f.scores?.[metric]==null?0:1,1,JSON.stringify(f.features),r.target,r.validation.dataset.sha256,r.validation.config_sha256]);}
+  rows[0].push("selected_alpha","inner_criterion","selection_status");
+  for(const row of rows.slice(1)){const method=row[1],fold=row[3];const automatic=r.automatic.find(p=>p.method===method),point=r.points.find(p=>p.method===method&&p.k===row[2]);const f=typeof fold==="number"?(automatic?.folds.find(f=>f.fold===fold)??point?.folds.find(f=>f.fold===fold)):undefined;row.push(f?.details?.alpha??null,f?.details?.criterion??null,f?(f.features.length?"scored":"no_features"):"summary");}
+  return {filename:"custom-feature-comparison.csv",mime:"text/csv;charset=utf-8",content:"\uFEFF"+rows.map(row=>row.map(csvCell).join(",")).join("\r\n")+"\r\n"};
+}

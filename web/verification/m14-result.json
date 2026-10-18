@@ -1,0 +1,166 @@
+{
+  "milestone": "M14: Custom CSV SFS / RFECV / LassoCV",
+  "verified_at": "2026-10-18T06:49:46.248277+00:00",
+  "repository": "AIOT-HW2 (historical verification checkout; absolute path redacted)",
+  "status": "implemented_and_verified",
+  "changes": {
+    "modified": [
+      "web/README.md",
+      "web/app/globals.css",
+      "web/app/custom-dataset/page.tsx",
+      "web/components/shell.tsx",
+      "web/components/custom-comparison-panel.tsx",
+      "web/components/custom-training-panel.tsx",
+      "web/lib/custom-result-export.ts",
+      "web/lib/custom-comparison-export.ts",
+      "web/lib/custom-training-result.ts",
+      "web/lib/custom-validation-service.ts",
+      "web/lib/custom-training-choice.ts",
+      "web/lib/custom-comparison-result.ts",
+      "docs/custom_dataset_training.md",
+      "src/custom_dataset_training.py",
+      "src/custom_dataset_comparison.py"
+    ],
+    "added": [
+      "src/custom_dataset_selectors.py",
+      "tests/test_custom_dataset_nested.py",
+      "web/lib/custom-selection-policy.ts",
+      "web/components/custom-selection-details.tsx",
+      "web/tests/custom-nested.test.ts"
+    ]
+  },
+  "scope": {
+    "forward_sfs": "Forward Sequential Feature Selection with user-selected integer k; measured fixed-k comparison curve and formal training.",
+    "rfecv": "Automatically selects integer k independently within each outer Training fold and full Training; comparison is a separate summary and fold table, not a fabricated k curve.",
+    "lasso_cv": "Selects alpha by inner CV mean MSE over a fixed nine-value grid, refits Lasso on current Training to select nonzero coefficients, then fits a separate LinearRegression.",
+    "supported_flows": [
+      "comparison",
+      "apply settings without automatically training",
+      "confirmed formal training",
+      "frozen single inference",
+      "frozen batch inference",
+      "evaluation JSON download",
+      "metrics CSV download",
+      "comparison JSON/CSV download",
+      "batch CSV download"
+    ],
+    "preprocessing": "Explicit standard scaling required. Inner-fold preprocessing fitted on inner Training only. Random KFold or chronological TimeSeriesSplit follows the selected split policy and gap.",
+    "inner_folds": 3,
+    "lasso_alpha_grid": [
+      10000,
+      1000,
+      100,
+      10,
+      1,
+      0.1,
+      0.01,
+      0.001,
+      0.0001
+    ],
+    "zero_selected_features": "Comparison records real k=0 and null scores. Formal training fails clearly without a fallback model or fabricated score.",
+    "holdout": "Held out from preprocessing, selector fitting, alpha selection and model fitting.",
+    "limits": {
+      "forward_sfs": {
+        "max_rows": 2000,
+        "max_candidate_columns": 15
+      },
+      "rfecv_and_lasso_cv": {
+        "max_rows": 5000,
+        "max_candidate_columns": 25
+      },
+      "estimated_work_units": 100000000,
+      "timeout_seconds": 120
+    },
+    "existing_controls": "Prior k explanation and clickable show/hide Holdout legends retained."
+  },
+  "checks": {
+    "lint": "PASS",
+    "typecheck": "PASS",
+    "production_build": "PASS",
+    "website_tests": {
+      "passed": 127,
+      "failed": 0
+    },
+    "full_python_suite": {
+      "passed": 211,
+      "failed": 0
+    },
+    "new_python_nested_tests": 10,
+    "new_website_nested_tests": 7
+  },
+  "browser": {
+    "fixture": "Synthetic numeric CSVs only; these scores do not represent Boston Housing or energy research results.",
+    "all_three_methods": "Each compared, applied, explicitly trained, used for single/batch predictions, downloaded and deleted its temporary test model.",
+    "auto_only": "k range disabled; request k_values is empty; separate automatic method tables shown.",
+    "rfecv_observed_outer_k": [
+      3,
+      3,
+      3,
+      2,
+      3
+    ],
+    "rfecv_observed_final_training_k": 2,
+    "lasso_observed_outer_k": [
+      2,
+      2,
+      2,
+      2,
+      2
+    ],
+    "lasso_zero_fixture": "All five outer folds selected zero; comparison shows no scores; formal training fails without a prediction form.",
+    "original_server": "localhost:3000 loads all six methods and successfully trained RFECV; original dev server preserved.",
+    "responsive": "Desktop light/dark and mobile 390px inspected; no page-level horizontal overflow.",
+    "taskspace": "Finished and cleaned up; user browser tabs preserved."
+  },
+  "download_verification": {
+    "comparison_json": "Fixed and automatic results match actual worker output.",
+    "comparison_csv": "90 data rows; automatic fold k/features/scores checked against actual worker output.",
+    "formal_evaluation_json": "All three methods match their own worker selection/CV/Holdout results; temporary model IDs excluded.",
+    "formal_metrics_csv": "All three methods include actual final and per-fold selected k.",
+    "batch_csv": "Two actual predictions per method match the corresponding inference response."
+  },
+  "integrity": {
+    "baseline_files": 269,
+    "modified_baseline_files": 15,
+    "unchanged_baseline_files": 254,
+    "new_implementation_files": 5,
+    "original_changes_preserved": true,
+    "existing_research_results_and_models_unchanged": true,
+    "research_retraining": false,
+    "commit": false,
+    "push": false,
+    "head": "4619bd493a337f32d34593f12686035f2c70a630",
+    "index_empty": true
+  },
+  "screenshots": [
+    {
+      "path": "web/artifacts/m14-auto-desktop-light.png",
+      "sha256": "f59e2672b6f6c2227f421cfc57482b605992da46e0f33759299aef08be970fcf",
+      "visually_inspected": true
+    },
+    {
+      "path": "web/artifacts/m14-lasso-desktop-dark.png",
+      "sha256": "54ce337d0a0063d4caf848d98862990d7284eceb0190f9d869991a70ff2d29e6",
+      "visually_inspected": true
+    },
+    {
+      "path": "web/artifacts/m14-auto-mobile-light.png",
+      "sha256": "ef1eecaa6f199c2a600553fb09505e8c6d0eaa5a227bd6d0781d9883526df199",
+      "visually_inspected": true
+    },
+    {
+      "path": "web/artifacts/m14-original-mobile-dark.png",
+      "sha256": "091ee20b2ba3a9d9ae7e28e2513a9fec1191e3cdeb46cb09536e413c0782d182",
+      "visually_inspected": true
+    }
+  ],
+  "manual_acceptance": [
+    "Refresh http://127.0.0.1:3000/custom-dataset and upload a numeric CSV.",
+    "Choose target and candidate columns, choose standard scaling, and validate the dataset.",
+    "In comparison check Forward SFS, RFECV and LassoCV; use a small k range for SFS and run comparison.",
+    "Inspect the SFS fixed-k curve and the separate RFECV/LassoCV fold tables, selected features, integer k and Lasso alpha.",
+    "Apply a method. SFS accepts k; automatic methods hide k. Explicitly confirm and train.",
+    "Inspect final and fold metrics/features; try single and batch predictions and download their results.",
+    "Inspect in light/dark mode and a narrow viewport; existing Holdout legends toggle series."
+  ]
+}

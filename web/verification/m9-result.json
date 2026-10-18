@@ -1,0 +1,141 @@
+{
+  "milestone": "M9 single-row prediction",
+  "status": "passed",
+  "scope": "Explicit single-row inference from the final Training fitted numeric LR and selected preprocessing branches; missing values use frozen Training statistics.",
+  "modified_files": [
+    "src/custom_dataset_training.py",
+    "docs/custom_dataset_training.md",
+    "web/README.md",
+    "web/app/globals.css",
+    "web/app/custom-dataset/page.tsx",
+    "web/app/api/custom-dataset/train/route.ts",
+    "web/components/shell.tsx",
+    "web/components/custom-training-panel.tsx",
+    "web/lib/custom-training-result.ts",
+    "web/lib/custom-validation-service.ts"
+  ],
+  "added_files": [
+    "src/custom_dataset_prediction.py",
+    "tests/test_custom_dataset_prediction.py",
+    "web/lib/custom-model-store.ts",
+    "web/lib/custom-prediction-types.ts",
+    "web/lib/custom-prediction-service.ts",
+    "web/components/custom-prediction-form.tsx",
+    "web/app/api/custom-dataset/predict/route.ts",
+    "web/tests/custom-prediction.test.ts"
+  ],
+  "checks": {
+    "web_tests": {
+      "passed": 97,
+      "failed": 0
+    },
+    "full_python_tests_in_original_git_repository": {
+      "passed": 182,
+      "failed": 0
+    },
+    "new_python_prediction_tests": {
+      "passed": 7,
+      "failed": 0
+    },
+    "related_python_tests": {
+      "passed": 33,
+      "failed": 0
+    },
+    "lint": "passed",
+    "typecheck": "passed",
+    "production_build": "passed",
+    "browser": {
+      "production_url": "http://127.0.0.1:3011/custom-dataset",
+      "original_dev_url": "http://127.0.0.1:3000/custom-dataset",
+      "selected_features_only": true,
+      "empty_submit_blocked": true,
+      "full_input_prediction": 59.875723,
+      "partial_input_prediction": 59.84436,
+      "partial_training_median": {
+        "noise_b": -0.048603
+      },
+      "out_of_range_warning": true,
+      "invalid_text_blocked": true,
+      "no_imputation_partial_blocked": true,
+      "no_imputation_full_prediction": 59.875723,
+      "original_dev_mean_partial_prediction": 59.935148,
+      "manual_delete_keeps_evaluation": true,
+      "clear_input_clears_output": true,
+      "controlled_delayed_actual_response_ignored_after_cancel": true,
+      "fresh_prediction_after_cancel": true,
+      "mobile_horizontal_overflow": false,
+      "viewports": [
+        {
+          "width": 1440,
+          "height": 1000
+        },
+        {
+          "width": 390,
+          "height": 844
+        }
+      ],
+      "light_and_dark": "screenshots inspected",
+      "test_models_deleted": true,
+      "task_space_finished": true
+    }
+  },
+  "storage": {
+    "ttl_minutes": 30,
+    "capacity": 3,
+    "model_size_limit_mib": 16,
+    "mode": "private OS temporary directory; model file 0600",
+    "csv_and_prediction_input": "removed after worker exit",
+    "contains_raw_training_rows": false,
+    "http_accepts_model_files_or_paths": false,
+    "abnormal_process_stop_orphan_recovery": "not implemented"
+  },
+  "integrity": {
+    "head": "4619bd493a337f32d34593f12686035f2c70a630",
+    "baseline_files": 234,
+    "untouched_baseline_files_verified": 224,
+    "unexpected_changes": [],
+    "existing_uncommitted_work_preserved": true,
+    "research_results_retrained": false,
+    "committed": false,
+    "pushed": false
+  },
+  "manual_acceptance": [
+    "Refresh /custom-dataset and upload numeric regression CSV.",
+    "Choose target, candidate features and preprocessing; confirm and validate.",
+    "Specify none/F-test/MI and k; explicitly train once to obtain the new temporary model.",
+    "Fill original-unit selected features; submit full or partial input and inspect actual imputation details.",
+    "With missing_numeric=none fill all selected features; test invalid text, clearing and manual model deletion."
+  ],
+  "screenshots": [
+    {
+      "path": "web/artifacts/m9-desktop-full-light.png",
+      "sha256": "3371d80d8d71984ea6dbd4d60e8a29f67ddee85905c6f3659be6426079b93833",
+      "visually_inspected": true
+    },
+    {
+      "path": "web/artifacts/m9-desktop-partial-dark.png",
+      "sha256": "2359b92a2a1b7eee68b294c061bb9f70d013ec8e78904641fe31babfbec9c8ca",
+      "visually_inspected": true
+    },
+    {
+      "path": "web/artifacts/m9-mobile-dark.png",
+      "sha256": "a78559711158d87c52de03c711f21de275aed7dd8b02ba58ad1826b07155c4f1",
+      "visually_inspected": true
+    },
+    {
+      "path": "web/artifacts/m9-mobile-light.png",
+      "sha256": "ffea4f4e0925dc8ccdb019e1b6c99ba9e034d389a61238d66bf1f9f5c02ec990",
+      "visually_inspected": true
+    },
+    {
+      "path": "web/artifacts/m9-original-dev-mean.png",
+      "sha256": "dd442ebe9615fa551af1a189c01a3f7d3110bdedb48ccb2d8cc70e88f6870185",
+      "visually_inspected": true
+    }
+  ],
+  "environment": {
+    "original_dev_server": "preserved; verified working",
+    "isolated_production_server": "stopped after acceptance",
+    "staging_directory": "<historical-temporary-directory>/aep-m9-20261018 (original absolute prefix redacted)"
+  }
+}

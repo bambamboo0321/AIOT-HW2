@@ -1,0 +1,421 @@
+{
+  "feature": "actual integer k per outer fold",
+  "checks": [
+    {
+      "width": 1440,
+      "method": "lasso_cv",
+      "metric": "rmse",
+      "folds": [
+        {
+          "fold": "Fold 1",
+          "k": 2
+        },
+        {
+          "fold": "Fold 2",
+          "k": 16
+        },
+        {
+          "fold": "Fold 3",
+          "k": 3
+        },
+        {
+          "fold": "Fold 4",
+          "k": 14
+        },
+        {
+          "fold": "Fold 5",
+          "k": 16
+        }
+      ],
+      "finalK": "完整 Training 最佳 k = 16",
+      "formula": "Outer folds 平均 k = (2 + 16 + 3 + 14 + 16) ÷ 5 = 10.20",
+      "dots": 1,
+      "lines": 0,
+      "axis": "自動選 k 程序979899100101",
+      "overflow": false,
+      "readable": true
+    },
+    {
+      "width": 1440,
+      "method": "lasso_cv",
+      "metric": "mae",
+      "folds": [
+        {
+          "fold": "Fold 1",
+          "k": 2
+        },
+        {
+          "fold": "Fold 2",
+          "k": 16
+        },
+        {
+          "fold": "Fold 3",
+          "k": 3
+        },
+        {
+          "fold": "Fold 4",
+          "k": 14
+        },
+        {
+          "fold": "Fold 5",
+          "k": 16
+        }
+      ],
+      "finalK": "完整 Training 最佳 k = 16",
+      "formula": "Outer folds 平均 k = (2 + 16 + 3 + 14 + 16) ÷ 5 = 10.20",
+      "dots": 1,
+      "lines": 0,
+      "axis": "自動選 k 程序5859606162",
+      "overflow": false,
+      "readable": true
+    },
+    {
+      "width": 1440,
+      "method": "lasso_cv",
+      "metric": "r2",
+      "folds": [
+        {
+          "fold": "Fold 1",
+          "k": 2
+        },
+        {
+          "fold": "Fold 2",
+          "k": 16
+        },
+        {
+          "fold": "Fold 3",
+          "k": 3
+        },
+        {
+          "fold": "Fold 4",
+          "k": 14
+        },
+        {
+          "fold": "Fold 5",
+          "k": 16
+        }
+      ],
+      "finalK": "完整 Training 最佳 k = 16",
+      "formula": "Outer folds 平均 k = (2 + 16 + 3 + 14 + 16) ÷ 5 = 10.20",
+      "dots": 1,
+      "lines": 0,
+      "axis": "自動選 k 程序0.030.040.050.060.07",
+      "overflow": false,
+      "readable": true
+    },
+    {
+      "width": 1440,
+      "method": "rfecv",
+      "metric": "rmse",
+      "folds": [
+        {
+          "fold": "Fold 1",
+          "k": 11
+        },
+        {
+          "fold": "Fold 2",
+          "k": 9
+        },
+        {
+          "fold": "Fold 3",
+          "k": 11
+        },
+        {
+          "fold": "Fold 4",
+          "k": 10
+        },
+        {
+          "fold": "Fold 5",
+          "k": 9
+        }
+      ],
+      "finalK": "完整 Training 最佳 k = 6",
+      "formula": "Outer folds 平均 k = (11 + 9 + 11 + 10 + 9) ÷ 5 = 10.00",
+      "dots": 1,
+      "lines": 0,
+      "axis": "自動選 k 程序9899100101102",
+      "overflow": false,
+      "readable": true
+    },
+    {
+      "width": 1440,
+      "method": "rfecv",
+      "metric": "mae",
+      "folds": [
+        {
+          "fold": "Fold 1",
+          "k": 11
+        },
+        {
+          "fold": "Fold 2",
+          "k": 9
+        },
+        {
+          "fold": "Fold 3",
+          "k": 11
+        },
+        {
+          "fold": "Fold 4",
+          "k": 10
+        },
+        {
+          "fold": "Fold 5",
+          "k": 9
+        }
+      ],
+      "finalK": "完整 Training 最佳 k = 6",
+      "formula": "Outer folds 平均 k = (11 + 9 + 11 + 10 + 9) ÷ 5 = 10.00",
+      "dots": 1,
+      "lines": 0,
+      "axis": "自動選 k 程序6061626364",
+      "overflow": false,
+      "readable": true
+    },
+    {
+      "width": 1440,
+      "method": "rfecv",
+      "metric": "r2",
+      "folds": [
+        {
+          "fold": "Fold 1",
+          "k": 11
+        },
+        {
+          "fold": "Fold 2",
+          "k": 9
+        },
+        {
+          "fold": "Fold 3",
+          "k": 11
+        },
+        {
+          "fold": "Fold 4",
+          "k": 10
+        },
+        {
+          "fold": "Fold 5",
+          "k": 9
+        }
+      ],
+      "finalK": "完整 Training 最佳 k = 6",
+      "formula": "Outer folds 平均 k = (11 + 9 + 11 + 10 + 9) ÷ 5 = 10.00",
+      "dots": 1,
+      "lines": 0,
+      "axis": "自動選 k 程序-0.0100.010.020.03",
+      "overflow": false,
+      "readable": true
+    },
+    {
+      "width": 390,
+      "method": "lasso_cv",
+      "metric": "rmse",
+      "folds": [
+        {
+          "fold": "Fold 1",
+          "k": 2
+        },
+        {
+          "fold": "Fold 2",
+          "k": 16
+        },
+        {
+          "fold": "Fold 3",
+          "k": 3
+        },
+        {
+          "fold": "Fold 4",
+          "k": 14
+        },
+        {
+          "fold": "Fold 5",
+          "k": 16
+        }
+      ],
+      "finalK": "完整 Training 最佳 k = 16",
+      "formula": "Outer folds 平均 k = (2 + 16 + 3 + 14 + 16) ÷ 5 = 10.20",
+      "dots": 1,
+      "lines": 0,
+      "axis": "自動選 k 程序979899100101",
+      "overflow": false,
+      "readable": true
+    },
+    {
+      "width": 390,
+      "method": "lasso_cv",
+      "metric": "mae",
+      "folds": [
+        {
+          "fold": "Fold 1",
+          "k": 2
+        },
+        {
+          "fold": "Fold 2",
+          "k": 16
+        },
+        {
+          "fold": "Fold 3",
+          "k": 3
+        },
+        {
+          "fold": "Fold 4",
+          "k": 14
+        },
+        {
+          "fold": "Fold 5",
+          "k": 16
+        }
+      ],
+      "finalK": "完整 Training 最佳 k = 16",
+      "formula": "Outer folds 平均 k = (2 + 16 + 3 + 14 + 16) ÷ 5 = 10.20",
+      "dots": 1,
+      "lines": 0,
+      "axis": "自動選 k 程序5859606162",
+      "overflow": false,
+      "readable": true
+    },
+    {
+      "width": 390,
+      "method": "lasso_cv",
+      "metric": "r2",
+      "folds": [
+        {
+          "fold": "Fold 1",
+          "k": 2
+        },
+        {
+          "fold": "Fold 2",
+          "k": 16
+        },
+        {
+          "fold": "Fold 3",
+          "k": 3
+        },
+        {
+          "fold": "Fold 4",
+          "k": 14
+        },
+        {
+          "fold": "Fold 5",
+          "k": 16
+        }
+      ],
+      "finalK": "完整 Training 最佳 k = 16",
+      "formula": "Outer folds 平均 k = (2 + 16 + 3 + 14 + 16) ÷ 5 = 10.20",
+      "dots": 1,
+      "lines": 0,
+      "axis": "自動選 k 程序0.030.040.050.060.07",
+      "overflow": false,
+      "readable": true
+    },
+    {
+      "width": 390,
+      "method": "rfecv",
+      "metric": "rmse",
+      "folds": [
+        {
+          "fold": "Fold 1",
+          "k": 11
+        },
+        {
+          "fold": "Fold 2",
+          "k": 9
+        },
+        {
+          "fold": "Fold 3",
+          "k": 11
+        },
+        {
+          "fold": "Fold 4",
+          "k": 10
+        },
+        {
+          "fold": "Fold 5",
+          "k": 9
+        }
+      ],
+      "finalK": "完整 Training 最佳 k = 6",
+      "formula": "Outer folds 平均 k = (11 + 9 + 11 + 10 + 9) ÷ 5 = 10.00",
+      "dots": 1,
+      "lines": 0,
+      "axis": "自動選 k 程序9899100101102",
+      "overflow": false,
+      "readable": true
+    },
+    {
+      "width": 390,
+      "method": "rfecv",
+      "metric": "mae",
+      "folds": [
+        {
+          "fold": "Fold 1",
+          "k": 11
+        },
+        {
+          "fold": "Fold 2",
+          "k": 9
+        },
+        {
+          "fold": "Fold 3",
+          "k": 11
+        },
+        {
+          "fold": "Fold 4",
+          "k": 10
+        },
+        {
+          "fold": "Fold 5",
+          "k": 9
+        }
+      ],
+      "finalK": "完整 Training 最佳 k = 6",
+      "formula": "Outer folds 平均 k = (11 + 9 + 11 + 10 + 9) ÷ 5 = 10.00",
+      "dots": 1,
+      "lines": 0,
+      "axis": "自動選 k 程序6061626364",
+      "overflow": false,
+      "readable": true
+    },
+    {
+      "width": 390,
+      "method": "rfecv",
+      "metric": "r2",
+      "folds": [
+        {
+          "fold": "Fold 1",
+          "k": 11
+        },
+        {
+          "fold": "Fold 2",
+          "k": 9
+        },
+        {
+          "fold": "Fold 3",
+          "k": 11
+        },
+        {
+          "fold": "Fold 4",
+          "k": 10
+        },
+        {
+          "fold": "Fold 5",
+          "k": 9
+        }
+      ],
+      "finalK": "完整 Training 最佳 k = 6",
+      "formula": "Outer folds 平均 k = (11 + 9 + 11 + 10 + 9) ÷ 5 = 10.00",
+      "dots": 1,
+      "lines": 0,
+      "axis": "自動選 k 程序-0.0100.010.020.03",
+      "overflow": false,
+      "readable": true
+    }
+  ],
+  "visual": "Screenshot capture unavailable in prior run; DOM layout and interactions checked",
+  "checks_summary": {
+    "lint": "pass",
+    "typecheck": "pass",
+    "web_tests": "24/24 pass",
+    "build": "pass in isolated copy with original node_modules"
+  },
+  "research_integrity": "All starting files outside three intended UI/documentation files are unchanged"
+}

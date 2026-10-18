@@ -1,0 +1,163 @@
+{
+  "milestone": "M4",
+  "implementation": "Prediction Explorer",
+  "status": "functional_and_representative_visual_checks_passed",
+  "checks": {
+    "lint": "pass",
+    "typecheck": "pass",
+    "build": "pass in isolated copy using original node_modules",
+    "web_tests": {
+      "passed": 53,
+      "failed": 0
+    },
+    "visual": {
+      "desktop_dark": "1440px full screenshot inspected",
+      "mobile_light": "390px main chart and date controls inspected",
+      "mobile_datetime_width": "230px, full date/time visible, no horizontal overflow"
+    }
+  },
+  "browser": {
+    "api": {
+      "sizes": [
+        72,
+        144,
+        288
+      ],
+      "invalidParameters": "400",
+      "post": "405",
+      "rawSnapshotURL": "404",
+      "verifiedIn": "round-03"
+    },
+    "navigation": {
+      "windowSizes": [
+        72,
+        144,
+        288
+      ],
+      "previousNext": "pass",
+      "lastObservation": 3947,
+      "timeJumpLastObservation": 3947,
+      "verifiedIn": "round-03"
+    },
+    "modelControls": {
+      "both": "3 prediction lines / 2 residual lines",
+      "baseline": "2 prediction lines / 1 residual line",
+      "selected": "2 prediction lines / 1 residual line",
+      "intervalOnOff": "pass",
+      "verifiedIn": "round-03"
+    },
+    "viewports": [
+      {
+        "width": 1440,
+        "theme": "light",
+        "saved": "light",
+        "overflow": false,
+        "tables": true,
+        "errors": 0
+      },
+      {
+        "width": 1440,
+        "theme": "dark",
+        "saved": "dark",
+        "overflow": false,
+        "tables": true,
+        "errors": 0
+      },
+      {
+        "width": 390,
+        "theme": "light",
+        "saved": "light",
+        "overflow": false,
+        "tables": true,
+        "errors": 0
+      },
+      {
+        "width": 390,
+        "theme": "dark",
+        "saved": "dark",
+        "overflow": false,
+        "tables": true,
+        "errors": 0
+      }
+    ],
+    "routes": [
+      {
+        "route": "/",
+        "status": 200
+      },
+      {
+        "route": "/feature-selection",
+        "status": 200
+      },
+      {
+        "route": "/model-evaluation",
+        "status": 200
+      },
+      {
+        "route": "/prediction-explorer",
+        "status": 200
+      },
+      {
+        "route": "/custom-dataset",
+        "status": 200
+      }
+    ],
+    "chartClick": {
+      "expected": 72,
+      "selected": 72
+    }
+  },
+  "regressions": [
+    {
+      "page": "overview",
+      "result": "existing performance panel available"
+    },
+    {
+      "page": "feature-selection",
+      "result": "LassoCV five actual fold scores preserved"
+    },
+    {
+      "page": "model-evaluation",
+      "result": "fixed model scores and delta table preserved"
+    }
+  ],
+  "integrity": {
+    "starting_files": 195,
+    "all_144_non_web_files_unchanged": true,
+    "prior_three_page_snapshots_unchanged": true,
+    "existing_uncommitted_changes_preserved": true,
+    "no_training_or_model_inference": true,
+    "no_commit_or_push": true
+  },
+  "changed_files": [
+    "web/README.md",
+    "web/app/api/predictions/route.ts",
+    "web/app/globals.css",
+    "web/app/prediction-explorer/page.tsx",
+    "web/components/prediction-explorer.tsx",
+    "web/components/shell.tsx",
+    "web/data/prediction-explorer.json",
+    "web/lib/evaluation-data.ts",
+    "web/lib/load-predictions.ts",
+    "web/lib/prediction-data.ts",
+    "web/lib/prediction-types.ts",
+    "web/lib/prediction-window.ts",
+    "web/lib/write-snapshot.ts",
+    "web/scripts/sync-data.ts",
+    "web/tests/prediction-explorer.test.ts",
+    "web/tests/research-data.test.ts"
+  ],
+  "manual_acceptance": [
+    "Open http://127.0.0.1:3000/prediction-explorer",
+    "Switch 12/24/48 hours, models, PI shadow and residual mode",
+    "Jump to last timestamp and inspect observation 3947",
+    "Select an observation via chart, dropdown or paginated table",
+    "Compare local window stats against unchanged full Holdout references"
+  ],
+  "screenshots": [
+    "web/artifacts/m4-desktop-dark.png",
+    "web/artifacts/m4-mobile-light.png",
+    "web/artifacts/m4-mobile-chart.png",
+    "web/artifacts/m4-mobile-controls.png"
+  ]
+}

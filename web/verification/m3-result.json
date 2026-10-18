@@ -1,0 +1,251 @@
+{
+  "milestone": "M3",
+  "status": "functional_and_representative_visual_checks_passed",
+  "implementation": "Model Evaluation",
+  "checks": {
+    "lint": "pass",
+    "typecheck": "pass",
+    "build": "pass in isolated copy using original node_modules",
+    "web_tests": {
+      "passed": 40,
+      "failed": 0
+    },
+    "visual": {
+      "desktop_dark": "1440px full-page screenshot inspected",
+      "mobile_light": "390px full-page screenshot inspected",
+      "axis_precision": "long endpoint decimals corrected; exact table and Tooltip values preserved"
+    }
+  },
+  "browser": {
+    "modelScores": [
+      {
+        "partition": "holdout",
+        "metric": "rmse",
+        "values": [
+          86.73293851865496,
+          90.44177327511646
+        ],
+        "tooltip": "pass"
+      },
+      {
+        "partition": "holdout",
+        "metric": "mae",
+        "values": [
+          52.01410537697308,
+          53.60586130503112
+        ],
+        "tooltip": "pass"
+      },
+      {
+        "partition": "holdout",
+        "metric": "r2",
+        "values": [
+          0.09235159638436585,
+          0.013067013416318884
+        ],
+        "tooltip": "pass"
+      },
+      {
+        "partition": "holdout",
+        "metric": "mse",
+        "values": [
+          7522.6026240807805,
+          8179.71435314757
+        ],
+        "tooltip": "pass"
+      },
+      {
+        "partition": "training",
+        "metric": "rmse",
+        "values": [
+          95.66967862727964,
+          102.32677150116135
+        ],
+        "tooltip": "pass"
+      },
+      {
+        "partition": "training",
+        "metric": "mae",
+        "values": [
+          54.28918787278201,
+          60.09601269710763
+        ],
+        "tooltip": "pass"
+      },
+      {
+        "partition": "training",
+        "metric": "r2",
+        "values": [
+          0.1728985669935369,
+          0.053787486889167124
+        ],
+        "tooltip": "pass"
+      },
+      {
+        "partition": "training",
+        "metric": "mse",
+        "values": [
+          9152.687408646965,
+          10470.768165850885
+        ],
+        "tooltip": "pass"
+      }
+    ],
+    "residualFilters": [
+      {
+        "id": "both",
+        "bins": 20,
+        "counts": [
+          {
+            "id": "baseline",
+            "total": 3947
+          },
+          {
+            "id": "selected",
+            "total": 3947
+          }
+        ]
+      },
+      {
+        "id": "baseline",
+        "bins": 20,
+        "counts": [
+          {
+            "id": "baseline",
+            "total": 3947
+          }
+        ]
+      },
+      {
+        "id": "selected",
+        "bins": 20,
+        "counts": [
+          {
+            "id": "selected",
+            "total": 3947
+          }
+        ]
+      }
+    ],
+    "intervalViews": [
+      {
+        "view": "coverage",
+        "reference": 1,
+        "tooltip": "pass"
+      },
+      {
+        "view": "averageWidth",
+        "reference": 0,
+        "tooltip": "pass"
+      },
+      {
+        "view": "misses",
+        "reference": 0,
+        "tooltip": "pass"
+      }
+    ],
+    "viewports": [
+      {
+        "theme": "light",
+        "saved": "light",
+        "width": 1440,
+        "overflow": false,
+        "tables": true,
+        "milestone": "MILESTONE M3",
+        "errors": 0
+      },
+      {
+        "theme": "dark",
+        "saved": "dark",
+        "width": 1440,
+        "overflow": false,
+        "tables": true,
+        "milestone": "MILESTONE M3",
+        "errors": 0
+      },
+      {
+        "theme": "light",
+        "saved": "light",
+        "width": 390,
+        "overflow": false,
+        "tables": true,
+        "milestone": "MILESTONE M3",
+        "errors": 0
+      },
+      {
+        "theme": "dark",
+        "saved": "dark",
+        "width": 390,
+        "overflow": false,
+        "tables": true,
+        "milestone": "MILESTONE M3",
+        "errors": 0
+      }
+    ],
+    "routes": [
+      {
+        "route": "/",
+        "status": 200
+      },
+      {
+        "route": "/feature-selection",
+        "status": 200
+      },
+      {
+        "route": "/model-evaluation",
+        "status": 200
+      },
+      {
+        "route": "/prediction-explorer",
+        "status": 200
+      },
+      {
+        "route": "/custom-dataset",
+        "status": 200
+      }
+    ],
+    "regressions": [
+      {
+        "page": "feature-selection",
+        "actualFoldScores": 5
+      },
+      {
+        "page": "overview",
+        "existingPerformancePanel": "available"
+      }
+    ]
+  },
+  "integrity": {
+    "all_144_non_web_files_unchanged": true,
+    "overview_and_feature_snapshots_unchanged": true,
+    "existing_uncommitted_changes_preserved": true,
+    "no_training": true,
+    "no_commit_or_push": true
+  },
+  "changed_files": [
+    "web/README.md",
+    "web/app/globals.css",
+    "web/app/model-evaluation/page.tsx",
+    "web/components/evaluation-explorer.tsx",
+    "web/components/shell.tsx",
+    "web/data/model-evaluation.json",
+    "web/lib/evaluation-data.ts",
+    "web/lib/evaluation-types.ts",
+    "web/lib/load-evaluation.ts",
+    "web/lib/write-snapshot.ts",
+    "web/scripts/sync-data.ts",
+    "web/tests/evaluation.test.ts",
+    "web/tests/research-data.test.ts"
+  ],
+  "manual_acceptance": [
+    "Open http://127.0.0.1:3000/model-evaluation",
+    "Switch Holdout/Training and RMSE/MAE/R2/MSE",
+    "Switch residual model filters and PI coverage/width/miss count",
+    "Check desktop/mobile themes, table scrolling and source details"
+  ],
+  "screenshots": [
+    "web/artifacts/m3-desktop-full.png",
+    "web/artifacts/m3-mobile-full.png",
+    "web/artifacts/m3-mobile-chart.png"
+  ]
+}

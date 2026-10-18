@@ -1,0 +1,83 @@
+{
+  "scope": "operating guide, final report draft, provisional submission checklist and full-feature Vercel architecture plan",
+  "verified_at": "2026-10-18T07:29:40.852027+00:00",
+  "changes": {
+    "modified": [
+      "README.md",
+      "web/README.md"
+    ],
+    "added": [
+      "docs/user_guide.md",
+      "docs/final_report_draft.md",
+      "docs/submission_checklist.md",
+      "docs/vercel_deployment_plan.md"
+    ]
+  },
+  "checks": {
+    "new_document_local_links": 30,
+    "broken_links": 0,
+    "holdout_table": "matches saved prediction_metrics.json at displayed precision",
+    "pi_table": "matches saved prediction_interval_metrics.json at displayed precision",
+    "baseline_files_checked": 141,
+    "implementation_changes": false,
+    "model_or_research_changes": false,
+    "test_rerun": false,
+    "reason": "documentation-only; existing M14 test evidence is explicitly historical"
+  },
+  "manual_acceptance": {
+    "status": "accepted_by_user",
+    "source": "user confirmation in current conversation",
+    "new_manual_validation_requested": false
+  },
+  "deployment": {
+    "chosen_by_user": "Vercel frontend plus independent Python compute backend, retaining full CSV training and prediction",
+    "cloud_integration_implemented": false,
+    "cloud_deployed": false,
+    "url": null,
+    "remaining": [
+      "backend HTTP/container packaging",
+      "Vercel server-only proxy and exact-origin/auth rules",
+      "per-user model lifecycle and quotas",
+      "cloud request/response size policy",
+      "snapshot build and runtime bundling",
+      "local cross-service regression",
+      "hosting account/project selection and login",
+      "Preview and Production verification"
+    ]
+  },
+  "rubric": "provisional; original full instructor brief not found in inspected project references",
+  "unprovided_materials": [
+    "full instructor brief and updates",
+    "student identity and required final filename",
+    "actual NotebookLM output and citations",
+    "required conversation PDFs"
+  ],
+  "files": [
+    {
+      "path": "README.md",
+      "sha256": "3a618f222c1d0e897c5569e22351b0959148e441dc56eb9cb0c618aee3d12c1e"
+    },
+    {
+      "path": "web/README.md",
+      "sha256": "8d68ea124a3ba1ccc4fba0b3e86b6dad638f85e613a0b27af87a554560070ebf"
+    },
+    {
+      "path": "docs/user_guide.md",
+      "sha256": "2d2a52c8186a3dbd10c1cdf5af57fee4e7f22c0d3ba6a2e134271b7949f92b85"
+    },
+    {
+      "path": "docs/final_report_draft.md",
+      "sha256": "18fe94fc15ce706493ca0a82a973ccf5d506c93ee063c8b666774a4f9270fe55"
+    },
+    {
+      "path": "docs/submission_checklist.md",
+      "sha256": "22902a1a8ce8ea87e98af429b60712dd683b413d3a9d7a36dc6f8f3e6c0ce58e"
+    },
+    {
+      "path": "docs/vercel_deployment_plan.md",
+      "sha256": "9b2ba395d923060df01e5e557f8630e0bbc510370f16aed595f4b1dbc58bd7b6"
+    }
+  ],
+  "commit": false,
+  "push": false
+}

@@ -1,0 +1,103 @@
+{
+  "viewportChecks": [
+    {
+      "theme": "dark",
+      "width": 1440,
+      "client": 1425,
+      "scroll": 1425,
+      "themeSaved": "dark",
+      "horizontalTables": true
+    },
+    {
+      "theme": "light",
+      "width": 1440,
+      "client": 1425,
+      "scroll": 1425,
+      "themeSaved": "light",
+      "horizontalTables": true
+    },
+    {
+      "theme": "dark",
+      "width": 390,
+      "client": 375,
+      "scroll": 375,
+      "themeSaved": "dark",
+      "horizontalTables": true
+    },
+    {
+      "theme": "light",
+      "width": 390,
+      "client": 375,
+      "scroll": 375,
+      "themeSaved": "light",
+      "horizontalTables": true
+    }
+  ],
+  "methods": [
+    {
+      "id": "f_test",
+      "featureMapping": "pass",
+      "metrics": 3,
+      "measuredK": 25,
+      "automaticSinglePoint": false
+    },
+    {
+      "id": "mutual_information",
+      "featureMapping": "pass",
+      "metrics": 3,
+      "measuredK": 25,
+      "automaticSinglePoint": false
+    },
+    {
+      "id": "forward_sfs",
+      "featureMapping": "pass",
+      "metrics": 3,
+      "measuredK": 9,
+      "automaticSinglePoint": false
+    },
+    {
+      "id": "rfe",
+      "featureMapping": "pass",
+      "metrics": 3,
+      "measuredK": 25,
+      "automaticSinglePoint": false
+    },
+    {
+      "id": "lasso_cv",
+      "featureMapping": "pass",
+      "metrics": 3,
+      "measuredK": 0,
+      "automaticSinglePoint": true
+    },
+    {
+      "id": "rfecv",
+      "featureMapping": "pass",
+      "metrics": 3,
+      "measuredK": 0,
+      "automaticSinglePoint": true
+    }
+  ],
+  "routes": [
+    {
+      "route": "/",
+      "status": 200
+    },
+    {
+      "route": "/feature-selection",
+      "status": 200
+    },
+    {
+      "route": "/model-evaluation",
+      "status": 200
+    },
+    {
+      "route": "/prediction-explorer",
+      "status": 200
+    },
+    {
+      "route": "/custom-dataset",
+      "status": 200
+    }
+  ],
+  "screenshots": "Page.captureScreenshot timed out twice; visual acceptance remains manual"
+}

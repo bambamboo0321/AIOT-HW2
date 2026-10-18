@@ -1,0 +1,111 @@
+{
+  "milestone": "M15: standalone bounded Python compute gateway",
+  "verified_at": "2026-10-18T07:42:04.916874+00:00",
+  "status": "native_backend_packaged_and_verified; frontend_connection_and_cloud_deployment_pending",
+  "implementation": {
+    "http": "Node 24 built-in HTTP, no new npm runtime dependencies",
+    "ml": "existing Python modules and web/lib validation/training/prediction handlers reused without modification",
+    "authentication": "constant-time hashed service-token comparison; at least 32 base64url characters; no browser CORS",
+    "model_isolation": "separate ModelStore per trusted 64-hex session, not public user-login implementation",
+    "limits": {
+      "csv_bytes": 3145728,
+      "request_bytes": 4194304,
+      "response_bytes": 4194304,
+      "sessions": 8,
+      "models_per_session": 3,
+      "model_ttl_minutes": 30,
+      "active_compute_requests": 1,
+      "upload_seconds": 20
+    },
+    "lifecycle": "bounded Python runtime, kill/reap on disconnect or timeout; private upload/model cleanup and graceful shutdown",
+    "runtime_import_closure": "10 source modules, only node: external imports"
+  },
+  "checks": {
+    "tests": {
+      "passed": 9,
+      "failed": 0,
+      "log_sha256": "a50b421bd42413c7c419388028605bf28d5ce00ab1208697125fb103d6c20850"
+    },
+    "web-tests": {
+      "passed": 127,
+      "failed": 0,
+      "log_sha256": "b101d5c9b0ddb8f8c98a3334c74adb3b2818a78ec5b8eef9361a129d9508de05"
+    },
+    "typecheck": "PASS",
+    "lint": "PASS"
+  },
+  "integration": {
+    "fixture": "synthetic numeric 120-row CSV; not a new real energy research experiment",
+    "six_methods_plus_none": "all train over HTTP; exact selected features/CV/Holdout equality with original handlers",
+    "comparison": "all six methods; 8 fixed points and 2 automatic methods",
+    "single_batch_delete": "all seven model choices predict and delete; two batch rows include missing-feature imputation",
+    "session_isolation": "existing session B cannot infer or delete A model even when given A model ID",
+    "expiry_capacity": "expired sessions pruned, session cap enforced, failed train does not reserve a model session",
+    "payloads": "stale confirmation, auth/path/method/session, multipart CSV cap, declared/chunked whole-body cap tested",
+    "cancellation": "disconnected worker process killed, slot released",
+    "timeout": "worker killed after test timeout and temporary files removed",
+    "cli": {
+      "entrypoint": "backend/server.ts",
+      "cwdIndependent": true,
+      "health": "PASS",
+      "sigtermExit": 0,
+      "temporaryRootEmptyAfterExit": true,
+      "userPort3000Untouched": true
+    }
+  },
+  "docker": {
+    "files_prepared": true,
+    "build_run_verified": false,
+    "reason": "Docker CLI unavailable on host",
+    "image_contents": "explicit COPY of gateway, src and required lib source only; raw CSV/reports/models/secrets excluded"
+  },
+  "changes": {
+    "modified": [
+      "README.md",
+      "web/README.md",
+      "docs/vercel_deployment_plan.md"
+    ],
+    "added": [
+      ".dockerignore",
+      "backend/requirements.txt",
+      "backend/Dockerfile",
+      "backend/README.md",
+      "backend/package.json",
+      "backend/tsconfig.json",
+      "backend/.env.example",
+      "backend/server.ts",
+      "backend/tests/service.test.ts"
+    ]
+  },
+  "integrity": {
+    "baseline_files": 281,
+    "unchanged_existing_files": 278,
+    "original_python_and_website_code_unchanged": true,
+    "existing_research_models_and_results_unchanged": true,
+    "existing_uncommitted_changes_preserved": true,
+    "commit": false,
+    "push": false
+  },
+  "not_completed": [
+    "Vercel server-only proxy and signed/owned session",
+    "cloud-mode UI and upload-size notices",
+    "frontend build snapshot handling",
+    "backend hosting/container build and HTTPS verification",
+    "Vercel Preview/Production deployment and public URL"
+  ],
+  "test_scope": "Backend typecheck/lint and native HTTP tests plus all 127 existing website tests rerun. No frontend implementation changed; frontend build/full Python suite not rerun in this backend-only step. M14 full Python 211-pass result remains historical.",
+  "file_hashes": {
+    "README.md": "15a497945d2f58481ee4e47e2f11212a0a766f1e4752b2f709c8169fe29f4dd5",
+    "web/README.md": "cec4b5591fb14b9ca2a9e813ce9a552ab01c7be0d48cebd91de5095a422727b1",
+    "docs/vercel_deployment_plan.md": "9e55e4c1210da9bb250e781e91e739886f9cb614ef7a0ea6e74e6b2ff50f662c",
+    ".dockerignore": "7c9d8fa4e71b7cbc08dec3542cdcb9694b850278e439115a46dfb7eea143986a",
+    "backend/requirements.txt": "d1749750e66306a95fa5a477a2b3a7496fad34ae380816831cc116b4844a44df",
+    "backend/Dockerfile": "b1ba82b2a05e9b66f2c127c4cbf9a4ac0753387a636b55887f229e6d375ff1fa",
+    "backend/README.md": "2e1f312d08eef3dc77098bfad112f4c1f30212353cb19300ef147d98173d3557",
+    "backend/package.json": "795ea83910cd08fe3755af088c9cfb8e5d9c9d6063146391980bf01615529f11",
+    "backend/tsconfig.json": "12612d0111691fd75fc69c3a9400238b092d2004336ec28c9d3ded04913278c5",
+    "backend/.env.example": "d811d555d93b64587cccdf5342839ccf402024c6dd2ba9ad2967acc27d43779d",
+    "backend/server.ts": "f56926e6848becc0fd39cd691d9268e315b9d8a0d23dae1e9cf5796ad0435a2c",
+    "backend/tests/service.test.ts": "8d2ddfa3b35b021f0e9b4f542d7751e943e6de1168d3f564e56fa968cf6a908f"
+  }
+}

@@ -7,3 +7,21 @@ __pycache__/
 .env.*
 !.env.example
 /KAG_energydata_complete.csv
+
+# Generated dependencies, build output, and local deployment metadata.
+node_modules/
+.next/
+.vercel/
+
+# Private keys and credential containers; research CSV/joblib files remain eligible.
+*.key
+*.pem
+*.p12
+*.pfx
+*.pkcs12
+*.jks
+*.keystore
+id_rsa
+id_dsa
+id_ecdsa
+id_ed25519

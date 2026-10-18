@@ -1,0 +1,278 @@
+{
+  "schemaVersion": 1,
+  "status": "ready",
+  "sources": [
+    {
+      "path": "dashboard_data/model_comparison.json",
+      "sha256": "14af4e6ea27d2fb608e614923daf6cb15c4bd182b426d5880ed4e1b2189c8430"
+    },
+    {
+      "path": "dashboard_data/prediction_intervals.json",
+      "sha256": "07a415d35a12660d307d1a19b792bb90517aa6a24c731e1663f5a0a7386c2022"
+    },
+    {
+      "path": "reports/phase3/phase3c/prediction_metrics.json",
+      "sha256": "b36c1b9cd2546e9a0fa9ef484e10ef9a1893e199bfffb9891810437a34cc3176"
+    },
+    {
+      "path": "reports/phase3/phase3c/prediction_interval_metrics.json",
+      "sha256": "1b08609e2b1626bc6c9433cf411b06535b9782f13971b9769ec7082c9b16ad50"
+    },
+    {
+      "path": "reports/phase3/phase3c/evaluation_plan.json",
+      "sha256": "be45fa61b89de8d8abdb6442c549a0c19d463b7e21bf8a6719fd958f7de89dc0"
+    },
+    {
+      "path": "reports/phase3/phase3c/figure_manifest.json",
+      "sha256": "8cddb609cbbdf9cedc449af302dfd8fb9c78d0e500aa789d601b2196bf2a430c"
+    },
+    {
+      "path": "reports/phase3/phase3c/prediction_interval_predictions.csv",
+      "sha256": "471ef6bfc9e08ff2d2e7999e133d116ac59bc2e86c1b140afbbb1974566e33b9"
+    }
+  ],
+  "data": {
+    "trainingRows": 15788,
+    "holdoutRows": 3947,
+    "nominalCoverage": 0.95,
+    "trainingPeriod": {
+      "start": "2016-01-11T17:00:00",
+      "end": "2016-04-30T08:10:00"
+    },
+    "holdoutPeriod": {
+      "start": "2016-04-30T08:20:00",
+      "end": "2016-05-27T18:00:00"
+    },
+    "holdoutRole": "single fixed descriptive evaluation; already viewed in Phase 2",
+    "formula": "saved_prediction +/- t.ppf(0.975, n-rank(X))*sqrt(SSE/(n-rank(X)))*sqrt(1+h0)",
+    "models": [
+      {
+        "id": "baseline",
+        "label": "Baseline LR",
+        "features": [
+          "lights",
+          "T1",
+          "RH_1",
+          "T2",
+          "RH_2",
+          "T3",
+          "RH_3",
+          "T4",
+          "RH_4",
+          "T5",
+          "RH_5",
+          "T6",
+          "RH_6",
+          "T7",
+          "RH_7",
+          "T8",
+          "RH_8",
+          "T9",
+          "RH_9",
+          "T_out",
+          "Press_mm_hg",
+          "RH_out",
+          "Windspeed",
+          "Visibility",
+          "Tdewpoint"
+        ],
+        "training": {
+          "rmse": 95.66967862727964,
+          "mae": 54.28918787278201,
+          "mse": 9152.687408646965,
+          "r2": 0.1728985669935369
+        },
+        "holdout": {
+          "rmse": 86.73293851865496,
+          "mae": 52.01410537697308,
+          "mse": 7522.6026240807805,
+          "r2": 0.09235159638436585
+        },
+        "interval": {
+          "coverage": 0.960983025082341,
+          "averageWidth": 376.1045334652823,
+          "medianWidth": 375.91519707811426,
+          "widthSD": 0.7814290623391105,
+          "covered": 3793,
+          "below": 0,
+          "above": 154
+        },
+        "residual": {
+          "mean": -6.35493500733506,
+          "median": -19.92281638897296,
+          "p05": -90.46123046580493,
+          "p95": 140.27818257199905,
+          "maxAbsolute": 746.1092792621789,
+          "underpredictions": 1171,
+          "overpredictions": 2776,
+          "exact": 0
+        }
+      },
+      {
+        "id": "selected",
+        "label": "MI + LR",
+        "features": [
+          "T3",
+          "T4",
+          "T5",
+          "RH_6",
+          "T8",
+          "T9"
+        ],
+        "training": {
+          "rmse": 102.32677150116135,
+          "mae": 60.09601269710763,
+          "mse": 10470.768165850885,
+          "r2": 0.053787486889167124
+        },
+        "holdout": {
+          "rmse": 90.44177327511646,
+          "mae": 53.60586130503112,
+          "mse": 8179.71435314757,
+          "r2": 0.013067013416318884
+        },
+        "interval": {
+          "coverage": 0.9581960983025082,
+          "averageWidth": 401.44276077932034,
+          "medianWidth": 401.4369314352467,
+          "widthSD": 0.09218862342120163,
+          "covered": 3782,
+          "below": 0,
+          "above": 165
+        },
+        "residual": {
+          "mean": -2.5335740854135063,
+          "median": -21.18902038221067,
+          "p05": -77.56238481140456,
+          "p95": 165.1991206641388,
+          "maxAbsolute": 729.0068903600436,
+          "underpredictions": 1150,
+          "overpredictions": 2797,
+          "exact": 0
+        }
+      }
+    ],
+    "histogram": [
+      {
+        "lower": -750,
+        "upper": -675,
+        "baseline": 0,
+        "selected": 0
+      },
+      {
+        "lower": -675,
+        "upper": -600,
+        "baseline": 0,
+        "selected": 0
+      },
+      {
+        "lower": -600,
+        "upper": -525,
+        "baseline": 0,
+        "selected": 0
+      },
+      {
+        "lower": -525,
+        "upper": -450,
+        "baseline": 0,
+        "selected": 0
+      },
+      {
+        "lower": -450,
+        "upper": -375,
+        "baseline": 0,
+        "selected": 0
+      },
+      {
+        "lower": -375,
+        "upper": -300,
+        "baseline": 0,
+        "selected": 0
+      },
+      {
+        "lower": -300,
+        "upper": -225,
+        "baseline": 0,
+        "selected": 0
+      },
+      {
+        "lower": -225,
+        "upper": -150,
+        "baseline": 7,
+        "selected": 0
+      },
+      {
+        "lower": -150,
+        "upper": -75,
+        "baseline": 384,
+        "selected": 247
+      },
+      {
+        "lower": -75,
+        "upper": 0,
+        "baseline": 2385,
+        "selected": 2550
+      },
+      {
+        "lower": 0,
+        "upper": 75,
+        "baseline": 829,
+        "selected": 802
+      },
+      {
+        "lower": 75,
+        "upper": 150,
+        "baseline": 157,
+        "selected": 131
+      },
+      {
+        "lower": 150,
+        "upper": 225,
+        "baseline": 59,
+        "selected": 72
+      },
+      {
+        "lower": 225,
+        "upper": 300,
+        "baseline": 39,
+        "selected": 59
+      },
+      {
+        "lower": 300,
+        "upper": 375,
+        "baseline": 39,
+        "selected": 33
+      },
+      {
+        "lower": 375,
+        "upper": 450,
+        "baseline": 24,
+        "selected": 22
+      },
+      {
+        "lower": 450,
+        "upper": 525,
+        "baseline": 15,
+        "selected": 20
+      },
+      {
+        "lower": 525,
+        "upper": 600,
+        "baseline": 4,
+        "selected": 6
+      },
+      {
+        "lower": 600,
+        "upper": 675,
+        "baseline": 2,
+        "selected": 1
+      },
+      {
+        "lower": 675,
+        "upper": 750,
+        "baseline": 3,
+        "selected": 4
+      }
+    ]
+  }
+}

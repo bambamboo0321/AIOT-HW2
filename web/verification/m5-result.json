@@ -1,0 +1,164 @@
+{
+  "milestone": "M5",
+  "scope": "Custom Dataset browser-local CSV review and preprocessing configuration",
+  "status": "functional_and_representative_visual_checks_passed",
+  "implemented": [
+    "CSV picker and drag/drop, bounded UTF-8 CSV parsing in cancellable Web Worker",
+    "Full-file descriptive quality profile and bounded five-row preview",
+    "Explicit numeric target and features, preprocessing and split/CV configuration",
+    "Dataset-bound configuration review, pure Python-v1 config download and summary export",
+    "Data clearing on file change, explicit clear and SPA navigation"
+  ],
+  "not_implemented": [
+    "Server upload/storage API",
+    "Categorical feature encoding, date feature expansion, schema overrides",
+    "General dataset training, selector execution, predictions or PI"
+  ],
+  "checks": {
+    "web_tests": {
+      "passed": 71,
+      "failed": 0
+    },
+    "lint": "pass; run separately after temporary-fixture tests",
+    "typecheck": "pass",
+    "build": "pass in isolated copy using original dependencies",
+    "python_contract": "Actual browser-downloaded config accepted by existing PreprocessingConfig.from_dict; no fit/transform executed",
+    "real_csv_profile": {
+      "rows": 19735,
+      "columns": 29,
+      "preview": 5,
+      "trainRows": 15788,
+      "testRows": 3947,
+      "errors": []
+    },
+    "browser": {
+      "validFixture": {
+        "rows": 40,
+        "columns": 8,
+        "sha256": "7a2ce02d1d043cec3ff6cf288cc9888859f7492b5b3156f86958f744ff40422f"
+      },
+      "noAutomaticTargetOrFeatures": true,
+      "htmlPreviewEscaped": true,
+      "missingFeatureValidation": true,
+      "cvGapValidation": true,
+      "downloadedConfigMatchesControls": true,
+      "downloadedSummaryOmitsRows": true,
+      "downloadDigestMatchesFile": true,
+      "confirmationInvalidatedByChange": true,
+      "desktopDarkAndMobileLight": true,
+      "rejectedFiles": [
+        {
+          "file": "malformed.csv",
+          "error": "CSV 欄名重複，請先修正標頭。"
+        },
+        {
+          "file": "malformed.csv",
+          "error": "CSV 欄名重複，請先修正標頭。"
+        },
+        {
+          "file": "bad-encoding.csv",
+          "error": "CSV 不是有效的 UTF-8；請以 UTF-8 或 UTF-8 BOM 重新匯出。"
+        },
+        {
+          "file": "huge.csv",
+          "error": "CSV 必須為非空檔案，且不超過 25 MiB。"
+        }
+      ],
+      "constantTargetRejected": true,
+      "targetMissingErrorAndDrop": true,
+      "duplicateDatesRejected": true,
+      "cancelTerminatesPendingReview": true,
+      "dragAndDrop": true,
+      "originalEnergyCsv": {
+        "rows": 19735,
+        "columns": 29,
+        "canConfigure": true
+      },
+      "spaNavigationClearsData": true,
+      "multipleFilesRejected": true,
+      "clearRemovesDataAndDownload": true,
+      "viewports": {
+        "desktopLight": true,
+        "desktopDark": true,
+        "mobileLight": true,
+        "mobileDark": true,
+        "noDocumentOverflow": true
+      },
+      "cancelTestMode": "Worker postMessage suspended in browser fixture to make cancellation deterministic",
+      "routes": [
+        {
+          "path": "/",
+          "status": 200
+        },
+        {
+          "path": "/feature-selection",
+          "status": 200
+        },
+        {
+          "path": "/model-evaluation",
+          "status": 200
+        },
+        {
+          "path": "/prediction-explorer",
+          "status": 200
+        },
+        {
+          "path": "/custom-dataset",
+          "status": 200
+        }
+      ],
+      "priorFeatureSelectionPreserved": true,
+      "priorPredictionExplorerPreserved": true,
+      "mobileNavigation": true,
+      "productionWorker": true
+    },
+    "visual": "Six representative screenshots inspected, covering upload/profile/configuration/review, desktop/mobile and light/dark",
+    "production_test_server": "127.0.0.1:3006 started for acceptance and stopped afterwards"
+  },
+  "limits": {
+    "bytes": 26214400,
+    "rows": 50000,
+    "columns": 200,
+    "cells": 1000000,
+    "field_utf16_code_units": 65536,
+    "header_utf16_code_units": 128,
+    "parse_timeout_seconds": 30
+  },
+  "integrity": {
+    "starting_files": 208,
+    "protected_starting_files_unchanged": 202,
+    "non_web_files_unchanged": 144,
+    "all_four_research_snapshots_unchanged": true,
+    "existing_uncommitted_changes_preserved": true,
+    "no_training_or_inference": true,
+    "no_commit_or_push": true
+  },
+  "changed_files": [
+    "web/README.md",
+    "web/app/custom-dataset/page.tsx",
+    "web/app/globals.css",
+    "web/app/page.tsx",
+    "web/components/shell.tsx",
+    "web/components/custom-dataset-wizard.tsx",
+    "web/lib/custom-dataset.ts",
+    "web/workers/csv-profile.worker.ts",
+    "web/tests/custom-dataset.test.ts",
+    "web/tests/research-data.test.ts"
+  ],
+  "manual_acceptance": [
+    "Open http://127.0.0.1:3000/custom-dataset",
+    "Choose a UTF-8 CSV (up to 25 MiB); inspect profile and preview",
+    "Explicitly choose numeric target/features; test missing-value and date/CV validation",
+    "Confirm valid configuration and download preprocessing config / review summary",
+    "Change a setting and verify confirmation expires; clear or navigate away and confirm data disappears",
+    "Check light/dark and mobile layout; previous four research pages remain available"
+  ],
+  "screenshots": [
+    "web/artifacts/m5-upload-desktop-light.png",
+    "web/artifacts/m5-upload-mobile-dark.png",
+    "web/artifacts/m5-profile-mobile-dark.png",
+    "web/artifacts/m5-desktop-dark.png",
+    "web/artifacts/m5-mobile-light.png",
+    "web/artifacts/m5-review-desktop-dark.png"
+  ]
+}

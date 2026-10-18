@@ -1,0 +1,76 @@
+{
+  "desktop": {
+    "light": {
+      "theme": "light",
+      "width": 1440,
+      "overflow": false,
+      "contrast": {
+        "stat_note": 4.887493354198057,
+        "description": 5.855000197418835,
+        "section_label": 4.887493354198057
+      },
+      "barColors": [
+        "rgb(42, 146, 116)",
+        "rgb(136, 117, 193)"
+      ]
+    },
+    "dark": {
+      "theme": "dark",
+      "width": 1440,
+      "overflow": false,
+      "contrast": {
+        "stat_note": 6.722810983956676,
+        "description": 9.611525215296188,
+        "section_label": 6.722810983956676
+      },
+      "barColors": [
+        "rgb(102, 196, 160)",
+        "rgb(178, 160, 228)"
+      ]
+    },
+    "themePersistencePreviouslyPassed": true,
+    "metricControlsPreviouslyPassed": [
+      "RMSE",
+      "MAE",
+      "R²"
+    ],
+    "fourSidebarRoutesPreviouslyPassed": true
+  },
+  "mobile": {
+    "menuOpen": {
+      "expanded": "true",
+      "visibility": "visible"
+    },
+    "afterNavigation": {
+      "expanded": "false",
+      "visibility": "hidden"
+    },
+    "overview": {
+      "width": 390,
+      "height": 844,
+      "overflow": false,
+      "statCards": 4,
+      "workflowStages": 6
+    }
+  },
+  "routes": {
+    "/": 200,
+    "/feature-selection": 200,
+    "/model-evaluation": 200,
+    "/prediction-explorer": 200,
+    "/custom-dataset": 200
+  },
+  "privacy": {
+    "/data/raw/KAG_energydata_complete.csv": 404,
+    "/data/overview.json": 404,
+    "/dashboard_data/model_comparison.json": 404,
+    "/reports/phase3/results/models/final_linear_regression.joblib": 404,
+    "/api/train": 404
+  },
+  "visual": {
+    "screenshots": "UNAVAILABLE: Page.captureScreenshot timed out using wrapper and CDP",
+    "manual_visual_review_required": true
+  },
+  "externalResources": [],
+  "interaction_note": "Desktop pointer actions verified; mobile also used DOM click fallback where SDK scrolling stalled."
+}

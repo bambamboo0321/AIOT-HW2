@@ -1,208 +1,154 @@
-# AIOT HW2：Python Machine Learning
+# AIOT HW2：家庭家電耗能預測與特徵選擇
 
-本專案研究 Appliances Energy Prediction 資料集，目標為了解室內溫濕度、照明與外部天氣等觀測資訊，能否用於預測家電能源消耗 `Appliances`。依作業要求使用 sklearn Multiple Linear Regression（多元線性迴歸）。目前完成 Phase 1「環境建立與資料驗證」，本次 Phase 2 為「Data Understanding & Configurable Preprocessing」。目標是逐步建立 Interactive Multiple Linear Regression & Feature Selection Lab；本次只交付 Python 核心、EDA、設定契約及驗收，尚未開始正式五種 Feature Selection、前端或部署。
+本專案研究 **Appliances Energy Prediction Using Multiple Linear Regression and Feature Selection**，依作業要求使用 `sklearn.linear_model.LinearRegression`。已完成 Phase 1～3C 的資料驗證、EDA、可設定前處理、六種 Feature Selection、正式實驗與固定模型的 95% Prediction Interval，以及 M1～M14 的五頁互動網站、自訂數值 CSV 六方法比較、訓練與新資料推論。既有 Phase 4B-2 CLI 與 Dashboard JSON 仍保留。
 
-接手時 main 的 HEAD 為 `8839430c2defa99a961976cb002cc94390a904c0`，但 working tree 已有未提交的 Baseline／Notebook／模型評估。這些檔案保留供追溯，本次未重跑其正式訓練或評估。現在的驗收入口是 [Phase 2 主報告](reports/phase2/phase2_report.md) 與 [Wizard 契約](docs/preprocessing_wizard.md)。Notebook 已另完成同步收尾，最新執行與安全檢查見 [Notebook 同步驗收](reports/phase2/notebook_sync_verification.json)；主報告中「未執行 Notebook runner」描述的是先前核心開發階段。既有 Baseline 模型與 Metrics 保持不變。
+目前可讀取、核對與匯出既有成果，也可透過 Next.js 本機 API 呼叫 Python 進行自訂 CSV 實驗；使用者已確認本機操作驗收可接受。**獨立雲端後端、Vercel 正式部署、最終 PDF 與 ZIP 尚未完成**。使用者已選定 Vercel 前端＋獨立 Python 後端，部署計畫見下方文件；本機成功不等於雲端已上線。GitHub 是 Optional，不是必要交付條件。
 
-## 資料來源與原始檔
+## Dataset 與作業規範
 
-- 資料集名稱：Appliances Energy Prediction。
-- Kaggle 公開資料集：[Appliances Energy Prediction（loveall）](https://www.kaggle.com/datasets/loveall/appliances-energy-prediction/data)。2026-10-14 查核頁面顯示 **Version 1**，檔案為 `KAG_energydata_complete.csv`，29 欄、11.98 MB。
-- 原始資料來源：[UCI Machine Learning Repository，Dataset 374](https://archive.ics.uci.edu/dataset/374/appliances+energy+prediction)，2017-02-14 收錄。
-- Dataset DOI：[10.24432/C5VC8G](https://doi.org/10.24432/C5VC8G)。
-- 原始作者署名：Candanedo, L. (2017). *Appliances Energy Prediction* [Dataset]. UCI Machine Learning Repository. https://doi.org/10.24432/C5VC8G。
-- 資料授權：[Creative Commons Attribution 4.0 International（CC BY 4.0）](https://creativecommons.org/licenses/by/4.0/)，依 UCI 官方標示；Kaggle 頁面的 License 欄位顯示「Other (specified in description)」，本專案以 UCI 原始資料的明確授權為依據。
-- 使用者提供的原檔：`KAG_energydata_complete.csv`。
-- 正式資料來源與唯一 Git 追蹤的 CSV：`data/raw/KAG_energydata_complete.csv`。
-- 根目錄原檔保留於本機，依精確檔名加入 `.gitignore`；只從 Git 追蹤中移除，未刪除實體檔案。兩份檔案 SHA-256 相同。
+- [Kaggle Dataset：Appliances Energy Prediction](https://www.kaggle.com/datasets/loveall/appliances-energy-prediction/data)
+- [UCI Dataset 374](https://archive.ics.uci.edu/dataset/374/appliances+energy+prediction)；[Dataset DOI](https://doi.org/10.24432/C5VC8G)
+- Candanedo, L. (2017). *Appliances Energy Prediction*. 原始研究見 [DOI](https://doi.org/10.1016/j.enbuild.2017.01.083)。UCI 資料頁標示 CC BY 4.0；Kaggle 頁的授權欄另依該頁說明。
+- 正式資料：`data/raw/KAG_energydata_complete.csv`，19,735 筆、29 欄；28 個原始輸入、1 個 Target `Appliances`。目標單位 **Wh（能量），不是 W（功率）**。
+- 約四個半月、10 分鐘取樣；原始時間未標時區，不自行推定。
+- 老師更新後要求：**原始輸入至少 13 個**，本資料的 28 個符合。舊文件的不同門檻屬歷史紀錄；這個要求不適用於選取後的 `k`。
+- Baseline 排除 `date`、`rv1`、`rv2` 後使用 25 個 numeric features；保留高耗能真實觀測，不依 Target 刪除異常值。
+- 原始 CSV SHA-256：`2820bf712ad0275cb18b85a05250926100d8e65ebb9f4d2d016ca91ea152a25d`。
 
-### 來源與版本核對
-
-2026-10-14 從 [UCI 官方資料壓縮檔](https://archive.ics.uci.edu/static/public/374/appliances+energy+prediction.zip) 讀取 `energydata_complete.csv`，與本機 CSV 比對：**位元組完全一致**，SHA-256 均為 `2820bf712ad0275cb18b85a05250926100d8e65ebb9f4d2d016ca91ea152a25d`。兩者皆為 19,735 筆、29 欄，欄名、順序與全部數值完全一致；Kaggle 的 Version 1 依頁面檔案名稱、大小與欄位數核對，內容身分則以上述 UCI 官方檔案的完整比對確認。
-
-再散布本資料時，須保留作者署名、資料來源及 CC BY 4.0 授權連結，並註明是否修改。本專案僅以 `KAG_energydata_complete.csv` 名稱保存原始資料，**CSV 內容未修改**；未清理、補值或刪除欄位。此授權聲明適用於資料集，沒有另加限制或宣稱原作者背書。
-
-### 原始論文引用
-
-Candanedo, L. M., Feldheim, V., & Deramaix, D. (2017). Data driven prediction models of energy use of appliances in a low-energy house. *Energy and Buildings, 140*, 81–97. https://doi.org/10.1016/j.enbuild.2017.01.083。
-
-論文書目已核對 [出版商頁面](https://www.sciencedirect.com/science/article/abs/pii/S0378778816308970)。此處僅記錄資料來源引用，尚未進行 NotebookLM 文獻研究或摘要撰寫。
+來源研究、作者與版本見 [external_sources.md](references/external_sources.md)，不同公開實驗的切分及尺度限制見 [solution_comparison.md](references/solution_comparison.md)。
 
 ## CRISP-DM 六階段
 
-| 階段 | 本專案對應工作 | 目前狀態 |
-| --- | --- | --- |
-| Business Understanding（商業理解） | 確認家電能源消耗研究目標與作業限制 | 已有背景文件；本次範圍見 Phase 2 主報告 |
-| Data Understanding（資料理解） | 原始品質驗證、分布、相關性與時間 EDA | Phase 1 驗證與 Phase 2 EDA 已完成 |
-| Data Preparation（資料準備） | 可設定補值、編碼、縮放、日期、異常值與 fold 內前處理 | Phase 2 已完成；正式 Feature Selection 留待後續 |
-| Modeling（建模） | 最終固定使用 sklearn LinearRegression | 接手前已有 Baseline；本次未新增正式模型 |
-| Evaluation（評估） | CV 比較與最終評估 | 接手前已有評估檔；本次只驗收前處理核心 |
-| Deployment（部署） | 彙整可重現的交付成果與研究報告 | 尚未執行 |
-
-CRISP-DM 的六階段是研究方法論，與作業的 Phase 1–4 執行範圍不同。
-
-## 原始 Features 與模型 Features
-
-老師規定原始輸入 Features 數量必須 **>13 且 <40**。原始欄位共 29 個，扣除 Target `Appliances` 後，原始輸入 Features 為 **28** 個，包含 `date`。
-
-| 統計口徑 | 排除的欄位 | 數量 |
-| --- | --- | ---: |
-| Original Input Feature Count | `Appliances` | 28 |
-| Candidate Feature Count（Exclude date） | `Appliances`、`date` | 27 |
-| Candidate Feature Count（Exclude date, rv1, rv2） | `Appliances`、`date`、`rv1`、`rv2` | 25 |
-
-Phase 1 的候選數量只依欄名統計，沒有執行 Feature Selection，也沒有從資料中刪除欄位。本次預設前處理示例使用 25 個數值特徵，排除 Target、date、rv1、rv2；使用者可覆寫排除與型態。未依測試分數挑選設定。加入 date 的 calendar 示例會得到 29 個轉換欄位。Phase 3 的 k 一律指轉換後數值欄位數，原始欄位 mapping 另行保存。
-
-`date` 保留供時間切分，另提供 calendar／cyclical 衍生選項，不能直接當作 Unix Timestamp 數值。`rv1`、`rv2` 為完全相同的隨機變數，建議排除且允許覆寫；沒有在本階段正式比較其預測表現。
-
-## 專案結構
-
-- `data/raw/`：唯一 Git 追蹤的原始 CSV。
-- `src/validate_data.py`：原 Phase 1 驗證，保持未修改。
-- `src/eda.py`：可重現 EDA；`phase2_common.py` 沿用共用 I/O。
-- `src/profiling.py`：一般 CSV 剖析與保守型態推測。
-- `src/preprocessing_config.py`：Wizard v1 設定、驗證、建議、保存。
-- `src/preprocessing.py`：sklearn Pipeline、IQR、日期與 Feature mapping。
-- `src/data_splitting.py`：random／chronological、X/y 同步過濾、fold-local 前處理。
-- `src/run_preprocessing.py`、`src/phase2_report.py`：能源示例與主報告。
-- `tests/test_preprocessing.py`：本次核心測試；`test_phase2.py` 是既存 Baseline 回歸測試。
-- `docs/preprocessing_wizard.md`：前端無關的 JSON 契約、API、k 定義與限制。
-- `reports/phase1/`：原驗證報告，保持未修改。
-- `reports/phase2/`：EDA 圖表、profile、設定、mapping、主報告及驗收紀錄。
-- `src/train_baseline.py`、`reports/phase2/models/`、predictions／baseline_metrics 等：既有 Baseline 成果；新增唯讀核對函式供 Notebook 重用，不改變訓練邏輯或模型。
-- `src/run_phase2_notebook.py`、Notebook：全新 Kernel 執行目前 EDA／前處理，核對既有 Baseline，不重新 fit 或寫入模型。
-
-## Mac Python 環境
-
-優先使用 Python 3.11 或 3.12。本機在 PATH 與常見安裝位置未找到這兩個版本，找到 `/opt/homebrew/bin/python3.10`（3.10.17）與系統 Python 3.9.6，因此使用既有 Python 3.10.17 建立專屬虛擬環境。未更動系統 Python，未全域安裝套件。
-
-從專案父目錄進入 `AIOT-HW2`，再於專案根目錄執行；已有 `.venv` 時直接使用，不必重新建立：
-
-```bash
-cd AIOT-HW2
-# 若已安裝 Python 3.12，建立新環境時可使用：
-# python3.12 -m venv .venv
-# 此次實際建立環境使用：
-/opt/homebrew/bin/python3.10 -m venv .venv
-.venv/bin/python -m pip install --no-cache-dir --timeout 60 -r requirements.txt
-.venv/bin/python -m pip check
-```
-
-`requirements.txt` 記錄實際安裝並驗證成功的分析、模型保存與 Notebook 執行直接依賴版本；傳遞依賴由 pip 解析。跨平台或其他 Python 版本尚未驗證。
-
-本機實際安裝並成功匯入的版本：
-
-| 項目 | 版本 |
+| 階段 | 已有內容與證據 |
 | --- | --- |
-| Python | 3.10.17 |
-| pandas | 2.3.3 |
-| numpy | 2.2.6 |
-| scikit-learn | 1.7.2 |
-| matplotlib | 3.10.9 |
-| joblib | 1.6.0 |
-| nbformat | 5.11.1 |
-| nbclient | 0.11.0 |
-| ipykernel | 7.3.0 |
+| Business Understanding | 研究目的、使用情境與限制：[背景說明](reports/phase2/business_understanding.md) |
+| Data Understanding | 一般 profiling、9 張 EDA 圖、偏態／相關性／時間相依：[EDA](reports/phase2/eda_summary.md) |
+| Data Preparation | 設定驗證、補值、OneHot、縮放、IQR、日期衍生及 fold-local fit：[Wizard 契約](docs/preprocessing_wizard.md) |
+| Modeling | 六種 Feature Selection，下游固定 LinearRegression：[Phase 3B](reports/phase3/phase3b_report.md) |
+| Evaluation | 分開報告 Training CV、Nested CV、固定 Holdout、殘差及 OLS PI：[Phase 3C](reports/phase3/phase3c_report.md) |
+| Deployment | 已有 CLI、五頁網站、本機 API 與自訂資料訓練／推論；Vercel 前端＋獨立後端待實作雲端接線與部署 |
 
-`pip check` 通過，沒有依賴衝突。Phase 2 的圖表程式以 `.venv/matplotlib-config` 作為 Matplotlib 設定快取位置；Notebook 執行的 Jupyter／IPython 設定與快取也限定在 `.venv`。
+## Feature Selection 與驗證層級
 
-## 執行資料驗證
+六種方法為 F-test（`f_test`）、Mutual Information（`mutual_information`）、Forward SFS（`forward_sfs`）、RFE（`rfe`）、LassoCV（`lasso_cv`）、RFECV（`rfecv`）。LassoCV 用於選特徵，最終預測器仍是 LinearRegression。
+
+Phase 3B 保存 114 個正式案例、1,974 筆結果。固定 k 方法的訓練內最終 CV 最佳 k：F-test 6、MI 6、Forward SFS 10、RFE 6。LassoCV／RFECV 自動決定 k，不能把跨 fold 平均 k 當成完整訓練區的選取數；完整訓練區分別選 16／6 欄。詳細分數及 mapping 由 CLI 讀取既有 JSON。
+
+- **Training CV**：訓練資料內 3 folds 選參數／方法；MI 選為最終候選，k=6。
+- **Nested CV**：5 個 outer folds 評估各方法，k 可因 fold 改變；不是固定 k=6 模型的同一個分數，也不是從六方法擇優程序的無偏評估。
+- **Training fit**：完整訓練區重 fit 後的樣本內指標，不能當成 CV。
+- **Holdout**：固定後期 3,947 筆的描述性比較；Training 為前 15,788 筆。此 Holdout 在 Phase 2 已查看，不能宣稱未查看的最終測試集。
+
+所有資料相依前處理及 Selector 只在當前 training fold 學習；不要先對完整資料 fit_transform 再做 CV。模型以同時點感測資訊估計耗能，不是只用過去值進行多步未來預報。
+
+## 固定模型比較與 95% Prediction Interval
+
+下表為同一 chronological Holdout；MAE／RMSE 單位 Wh、R² 無單位。
+
+| 模型 | Features | MAE | RMSE | R² | PI 實測 Coverage | PI 平均寬度 Wh |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| Baseline LinearRegression | 25 | 52.014105 | 86.732939 | 0.092352 | 96.0983% | 376.104533 |
+| MI + LinearRegression | 6 | 53.605861 | 90.441773 | 0.013067 | 95.8196% | 401.442761 |
+
+MI 選取 `T3`、`T4`、`T5`、`RH_6`、`T8`、`T9`；使用保存的中位數補值與 StandardScaler。Baseline 使用原始數值，沒有 scaling。**特徵數減少，但本次 Holdout 預測表現沒有改善。** Random Split Baseline 僅作另一種切分的對照，CLI 會另外顯示，不混入上述排名。
+
+PI 為單筆新觀測的 OLS Prediction Interval，依 training 殘差與 SVD leverage 計算，未依 Holdout 校準、未裁切負下界；不是平均值 Confidence Interval，也不是整條曲線的 simultaneous band。名目 95% 不保證泛化 Coverage；時間相依、異方差、分布漂移及選特徵的不確定性均須保留說明。
+
+直接依據：[Baseline Metrics](reports/phase2/baseline_metrics.json)、[最佳特徵](reports/phase3/results/best_features.json)、[固定模型指標](reports/phase3/phase3c/prediction_metrics.json)、[PI 指標](reports/phase3/phase3c/prediction_interval_metrics.json)。
+
+## 安裝與執行
+
+既有驗收環境為 Python 3.10.17，套件版本固定在 requirements。從 Repository Root 執行；若已有 `.venv` 可直接啟用，不必重建環境。
 
 ```bash
-.venv/bin/python src/validate_data.py
+python3.10 -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements-phase3c.txt
+python -m pip check
+python hw2_main.py --help
 ```
 
-預設 CSV 與報告路徑以程式位置解析，不依賴執行時所在目錄。也可使用模組形式：
+`requirements-phase3c.txt` 包含基礎 requirements，以及 PI 合成測試所需的 scipy／statsmodels／patsy；本階段沒有新增依賴。尚未提供完整學號，暫用 `hw2_main.py`；確認後須改成老師指定的 `7114056XXX_hw2.py` 正式檔名。
+
+## Python 主程式
 
 ```bash
-.venv/bin/python -m src.validate_data
+python hw2_main.py dataset-summary
+python hw2_main.py crisp-dm
+python hw2_main.py feature-selection
+python hw2_main.py model-comparison
+python hw2_main.py prediction-intervals
+python hw2_main.py figures
+python hw2_main.py verify
+python hw2_main.py export-dashboard
 ```
 
-如需驗證另一份 CSV，請指定不同的報告路徑，保留正式報告：
+每個摘要命令輸出可解析 JSON；`verify` 會檢查必要檔案、來源 digest、兩個固定模型 digest、資料版本及現有 Phase 1 唯讀驗證，缺少／損壞時以錯誤訊息及非零 exit code 結束。**不重新訓練、不反序列化模型、不補造缺少的成績**。驗證結果不代表已重新執行全部測試。
 
-```bash
-.venv/bin/python src/validate_data.py --csv path/to/input.csv --report reports/phase1/alternative_validation.json
-```
+主程式以自身位置定位 Repository，無私人絕對路徑。它重用現有 src 的特徵方法定義、路徑與 SHA-256／資料驗證函式，未複製模型邏輯。除 `export-dashboard` 外不輸出檔案。
 
-程式只讀取 CSV，重複執行會更新 JSON 報告。報告包含 SHA-256、檔案大小、shape、所有欄名與 dtype、缺失值、完全重複列、Target、三種特徵數量、時間驗證、隨機變數統計、逐欄數值檢查與各項驗證狀態。標準差使用樣本標準差（`ddof=1`）。時間間隔依原始列順序計算，不重新排序；不可解析的相鄰時間不列入間隔統計，會另外標記 FAIL。
+## Dashboard JSON 匯出契約
 
-- `PASS`：符合預期。
-- `WARN`：需要注意，但沒有必要條件失敗，退出碼為 0。
-- `FAIL`：必要條件不符合，退出碼為 1。
+`export-dashboard` 只寫入 Repository 的 `dashboard_data/`，無任意輸出路徑參數；先驗證輸入及全部輸出目的地，拒絕符號連結，再逐檔原子取代。本功能會更新這五份衍生資料，不修改 reports。沒有時間戳，同一來源重複匯出位元組一致；沒有承諾五檔跨檔案交易原子性，未來服務發布需另設版本快照。
 
-19,735 rows、29 columns、28 original input features 任一不符，或 Target、缺失值、數值有效性、必要欄位、日期可解析性等必要檢查失敗，皆標記 FAIL。時間戳記重複、順序或 10 分鐘間隔異常，以及 `rv1`／`rv2` 完全相同，會標記 WARN；不自動修正資料。JSON 禁止輸出非標準的 `NaN`／`Infinity`。
-
-## Phase 1 驗證結果
-
-驗證日期：2026-10-14。正式結果請參閱 [data_validation.json](reports/phase1/data_validation.json)。
-
-| 驗證項目 | 實測結果 |
+| 檔案 | `data` 主要內容 |
 | --- | --- |
-| Shape | 19,735 rows × 29 columns，符合預期 |
-| 原始／排除 date／再排除 rv1、rv2 的欄位數量 | 28／27／25，符合預期 |
-| 老師原始 Features 限制 | `13 < 28 < 40`，PASS |
-| 缺失值 | 總計 0，各欄皆為 0 |
-| 完全重複資料列 | 0 |
-| Target `Appliances` | 存在、`int64`，無缺失值、NaN 或正負無窮值 |
-| date 可解析性 | 全部可解析，無缺失或無效時間 |
-| 日期範圍 | 2016-01-11 17:00:00 至 2016-05-27 18:00:00（原始資料未標示時區） |
-| 時間戳記與排列 | 重複 0，依序遞增 |
-| 時間間隔 | 600 秒 × 19,734 次，皆為 10 分鐘 |
-| date 以外的非數值欄位 | 無 |
-| 所有數值欄位 | 無 NaN 或正負無窮值 |
-| 檢查狀態 | 24 PASS、1 WARN、0 FAIL |
-| Overall Status／退出碼 | **WARN／0** |
+| `dataset_summary.json` | dataset metadata、Baseline 輸入、排除欄位及完整既有 profiling |
+| `feature_selection.json` | 六方法分開的 `training_cv`、`nested_cv`、`full_training_refit`、winner、曲線及案例／紀錄數 |
+| `model_comparison.json` | 兩固定模型 `training_metrics`／`holdout_metrics`、切分期間、轉換方式；Random Baseline 另列 |
+| `prediction_intervals.json` | 單筆 PI 公式、training-only 來源、名目／實測 Coverage、寬度及限制 |
+| `figures_manifest.json` | 28 張既有圖的分類、Repository 相對路徑、SHA-256 及既有繪圖來源紀錄 |
 
-唯一 WARN 為 **`rv1` 與 `rv2` 的全部數值完全相同**。兩欄仍完整保留；此驗證不構成 Feature Selection，也未決定後續模型是否使用它們。
+共用 envelope：`schema_version`（目前 1）、`artifact_type`、`sources[]`（相對路徑與 SHA-256）、`units`、`missing_fields`、`data`。匯出保留 JSON 原始浮點精度；Coverage 使用 0～1 比例，前端顯示百分比時乘 100；MAE／RMSE／寬度 Wh，MSE Wh²，runtime 秒。`k` 為轉換數值欄位數。
 
-| 隨機變數 | dtype | Count | Mean | Standard Deviation（ddof=1） | Min | Max |
-| --- | --- | ---: | ---: | ---: | ---: | ---: |
-| rv1 | float64 | 19,735 | 24.9880334850 | 14.4966338604 | 0.0053216820 | 49.9965296825 |
-| rv2 | float64 | 19,735 | 24.9880334850 | 14.4966338604 | 0.0053216820 | 49.9965296825 |
+缺少必要來源即報錯，不自動重訓或填值。六方法全部的 Holdout 比較並不存在，於 `missing_fields` 明示；不得將 Training CV／Nested CV／Holdout 混排，也不得替未評估方法產生成績。圖表路徑基準是 Repository Root，將來網站需明確映射資產，不能假定路徑已公開可訪問。
 
-原檔與 `data/raw/` 複本的 SHA-256 均為：
+歷史 Backend 與上傳規劃見 [dashboard_backend_plan.md](docs/dashboard_backend_plan.md)；其中未實作狀態屬先前階段。現已完成本機數值 CSV 的「上傳 → profiling → 選 Target／前處理 → 確認 → 驗證 → 比較 → 再確認訓練 → 評估／推論」，現況以 [web/README.md](web/README.md) 的 M14 與 [操作指南](docs/user_guide.md) 為準。
+
+## 專案目錄
 
 ```text
-2820bf712ad0275cb18b85a05250926100d8e65ebb9f4d2d016ca91ea152a25d
+hw2_main.py                    暫定主程式
+src/                           既有 ML 模組與 dashboard_data.py 成果介接
+notebooks/                     Phase 2 已執行 Notebook
+data/raw/                      正式原始 CSV，不回寫
+reports/phase1/                資料驗證
+reports/phase2/                EDA、Baseline、模型、預測與驗收
+reports/phase3/                Benchmark、正式選特徵及 Phase 3C PI 成果
+references/                    公開來源、比較與 NotebookLM 研究計畫
+docs/                          前處理、實驗契約與 Backend 規劃
+dashboard_data/                五份可重現的前端資料 JSON
+tests/                         Phase 2～4B-2 測試
+requirements.txt               固定基礎依賴
+requirements-phase3c.txt        PI 與完整測試依賴
 ```
 
-已完成 9 個驗收案例：正式資料、重複執行、錯誤筆數、NaN／正負無窮值、無效日期、缺少 Target、非數值 Target、重複時間戳記與 CSV 不存在。必要檢查失敗均回傳退出碼 1，時間重複的 WARN 回傳 0；重複執行產生一致的嚴格 JSON。測試只使用 `.venv` 內的暫存複本，測試複本已清除，正式 CSV 的 SHA-256 維持不變。
-
-## Git 與資料公開檢查
-
-原始 CSV 每份為 11,979,363 bytes（約 11.42 MiB）。依 [GitHub 官方檔案限制](https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-large-files-on-github)（2026-10-14 查核），瀏覽器上傳單檔上限為 25 MiB，一般 Git 超過 50 MiB 會警告，超過 100 MiB 會阻擋；本檔低於上述限制。Git 僅追蹤 `data/raw/` 的正式 CSV；根目錄原檔依精確檔名忽略，但本機實體檔案保留。
-
-`.gitignore` 排除虛擬環境、Python 快取、macOS 檔案、Notebook checkpoint、`.env` 與根目錄重複 CSV，保留 `.env.example` 的例外。本機首次 Commit 使用 `bambamboo0321` 與 GitHub noreply Email，沒有設定遠端或執行 Push。
-
-已對兩份 CSV、程式與文件檢查常見私鑰、AWS／GitHub／OpenAI 金鑰及電子郵件樣式，未發現符合樣式的內容。資料欄位為觀測時間、能源消耗、溫濕度、天氣與隨機變數，沒有姓名、地址、聯絡方式或帳號識別欄位。資料來源已依 UCI 官方原檔完整比對確認，README 保留 CC BY 4.0 署名與授權資訊。
-
-## Phase 2 執行與驗收
-
-沿用現有 `.venv` 與 requirements，不需新增套件。於專案根目錄執行：
+## 驗收與目前完成狀態
 
 ```bash
-.venv/bin/python -m src.eda
-.venv/bin/python -m src.run_preprocessing
-.venv/bin/python -m src.phase2_report
-.venv/bin/python -m src.run_phase2_notebook
-.venv/bin/python -m unittest discover -s tests -v
-.venv/bin/python -m pip check
+python -B -m unittest discover -s tests -v
+python -B -m unittest discover -s tests -p test_hw2_main.py -v
+python hw2_main.py verify
+git diff --check
 ```
 
-前兩個命令更新 EDA／前處理報告，第三個由實際 JSON 統計重建繁體中文主報告；Notebook runner 以全新 Kernel 顯示 9 張 EDA 與 7 張評估圖，並核對已儲存模型的指標。這些流程不訓練正式模型或修改原始 CSV。測試中的 LinearRegression 只作合成資料整合與既有 Baseline 回歸驗收，不輸出新模型評估檔。`train_baseline.py` 的 CLI 仍會重新訓練並寫入模型，Notebook 同步驗收不使用該入口。Notebook runner 已改為透過共用函式載入既有模型，重算並核對預測指標但不改寫 Baseline；以 SHA-256 檢查 CSV、Phase 1、模型、Metrics、預測檔與切分索引未變。
+新增測試涵蓋 CLI、各摘要、驗證層級、JSON 契約、決定性匯出、缺檔／格式／雜湊錯誤、寫入範圍、symlink 防護與原始成果完整性。既有測試會在合成／隔離測試情境呼叫 fit；它們不是重跑能源正式 114 案例，也不應重寫既有模型或 reports。
 
-若驗證 Phase 1，請將輸出另外存到忽略目錄，以保留原報告：
+歷史驗收：Phase 3C 記錄既有 115/115 tests PASS、Phase 1 為 24 PASS／1 WARN／0 FAIL；WARN 為已知 `rv1`／`rv2` 重複。本階段的實測結果另以本次命令輸出及人工驗收回報為準，不覆寫歷史 verification。
 
-```bash
-.venv/bin/python -m src.validate_data --report .venv/phase2_checks/phase1_validation.json
-```
+已完成：Phase 1～3C、公開研究準備、成果 CLI、Dashboard JSON 匯出、M1～M14 本機網站與自訂 CSV 流程，以及操作指南／成果報告 Markdown 草稿。9 張 EDA、7 張 Baseline 評估、7 張選特徵與 5 張 Phase 3C 圖皆沿用既有成果，不重新產圖。M14 測試紀錄為網站 127／127、Python 211／211，詳見 web/verification/m14-result.json；本次文件整理未重跑該批測試。
 
-目前核心預設為 25 個轉換欄位，calendar 示例為 29。訓練 15,788／測試 3,947；只在 training fit，test 只 transform。詳細統計、時間依賴、範圍差異與限制見 [Phase 2 主報告](reports/phase2/phase2_report.md)。[verification.json](reports/phase2/verification.json) 保留核心開發階段的驗收；[notebook_sync_verification.json](reports/phase2/notebook_sync_verification.json) 記錄本次 Run All、重跑測試與 Git 安全檢查；[repository_review.json](reports/phase2/repository_review.json) 記錄本次與接手前檔案差異。
+待完成：完整學號命名、NotebookLM 實際摘要的正式保存與來源留存、GPT 輔助範圍與全部對話 PDF、最終報告 PDF、學號 ZIP，以及獨立雲端後端與 Vercel 部署；網站與本機 API 已完成。使用者已實際取得 NotebookLM 摘要，但尚未正式保存至 Repository；`references/notebooklm_research_plan.md` 為先前準備階段紀錄，**不得把 GPT 回答當成 NotebookLM 成果，也不得自行補寫摘要**。
 
-設定示例見 [energy_config.json](reports/phase2/energy_config.json)，使用者可更換 Target／Features、覆寫型態、選擇補值／編碼／縮放／異常值／日期策略，以及 random／chronological split。k 定義、原始欄位 mapping、刪列的 X/y 對齊與 CV 限制均在 [Wizard Contract](docs/preprocessing_wizard.md)。
+## 操作、成果與交付文件
 
-接手前已有 holdout 評估報告，該資料不能再宣稱是完全未查看的最終測試集。後續正式比較只使用 training CV；若需全新最終泛化證據，應使用另取得的獨立時間資料。舊評估檔保留，但本次不以其分數調參或宣稱演算法優劣。
+- [操作指南](docs/user_guide.md)：頁面導覽、CSV 到預測的操作、k／CV／Holdout／三指標與圖表解讀。
+- [成果報告草稿](docs/final_report_draft.md)：引用既有能源結果，保留限制、個人資料及附件待補項目；尚非正式 PDF。
+- [交付核對清單](docs/submission_checklist.md)：依既有紀錄暫定核對，仍需老師原始完整作業單、學號與實際 NotebookLM 產物。
+- [Vercel 部署計畫](docs/vercel_deployment_plan.md)：使用者選定完整 CSV 雲端功能，列出前端／後端接線、容量及模型管理改動；尚未部署。
 
-## 後續工作範圍
+本次未 commit 或 push，未修改既有研究結果與模型。
 
-Phase 3 的五種 Feature Selection 比較、巢狀 CV、Performance 曲線與模型挑選尚未實作。Dashboard、上傳介面、Vercel、Prediction Playground、95% 區間與 PDF 均留待後續。Phase 2 完成後停止，等待人工驗收；不 Commit、Push 或部署。
+### M15：獨立運算後端封裝
+
+新增 [backend/README.md](backend/README.md)、HTTP gateway、容器檔與最小 Python 依賴，重用既有 Python 模組；提供服務驗證、分 session 模型暫存及有界運算。原網站與研究算法不變，網站尚未接到此獨立服務，Vercel 代理與公開部署仍待後續完成。容器尚未實測，原生 HTTP 整合檢查見 web/verification/m15-backend-result.json。

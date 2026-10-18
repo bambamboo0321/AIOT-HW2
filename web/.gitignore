@@ -1,0 +1,8 @@
+node_modules/
+.next/
+.npm-cache/
+*.tsbuildinfo
+artifacts/
+coverage/
+.env*
+.test-tmp-*/

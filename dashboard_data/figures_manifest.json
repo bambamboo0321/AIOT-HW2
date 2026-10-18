@@ -1,0 +1,6331 @@
+{
+  "schema_version": 1,
+  "artifact_type": "figures_manifest",
+  "sources": [
+    {
+      "path": "reports/phase2/baseline_metrics.json",
+      "sha256": "866010d204a7c4f305217206a3a80082e06841ee1138e59f1f621b333062c691"
+    },
+    {
+      "path": "reports/phase2/eda_statistics.json",
+      "sha256": "60c4f7d12ded77fd7e34fec0324520c55bb6bd256216bf7d7665ed4b8b51edf5"
+    },
+    {
+      "path": "reports/phase2/figures/01_appliances_histogram.png",
+      "sha256": "98e2c76677b820eca71acd09c47faaa68d42da09b91b059a27a02eb7a5c579b2"
+    },
+    {
+      "path": "reports/phase2/figures/02_appliances_boxplot.png",
+      "sha256": "6c8f99f9bb27d52adc4d1fa32203e1bd96cf082001876c60a0f219e9a6bdd766"
+    },
+    {
+      "path": "reports/phase2/figures/03_appliances_time_series.png",
+      "sha256": "bc383adab464675c98ad0a52273c7e7eb9d29b1dac1befef2413c27fa2ed4cba"
+    },
+    {
+      "path": "reports/phase2/figures/04_numerical_correlation_heatmap.png",
+      "sha256": "f31ab263a0f45dacad29010cb04135830b317867f6a913ae0f4afb9aaf7f6e8c"
+    },
+    {
+      "path": "reports/phase2/figures/05_feature_target_correlation_ranking.png",
+      "sha256": "5e81ffbb7e14bb009e5378e14b2b45e9c90eadac0b88609bfb50bb27e441fc89"
+    },
+    {
+      "path": "reports/phase2/figures/06_hourly_appliances_pattern.png",
+      "sha256": "d9e9fdb916a4fbf978c3b6fe12c5e4d50bcc3d44b6688bb5f6b5251195e337ef"
+    },
+    {
+      "path": "reports/phase2/figures/07_weekday_appliances_pattern.png",
+      "sha256": "d705531159435eb68be475320830b48ed6390e19da917cf82f1ddb58bdb7f9f6"
+    },
+    {
+      "path": "reports/phase2/figures/08_chronological_actual_vs_predicted.png",
+      "sha256": "32be04d696973a86b55d60ccc717100f95f062e69c7fce76cccc5e53ad2223a5"
+    },
+    {
+      "path": "reports/phase2/figures/09_chronological_residual_vs_predicted.png",
+      "sha256": "4e5a9e2f08406db027781fa6d77e0a910836deccba8351528a71cd88b95c4229"
+    },
+    {
+      "path": "reports/phase2/figures/10_chronological_residual_distribution.png",
+      "sha256": "137a6afb66676b9127f1fd6e6fa029c80f0f25fc849493646dae61f079bde475"
+    },
+    {
+      "path": "reports/phase2/figures/11_random_actual_vs_predicted.png",
+      "sha256": "66160c6d357b46f89113df32d2f4640b57af2d30be1a85a3e000d253c2d4721b"
+    },
+    {
+      "path": "reports/phase2/figures/12_random_residual_vs_predicted.png",
+      "sha256": "ce572513971a15c1f49ece4bf279bc073076b8c37c5a6dce04cf39f97568ded0"
+    },
+    {
+      "path": "reports/phase2/figures/13_random_residual_distribution.png",
+      "sha256": "ef6cbd14efe54f40ba2331ebcfc17c7a220aacda7885e018e049b23b96d230d9"
+    },
+    {
+      "path": "reports/phase2/figures/14_split_performance_comparison.png",
+      "sha256": "1a4cfeb649bc31b1355b94f545187584e1c0b9f8cd6e13ec2d0412c71edc9d39"
+    },
+    {
+      "path": "reports/phase2/figures/15_numerical_distributions.png",
+      "sha256": "7ccecee87119562c5e5a225a34dc985607d5f402a97affc6c8cb20b0899a2827"
+    },
+    {
+      "path": "reports/phase2/figures/16_monthly_and_autocorrelation.png",
+      "sha256": "7ae439a39d5f4cc2c9b5a00724aa3ebcbd90e8401ec9a54e338c40bca4092b55"
+    },
+    {
+      "path": "reports/phase3/figures/best_k_comparison.png",
+      "sha256": "bcb1352d7c5c3c510c90f7a56cab7b2189369e7b3e5d2341828d0e6655010fcc"
+    },
+    {
+      "path": "reports/phase3/figures/mae_vs_feature_count.png",
+      "sha256": "3af77b1055b718726348e356d2ff417266e46bd62b2c8b5f166ddd5197b0f835"
+    },
+    {
+      "path": "reports/phase3/figures/nested_cv_performance_comparison.png",
+      "sha256": "0c2e6158a6a82c6b17187858a7adf87775809f1841e8de942a8455c39013dadf"
+    },
+    {
+      "path": "reports/phase3/figures/phase3c/baseline_prediction_interval.png",
+      "sha256": "e58c9a5888ed75b794d47b3e78d20c30ec23fb50f3abd14e81257797c06a1f36"
+    },
+    {
+      "path": "reports/phase3/figures/phase3c/interval_coverage_comparison.png",
+      "sha256": "2bd9b8b119719d95ba0cf88f2bef2caac1605e7197a249a88ef2c12cf534dabe"
+    },
+    {
+      "path": "reports/phase3/figures/phase3c/interval_width_comparison.png",
+      "sha256": "f8a9c4fe906ed03b8f32fcf945c78328220017c76aa2e3d74296be5dde8ac70e"
+    },
+    {
+      "path": "reports/phase3/figures/phase3c/model_performance_comparison.png",
+      "sha256": "073ad46066de014162964adc7e44b3d3890805fb18d04d172d17c8d1ba128dd4"
+    },
+    {
+      "path": "reports/phase3/figures/phase3c/selected_prediction_interval.png",
+      "sha256": "664fdc04f9d2a4500164b20a7e8f8bc7e5638c83c0d2828d78eaca6b5afee08b"
+    },
+    {
+      "path": "reports/phase3/figures/r2_vs_feature_count.png",
+      "sha256": "038bfdae1281f0b36be41c067fb8abfa2b7ae2cde28c5883e20782ca11e99867"
+    },
+    {
+      "path": "reports/phase3/figures/rmse_vs_feature_count.png",
+      "sha256": "b5dd6f0c954046fcaec90b8dcb352892755886ab51f411c2683b25f23b795202"
+    },
+    {
+      "path": "reports/phase3/figures/runtime_comparison.png",
+      "sha256": "9628008734d65f3ed06e015f5ae269908b754fd59e25cc570376332223e6e317"
+    },
+    {
+      "path": "reports/phase3/figures/selected_features_comparison.png",
+      "sha256": "9ed8ef2568740537b0c49ffee9c22866ffe8d903c17a77edadbbdf1e1f92794e"
+    },
+    {
+      "path": "reports/phase3/phase3c/figure_manifest.json",
+      "sha256": "8cddb609cbbdf9cedc449af302dfd8fb9c78d0e500aa789d601b2196bf2a430c"
+    },
+    {
+      "path": "reports/phase3/phase3c/prediction_comparison.csv",
+      "sha256": "a1f4545cccae3df70c7cd5a778dcb22e6a2035618137753551a3084204b01c37"
+    },
+    {
+      "path": "reports/phase3/phase3c/prediction_interval_predictions.csv",
+      "sha256": "471ef6bfc9e08ff2d2e7999e133d116ac59bc2e86c1b140afbbb1974566e33b9"
+    },
+    {
+      "path": "reports/phase3/results/feature_selection_results.csv",
+      "sha256": "9f04ea0855d6b6cccb52f4fb5345f46f282301b4e08d40ffa512279d046e9754"
+    },
+    {
+      "path": "reports/phase3/results/plot_data.json",
+      "sha256": "73f0fd4a2b0428d369a8068b2fd390d2ea165077ee814282f98bb94ae0cf0baf"
+    }
+  ],
+  "units": {
+    "mae": "Wh",
+    "mse": "Wh^2",
+    "rmse": "Wh",
+    "r2": "dimensionless",
+    "coverage": "fraction [0,1]",
+    "interval_width": "Wh",
+    "runtime_seconds": "s",
+    "feature_count": "count; selection k counts transformed numeric columns"
+  },
+  "missing_fields": [],
+  "data": {
+    "path_base": "repository_root",
+    "figures": [
+      {
+        "category": "eda",
+        "path": "reports/phase2/figures/01_appliances_histogram.png",
+        "sha256": "98e2c76677b820eca71acd09c47faaa68d42da09b91b059a27a02eb7a5c579b2"
+      },
+      {
+        "category": "eda",
+        "path": "reports/phase2/figures/02_appliances_boxplot.png",
+        "sha256": "6c8f99f9bb27d52adc4d1fa32203e1bd96cf082001876c60a0f219e9a6bdd766"
+      },
+      {
+        "category": "eda",
+        "path": "reports/phase2/figures/03_appliances_time_series.png",
+        "sha256": "bc383adab464675c98ad0a52273c7e7eb9d29b1dac1befef2413c27fa2ed4cba"
+      },
+      {
+        "category": "eda",
+        "path": "reports/phase2/figures/04_numerical_correlation_heatmap.png",
+        "sha256": "f31ab263a0f45dacad29010cb04135830b317867f6a913ae0f4afb9aaf7f6e8c"
+      },
+      {
+        "category": "eda",
+        "path": "reports/phase2/figures/05_feature_target_correlation_ranking.png",
+        "sha256": "5e81ffbb7e14bb009e5378e14b2b45e9c90eadac0b88609bfb50bb27e441fc89"
+      },
+      {
+        "category": "eda",
+        "path": "reports/phase2/figures/06_hourly_appliances_pattern.png",
+        "sha256": "d9e9fdb916a4fbf978c3b6fe12c5e4d50bcc3d44b6688bb5f6b5251195e337ef"
+      },
+      {
+        "category": "eda",
+        "path": "reports/phase2/figures/07_weekday_appliances_pattern.png",
+        "sha256": "d705531159435eb68be475320830b48ed6390e19da917cf82f1ddb58bdb7f9f6"
+      },
+      {
+        "category": "eda",
+        "path": "reports/phase2/figures/15_numerical_distributions.png",
+        "sha256": "7ccecee87119562c5e5a225a34dc985607d5f402a97affc6c8cb20b0899a2827"
+      },
+      {
+        "category": "eda",
+        "path": "reports/phase2/figures/16_monthly_and_autocorrelation.png",
+        "sha256": "7ae439a39d5f4cc2c9b5a00724aa3ebcbd90e8401ec9a54e338c40bca4092b55"
+      },
+      {
+        "category": "baseline_evaluation",
+        "path": "reports/phase2/figures/08_chronological_actual_vs_predicted.png",
+        "sha256": "32be04d696973a86b55d60ccc717100f95f062e69c7fce76cccc5e53ad2223a5"
+      },
+      {
+        "category": "baseline_evaluation",
+        "path": "reports/phase2/figures/09_chronological_residual_vs_predicted.png",
+        "sha256": "4e5a9e2f08406db027781fa6d77e0a910836deccba8351528a71cd88b95c4229"
+      },
+      {
+        "category": "baseline_evaluation",
+        "path": "reports/phase2/figures/10_chronological_residual_distribution.png",
+        "sha256": "137a6afb66676b9127f1fd6e6fa029c80f0f25fc849493646dae61f079bde475"
+      },
+      {
+        "category": "baseline_evaluation",
+        "path": "reports/phase2/figures/11_random_actual_vs_predicted.png",
+        "sha256": "66160c6d357b46f89113df32d2f4640b57af2d30be1a85a3e000d253c2d4721b"
+      },
+      {
+        "category": "baseline_evaluation",
+        "path": "reports/phase2/figures/12_random_residual_vs_predicted.png",
+        "sha256": "ce572513971a15c1f49ece4bf279bc073076b8c37c5a6dce04cf39f97568ded0"
+      },
+      {
+        "category": "baseline_evaluation",
+        "path": "reports/phase2/figures/13_random_residual_distribution.png",
+        "sha256": "ef6cbd14efe54f40ba2331ebcfc17c7a220aacda7885e018e049b23b96d230d9"
+      },
+      {
+        "category": "baseline_evaluation",
+        "path": "reports/phase2/figures/14_split_performance_comparison.png",
+        "sha256": "1a4cfeb649bc31b1355b94f545187584e1c0b9f8cd6e13ec2d0412c71edc9d39"
+      },
+      {
+        "category": "feature_selection",
+        "path": "reports/phase3/figures/rmse_vs_feature_count.png",
+        "sha256": "b5dd6f0c954046fcaec90b8dcb352892755886ab51f411c2683b25f23b795202"
+      },
+      {
+        "category": "feature_selection",
+        "path": "reports/phase3/figures/r2_vs_feature_count.png",
+        "sha256": "038bfdae1281f0b36be41c067fb8abfa2b7ae2cde28c5883e20782ca11e99867"
+      },
+      {
+        "category": "feature_selection",
+        "path": "reports/phase3/figures/mae_vs_feature_count.png",
+        "sha256": "3af77b1055b718726348e356d2ff417266e46bd62b2c8b5f166ddd5197b0f835"
+      },
+      {
+        "category": "feature_selection",
+        "path": "reports/phase3/figures/best_k_comparison.png",
+        "sha256": "bcb1352d7c5c3c510c90f7a56cab7b2189369e7b3e5d2341828d0e6655010fcc"
+      },
+      {
+        "category": "feature_selection",
+        "path": "reports/phase3/figures/selected_features_comparison.png",
+        "sha256": "9ed8ef2568740537b0c49ffee9c22866ffe8d903c17a77edadbbdf1e1f92794e"
+      },
+      {
+        "category": "feature_selection",
+        "path": "reports/phase3/figures/runtime_comparison.png",
+        "sha256": "9628008734d65f3ed06e015f5ae269908b754fd59e25cc570376332223e6e317"
+      },
+      {
+        "category": "feature_selection",
+        "path": "reports/phase3/figures/nested_cv_performance_comparison.png",
+        "sha256": "0c2e6158a6a82c6b17187858a7adf87775809f1841e8de942a8455c39013dadf"
+      },
+      {
+        "category": "prediction_interval",
+        "path": "reports/phase3/figures/phase3c/baseline_prediction_interval.png",
+        "sha256": "e58c9a5888ed75b794d47b3e78d20c30ec23fb50f3abd14e81257797c06a1f36"
+      },
+      {
+        "category": "prediction_interval",
+        "path": "reports/phase3/figures/phase3c/selected_prediction_interval.png",
+        "sha256": "664fdc04f9d2a4500164b20a7e8f8bc7e5638c83c0d2828d78eaca6b5afee08b"
+      },
+      {
+        "category": "prediction_interval",
+        "path": "reports/phase3/figures/phase3c/model_performance_comparison.png",
+        "sha256": "073ad46066de014162964adc7e44b3d3890805fb18d04d172d17c8d1ba128dd4"
+      },
+      {
+        "category": "prediction_interval",
+        "path": "reports/phase3/figures/phase3c/interval_coverage_comparison.png",
+        "sha256": "2bd9b8b119719d95ba0cf88f2bef2caac1605e7197a249a88ef2c12cf534dabe"
+      },
+      {
+        "category": "prediction_interval",
+        "path": "reports/phase3/figures/phase3c/interval_width_comparison.png",
+        "sha256": "f8a9c4fe906ed03b8f32fcf945c78328220017c76aa2e3d74296be5dde8ac70e"
+      }
+    ],
+    "phase3b_provenance": {
+      "csv_sha256": "9f04ea0855d6b6cccb52f4fb5345f46f282301b4e08d40ffa512279d046e9754",
+      "figures": {
+        "rmse_vs_feature_count.png": {
+          "points": [
+            {
+              "method": "f_test",
+              "level": "outer_k_curve",
+              "requested_k": 1,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              "rmse": 102.8111027405364,
+              "mae": 58.966587365660885,
+              "r2": -0.02118798910989342
+            },
+            {
+              "method": "f_test",
+              "level": "outer_k_curve",
+              "requested_k": 2,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                2.0,
+                2.0,
+                2.0,
+                2.0,
+                2.0
+              ],
+              "rmse": 102.68864368155646,
+              "mae": 61.44482868508298,
+              "r2": -0.01835846174391566
+            },
+            {
+              "method": "f_test",
+              "level": "outer_k_curve",
+              "requested_k": 3,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                3.0,
+                3.0,
+                3.0,
+                3.0,
+                3.0
+              ],
+              "rmse": 101.65537193721325,
+              "mae": 61.90493196064773,
+              "r2": 0.0007877405704011991
+            },
+            {
+              "method": "f_test",
+              "level": "outer_k_curve",
+              "requested_k": 4,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                4.0,
+                4.0,
+                4.0,
+                4.0,
+                4.0
+              ],
+              "rmse": 101.2492360901061,
+              "mae": 63.66640537539938,
+              "r2": 0.008259116636774338
+            },
+            {
+              "method": "f_test",
+              "level": "outer_k_curve",
+              "requested_k": 5,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                5.0,
+                5.0,
+                5.0,
+                5.0,
+                5.0
+              ],
+              "rmse": 100.49728298766232,
+              "mae": 62.49894648613556,
+              "r2": 0.02379471667935752
+            },
+            {
+              "method": "f_test",
+              "level": "outer_k_curve",
+              "requested_k": 6,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                6.0,
+                6.0,
+                6.0,
+                6.0,
+                6.0
+              ],
+              "rmse": 100.70027985498186,
+              "mae": 62.80337547939202,
+              "r2": 0.019615088264005178
+            },
+            {
+              "method": "f_test",
+              "level": "outer_k_curve",
+              "requested_k": 7,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                7.0,
+                7.0,
+                7.0,
+                7.0,
+                7.0
+              ],
+              "rmse": 102.11430012456535,
+              "mae": 65.05717621171127,
+              "r2": -0.008121188240340159
+            },
+            {
+              "method": "f_test",
+              "level": "outer_k_curve",
+              "requested_k": 8,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                8.0,
+                8.0,
+                8.0,
+                8.0,
+                8.0
+              ],
+              "rmse": 101.9768877746097,
+              "mae": 64.55480633695295,
+              "r2": -0.004003605748189443
+            },
+            {
+              "method": "f_test",
+              "level": "outer_k_curve",
+              "requested_k": 9,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                9.0,
+                9.0,
+                9.0,
+                9.0,
+                9.0
+              ],
+              "rmse": 101.0142666020486,
+              "mae": 63.92194885727847,
+              "r2": 0.015133235558589458
+            },
+            {
+              "method": "f_test",
+              "level": "outer_k_curve",
+              "requested_k": 10,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                10.0,
+                10.0,
+                10.0,
+                10.0,
+                10.0
+              ],
+              "rmse": 101.15662362484132,
+              "mae": 64.9259227853419,
+              "r2": 0.011728231895019797
+            },
+            {
+              "method": "f_test",
+              "level": "outer_k_curve",
+              "requested_k": 11,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                11.0,
+                11.0,
+                11.0,
+                11.0,
+                11.0
+              ],
+              "rmse": 102.1248009593472,
+              "mae": 67.35681654799328,
+              "r2": -0.006316073346327347
+            },
+            {
+              "method": "f_test",
+              "level": "outer_k_curve",
+              "requested_k": 12,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                12.0,
+                12.0,
+                12.0,
+                12.0,
+                12.0
+              ],
+              "rmse": 102.34803430877773,
+              "mae": 67.69083972644584,
+              "r2": -0.010569033418873278
+            },
+            {
+              "method": "f_test",
+              "level": "outer_k_curve",
+              "requested_k": 13,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                13.0,
+                13.0,
+                13.0,
+                13.0,
+                13.0
+              ],
+              "rmse": 102.76002617846707,
+              "mae": 68.67011907796373,
+              "r2": -0.018676530107143784
+            },
+            {
+              "method": "f_test",
+              "level": "outer_k_curve",
+              "requested_k": 14,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                14.0,
+                14.0,
+                14.0,
+                14.0,
+                14.0
+              ],
+              "rmse": 102.17037153747998,
+              "mae": 66.95370341423559,
+              "r2": -0.007573110304346495
+            },
+            {
+              "method": "f_test",
+              "level": "outer_k_curve",
+              "requested_k": 15,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                15.0,
+                15.0,
+                15.0,
+                15.0,
+                15.0
+              ],
+              "rmse": 101.78531707153344,
+              "mae": 66.37867974642168,
+              "r2": -0.0005973531652969044
+            },
+            {
+              "method": "f_test",
+              "level": "outer_k_curve",
+              "requested_k": 16,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                16.0,
+                16.0,
+                16.0,
+                16.0,
+                16.0
+              ],
+              "rmse": 102.040353210989,
+              "mae": 66.4152736469463,
+              "r2": -0.00613603061145758
+            },
+            {
+              "method": "f_test",
+              "level": "outer_k_curve",
+              "requested_k": 17,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                17.0,
+                17.0,
+                17.0,
+                17.0,
+                17.0
+              ],
+              "rmse": 102.4539889361135,
+              "mae": 67.0705909331188,
+              "r2": -0.013786991474912354
+            },
+            {
+              "method": "f_test",
+              "level": "outer_k_curve",
+              "requested_k": 18,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                18.0,
+                18.0,
+                18.0,
+                18.0,
+                18.0
+              ],
+              "rmse": 103.05426332963637,
+              "mae": 67.59139968597206,
+              "r2": -0.02479551634463794
+            },
+            {
+              "method": "f_test",
+              "level": "outer_k_curve",
+              "requested_k": 19,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                19.0,
+                19.0,
+                19.0,
+                19.0,
+                19.0
+              ],
+              "rmse": 103.98318346495242,
+              "mae": 69.10589693080763,
+              "r2": -0.0440401101054788
+            },
+            {
+              "method": "f_test",
+              "level": "outer_k_curve",
+              "requested_k": 20,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                20.0,
+                20.0,
+                20.0,
+                20.0,
+                20.0
+              ],
+              "rmse": 103.55232314838595,
+              "mae": 68.5053444068886,
+              "r2": -0.035167955364134196
+            },
+            {
+              "method": "f_test",
+              "level": "outer_k_curve",
+              "requested_k": 21,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                21.0,
+                21.0,
+                21.0,
+                21.0,
+                21.0
+              ],
+              "rmse": 103.72189277849093,
+              "mae": 68.66045155292336,
+              "r2": -0.0386032588910641
+            },
+            {
+              "method": "f_test",
+              "level": "outer_k_curve",
+              "requested_k": 22,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                22.0,
+                22.0,
+                22.0,
+                22.0,
+                22.0
+              ],
+              "rmse": 102.97026653898733,
+              "mae": 66.91254978287577,
+              "r2": -0.0231534565254502
+            },
+            {
+              "method": "f_test",
+              "level": "outer_k_curve",
+              "requested_k": 23,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                23.0,
+                23.0,
+                23.0,
+                23.0,
+                23.0
+              ],
+              "rmse": 104.52049328925825,
+              "mae": 68.95845515369578,
+              "r2": -0.055260744696976796
+            },
+            {
+              "method": "f_test",
+              "level": "outer_k_curve",
+              "requested_k": 24,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                24.0,
+                24.0,
+                24.0,
+                24.0,
+                24.0
+              ],
+              "rmse": 103.48382046732377,
+              "mae": 67.69819457940781,
+              "r2": -0.03370981976300084
+            },
+            {
+              "method": "f_test",
+              "level": "outer_k_curve",
+              "requested_k": 25,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                25.0,
+                25.0,
+                25.0,
+                25.0,
+                25.0
+              ],
+              "rmse": 103.3831333437183,
+              "mae": 67.41833345483761,
+              "r2": -0.0317116785322501
+            },
+            {
+              "method": "mutual_information",
+              "level": "outer_k_curve",
+              "requested_k": 1,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              "rmse": 101.75517622632192,
+              "mae": 60.13630647555806,
+              "r2": 2.549208010526015e-05
+            },
+            {
+              "method": "mutual_information",
+              "level": "outer_k_curve",
+              "requested_k": 2,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                2.0,
+                2.0,
+                2.0,
+                2.0,
+                2.0
+              ],
+              "rmse": 101.46352194752978,
+              "mae": 63.06934504028759,
+              "r2": 0.00543365157107228
+            },
+            {
+              "method": "mutual_information",
+              "level": "outer_k_curve",
+              "requested_k": 3,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                3.0,
+                3.0,
+                3.0,
+                3.0,
+                3.0
+              ],
+              "rmse": 102.9497570499163,
+              "mae": 68.67283784660808,
+              "r2": -0.023351340382189584
+            },
+            {
+              "method": "mutual_information",
+              "level": "outer_k_curve",
+              "requested_k": 4,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                4.0,
+                4.0,
+                4.0,
+                4.0,
+                4.0
+              ],
+              "rmse": 103.15843175898578,
+              "mae": 70.39645307649171,
+              "r2": -0.027484622082032818
+            },
+            {
+              "method": "mutual_information",
+              "level": "outer_k_curve",
+              "requested_k": 5,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                5.0,
+                5.0,
+                5.0,
+                5.0,
+                5.0
+              ],
+              "rmse": 102.23544611898224,
+              "mae": 66.02865710741972,
+              "r2": -0.008632488923634262
+            },
+            {
+              "method": "mutual_information",
+              "level": "outer_k_curve",
+              "requested_k": 6,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                6.0,
+                6.0,
+                6.0,
+                6.0,
+                6.0
+              ],
+              "rmse": 100.96675036006113,
+              "mae": 62.54134812029431,
+              "r2": 0.01586130278313752
+            },
+            {
+              "method": "mutual_information",
+              "level": "outer_k_curve",
+              "requested_k": 7,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                7.0,
+                7.0,
+                7.0,
+                7.0,
+                7.0
+              ],
+              "rmse": 100.85402064102816,
+              "mae": 62.047817538700556,
+              "r2": 0.01851446585457562
+            },
+            {
+              "method": "mutual_information",
+              "level": "outer_k_curve",
+              "requested_k": 8,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                8.0,
+                8.0,
+                8.0,
+                8.0,
+                8.0
+              ],
+              "rmse": 100.6922824515114,
+              "mae": 62.02853875081546,
+              "r2": 0.021718331845904704
+            },
+            {
+              "method": "mutual_information",
+              "level": "outer_k_curve",
+              "requested_k": 9,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                9.0,
+                9.0,
+                9.0,
+                9.0,
+                9.0
+              ],
+              "rmse": 101.07367181395095,
+              "mae": 62.812849936967986,
+              "r2": 0.01388704750932506
+            },
+            {
+              "method": "mutual_information",
+              "level": "outer_k_curve",
+              "requested_k": 10,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                10.0,
+                10.0,
+                10.0,
+                10.0,
+                10.0
+              ],
+              "rmse": 101.14107112458241,
+              "mae": 62.88829876639861,
+              "r2": 0.012765355163572665
+            },
+            {
+              "method": "mutual_information",
+              "level": "outer_k_curve",
+              "requested_k": 11,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                11.0,
+                11.0,
+                11.0,
+                11.0,
+                11.0
+              ],
+              "rmse": 102.51590284580325,
+              "mae": 64.3486449562977,
+              "r2": -0.013821724698115639
+            },
+            {
+              "method": "mutual_information",
+              "level": "outer_k_curve",
+              "requested_k": 12,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                12.0,
+                12.0,
+                12.0,
+                12.0,
+                12.0
+              ],
+              "rmse": 102.92829824620222,
+              "mae": 65.29184050956616,
+              "r2": -0.02348498900632752
+            },
+            {
+              "method": "mutual_information",
+              "level": "outer_k_curve",
+              "requested_k": 13,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                13.0,
+                13.0,
+                13.0,
+                13.0,
+                13.0
+              ],
+              "rmse": 103.71268399361477,
+              "mae": 65.66567439337607,
+              "r2": -0.0396405074831502
+            },
+            {
+              "method": "mutual_information",
+              "level": "outer_k_curve",
+              "requested_k": 14,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                14.0,
+                14.0,
+                14.0,
+                14.0,
+                14.0
+              ],
+              "rmse": 103.46255876006667,
+              "mae": 65.97334446779078,
+              "r2": -0.037056539675750046
+            },
+            {
+              "method": "mutual_information",
+              "level": "outer_k_curve",
+              "requested_k": 15,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                15.0,
+                15.0,
+                15.0,
+                15.0,
+                15.0
+              ],
+              "rmse": 103.21869056582632,
+              "mae": 67.22776581628302,
+              "r2": -0.032895233123364315
+            },
+            {
+              "method": "mutual_information",
+              "level": "outer_k_curve",
+              "requested_k": 16,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                16.0,
+                16.0,
+                16.0,
+                16.0,
+                16.0
+              ],
+              "rmse": 105.43019278610197,
+              "mae": 70.54097050161542,
+              "r2": -0.0789694839545569
+            },
+            {
+              "method": "mutual_information",
+              "level": "outer_k_curve",
+              "requested_k": 17,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                17.0,
+                17.0,
+                17.0,
+                17.0,
+                17.0
+              ],
+              "rmse": 105.24146581666466,
+              "mae": 70.31311947894281,
+              "r2": -0.07444644089196495
+            },
+            {
+              "method": "mutual_information",
+              "level": "outer_k_curve",
+              "requested_k": 18,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                18.0,
+                18.0,
+                18.0,
+                18.0,
+                18.0
+              ],
+              "rmse": 102.49551024844065,
+              "mae": 66.71982171970868,
+              "r2": -0.014805094188411558
+            },
+            {
+              "method": "mutual_information",
+              "level": "outer_k_curve",
+              "requested_k": 19,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                19.0,
+                19.0,
+                19.0,
+                19.0,
+                19.0
+              ],
+              "rmse": 101.70029261198246,
+              "mae": 65.64000516426427,
+              "r2": 0.0013729438946287974
+            },
+            {
+              "method": "mutual_information",
+              "level": "outer_k_curve",
+              "requested_k": 20,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                20.0,
+                20.0,
+                20.0,
+                20.0,
+                20.0
+              ],
+              "rmse": 102.31866517621941,
+              "mae": 65.50855532218755,
+              "r2": -0.009905739839639396
+            },
+            {
+              "method": "mutual_information",
+              "level": "outer_k_curve",
+              "requested_k": 21,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                21.0,
+                21.0,
+                21.0,
+                21.0,
+                21.0
+              ],
+              "rmse": 103.29378293506996,
+              "mae": 66.96625946853537,
+              "r2": -0.030108228899838378
+            },
+            {
+              "method": "mutual_information",
+              "level": "outer_k_curve",
+              "requested_k": 22,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                22.0,
+                22.0,
+                22.0,
+                22.0,
+                22.0
+              ],
+              "rmse": 103.20528433799532,
+              "mae": 67.44330753974796,
+              "r2": -0.028001563924825158
+            },
+            {
+              "method": "mutual_information",
+              "level": "outer_k_curve",
+              "requested_k": 23,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                23.0,
+                23.0,
+                23.0,
+                23.0,
+                23.0
+              ],
+              "rmse": 103.79910881227688,
+              "mae": 68.1555989260733,
+              "r2": -0.04020180974697275
+            },
+            {
+              "method": "mutual_information",
+              "level": "outer_k_curve",
+              "requested_k": 24,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                24.0,
+                24.0,
+                24.0,
+                24.0,
+                24.0
+              ],
+              "rmse": 103.53736683487364,
+              "mae": 67.72974420219354,
+              "r2": -0.03480897867913137
+            },
+            {
+              "method": "mutual_information",
+              "level": "outer_k_curve",
+              "requested_k": 25,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                25.0,
+                25.0,
+                25.0,
+                25.0,
+                25.0
+              ],
+              "rmse": 103.3831333437183,
+              "mae": 67.41833345483761,
+              "r2": -0.0317116785322501
+            },
+            {
+              "method": "forward_sfs",
+              "level": "outer_k_curve",
+              "requested_k": 1,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              "rmse": 102.1078698307321,
+              "mae": 61.1407585074254,
+              "r2": -0.007368712753045241
+            },
+            {
+              "method": "forward_sfs",
+              "level": "outer_k_curve",
+              "requested_k": 3,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                3.0,
+                3.0,
+                3.0,
+                3.0,
+                3.0
+              ],
+              "rmse": 99.86675025865647,
+              "mae": 61.75051102308985,
+              "r2": 0.03707938770109968
+            },
+            {
+              "method": "forward_sfs",
+              "level": "outer_k_curve",
+              "requested_k": 5,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                5.0,
+                5.0,
+                5.0,
+                5.0,
+                5.0
+              ],
+              "rmse": 99.55324021352617,
+              "mae": 59.71363134708527,
+              "r2": 0.04284539272325532
+            },
+            {
+              "method": "forward_sfs",
+              "level": "outer_k_curve",
+              "requested_k": 8,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                8.0,
+                8.0,
+                8.0,
+                8.0,
+                8.0
+              ],
+              "rmse": 100.06818263560216,
+              "mae": 62.27589730369531,
+              "r2": 0.03303314695404378
+            },
+            {
+              "method": "forward_sfs",
+              "level": "outer_k_curve",
+              "requested_k": 10,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                10.0,
+                10.0,
+                10.0,
+                10.0,
+                10.0
+              ],
+              "rmse": 99.52648672628443,
+              "mae": 61.69909333085319,
+              "r2": 0.043390528139389165
+            },
+            {
+              "method": "forward_sfs",
+              "level": "outer_k_curve",
+              "requested_k": 13,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                13.0,
+                13.0,
+                13.0,
+                13.0,
+                13.0
+              ],
+              "rmse": 99.23910560359029,
+              "mae": 61.26658567330262,
+              "r2": 0.04870472936423277
+            },
+            {
+              "method": "forward_sfs",
+              "level": "outer_k_curve",
+              "requested_k": 16,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                16.0,
+                16.0,
+                16.0,
+                16.0,
+                16.0
+              ],
+              "rmse": 99.47348519922585,
+              "mae": 61.53550395167597,
+              "r2": 0.043790142437519816
+            },
+            {
+              "method": "forward_sfs",
+              "level": "outer_k_curve",
+              "requested_k": 20,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                20.0,
+                20.0,
+                20.0,
+                20.0,
+                20.0
+              ],
+              "rmse": 99.16757348098122,
+              "mae": 61.4702229808457,
+              "r2": 0.049528871007058946
+            },
+            {
+              "method": "forward_sfs",
+              "level": "outer_k_curve",
+              "requested_k": 25,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                25.0,
+                25.0,
+                25.0,
+                25.0,
+                25.0
+              ],
+              "rmse": 103.3831333437183,
+              "mae": 67.41833345483761,
+              "r2": -0.0317116785322501
+            },
+            {
+              "method": "rfe",
+              "level": "outer_k_curve",
+              "requested_k": 1,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              "rmse": 101.68139002471712,
+              "mae": 61.62981810547219,
+              "r2": 0.00126309447929506
+            },
+            {
+              "method": "rfe",
+              "level": "outer_k_curve",
+              "requested_k": 2,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                2.0,
+                2.0,
+                2.0,
+                2.0,
+                2.0
+              ],
+              "rmse": 101.45493649696418,
+              "mae": 62.357885597331006,
+              "r2": 0.004817179080658022
+            },
+            {
+              "method": "rfe",
+              "level": "outer_k_curve",
+              "requested_k": 3,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                3.0,
+                3.0,
+                3.0,
+                3.0,
+                3.0
+              ],
+              "rmse": 101.35303703879934,
+              "mae": 61.74377898952548,
+              "r2": 0.006751260249977356
+            },
+            {
+              "method": "rfe",
+              "level": "outer_k_curve",
+              "requested_k": 4,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                4.0,
+                4.0,
+                4.0,
+                4.0,
+                4.0
+              ],
+              "rmse": 103.39904164739035,
+              "mae": 65.11253301316654,
+              "r2": -0.036451847101914056
+            },
+            {
+              "method": "rfe",
+              "level": "outer_k_curve",
+              "requested_k": 5,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                5.0,
+                5.0,
+                5.0,
+                5.0,
+                5.0
+              ],
+              "rmse": 101.74798332821769,
+              "mae": 59.50158780068644,
+              "r2": 0.000563431775089579
+            },
+            {
+              "method": "rfe",
+              "level": "outer_k_curve",
+              "requested_k": 6,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                6.0,
+                6.0,
+                6.0,
+                6.0,
+                6.0
+              ],
+              "rmse": 100.67616225176265,
+              "mae": 60.97642887749449,
+              "r2": 0.020627967241328198
+            },
+            {
+              "method": "rfe",
+              "level": "outer_k_curve",
+              "requested_k": 7,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                7.0,
+                7.0,
+                7.0,
+                7.0,
+                7.0
+              ],
+              "rmse": 101.2773899271497,
+              "mae": 61.909447424780936,
+              "r2": 0.0086345497458678
+            },
+            {
+              "method": "rfe",
+              "level": "outer_k_curve",
+              "requested_k": 8,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                8.0,
+                8.0,
+                8.0,
+                8.0,
+                8.0
+              ],
+              "rmse": 100.86211422443515,
+              "mae": 60.13930948424587,
+              "r2": 0.01694129903993204
+            },
+            {
+              "method": "rfe",
+              "level": "outer_k_curve",
+              "requested_k": 9,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                9.0,
+                9.0,
+                9.0,
+                9.0,
+                9.0
+              ],
+              "rmse": 100.59808999817471,
+              "mae": 61.691535450734364,
+              "r2": 0.02019313153859426
+            },
+            {
+              "method": "rfe",
+              "level": "outer_k_curve",
+              "requested_k": 10,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                10.0,
+                10.0,
+                10.0,
+                10.0,
+                10.0
+              ],
+              "rmse": 99.52957507659059,
+              "mae": 60.93392375996418,
+              "r2": 0.04201460438544867
+            },
+            {
+              "method": "rfe",
+              "level": "outer_k_curve",
+              "requested_k": 11,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                11.0,
+                11.0,
+                11.0,
+                11.0,
+                11.0
+              ],
+              "rmse": 100.1206329831557,
+              "mae": 63.53906792862507,
+              "r2": 0.03265492991450878
+            },
+            {
+              "method": "rfe",
+              "level": "outer_k_curve",
+              "requested_k": 12,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                12.0,
+                12.0,
+                12.0,
+                12.0,
+                12.0
+              ],
+              "rmse": 99.85131918483262,
+              "mae": 63.10703593945321,
+              "r2": 0.03783745586515106
+            },
+            {
+              "method": "rfe",
+              "level": "outer_k_curve",
+              "requested_k": 13,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                13.0,
+                13.0,
+                13.0,
+                13.0,
+                13.0
+              ],
+              "rmse": 101.43603323013613,
+              "mae": 65.68573954779306,
+              "r2": 0.007262330384803719
+            },
+            {
+              "method": "rfe",
+              "level": "outer_k_curve",
+              "requested_k": 14,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                14.0,
+                14.0,
+                14.0,
+                14.0,
+                14.0
+              ],
+              "rmse": 101.85032275809075,
+              "mae": 66.06078790335661,
+              "r2": -0.0007463929654023205
+            },
+            {
+              "method": "rfe",
+              "level": "outer_k_curve",
+              "requested_k": 15,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                15.0,
+                15.0,
+                15.0,
+                15.0,
+                15.0
+              ],
+              "rmse": 102.33668352987351,
+              "mae": 67.04104475147422,
+              "r2": -0.010220885523904119
+            },
+            {
+              "method": "rfe",
+              "level": "outer_k_curve",
+              "requested_k": 16,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                16.0,
+                16.0,
+                16.0,
+                16.0,
+                16.0
+              ],
+              "rmse": 101.73019205873452,
+              "mae": 65.74049346106786,
+              "r2": 0.0013726612796986781
+            },
+            {
+              "method": "rfe",
+              "level": "outer_k_curve",
+              "requested_k": 17,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                17.0,
+                17.0,
+                17.0,
+                17.0,
+                17.0
+              ],
+              "rmse": 102.05187585151839,
+              "mae": 66.31072549759872,
+              "r2": -0.004854833103107558
+            },
+            {
+              "method": "rfe",
+              "level": "outer_k_curve",
+              "requested_k": 18,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                18.0,
+                18.0,
+                18.0,
+                18.0,
+                18.0
+              ],
+              "rmse": 102.3681211934163,
+              "mae": 66.68671367340127,
+              "r2": -0.01109746398320939
+            },
+            {
+              "method": "rfe",
+              "level": "outer_k_curve",
+              "requested_k": 19,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                19.0,
+                19.0,
+                19.0,
+                19.0,
+                19.0
+              ],
+              "rmse": 103.24518256674335,
+              "mae": 67.60028306352169,
+              "r2": -0.02890867156401595
+            },
+            {
+              "method": "rfe",
+              "level": "outer_k_curve",
+              "requested_k": 20,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                20.0,
+                20.0,
+                20.0,
+                20.0,
+                20.0
+              ],
+              "rmse": 103.28379142155673,
+              "mae": 67.47368342527892,
+              "r2": -0.02985001309040943
+            },
+            {
+              "method": "rfe",
+              "level": "outer_k_curve",
+              "requested_k": 21,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                21.0,
+                21.0,
+                21.0,
+                21.0,
+                21.0
+              ],
+              "rmse": 103.23135618646272,
+              "mae": 67.3263854859441,
+              "r2": -0.028659855636201697
+            },
+            {
+              "method": "rfe",
+              "level": "outer_k_curve",
+              "requested_k": 22,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                22.0,
+                22.0,
+                22.0,
+                22.0,
+                22.0
+              ],
+              "rmse": 103.26391945670983,
+              "mae": 67.29288264520314,
+              "r2": -0.02924108718334682
+            },
+            {
+              "method": "rfe",
+              "level": "outer_k_curve",
+              "requested_k": 23,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                23.0,
+                23.0,
+                23.0,
+                23.0,
+                23.0
+              ],
+              "rmse": 103.3046719135034,
+              "mae": 67.36970567668243,
+              "r2": -0.030084468710460437
+            },
+            {
+              "method": "rfe",
+              "level": "outer_k_curve",
+              "requested_k": 24,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                24.0,
+                24.0,
+                24.0,
+                24.0,
+                24.0
+              ],
+              "rmse": 103.3162782470747,
+              "mae": 67.36278809816831,
+              "r2": -0.030297236902742643
+            },
+            {
+              "method": "rfe",
+              "level": "outer_k_curve",
+              "requested_k": 25,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                25.0,
+                25.0,
+                25.0,
+                25.0,
+                25.0
+              ],
+              "rmse": 103.3831333437183,
+              "mae": 67.41833345483761,
+              "r2": -0.0317116785322501
+            },
+            {
+              "method": "lasso_cv",
+              "level": "outer_evaluation",
+              "requested_k": null,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                2.0,
+                16.0,
+                3.0,
+                14.0,
+                16.0
+              ],
+              "rmse": 99.07592825845404,
+              "mae": 60.4385428010901,
+              "r2": 0.05337861034541378
+            },
+            {
+              "method": "rfecv",
+              "level": "outer_evaluation",
+              "requested_k": null,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                11.0,
+                9.0,
+                11.0,
+                10.0,
+                9.0
+              ],
+              "rmse": 100.75636701101897,
+              "mae": 62.932506946409106,
+              "r2": 0.01974355457749418
+            }
+          ],
+          "baseline": {
+            "method": "f_test",
+            "level": "outer_k_curve",
+            "requested_k": 25,
+            "folds": 5,
+            "valid_folds": 5,
+            "selected_k": [
+              25.0,
+              25.0,
+              25.0,
+              25.0,
+              25.0
+            ],
+            "rmse": 103.3831333437183,
+            "mae": 67.41833345483761,
+            "r2": -0.0317116785322501
+          },
+          "sfs_interpolation": false
+        },
+        "r2_vs_feature_count.png": {
+          "points": [
+            {
+              "method": "f_test",
+              "level": "outer_k_curve",
+              "requested_k": 1,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              "rmse": 102.8111027405364,
+              "mae": 58.966587365660885,
+              "r2": -0.02118798910989342
+            },
+            {
+              "method": "f_test",
+              "level": "outer_k_curve",
+              "requested_k": 2,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                2.0,
+                2.0,
+                2.0,
+                2.0,
+                2.0
+              ],
+              "rmse": 102.68864368155646,
+              "mae": 61.44482868508298,
+              "r2": -0.01835846174391566
+            },
+            {
+              "method": "f_test",
+              "level": "outer_k_curve",
+              "requested_k": 3,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                3.0,
+                3.0,
+                3.0,
+                3.0,
+                3.0
+              ],
+              "rmse": 101.65537193721325,
+              "mae": 61.90493196064773,
+              "r2": 0.0007877405704011991
+            },
+            {
+              "method": "f_test",
+              "level": "outer_k_curve",
+              "requested_k": 4,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                4.0,
+                4.0,
+                4.0,
+                4.0,
+                4.0
+              ],
+              "rmse": 101.2492360901061,
+              "mae": 63.66640537539938,
+              "r2": 0.008259116636774338
+            },
+            {
+              "method": "f_test",
+              "level": "outer_k_curve",
+              "requested_k": 5,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                5.0,
+                5.0,
+                5.0,
+                5.0,
+                5.0
+              ],
+              "rmse": 100.49728298766232,
+              "mae": 62.49894648613556,
+              "r2": 0.02379471667935752
+            },
+            {
+              "method": "f_test",
+              "level": "outer_k_curve",
+              "requested_k": 6,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                6.0,
+                6.0,
+                6.0,
+                6.0,
+                6.0
+              ],
+              "rmse": 100.70027985498186,
+              "mae": 62.80337547939202,
+              "r2": 0.019615088264005178
+            },
+            {
+              "method": "f_test",
+              "level": "outer_k_curve",
+              "requested_k": 7,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                7.0,
+                7.0,
+                7.0,
+                7.0,
+                7.0
+              ],
+              "rmse": 102.11430012456535,
+              "mae": 65.05717621171127,
+              "r2": -0.008121188240340159
+            },
+            {
+              "method": "f_test",
+              "level": "outer_k_curve",
+              "requested_k": 8,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                8.0,
+                8.0,
+                8.0,
+                8.0,
+                8.0
+              ],
+              "rmse": 101.9768877746097,
+              "mae": 64.55480633695295,
+              "r2": -0.004003605748189443
+            },
+            {
+              "method": "f_test",
+              "level": "outer_k_curve",
+              "requested_k": 9,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                9.0,
+                9.0,
+                9.0,
+                9.0,
+                9.0
+              ],
+              "rmse": 101.0142666020486,
+              "mae": 63.92194885727847,
+              "r2": 0.015133235558589458
+            },
+            {
+              "method": "f_test",
+              "level": "outer_k_curve",
+              "requested_k": 10,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                10.0,
+                10.0,
+                10.0,
+                10.0,
+                10.0
+              ],
+              "rmse": 101.15662362484132,
+              "mae": 64.9259227853419,
+              "r2": 0.011728231895019797
+            },
+            {
+              "method": "f_test",
+              "level": "outer_k_curve",
+              "requested_k": 11,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                11.0,
+                11.0,
+                11.0,
+                11.0,
+                11.0
+              ],
+              "rmse": 102.1248009593472,
+              "mae": 67.35681654799328,
+              "r2": -0.006316073346327347
+            },
+            {
+              "method": "f_test",
+              "level": "outer_k_curve",
+              "requested_k": 12,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                12.0,
+                12.0,
+                12.0,
+                12.0,
+                12.0
+              ],
+              "rmse": 102.34803430877773,
+              "mae": 67.69083972644584,
+              "r2": -0.010569033418873278
+            },
+            {
+              "method": "f_test",
+              "level": "outer_k_curve",
+              "requested_k": 13,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                13.0,
+                13.0,
+                13.0,
+                13.0,
+                13.0
+              ],
+              "rmse": 102.76002617846707,
+              "mae": 68.67011907796373,
+              "r2": -0.018676530107143784
+            },
+            {
+              "method": "f_test",
+              "level": "outer_k_curve",
+              "requested_k": 14,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                14.0,
+                14.0,
+                14.0,
+                14.0,
+                14.0
+              ],
+              "rmse": 102.17037153747998,
+              "mae": 66.95370341423559,
+              "r2": -0.007573110304346495
+            },
+            {
+              "method": "f_test",
+              "level": "outer_k_curve",
+              "requested_k": 15,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                15.0,
+                15.0,
+                15.0,
+                15.0,
+                15.0
+              ],
+              "rmse": 101.78531707153344,
+              "mae": 66.37867974642168,
+              "r2": -0.0005973531652969044
+            },
+            {
+              "method": "f_test",
+              "level": "outer_k_curve",
+              "requested_k": 16,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                16.0,
+                16.0,
+                16.0,
+                16.0,
+                16.0
+              ],
+              "rmse": 102.040353210989,
+              "mae": 66.4152736469463,
+              "r2": -0.00613603061145758
+            },
+            {
+              "method": "f_test",
+              "level": "outer_k_curve",
+              "requested_k": 17,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                17.0,
+                17.0,
+                17.0,
+                17.0,
+                17.0
+              ],
+              "rmse": 102.4539889361135,
+              "mae": 67.0705909331188,
+              "r2": -0.013786991474912354
+            },
+            {
+              "method": "f_test",
+              "level": "outer_k_curve",
+              "requested_k": 18,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                18.0,
+                18.0,
+                18.0,
+                18.0,
+                18.0
+              ],
+              "rmse": 103.05426332963637,
+              "mae": 67.59139968597206,
+              "r2": -0.02479551634463794
+            },
+            {
+              "method": "f_test",
+              "level": "outer_k_curve",
+              "requested_k": 19,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                19.0,
+                19.0,
+                19.0,
+                19.0,
+                19.0
+              ],
+              "rmse": 103.98318346495242,
+              "mae": 69.10589693080763,
+              "r2": -0.0440401101054788
+            },
+            {
+              "method": "f_test",
+              "level": "outer_k_curve",
+              "requested_k": 20,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                20.0,
+                20.0,
+                20.0,
+                20.0,
+                20.0
+              ],
+              "rmse": 103.55232314838595,
+              "mae": 68.5053444068886,
+              "r2": -0.035167955364134196
+            },
+            {
+              "method": "f_test",
+              "level": "outer_k_curve",
+              "requested_k": 21,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                21.0,
+                21.0,
+                21.0,
+                21.0,
+                21.0
+              ],
+              "rmse": 103.72189277849093,
+              "mae": 68.66045155292336,
+              "r2": -0.0386032588910641
+            },
+            {
+              "method": "f_test",
+              "level": "outer_k_curve",
+              "requested_k": 22,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                22.0,
+                22.0,
+                22.0,
+                22.0,
+                22.0
+              ],
+              "rmse": 102.97026653898733,
+              "mae": 66.91254978287577,
+              "r2": -0.0231534565254502
+            },
+            {
+              "method": "f_test",
+              "level": "outer_k_curve",
+              "requested_k": 23,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                23.0,
+                23.0,
+                23.0,
+                23.0,
+                23.0
+              ],
+              "rmse": 104.52049328925825,
+              "mae": 68.95845515369578,
+              "r2": -0.055260744696976796
+            },
+            {
+              "method": "f_test",
+              "level": "outer_k_curve",
+              "requested_k": 24,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                24.0,
+                24.0,
+                24.0,
+                24.0,
+                24.0
+              ],
+              "rmse": 103.48382046732377,
+              "mae": 67.69819457940781,
+              "r2": -0.03370981976300084
+            },
+            {
+              "method": "f_test",
+              "level": "outer_k_curve",
+              "requested_k": 25,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                25.0,
+                25.0,
+                25.0,
+                25.0,
+                25.0
+              ],
+              "rmse": 103.3831333437183,
+              "mae": 67.41833345483761,
+              "r2": -0.0317116785322501
+            },
+            {
+              "method": "mutual_information",
+              "level": "outer_k_curve",
+              "requested_k": 1,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              "rmse": 101.75517622632192,
+              "mae": 60.13630647555806,
+              "r2": 2.549208010526015e-05
+            },
+            {
+              "method": "mutual_information",
+              "level": "outer_k_curve",
+              "requested_k": 2,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                2.0,
+                2.0,
+                2.0,
+                2.0,
+                2.0
+              ],
+              "rmse": 101.46352194752978,
+              "mae": 63.06934504028759,
+              "r2": 0.00543365157107228
+            },
+            {
+              "method": "mutual_information",
+              "level": "outer_k_curve",
+              "requested_k": 3,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                3.0,
+                3.0,
+                3.0,
+                3.0,
+                3.0
+              ],
+              "rmse": 102.9497570499163,
+              "mae": 68.67283784660808,
+              "r2": -0.023351340382189584
+            },
+            {
+              "method": "mutual_information",
+              "level": "outer_k_curve",
+              "requested_k": 4,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                4.0,
+                4.0,
+                4.0,
+                4.0,
+                4.0
+              ],
+              "rmse": 103.15843175898578,
+              "mae": 70.39645307649171,
+              "r2": -0.027484622082032818
+            },
+            {
+              "method": "mutual_information",
+              "level": "outer_k_curve",
+              "requested_k": 5,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                5.0,
+                5.0,
+                5.0,
+                5.0,
+                5.0
+              ],
+              "rmse": 102.23544611898224,
+              "mae": 66.02865710741972,
+              "r2": -0.008632488923634262
+            },
+            {
+              "method": "mutual_information",
+              "level": "outer_k_curve",
+              "requested_k": 6,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                6.0,
+                6.0,
+                6.0,
+                6.0,
+                6.0
+              ],
+              "rmse": 100.96675036006113,
+              "mae": 62.54134812029431,
+              "r2": 0.01586130278313752
+            },
+            {
+              "method": "mutual_information",
+              "level": "outer_k_curve",
+              "requested_k": 7,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                7.0,
+                7.0,
+                7.0,
+                7.0,
+                7.0
+              ],
+              "rmse": 100.85402064102816,
+              "mae": 62.047817538700556,
+              "r2": 0.01851446585457562
+            },
+            {
+              "method": "mutual_information",
+              "level": "outer_k_curve",
+              "requested_k": 8,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                8.0,
+                8.0,
+                8.0,
+                8.0,
+                8.0
+              ],
+              "rmse": 100.6922824515114,
+              "mae": 62.02853875081546,
+              "r2": 0.021718331845904704
+            },
+            {
+              "method": "mutual_information",
+              "level": "outer_k_curve",
+              "requested_k": 9,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                9.0,
+                9.0,
+                9.0,
+                9.0,
+                9.0
+              ],
+              "rmse": 101.07367181395095,
+              "mae": 62.812849936967986,
+              "r2": 0.01388704750932506
+            },
+            {
+              "method": "mutual_information",
+              "level": "outer_k_curve",
+              "requested_k": 10,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                10.0,
+                10.0,
+                10.0,
+                10.0,
+                10.0
+              ],
+              "rmse": 101.14107112458241,
+              "mae": 62.88829876639861,
+              "r2": 0.012765355163572665
+            },
+            {
+              "method": "mutual_information",
+              "level": "outer_k_curve",
+              "requested_k": 11,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                11.0,
+                11.0,
+                11.0,
+                11.0,
+                11.0
+              ],
+              "rmse": 102.51590284580325,
+              "mae": 64.3486449562977,
+              "r2": -0.013821724698115639
+            },
+            {
+              "method": "mutual_information",
+              "level": "outer_k_curve",
+              "requested_k": 12,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                12.0,
+                12.0,
+                12.0,
+                12.0,
+                12.0
+              ],
+              "rmse": 102.92829824620222,
+              "mae": 65.29184050956616,
+              "r2": -0.02348498900632752
+            },
+            {
+              "method": "mutual_information",
+              "level": "outer_k_curve",
+              "requested_k": 13,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                13.0,
+                13.0,
+                13.0,
+                13.0,
+                13.0
+              ],
+              "rmse": 103.71268399361477,
+              "mae": 65.66567439337607,
+              "r2": -0.0396405074831502
+            },
+            {
+              "method": "mutual_information",
+              "level": "outer_k_curve",
+              "requested_k": 14,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                14.0,
+                14.0,
+                14.0,
+                14.0,
+                14.0
+              ],
+              "rmse": 103.46255876006667,
+              "mae": 65.97334446779078,
+              "r2": -0.037056539675750046
+            },
+            {
+              "method": "mutual_information",
+              "level": "outer_k_curve",
+              "requested_k": 15,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                15.0,
+                15.0,
+                15.0,
+                15.0,
+                15.0
+              ],
+              "rmse": 103.21869056582632,
+              "mae": 67.22776581628302,
+              "r2": -0.032895233123364315
+            },
+            {
+              "method": "mutual_information",
+              "level": "outer_k_curve",
+              "requested_k": 16,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                16.0,
+                16.0,
+                16.0,
+                16.0,
+                16.0
+              ],
+              "rmse": 105.43019278610197,
+              "mae": 70.54097050161542,
+              "r2": -0.0789694839545569
+            },
+            {
+              "method": "mutual_information",
+              "level": "outer_k_curve",
+              "requested_k": 17,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                17.0,
+                17.0,
+                17.0,
+                17.0,
+                17.0
+              ],
+              "rmse": 105.24146581666466,
+              "mae": 70.31311947894281,
+              "r2": -0.07444644089196495
+            },
+            {
+              "method": "mutual_information",
+              "level": "outer_k_curve",
+              "requested_k": 18,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                18.0,
+                18.0,
+                18.0,
+                18.0,
+                18.0
+              ],
+              "rmse": 102.49551024844065,
+              "mae": 66.71982171970868,
+              "r2": -0.014805094188411558
+            },
+            {
+              "method": "mutual_information",
+              "level": "outer_k_curve",
+              "requested_k": 19,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                19.0,
+                19.0,
+                19.0,
+                19.0,
+                19.0
+              ],
+              "rmse": 101.70029261198246,
+              "mae": 65.64000516426427,
+              "r2": 0.0013729438946287974
+            },
+            {
+              "method": "mutual_information",
+              "level": "outer_k_curve",
+              "requested_k": 20,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                20.0,
+                20.0,
+                20.0,
+                20.0,
+                20.0
+              ],
+              "rmse": 102.31866517621941,
+              "mae": 65.50855532218755,
+              "r2": -0.009905739839639396
+            },
+            {
+              "method": "mutual_information",
+              "level": "outer_k_curve",
+              "requested_k": 21,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                21.0,
+                21.0,
+                21.0,
+                21.0,
+                21.0
+              ],
+              "rmse": 103.29378293506996,
+              "mae": 66.96625946853537,
+              "r2": -0.030108228899838378
+            },
+            {
+              "method": "mutual_information",
+              "level": "outer_k_curve",
+              "requested_k": 22,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                22.0,
+                22.0,
+                22.0,
+                22.0,
+                22.0
+              ],
+              "rmse": 103.20528433799532,
+              "mae": 67.44330753974796,
+              "r2": -0.028001563924825158
+            },
+            {
+              "method": "mutual_information",
+              "level": "outer_k_curve",
+              "requested_k": 23,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                23.0,
+                23.0,
+                23.0,
+                23.0,
+                23.0
+              ],
+              "rmse": 103.79910881227688,
+              "mae": 68.1555989260733,
+              "r2": -0.04020180974697275
+            },
+            {
+              "method": "mutual_information",
+              "level": "outer_k_curve",
+              "requested_k": 24,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                24.0,
+                24.0,
+                24.0,
+                24.0,
+                24.0
+              ],
+              "rmse": 103.53736683487364,
+              "mae": 67.72974420219354,
+              "r2": -0.03480897867913137
+            },
+            {
+              "method": "mutual_information",
+              "level": "outer_k_curve",
+              "requested_k": 25,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                25.0,
+                25.0,
+                25.0,
+                25.0,
+                25.0
+              ],
+              "rmse": 103.3831333437183,
+              "mae": 67.41833345483761,
+              "r2": -0.0317116785322501
+            },
+            {
+              "method": "forward_sfs",
+              "level": "outer_k_curve",
+              "requested_k": 1,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              "rmse": 102.1078698307321,
+              "mae": 61.1407585074254,
+              "r2": -0.007368712753045241
+            },
+            {
+              "method": "forward_sfs",
+              "level": "outer_k_curve",
+              "requested_k": 3,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                3.0,
+                3.0,
+                3.0,
+                3.0,
+                3.0
+              ],
+              "rmse": 99.86675025865647,
+              "mae": 61.75051102308985,
+              "r2": 0.03707938770109968
+            },
+            {
+              "method": "forward_sfs",
+              "level": "outer_k_curve",
+              "requested_k": 5,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                5.0,
+                5.0,
+                5.0,
+                5.0,
+                5.0
+              ],
+              "rmse": 99.55324021352617,
+              "mae": 59.71363134708527,
+              "r2": 0.04284539272325532
+            },
+            {
+              "method": "forward_sfs",
+              "level": "outer_k_curve",
+              "requested_k": 8,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                8.0,
+                8.0,
+                8.0,
+                8.0,
+                8.0
+              ],
+              "rmse": 100.06818263560216,
+              "mae": 62.27589730369531,
+              "r2": 0.03303314695404378
+            },
+            {
+              "method": "forward_sfs",
+              "level": "outer_k_curve",
+              "requested_k": 10,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                10.0,
+                10.0,
+                10.0,
+                10.0,
+                10.0
+              ],
+              "rmse": 99.52648672628443,
+              "mae": 61.69909333085319,
+              "r2": 0.043390528139389165
+            },
+            {
+              "method": "forward_sfs",
+              "level": "outer_k_curve",
+              "requested_k": 13,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                13.0,
+                13.0,
+                13.0,
+                13.0,
+                13.0
+              ],
+              "rmse": 99.23910560359029,
+              "mae": 61.26658567330262,
+              "r2": 0.04870472936423277
+            },
+            {
+              "method": "forward_sfs",
+              "level": "outer_k_curve",
+              "requested_k": 16,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                16.0,
+                16.0,
+                16.0,
+                16.0,
+                16.0
+              ],
+              "rmse": 99.47348519922585,
+              "mae": 61.53550395167597,
+              "r2": 0.043790142437519816
+            },
+            {
+              "method": "forward_sfs",
+              "level": "outer_k_curve",
+              "requested_k": 20,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                20.0,
+                20.0,
+                20.0,
+                20.0,
+                20.0
+              ],
+              "rmse": 99.16757348098122,
+              "mae": 61.4702229808457,
+              "r2": 0.049528871007058946
+            },
+            {
+              "method": "forward_sfs",
+              "level": "outer_k_curve",
+              "requested_k": 25,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                25.0,
+                25.0,
+                25.0,
+                25.0,
+                25.0
+              ],
+              "rmse": 103.3831333437183,
+              "mae": 67.41833345483761,
+              "r2": -0.0317116785322501
+            },
+            {
+              "method": "rfe",
+              "level": "outer_k_curve",
+              "requested_k": 1,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              "rmse": 101.68139002471712,
+              "mae": 61.62981810547219,
+              "r2": 0.00126309447929506
+            },
+            {
+              "method": "rfe",
+              "level": "outer_k_curve",
+              "requested_k": 2,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                2.0,
+                2.0,
+                2.0,
+                2.0,
+                2.0
+              ],
+              "rmse": 101.45493649696418,
+              "mae": 62.357885597331006,
+              "r2": 0.004817179080658022
+            },
+            {
+              "method": "rfe",
+              "level": "outer_k_curve",
+              "requested_k": 3,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                3.0,
+                3.0,
+                3.0,
+                3.0,
+                3.0
+              ],
+              "rmse": 101.35303703879934,
+              "mae": 61.74377898952548,
+              "r2": 0.006751260249977356
+            },
+            {
+              "method": "rfe",
+              "level": "outer_k_curve",
+              "requested_k": 4,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                4.0,
+                4.0,
+                4.0,
+                4.0,
+                4.0
+              ],
+              "rmse": 103.39904164739035,
+              "mae": 65.11253301316654,
+              "r2": -0.036451847101914056
+            },
+            {
+              "method": "rfe",
+              "level": "outer_k_curve",
+              "requested_k": 5,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                5.0,
+                5.0,
+                5.0,
+                5.0,
+                5.0
+              ],
+              "rmse": 101.74798332821769,
+              "mae": 59.50158780068644,
+              "r2": 0.000563431775089579
+            },
+            {
+              "method": "rfe",
+              "level": "outer_k_curve",
+              "requested_k": 6,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                6.0,
+                6.0,
+                6.0,
+                6.0,
+                6.0
+              ],
+              "rmse": 100.67616225176265,
+              "mae": 60.97642887749449,
+              "r2": 0.020627967241328198
+            },
+            {
+              "method": "rfe",
+              "level": "outer_k_curve",
+              "requested_k": 7,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                7.0,
+                7.0,
+                7.0,
+                7.0,
+                7.0
+              ],
+              "rmse": 101.2773899271497,
+              "mae": 61.909447424780936,
+              "r2": 0.0086345497458678
+            },
+            {
+              "method": "rfe",
+              "level": "outer_k_curve",
+              "requested_k": 8,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                8.0,
+                8.0,
+                8.0,
+                8.0,
+                8.0
+              ],
+              "rmse": 100.86211422443515,
+              "mae": 60.13930948424587,
+              "r2": 0.01694129903993204
+            },
+            {
+              "method": "rfe",
+              "level": "outer_k_curve",
+              "requested_k": 9,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                9.0,
+                9.0,
+                9.0,
+                9.0,
+                9.0
+              ],
+              "rmse": 100.59808999817471,
+              "mae": 61.691535450734364,
+              "r2": 0.02019313153859426
+            },
+            {
+              "method": "rfe",
+              "level": "outer_k_curve",
+              "requested_k": 10,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                10.0,
+                10.0,
+                10.0,
+                10.0,
+                10.0
+              ],
+              "rmse": 99.52957507659059,
+              "mae": 60.93392375996418,
+              "r2": 0.04201460438544867
+            },
+            {
+              "method": "rfe",
+              "level": "outer_k_curve",
+              "requested_k": 11,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                11.0,
+                11.0,
+                11.0,
+                11.0,
+                11.0
+              ],
+              "rmse": 100.1206329831557,
+              "mae": 63.53906792862507,
+              "r2": 0.03265492991450878
+            },
+            {
+              "method": "rfe",
+              "level": "outer_k_curve",
+              "requested_k": 12,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                12.0,
+                12.0,
+                12.0,
+                12.0,
+                12.0
+              ],
+              "rmse": 99.85131918483262,
+              "mae": 63.10703593945321,
+              "r2": 0.03783745586515106
+            },
+            {
+              "method": "rfe",
+              "level": "outer_k_curve",
+              "requested_k": 13,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                13.0,
+                13.0,
+                13.0,
+                13.0,
+                13.0
+              ],
+              "rmse": 101.43603323013613,
+              "mae": 65.68573954779306,
+              "r2": 0.007262330384803719
+            },
+            {
+              "method": "rfe",
+              "level": "outer_k_curve",
+              "requested_k": 14,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                14.0,
+                14.0,
+                14.0,
+                14.0,
+                14.0
+              ],
+              "rmse": 101.85032275809075,
+              "mae": 66.06078790335661,
+              "r2": -0.0007463929654023205
+            },
+            {
+              "method": "rfe",
+              "level": "outer_k_curve",
+              "requested_k": 15,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                15.0,
+                15.0,
+                15.0,
+                15.0,
+                15.0
+              ],
+              "rmse": 102.33668352987351,
+              "mae": 67.04104475147422,
+              "r2": -0.010220885523904119
+            },
+            {
+              "method": "rfe",
+              "level": "outer_k_curve",
+              "requested_k": 16,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                16.0,
+                16.0,
+                16.0,
+                16.0,
+                16.0
+              ],
+              "rmse": 101.73019205873452,
+              "mae": 65.74049346106786,
+              "r2": 0.0013726612796986781
+            },
+            {
+              "method": "rfe",
+              "level": "outer_k_curve",
+              "requested_k": 17,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                17.0,
+                17.0,
+                17.0,
+                17.0,
+                17.0
+              ],
+              "rmse": 102.05187585151839,
+              "mae": 66.31072549759872,
+              "r2": -0.004854833103107558
+            },
+            {
+              "method": "rfe",
+              "level": "outer_k_curve",
+              "requested_k": 18,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                18.0,
+                18.0,
+                18.0,
+                18.0,
+                18.0
+              ],
+              "rmse": 102.3681211934163,
+              "mae": 66.68671367340127,
+              "r2": -0.01109746398320939
+            },
+            {
+              "method": "rfe",
+              "level": "outer_k_curve",
+              "requested_k": 19,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                19.0,
+                19.0,
+                19.0,
+                19.0,
+                19.0
+              ],
+              "rmse": 103.24518256674335,
+              "mae": 67.60028306352169,
+              "r2": -0.02890867156401595
+            },
+            {
+              "method": "rfe",
+              "level": "outer_k_curve",
+              "requested_k": 20,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                20.0,
+                20.0,
+                20.0,
+                20.0,
+                20.0
+              ],
+              "rmse": 103.28379142155673,
+              "mae": 67.47368342527892,
+              "r2": -0.02985001309040943
+            },
+            {
+              "method": "rfe",
+              "level": "outer_k_curve",
+              "requested_k": 21,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                21.0,
+                21.0,
+                21.0,
+                21.0,
+                21.0
+              ],
+              "rmse": 103.23135618646272,
+              "mae": 67.3263854859441,
+              "r2": -0.028659855636201697
+            },
+            {
+              "method": "rfe",
+              "level": "outer_k_curve",
+              "requested_k": 22,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                22.0,
+                22.0,
+                22.0,
+                22.0,
+                22.0
+              ],
+              "rmse": 103.26391945670983,
+              "mae": 67.29288264520314,
+              "r2": -0.02924108718334682
+            },
+            {
+              "method": "rfe",
+              "level": "outer_k_curve",
+              "requested_k": 23,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                23.0,
+                23.0,
+                23.0,
+                23.0,
+                23.0
+              ],
+              "rmse": 103.3046719135034,
+              "mae": 67.36970567668243,
+              "r2": -0.030084468710460437
+            },
+            {
+              "method": "rfe",
+              "level": "outer_k_curve",
+              "requested_k": 24,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                24.0,
+                24.0,
+                24.0,
+                24.0,
+                24.0
+              ],
+              "rmse": 103.3162782470747,
+              "mae": 67.36278809816831,
+              "r2": -0.030297236902742643
+            },
+            {
+              "method": "rfe",
+              "level": "outer_k_curve",
+              "requested_k": 25,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                25.0,
+                25.0,
+                25.0,
+                25.0,
+                25.0
+              ],
+              "rmse": 103.3831333437183,
+              "mae": 67.41833345483761,
+              "r2": -0.0317116785322501
+            },
+            {
+              "method": "lasso_cv",
+              "level": "outer_evaluation",
+              "requested_k": null,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                2.0,
+                16.0,
+                3.0,
+                14.0,
+                16.0
+              ],
+              "rmse": 99.07592825845404,
+              "mae": 60.4385428010901,
+              "r2": 0.05337861034541378
+            },
+            {
+              "method": "rfecv",
+              "level": "outer_evaluation",
+              "requested_k": null,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                11.0,
+                9.0,
+                11.0,
+                10.0,
+                9.0
+              ],
+              "rmse": 100.75636701101897,
+              "mae": 62.932506946409106,
+              "r2": 0.01974355457749418
+            }
+          ],
+          "baseline": {
+            "method": "f_test",
+            "level": "outer_k_curve",
+            "requested_k": 25,
+            "folds": 5,
+            "valid_folds": 5,
+            "selected_k": [
+              25.0,
+              25.0,
+              25.0,
+              25.0,
+              25.0
+            ],
+            "rmse": 103.3831333437183,
+            "mae": 67.41833345483761,
+            "r2": -0.0317116785322501
+          },
+          "sfs_interpolation": false
+        },
+        "mae_vs_feature_count.png": {
+          "points": [
+            {
+              "method": "f_test",
+              "level": "outer_k_curve",
+              "requested_k": 1,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              "rmse": 102.8111027405364,
+              "mae": 58.966587365660885,
+              "r2": -0.02118798910989342
+            },
+            {
+              "method": "f_test",
+              "level": "outer_k_curve",
+              "requested_k": 2,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                2.0,
+                2.0,
+                2.0,
+                2.0,
+                2.0
+              ],
+              "rmse": 102.68864368155646,
+              "mae": 61.44482868508298,
+              "r2": -0.01835846174391566
+            },
+            {
+              "method": "f_test",
+              "level": "outer_k_curve",
+              "requested_k": 3,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                3.0,
+                3.0,
+                3.0,
+                3.0,
+                3.0
+              ],
+              "rmse": 101.65537193721325,
+              "mae": 61.90493196064773,
+              "r2": 0.0007877405704011991
+            },
+            {
+              "method": "f_test",
+              "level": "outer_k_curve",
+              "requested_k": 4,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                4.0,
+                4.0,
+                4.0,
+                4.0,
+                4.0
+              ],
+              "rmse": 101.2492360901061,
+              "mae": 63.66640537539938,
+              "r2": 0.008259116636774338
+            },
+            {
+              "method": "f_test",
+              "level": "outer_k_curve",
+              "requested_k": 5,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                5.0,
+                5.0,
+                5.0,
+                5.0,
+                5.0
+              ],
+              "rmse": 100.49728298766232,
+              "mae": 62.49894648613556,
+              "r2": 0.02379471667935752
+            },
+            {
+              "method": "f_test",
+              "level": "outer_k_curve",
+              "requested_k": 6,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                6.0,
+                6.0,
+                6.0,
+                6.0,
+                6.0
+              ],
+              "rmse": 100.70027985498186,
+              "mae": 62.80337547939202,
+              "r2": 0.019615088264005178
+            },
+            {
+              "method": "f_test",
+              "level": "outer_k_curve",
+              "requested_k": 7,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                7.0,
+                7.0,
+                7.0,
+                7.0,
+                7.0
+              ],
+              "rmse": 102.11430012456535,
+              "mae": 65.05717621171127,
+              "r2": -0.008121188240340159
+            },
+            {
+              "method": "f_test",
+              "level": "outer_k_curve",
+              "requested_k": 8,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                8.0,
+                8.0,
+                8.0,
+                8.0,
+                8.0
+              ],
+              "rmse": 101.9768877746097,
+              "mae": 64.55480633695295,
+              "r2": -0.004003605748189443
+            },
+            {
+              "method": "f_test",
+              "level": "outer_k_curve",
+              "requested_k": 9,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                9.0,
+                9.0,
+                9.0,
+                9.0,
+                9.0
+              ],
+              "rmse": 101.0142666020486,
+              "mae": 63.92194885727847,
+              "r2": 0.015133235558589458
+            },
+            {
+              "method": "f_test",
+              "level": "outer_k_curve",
+              "requested_k": 10,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                10.0,
+                10.0,
+                10.0,
+                10.0,
+                10.0
+              ],
+              "rmse": 101.15662362484132,
+              "mae": 64.9259227853419,
+              "r2": 0.011728231895019797
+            },
+            {
+              "method": "f_test",
+              "level": "outer_k_curve",
+              "requested_k": 11,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                11.0,
+                11.0,
+                11.0,
+                11.0,
+                11.0
+              ],
+              "rmse": 102.1248009593472,
+              "mae": 67.35681654799328,
+              "r2": -0.006316073346327347
+            },
+            {
+              "method": "f_test",
+              "level": "outer_k_curve",
+              "requested_k": 12,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                12.0,
+                12.0,
+                12.0,
+                12.0,
+                12.0
+              ],
+              "rmse": 102.34803430877773,
+              "mae": 67.69083972644584,
+              "r2": -0.010569033418873278
+            },
+            {
+              "method": "f_test",
+              "level": "outer_k_curve",
+              "requested_k": 13,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                13.0,
+                13.0,
+                13.0,
+                13.0,
+                13.0
+              ],
+              "rmse": 102.76002617846707,
+              "mae": 68.67011907796373,
+              "r2": -0.018676530107143784
+            },
+            {
+              "method": "f_test",
+              "level": "outer_k_curve",
+              "requested_k": 14,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                14.0,
+                14.0,
+                14.0,
+                14.0,
+                14.0
+              ],
+              "rmse": 102.17037153747998,
+              "mae": 66.95370341423559,
+              "r2": -0.007573110304346495
+            },
+            {
+              "method": "f_test",
+              "level": "outer_k_curve",
+              "requested_k": 15,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                15.0,
+                15.0,
+                15.0,
+                15.0,
+                15.0
+              ],
+              "rmse": 101.78531707153344,
+              "mae": 66.37867974642168,
+              "r2": -0.0005973531652969044
+            },
+            {
+              "method": "f_test",
+              "level": "outer_k_curve",
+              "requested_k": 16,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                16.0,
+                16.0,
+                16.0,
+                16.0,
+                16.0
+              ],
+              "rmse": 102.040353210989,
+              "mae": 66.4152736469463,
+              "r2": -0.00613603061145758
+            },
+            {
+              "method": "f_test",
+              "level": "outer_k_curve",
+              "requested_k": 17,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                17.0,
+                17.0,
+                17.0,
+                17.0,
+                17.0
+              ],
+              "rmse": 102.4539889361135,
+              "mae": 67.0705909331188,
+              "r2": -0.013786991474912354
+            },
+            {
+              "method": "f_test",
+              "level": "outer_k_curve",
+              "requested_k": 18,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                18.0,
+                18.0,
+                18.0,
+                18.0,
+                18.0
+              ],
+              "rmse": 103.05426332963637,
+              "mae": 67.59139968597206,
+              "r2": -0.02479551634463794
+            },
+            {
+              "method": "f_test",
+              "level": "outer_k_curve",
+              "requested_k": 19,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                19.0,
+                19.0,
+                19.0,
+                19.0,
+                19.0
+              ],
+              "rmse": 103.98318346495242,
+              "mae": 69.10589693080763,
+              "r2": -0.0440401101054788
+            },
+            {
+              "method": "f_test",
+              "level": "outer_k_curve",
+              "requested_k": 20,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                20.0,
+                20.0,
+                20.0,
+                20.0,
+                20.0
+              ],
+              "rmse": 103.55232314838595,
+              "mae": 68.5053444068886,
+              "r2": -0.035167955364134196
+            },
+            {
+              "method": "f_test",
+              "level": "outer_k_curve",
+              "requested_k": 21,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                21.0,
+                21.0,
+                21.0,
+                21.0,
+                21.0
+              ],
+              "rmse": 103.72189277849093,
+              "mae": 68.66045155292336,
+              "r2": -0.0386032588910641
+            },
+            {
+              "method": "f_test",
+              "level": "outer_k_curve",
+              "requested_k": 22,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                22.0,
+                22.0,
+                22.0,
+                22.0,
+                22.0
+              ],
+              "rmse": 102.97026653898733,
+              "mae": 66.91254978287577,
+              "r2": -0.0231534565254502
+            },
+            {
+              "method": "f_test",
+              "level": "outer_k_curve",
+              "requested_k": 23,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                23.0,
+                23.0,
+                23.0,
+                23.0,
+                23.0
+              ],
+              "rmse": 104.52049328925825,
+              "mae": 68.95845515369578,
+              "r2": -0.055260744696976796
+            },
+            {
+              "method": "f_test",
+              "level": "outer_k_curve",
+              "requested_k": 24,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                24.0,
+                24.0,
+                24.0,
+                24.0,
+                24.0
+              ],
+              "rmse": 103.48382046732377,
+              "mae": 67.69819457940781,
+              "r2": -0.03370981976300084
+            },
+            {
+              "method": "f_test",
+              "level": "outer_k_curve",
+              "requested_k": 25,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                25.0,
+                25.0,
+                25.0,
+                25.0,
+                25.0
+              ],
+              "rmse": 103.3831333437183,
+              "mae": 67.41833345483761,
+              "r2": -0.0317116785322501
+            },
+            {
+              "method": "mutual_information",
+              "level": "outer_k_curve",
+              "requested_k": 1,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              "rmse": 101.75517622632192,
+              "mae": 60.13630647555806,
+              "r2": 2.549208010526015e-05
+            },
+            {
+              "method": "mutual_information",
+              "level": "outer_k_curve",
+              "requested_k": 2,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                2.0,
+                2.0,
+                2.0,
+                2.0,
+                2.0
+              ],
+              "rmse": 101.46352194752978,
+              "mae": 63.06934504028759,
+              "r2": 0.00543365157107228
+            },
+            {
+              "method": "mutual_information",
+              "level": "outer_k_curve",
+              "requested_k": 3,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                3.0,
+                3.0,
+                3.0,
+                3.0,
+                3.0
+              ],
+              "rmse": 102.9497570499163,
+              "mae": 68.67283784660808,
+              "r2": -0.023351340382189584
+            },
+            {
+              "method": "mutual_information",
+              "level": "outer_k_curve",
+              "requested_k": 4,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                4.0,
+                4.0,
+                4.0,
+                4.0,
+                4.0
+              ],
+              "rmse": 103.15843175898578,
+              "mae": 70.39645307649171,
+              "r2": -0.027484622082032818
+            },
+            {
+              "method": "mutual_information",
+              "level": "outer_k_curve",
+              "requested_k": 5,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                5.0,
+                5.0,
+                5.0,
+                5.0,
+                5.0
+              ],
+              "rmse": 102.23544611898224,
+              "mae": 66.02865710741972,
+              "r2": -0.008632488923634262
+            },
+            {
+              "method": "mutual_information",
+              "level": "outer_k_curve",
+              "requested_k": 6,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                6.0,
+                6.0,
+                6.0,
+                6.0,
+                6.0
+              ],
+              "rmse": 100.96675036006113,
+              "mae": 62.54134812029431,
+              "r2": 0.01586130278313752
+            },
+            {
+              "method": "mutual_information",
+              "level": "outer_k_curve",
+              "requested_k": 7,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                7.0,
+                7.0,
+                7.0,
+                7.0,
+                7.0
+              ],
+              "rmse": 100.85402064102816,
+              "mae": 62.047817538700556,
+              "r2": 0.01851446585457562
+            },
+            {
+              "method": "mutual_information",
+              "level": "outer_k_curve",
+              "requested_k": 8,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                8.0,
+                8.0,
+                8.0,
+                8.0,
+                8.0
+              ],
+              "rmse": 100.6922824515114,
+              "mae": 62.02853875081546,
+              "r2": 0.021718331845904704
+            },
+            {
+              "method": "mutual_information",
+              "level": "outer_k_curve",
+              "requested_k": 9,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                9.0,
+                9.0,
+                9.0,
+                9.0,
+                9.0
+              ],
+              "rmse": 101.07367181395095,
+              "mae": 62.812849936967986,
+              "r2": 0.01388704750932506
+            },
+            {
+              "method": "mutual_information",
+              "level": "outer_k_curve",
+              "requested_k": 10,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                10.0,
+                10.0,
+                10.0,
+                10.0,
+                10.0
+              ],
+              "rmse": 101.14107112458241,
+              "mae": 62.88829876639861,
+              "r2": 0.012765355163572665
+            },
+            {
+              "method": "mutual_information",
+              "level": "outer_k_curve",
+              "requested_k": 11,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                11.0,
+                11.0,
+                11.0,
+                11.0,
+                11.0
+              ],
+              "rmse": 102.51590284580325,
+              "mae": 64.3486449562977,
+              "r2": -0.013821724698115639
+            },
+            {
+              "method": "mutual_information",
+              "level": "outer_k_curve",
+              "requested_k": 12,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                12.0,
+                12.0,
+                12.0,
+                12.0,
+                12.0
+              ],
+              "rmse": 102.92829824620222,
+              "mae": 65.29184050956616,
+              "r2": -0.02348498900632752
+            },
+            {
+              "method": "mutual_information",
+              "level": "outer_k_curve",
+              "requested_k": 13,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                13.0,
+                13.0,
+                13.0,
+                13.0,
+                13.0
+              ],
+              "rmse": 103.71268399361477,
+              "mae": 65.66567439337607,
+              "r2": -0.0396405074831502
+            },
+            {
+              "method": "mutual_information",
+              "level": "outer_k_curve",
+              "requested_k": 14,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                14.0,
+                14.0,
+                14.0,
+                14.0,
+                14.0
+              ],
+              "rmse": 103.46255876006667,
+              "mae": 65.97334446779078,
+              "r2": -0.037056539675750046
+            },
+            {
+              "method": "mutual_information",
+              "level": "outer_k_curve",
+              "requested_k": 15,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                15.0,
+                15.0,
+                15.0,
+                15.0,
+                15.0
+              ],
+              "rmse": 103.21869056582632,
+              "mae": 67.22776581628302,
+              "r2": -0.032895233123364315
+            },
+            {
+              "method": "mutual_information",
+              "level": "outer_k_curve",
+              "requested_k": 16,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                16.0,
+                16.0,
+                16.0,
+                16.0,
+                16.0
+              ],
+              "rmse": 105.43019278610197,
+              "mae": 70.54097050161542,
+              "r2": -0.0789694839545569
+            },
+            {
+              "method": "mutual_information",
+              "level": "outer_k_curve",
+              "requested_k": 17,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                17.0,
+                17.0,
+                17.0,
+                17.0,
+                17.0
+              ],
+              "rmse": 105.24146581666466,
+              "mae": 70.31311947894281,
+              "r2": -0.07444644089196495
+            },
+            {
+              "method": "mutual_information",
+              "level": "outer_k_curve",
+              "requested_k": 18,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                18.0,
+                18.0,
+                18.0,
+                18.0,
+                18.0
+              ],
+              "rmse": 102.49551024844065,
+              "mae": 66.71982171970868,
+              "r2": -0.014805094188411558
+            },
+            {
+              "method": "mutual_information",
+              "level": "outer_k_curve",
+              "requested_k": 19,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                19.0,
+                19.0,
+                19.0,
+                19.0,
+                19.0
+              ],
+              "rmse": 101.70029261198246,
+              "mae": 65.64000516426427,
+              "r2": 0.0013729438946287974
+            },
+            {
+              "method": "mutual_information",
+              "level": "outer_k_curve",
+              "requested_k": 20,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                20.0,
+                20.0,
+                20.0,
+                20.0,
+                20.0
+              ],
+              "rmse": 102.31866517621941,
+              "mae": 65.50855532218755,
+              "r2": -0.009905739839639396
+            },
+            {
+              "method": "mutual_information",
+              "level": "outer_k_curve",
+              "requested_k": 21,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                21.0,
+                21.0,
+                21.0,
+                21.0,
+                21.0
+              ],
+              "rmse": 103.29378293506996,
+              "mae": 66.96625946853537,
+              "r2": -0.030108228899838378
+            },
+            {
+              "method": "mutual_information",
+              "level": "outer_k_curve",
+              "requested_k": 22,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                22.0,
+                22.0,
+                22.0,
+                22.0,
+                22.0
+              ],
+              "rmse": 103.20528433799532,
+              "mae": 67.44330753974796,
+              "r2": -0.028001563924825158
+            },
+            {
+              "method": "mutual_information",
+              "level": "outer_k_curve",
+              "requested_k": 23,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                23.0,
+                23.0,
+                23.0,
+                23.0,
+                23.0
+              ],
+              "rmse": 103.79910881227688,
+              "mae": 68.1555989260733,
+              "r2": -0.04020180974697275
+            },
+            {
+              "method": "mutual_information",
+              "level": "outer_k_curve",
+              "requested_k": 24,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                24.0,
+                24.0,
+                24.0,
+                24.0,
+                24.0
+              ],
+              "rmse": 103.53736683487364,
+              "mae": 67.72974420219354,
+              "r2": -0.03480897867913137
+            },
+            {
+              "method": "mutual_information",
+              "level": "outer_k_curve",
+              "requested_k": 25,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                25.0,
+                25.0,
+                25.0,
+                25.0,
+                25.0
+              ],
+              "rmse": 103.3831333437183,
+              "mae": 67.41833345483761,
+              "r2": -0.0317116785322501
+            },
+            {
+              "method": "forward_sfs",
+              "level": "outer_k_curve",
+              "requested_k": 1,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              "rmse": 102.1078698307321,
+              "mae": 61.1407585074254,
+              "r2": -0.007368712753045241
+            },
+            {
+              "method": "forward_sfs",
+              "level": "outer_k_curve",
+              "requested_k": 3,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                3.0,
+                3.0,
+                3.0,
+                3.0,
+                3.0
+              ],
+              "rmse": 99.86675025865647,
+              "mae": 61.75051102308985,
+              "r2": 0.03707938770109968
+            },
+            {
+              "method": "forward_sfs",
+              "level": "outer_k_curve",
+              "requested_k": 5,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                5.0,
+                5.0,
+                5.0,
+                5.0,
+                5.0
+              ],
+              "rmse": 99.55324021352617,
+              "mae": 59.71363134708527,
+              "r2": 0.04284539272325532
+            },
+            {
+              "method": "forward_sfs",
+              "level": "outer_k_curve",
+              "requested_k": 8,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                8.0,
+                8.0,
+                8.0,
+                8.0,
+                8.0
+              ],
+              "rmse": 100.06818263560216,
+              "mae": 62.27589730369531,
+              "r2": 0.03303314695404378
+            },
+            {
+              "method": "forward_sfs",
+              "level": "outer_k_curve",
+              "requested_k": 10,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                10.0,
+                10.0,
+                10.0,
+                10.0,
+                10.0
+              ],
+              "rmse": 99.52648672628443,
+              "mae": 61.69909333085319,
+              "r2": 0.043390528139389165
+            },
+            {
+              "method": "forward_sfs",
+              "level": "outer_k_curve",
+              "requested_k": 13,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                13.0,
+                13.0,
+                13.0,
+                13.0,
+                13.0
+              ],
+              "rmse": 99.23910560359029,
+              "mae": 61.26658567330262,
+              "r2": 0.04870472936423277
+            },
+            {
+              "method": "forward_sfs",
+              "level": "outer_k_curve",
+              "requested_k": 16,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                16.0,
+                16.0,
+                16.0,
+                16.0,
+                16.0
+              ],
+              "rmse": 99.47348519922585,
+              "mae": 61.53550395167597,
+              "r2": 0.043790142437519816
+            },
+            {
+              "method": "forward_sfs",
+              "level": "outer_k_curve",
+              "requested_k": 20,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                20.0,
+                20.0,
+                20.0,
+                20.0,
+                20.0
+              ],
+              "rmse": 99.16757348098122,
+              "mae": 61.4702229808457,
+              "r2": 0.049528871007058946
+            },
+            {
+              "method": "forward_sfs",
+              "level": "outer_k_curve",
+              "requested_k": 25,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                25.0,
+                25.0,
+                25.0,
+                25.0,
+                25.0
+              ],
+              "rmse": 103.3831333437183,
+              "mae": 67.41833345483761,
+              "r2": -0.0317116785322501
+            },
+            {
+              "method": "rfe",
+              "level": "outer_k_curve",
+              "requested_k": 1,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              "rmse": 101.68139002471712,
+              "mae": 61.62981810547219,
+              "r2": 0.00126309447929506
+            },
+            {
+              "method": "rfe",
+              "level": "outer_k_curve",
+              "requested_k": 2,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                2.0,
+                2.0,
+                2.0,
+                2.0,
+                2.0
+              ],
+              "rmse": 101.45493649696418,
+              "mae": 62.357885597331006,
+              "r2": 0.004817179080658022
+            },
+            {
+              "method": "rfe",
+              "level": "outer_k_curve",
+              "requested_k": 3,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                3.0,
+                3.0,
+                3.0,
+                3.0,
+                3.0
+              ],
+              "rmse": 101.35303703879934,
+              "mae": 61.74377898952548,
+              "r2": 0.006751260249977356
+            },
+            {
+              "method": "rfe",
+              "level": "outer_k_curve",
+              "requested_k": 4,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                4.0,
+                4.0,
+                4.0,
+                4.0,
+                4.0
+              ],
+              "rmse": 103.39904164739035,
+              "mae": 65.11253301316654,
+              "r2": -0.036451847101914056
+            },
+            {
+              "method": "rfe",
+              "level": "outer_k_curve",
+              "requested_k": 5,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                5.0,
+                5.0,
+                5.0,
+                5.0,
+                5.0
+              ],
+              "rmse": 101.74798332821769,
+              "mae": 59.50158780068644,
+              "r2": 0.000563431775089579
+            },
+            {
+              "method": "rfe",
+              "level": "outer_k_curve",
+              "requested_k": 6,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                6.0,
+                6.0,
+                6.0,
+                6.0,
+                6.0
+              ],
+              "rmse": 100.67616225176265,
+              "mae": 60.97642887749449,
+              "r2": 0.020627967241328198
+            },
+            {
+              "method": "rfe",
+              "level": "outer_k_curve",
+              "requested_k": 7,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                7.0,
+                7.0,
+                7.0,
+                7.0,
+                7.0
+              ],
+              "rmse": 101.2773899271497,
+              "mae": 61.909447424780936,
+              "r2": 0.0086345497458678
+            },
+            {
+              "method": "rfe",
+              "level": "outer_k_curve",
+              "requested_k": 8,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                8.0,
+                8.0,
+                8.0,
+                8.0,
+                8.0
+              ],
+              "rmse": 100.86211422443515,
+              "mae": 60.13930948424587,
+              "r2": 0.01694129903993204
+            },
+            {
+              "method": "rfe",
+              "level": "outer_k_curve",
+              "requested_k": 9,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                9.0,
+                9.0,
+                9.0,
+                9.0,
+                9.0
+              ],
+              "rmse": 100.59808999817471,
+              "mae": 61.691535450734364,
+              "r2": 0.02019313153859426
+            },
+            {
+              "method": "rfe",
+              "level": "outer_k_curve",
+              "requested_k": 10,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                10.0,
+                10.0,
+                10.0,
+                10.0,
+                10.0
+              ],
+              "rmse": 99.52957507659059,
+              "mae": 60.93392375996418,
+              "r2": 0.04201460438544867
+            },
+            {
+              "method": "rfe",
+              "level": "outer_k_curve",
+              "requested_k": 11,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                11.0,
+                11.0,
+                11.0,
+                11.0,
+                11.0
+              ],
+              "rmse": 100.1206329831557,
+              "mae": 63.53906792862507,
+              "r2": 0.03265492991450878
+            },
+            {
+              "method": "rfe",
+              "level": "outer_k_curve",
+              "requested_k": 12,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                12.0,
+                12.0,
+                12.0,
+                12.0,
+                12.0
+              ],
+              "rmse": 99.85131918483262,
+              "mae": 63.10703593945321,
+              "r2": 0.03783745586515106
+            },
+            {
+              "method": "rfe",
+              "level": "outer_k_curve",
+              "requested_k": 13,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                13.0,
+                13.0,
+                13.0,
+                13.0,
+                13.0
+              ],
+              "rmse": 101.43603323013613,
+              "mae": 65.68573954779306,
+              "r2": 0.007262330384803719
+            },
+            {
+              "method": "rfe",
+              "level": "outer_k_curve",
+              "requested_k": 14,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                14.0,
+                14.0,
+                14.0,
+                14.0,
+                14.0
+              ],
+              "rmse": 101.85032275809075,
+              "mae": 66.06078790335661,
+              "r2": -0.0007463929654023205
+            },
+            {
+              "method": "rfe",
+              "level": "outer_k_curve",
+              "requested_k": 15,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                15.0,
+                15.0,
+                15.0,
+                15.0,
+                15.0
+              ],
+              "rmse": 102.33668352987351,
+              "mae": 67.04104475147422,
+              "r2": -0.010220885523904119
+            },
+            {
+              "method": "rfe",
+              "level": "outer_k_curve",
+              "requested_k": 16,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                16.0,
+                16.0,
+                16.0,
+                16.0,
+                16.0
+              ],
+              "rmse": 101.73019205873452,
+              "mae": 65.74049346106786,
+              "r2": 0.0013726612796986781
+            },
+            {
+              "method": "rfe",
+              "level": "outer_k_curve",
+              "requested_k": 17,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                17.0,
+                17.0,
+                17.0,
+                17.0,
+                17.0
+              ],
+              "rmse": 102.05187585151839,
+              "mae": 66.31072549759872,
+              "r2": -0.004854833103107558
+            },
+            {
+              "method": "rfe",
+              "level": "outer_k_curve",
+              "requested_k": 18,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                18.0,
+                18.0,
+                18.0,
+                18.0,
+                18.0
+              ],
+              "rmse": 102.3681211934163,
+              "mae": 66.68671367340127,
+              "r2": -0.01109746398320939
+            },
+            {
+              "method": "rfe",
+              "level": "outer_k_curve",
+              "requested_k": 19,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                19.0,
+                19.0,
+                19.0,
+                19.0,
+                19.0
+              ],
+              "rmse": 103.24518256674335,
+              "mae": 67.60028306352169,
+              "r2": -0.02890867156401595
+            },
+            {
+              "method": "rfe",
+              "level": "outer_k_curve",
+              "requested_k": 20,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                20.0,
+                20.0,
+                20.0,
+                20.0,
+                20.0
+              ],
+              "rmse": 103.28379142155673,
+              "mae": 67.47368342527892,
+              "r2": -0.02985001309040943
+            },
+            {
+              "method": "rfe",
+              "level": "outer_k_curve",
+              "requested_k": 21,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                21.0,
+                21.0,
+                21.0,
+                21.0,
+                21.0
+              ],
+              "rmse": 103.23135618646272,
+              "mae": 67.3263854859441,
+              "r2": -0.028659855636201697
+            },
+            {
+              "method": "rfe",
+              "level": "outer_k_curve",
+              "requested_k": 22,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                22.0,
+                22.0,
+                22.0,
+                22.0,
+                22.0
+              ],
+              "rmse": 103.26391945670983,
+              "mae": 67.29288264520314,
+              "r2": -0.02924108718334682
+            },
+            {
+              "method": "rfe",
+              "level": "outer_k_curve",
+              "requested_k": 23,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                23.0,
+                23.0,
+                23.0,
+                23.0,
+                23.0
+              ],
+              "rmse": 103.3046719135034,
+              "mae": 67.36970567668243,
+              "r2": -0.030084468710460437
+            },
+            {
+              "method": "rfe",
+              "level": "outer_k_curve",
+              "requested_k": 24,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                24.0,
+                24.0,
+                24.0,
+                24.0,
+                24.0
+              ],
+              "rmse": 103.3162782470747,
+              "mae": 67.36278809816831,
+              "r2": -0.030297236902742643
+            },
+            {
+              "method": "rfe",
+              "level": "outer_k_curve",
+              "requested_k": 25,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                25.0,
+                25.0,
+                25.0,
+                25.0,
+                25.0
+              ],
+              "rmse": 103.3831333437183,
+              "mae": 67.41833345483761,
+              "r2": -0.0317116785322501
+            },
+            {
+              "method": "lasso_cv",
+              "level": "outer_evaluation",
+              "requested_k": null,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                2.0,
+                16.0,
+                3.0,
+                14.0,
+                16.0
+              ],
+              "rmse": 99.07592825845404,
+              "mae": 60.4385428010901,
+              "r2": 0.05337861034541378
+            },
+            {
+              "method": "rfecv",
+              "level": "outer_evaluation",
+              "requested_k": null,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                11.0,
+                9.0,
+                11.0,
+                10.0,
+                9.0
+              ],
+              "rmse": 100.75636701101897,
+              "mae": 62.932506946409106,
+              "r2": 0.01974355457749418
+            }
+          ],
+          "baseline": {
+            "method": "f_test",
+            "level": "outer_k_curve",
+            "requested_k": 25,
+            "folds": 5,
+            "valid_folds": 5,
+            "selected_k": [
+              25.0,
+              25.0,
+              25.0,
+              25.0,
+              25.0
+            ],
+            "rmse": 103.3831333437183,
+            "mae": 67.41833345483761,
+            "r2": -0.0317116785322501
+          },
+          "sfs_interpolation": false
+        },
+        "best_k_comparison.png": {
+          "points": [
+            {
+              "method": "f_test",
+              "selected_k": [
+                1,
+                10,
+                9,
+                5,
+                7
+              ],
+              "level": "outer_evaluation"
+            },
+            {
+              "method": "mutual_information",
+              "selected_k": [
+                1,
+                3,
+                24,
+                3,
+                10
+              ],
+              "level": "outer_evaluation"
+            },
+            {
+              "method": "forward_sfs",
+              "selected_k": [
+                1,
+                13,
+                5,
+                3,
+                5
+              ],
+              "level": "outer_evaluation"
+            },
+            {
+              "method": "rfe",
+              "selected_k": [
+                11,
+                9,
+                11,
+                10,
+                9
+              ],
+              "level": "outer_evaluation"
+            },
+            {
+              "method": "lasso_cv",
+              "selected_k": [
+                2,
+                16,
+                3,
+                14,
+                16
+              ],
+              "level": "outer_evaluation"
+            },
+            {
+              "method": "rfecv",
+              "selected_k": [
+                11,
+                9,
+                11,
+                10,
+                9
+              ],
+              "level": "outer_evaluation"
+            }
+          ]
+        },
+        "selected_features_comparison.png": {
+          "level": "final_refit_training",
+          "selections": [
+            {
+              "method": "f_test",
+              "indices": [
+                0,
+                3,
+                5,
+                11,
+                16,
+                21
+              ]
+            },
+            {
+              "method": "mutual_information",
+              "indices": [
+                5,
+                7,
+                9,
+                12,
+                15,
+                17
+              ]
+            },
+            {
+              "method": "forward_sfs",
+              "indices": [
+                2,
+                3,
+                5,
+                9,
+                10,
+                14,
+                15,
+                16,
+                17,
+                21
+              ]
+            },
+            {
+              "method": "rfe",
+              "indices": [
+                2,
+                3,
+                4,
+                5,
+                6,
+                16
+              ]
+            },
+            {
+              "method": "lasso_cv",
+              "indices": [
+                0,
+                1,
+                2,
+                4,
+                5,
+                6,
+                7,
+                9,
+                11,
+                14,
+                15,
+                16,
+                17,
+                18,
+                22,
+                23
+              ]
+            },
+            {
+              "method": "rfecv",
+              "indices": [
+                2,
+                3,
+                4,
+                5,
+                6,
+                16
+              ]
+            }
+          ]
+        },
+        "runtime_comparison.png": {
+          "level": "all formal stages",
+          "methods": {
+            "f_test": {
+              "worker_seconds": 6.740164457063656,
+              "wall_seconds_including_startup": 28.03606708504958,
+              "csv_fit_seconds": 1.5068206237046695,
+              "cases": 24,
+              "timeouts": 0
+            },
+            "mutual_information": {
+              "worker_seconds": 13.661022919928655,
+              "wall_seconds_including_startup": 34.989266040036455,
+              "csv_fit_seconds": 8.391291787906056,
+              "cases": 24,
+              "timeouts": 0
+            },
+            "forward_sfs": {
+              "worker_seconds": 269.3108134989743,
+              "wall_seconds_including_startup": 290.51426687516505,
+              "csv_fit_seconds": 267.2235041304375,
+              "cases": 24,
+              "timeouts": 0
+            },
+            "rfe": {
+              "worker_seconds": 16.644719707081094,
+              "wall_seconds_including_startup": 38.003893252054695,
+              "csv_fit_seconds": 11.16347858781225,
+              "cases": 24,
+              "timeouts": 0
+            },
+            "lasso_cv": {
+              "worker_seconds": 2.172697209054604,
+              "wall_seconds_including_startup": 10.155937042960431,
+              "csv_fit_seconds": 1.9535602080286478,
+              "cases": 9,
+              "timeouts": 0
+            },
+            "rfecv": {
+              "worker_seconds": 17.413614877150394,
+              "wall_seconds_including_startup": 25.35669137700461,
+              "csv_fit_seconds": 17.19380758306943,
+              "cases": 9,
+              "timeouts": 0
+            }
+          },
+          "source": "CSV runtime_seconds, deduplicated checkpoint_id/requested_k"
+        },
+        "nested_cv_performance_comparison.png": {
+          "level": "outer_evaluation",
+          "points": [
+            {
+              "method": "f_test",
+              "level": "outer_evaluation",
+              "requested_k": null,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                1.0,
+                10.0,
+                9.0,
+                5.0,
+                7.0
+              ],
+              "rmse": 101.18425541515492,
+              "mae": 63.09261145484495,
+              "r2": 0.012189739340268697
+            },
+            {
+              "method": "mutual_information",
+              "level": "outer_evaluation",
+              "requested_k": null,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                1.0,
+                3.0,
+                24.0,
+                3.0,
+                10.0
+              ],
+              "rmse": 103.32827774586437,
+              "mae": 66.58609755910229,
+              "r2": -0.032965691614061196
+            },
+            {
+              "method": "forward_sfs",
+              "level": "outer_evaluation",
+              "requested_k": null,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                1.0,
+                13.0,
+                5.0,
+                3.0,
+                5.0
+              ],
+              "rmse": 100.8513866569464,
+              "mae": 61.24895214083765,
+              "r2": 0.01876116676216236
+            },
+            {
+              "method": "rfe",
+              "level": "outer_evaluation",
+              "requested_k": null,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                11.0,
+                9.0,
+                11.0,
+                10.0,
+                9.0
+              ],
+              "rmse": 100.75636701101897,
+              "mae": 62.932506946409106,
+              "r2": 0.01974355457749418
+            },
+            {
+              "method": "lasso_cv",
+              "level": "outer_evaluation",
+              "requested_k": null,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                2.0,
+                16.0,
+                3.0,
+                14.0,
+                16.0
+              ],
+              "rmse": 99.07592825845404,
+              "mae": 60.4385428010901,
+              "r2": 0.05337861034541378
+            },
+            {
+              "method": "rfecv",
+              "level": "outer_evaluation",
+              "requested_k": null,
+              "folds": 5,
+              "valid_folds": 5,
+              "selected_k": [
+                11.0,
+                9.0,
+                11.0,
+                10.0,
+                9.0
+              ],
+              "rmse": 100.75636701101897,
+              "mae": 62.932506946409106,
+              "r2": 0.01974355457749418
+            }
+          ]
+        }
+      },
+      "aggregation": "arithmetic mean across declared folds, eligible only when all folds valid"
+    },
+    "phase3c_provenance": {
+      "sources": {
+        "prediction_interval_predictions.csv": "471ef6bfc9e08ff2d2e7999e133d116ac59bc2e86c1b140afbbb1974566e33b9",
+        "prediction_comparison.csv": "a1f4545cccae3df70c7cd5a778dcb22e6a2035618137753551a3084204b01c37"
+      },
+      "full_evaluation_samples": 3947,
+      "plot_window_decided_before_evaluation": {
+        "holdout_start_position": 0,
+        "consecutive_samples": 144
+      },
+      "figures": {
+        "baseline_prediction_interval.png": {
+          "source": "prediction_interval_predictions.csv",
+          "holdout_positions": [
+            0,
+            144
+          ],
+          "row_indices": [
+            15788,
+            15931
+          ],
+          "columns": [
+            "Timestamp",
+            "Actual",
+            "Baseline Prediction",
+            "Baseline Lower 95",
+            "Baseline Upper 95"
+          ],
+          "points": {
+            "Actual": [
+              370,
+              590,
+              320,
+              310,
+              260,
+              190,
+              150,
+              130,
+              290,
+              490,
+              840,
+              700,
+              430,
+              300,
+              310,
+              290,
+              300,
+              240,
+              160,
+              90,
+              70,
+              80,
+              80,
+              80,
+              570,
+              610,
+              330,
+              350,
+              260,
+              270,
+              210,
+              100,
+              100,
+              90,
+              100,
+              110,
+              100,
+              80,
+              90,
+              90,
+              80,
+              90,
+              90,
+              250,
+              390,
+              190,
+              100,
+              280,
+              560,
+              600,
+              290,
+              90,
+              370,
+              670,
+              230,
+              160,
+              90,
+              70,
+              70,
+              70,
+              70,
+              70,
+              70,
+              70,
+              70,
+              80,
+              60,
+              50,
+              60,
+              40,
+              70,
+              70,
+              60,
+              80,
+              70,
+              80,
+              70,
+              70,
+              70,
+              70,
+              70,
+              70,
+              60,
+              70,
+              80,
+              110,
+              70,
+              50,
+              50,
+              40,
+              20,
+              40,
+              30,
+              70,
+              50,
+              60,
+              50,
+              50,
+              60,
+              40,
+              60,
+              50,
+              60,
+              50,
+              60,
+              50,
+              40,
+              50,
+              40,
+              50,
+              50,
+              60,
+              50,
+              60,
+              40,
+              20,
+              40,
+              40,
+              50,
+              50,
+              60,
+              50,
+              60,
+              50,
+              50,
+              50,
+              50,
+              50,
+              60,
+              50,
+              60,
+              60,
+              50,
+              50,
+              50,
+              50,
+              50,
+              60,
+              60,
+              80,
+              50,
+              50,
+              60,
+              60
+            ],
+            "Baseline Prediction": [
+              79.33052568517022,
+              81.71174849422493,
+              84.21028514453627,
+              106.8271257852995,
+              91.75655249590264,
+              93.42526925931043,
+              88.7647727082784,
+              88.91497516011802,
+              89.51686246654035,
+              91.07742396217768,
+              93.89072073782103,
+              98.63581758429638,
+              138.03926299546887,
+              133.975529667499,
+              155.1240473994035,
+              171.02983671871758,
+              188.45392795638463,
+              200.03648169031197,
+              203.8637377882937,
+              205.08290696137868,
+              223.53516162692267,
+              195.38247460363073,
+              187.20822232283845,
+              179.60532059588564,
+              178.27482243326097,
+              189.42197338119547,
+              192.23871701945268,
+              208.7156226529276,
+              220.4720768015991,
+              239.22145499715123,
+              218.62154273673696,
+              217.0956922934497,
+              215.01807212198503,
+              209.28480349227618,
+              197.8958505702978,
+              189.14326050000977,
+              187.68672333555088,
+              184.95724845610368,
+              206.29518057668065,
+              181.4681160058311,
+              178.95815887790647,
+              177.2769996050181,
+              166.61294328404642,
+              161.65585636601938,
+              153.67984354131983,
+              173.01465399221178,
+              143.72081659185676,
+              142.30058258948176,
+              142.763673648658,
+              155.74406984747813,
+              194.7062718853809,
+              172.6116146670546,
+              151.33928607892116,
+              143.027501078316,
+              149.96524282029733,
+              168.02855495360808,
+              179.66018214016572,
+              179.84442878138813,
+              196.14914740554474,
+              172.78144876661904,
+              172.7496894048989,
+              173.39668464016475,
+              169.81227395601633,
+              165.45838218409867,
+              160.1861967717435,
+              154.04924134905758,
+              155.56418393597986,
+              175.03282553406748,
+              155.48389669371244,
+              144.4935342960308,
+              136.97167582378898,
+              131.4597137026864,
+              129.2836138472137,
+              123.20878676946461,
+              121.04311532705304,
+              119.52295985675039,
+              119.60085665660705,
+              117.76905400574276,
+              117.12265829061812,
+              116.31092757795676,
+              115.43507422862334,
+              116.53199381093137,
+              115.38968771983116,
+              115.01391703173974,
+              114.05955925791577,
+              137.4387071336157,
+              121.88265902797627,
+              119.99642756779096,
+              116.45417223048383,
+              115.06454996109983,
+              108.0380955915713,
+              104.29153892173238,
+              102.87266811420218,
+              104.1306400434749,
+              106.19459938169666,
+              101.83855704017628,
+              99.23686939564655,
+              96.84954666475016,
+              93.9863961312839,
+              95.47653250909926,
+              93.57548723353455,
+              90.98852549155751,
+              89.60649035735028,
+              87.46260731511035,
+              85.60440418302676,
+              84.50656845355957,
+              85.2910334881334,
+              84.58330537652472,
+              84.51973296567505,
+              86.57594970476111,
+              86.04729073395166,
+              86.82334680112604,
+              88.56335406974853,
+              86.48726754469317,
+              85.98466425155951,
+              87.16357741706136,
+              83.21510541910868,
+              82.19346691100978,
+              83.52801111003109,
+              84.6139911013635,
+              86.08078935936274,
+              87.27214633919894,
+              89.97288879549822,
+              94.18216351904857,
+              95.88839604347484,
+              97.10460300316024,
+              92.49595937188323,
+              92.69790777619184,
+              94.36386306546322,
+              96.66760920194824,
+              97.39895543722272,
+              97.6450331627612,
+              97.80328732750871,
+              99.79969432844297,
+              98.98743721940215,
+              102.96492497684227,
+              100.72233909999557,
+              98.0559027785144,
+              92.44620930543275,
+              85.84970671675674,
+              88.55680918304085,
+              93.11687407903642,
+              95.67451270695713,
+              127.8641149403042
+            ],
+            "Baseline Lower 95": [
+              -108.45330536622208,
+              -106.08182486783525,
+              -103.59784436861094,
+              -80.99998911023425,
+              -96.09202554158128,
+              -94.44027329336737,
+              -99.0942362258956,
+              -98.94212671945328,
+              -98.34271686703639,
+              -96.79352764669792,
+              -93.99621239035568,
+              -89.2472337878707,
+              -49.84646573867474,
+              -53.91135752570466,
+              -32.79930330851977,
+              -16.930842381935804,
+              0.4314491030482941,
+              11.981582702868252,
+              15.805126101433075,
+              17.03361947162597,
+              35.496231169069375,
+              7.372515210890128,
+              -0.7914262987436871,
+              -8.367702737178604,
+              -9.822942953038506,
+              1.2756814957099607,
+              4.110570250153529,
+              20.571757342119554,
+              32.31756882781636,
+              51.054116500684245,
+              30.469792531945018,
+              28.94775937841024,
+              26.88827417746475,
+              21.19133712879534,
+              9.845070470498257,
+              1.1289462026421972,
+              -0.30869002560424974,
+              -3.020196214483576,
+              18.32702656133864,
+              -6.479993239649417,
+              -8.97944047718235,
+              -10.639291881934241,
+              -21.290445305639764,
+              -26.24554677694931,
+              -34.216892239185086,
+              -14.881103256257319,
+              -44.15544260009315,
+              -45.56469375957505,
+              -45.10467466336226,
+              -32.129474335097626,
+              6.770740626610092,
+              -15.355208122228845,
+              -36.56870163304146,
+              -44.885840627824706,
+              -37.917531203588965,
+              -19.830955755660824,
+              -8.208360298011513,
+              -8.022596339536364,
+              8.286291606595086,
+              -15.075162145174602,
+              -15.108445265999421,
+              -14.459249143853242,
+              -18.031689910319017,
+              -22.379535049415068,
+              -27.652153631768783,
+              -33.78221908519754,
+              -32.264983083572844,
+              -12.80101929046566,
+              -32.353271651893095,
+              -43.33702642256941,
+              -50.86579712758194,
+              -56.38256698970042,
+              -58.56428092049234,
+              -64.63912211779495,
+              -66.80679098922636,
+              -68.3295821626902,
+              -68.25127147747042,
+              -70.07669705709438,
+              -70.72584150383088,
+              -71.53893460598377,
+              -72.4094272722044,
+              -71.30528832939899,
+              -72.44647362121643,
+              -72.8200800912185,
+              -73.77323812382792,
+              -50.388570189223714,
+              -65.95339554848394,
+              -67.83104587450717,
+              -71.35470247296945,
+              -72.73752228602268,
+              -79.7534443101463,
+              -83.49742269959472,
+              -84.90785843324085,
+              -83.64614113366909,
+              -81.58033589669782,
+              -85.9324015445628,
+              -88.53642877139572,
+              -90.92087293792767,
+              -93.7848618198046,
+              -92.29728577733525,
+              -94.20279987706317,
+              -96.78969257233493,
+              -98.17324039629571,
+              -100.32021122572917,
+              -102.18214962093438,
+              -103.28142497011561,
+              -102.49704856591242,
+              -103.20609385492546,
+              -103.27226223560484,
+              -101.21272277645613,
+              -101.74354052861054,
+              -100.96559187470348,
+              -99.22461917479598,
+              -101.31047937052611,
+              -101.81277416506882,
+              -100.63336174379384,
+              -104.58060932241429,
+              -105.60200865822927,
+              -104.26397346770347,
+              -103.169734003982,
+              -101.70310733370275,
+              -100.51075761287055,
+              -97.81151794055413,
+              -93.61152826768168,
+              -91.9190525913757,
+              -90.7045851159294,
+              -95.3157720253738,
+              -95.1129053381789,
+              -93.4463769822502,
+              -91.14145919293185,
+              -90.41145262925852,
+              -90.16567853593193,
+              -90.00884118310137,
+              -88.01294629141356,
+              -88.82624348789656,
+              -84.85451808722769,
+              -87.09580188600594,
+              -89.75782845901125,
+              -95.36639670503004,
+              -101.96649513137223,
+              -99.26234602337249,
+              -94.70457573292904,
+              -92.16672517326143,
+              -60.00299587066752
+            ],
+            "Baseline Upper 95": [
+              267.1143567365625,
+              269.50532185628515,
+              272.0184146576835,
+              294.65424068083325,
+              279.60513053338656,
+              281.2908118119882,
+              276.6237816424524,
+              276.7720770396893,
+              277.37644180011705,
+              278.94837557105325,
+              281.77765386599776,
+              286.51886895646345,
+              325.9249917296125,
+              321.86241686070264,
+              343.0473981073268,
+              358.99051581937096,
+              376.47640680972097,
+              388.0913806777557,
+              391.9223494751543,
+              393.1321944511314,
+              411.574092084776,
+              383.3924339963713,
+              375.2078709444206,
+              367.5783439289499,
+              366.3725878195604,
+              377.568265266681,
+              380.36686378875186,
+              396.85948796373566,
+              408.62658477538184,
+              427.3887934936182,
+              406.7732929415289,
+              405.24362520848916,
+              403.14787006650533,
+              397.378269855757,
+              385.9466306700973,
+              377.1575747973774,
+              375.68213669670604,
+              372.93469312669095,
+              394.26333459202266,
+              369.41622525131163,
+              366.89575823299526,
+              365.1932910919704,
+              354.5163318737326,
+              349.55725950898807,
+              341.57657932182474,
+              360.9104112406809,
+              331.59707578380664,
+              330.1658589385386,
+              330.63202196067823,
+              343.6176140300539,
+              382.6418031441517,
+              360.57843745633807,
+              339.2472737908838,
+              330.94084278445666,
+              337.84801684418363,
+              355.888065662877,
+              367.5287245783429,
+              367.71145390231266,
+              384.01200320449436,
+              360.6380596784127,
+              360.6078240757972,
+              361.25261842418274,
+              357.65623782235167,
+              353.29629941761243,
+              348.0245471752558,
+              341.8807017833127,
+              343.3933509555326,
+              362.86667035860063,
+              343.321065039318,
+              332.324095014631,
+              324.8091487751599,
+              319.3019943950732,
+              317.13150861491977,
+              311.0566956567242,
+              308.8930216433324,
+              307.375501876191,
+              307.4529847906845,
+              305.6148050685799,
+              304.97115808506715,
+              304.16078976189726,
+              303.27957572945104,
+              304.3692759512617,
+              303.2258490608788,
+              302.84791415469795,
+              301.89235663965945,
+              325.26598445645516,
+              309.7187136044365,
+              307.8239010100891,
+              304.2630469339371,
+              302.86662220822234,
+              295.82963549328895,
+              292.0805005430595,
+              290.6531946616452,
+              291.90742122061886,
+              293.96953466009114,
+              289.6095156249154,
+              287.0101675626888,
+              284.619966267428,
+              281.75765408237237,
+              283.2503507955338,
+              281.35377434413226,
+              278.7667435554499,
+              277.3862211109963,
+              275.24542585594986,
+              273.3909579869879,
+              272.29456187723474,
+              273.07911554217924,
+              272.3727046079749,
+              272.31172816695494,
+              274.36462218597836,
+              273.83812199651385,
+              274.61228547695555,
+              276.35132731429303,
+              274.2850144599124,
+              273.7821026681878,
+              274.96051657791656,
+              271.0108201606316,
+              269.98894248024885,
+              271.31999568776564,
+              272.397716206709,
+              273.8646860524282,
+              275.05505029126846,
+              277.75729553155054,
+              281.97585530577885,
+              283.6958446783254,
+              284.9137911222499,
+              280.30769076914027,
+              280.5087208905626,
+              282.17410311317667,
+              284.4766775968283,
+              285.20936350370397,
+              285.4557448614543,
+              285.6154158381188,
+              287.61233494829946,
+              286.80111792670084,
+              290.7843680409122,
+              288.54048008599705,
+              285.86963401604004,
+              280.2588153158955,
+              273.66590856488574,
+              276.3759643894542,
+              280.9383238910019,
+              283.5157505871757,
+              315.73122575127593
+            ]
+          }
+        },
+        "selected_prediction_interval.png": {
+          "source": "prediction_interval_predictions.csv",
+          "holdout_positions": [
+            0,
+            144
+          ],
+          "row_indices": [
+            15788,
+            15931
+          ],
+          "columns": [
+            "Timestamp",
+            "Actual",
+            "Selected Prediction",
+            "Selected Lower 95",
+            "Selected Upper 95"
+          ],
+          "points": {
+            "Actual": [
+              370,
+              590,
+              320,
+              310,
+              260,
+              190,
+              150,
+              130,
+              290,
+              490,
+              840,
+              700,
+              430,
+              300,
+              310,
+              290,
+              300,
+              240,
+              160,
+              90,
+              70,
+              80,
+              80,
+              80,
+              570,
+              610,
+              330,
+              350,
+              260,
+              270,
+              210,
+              100,
+              100,
+              90,
+              100,
+              110,
+              100,
+              80,
+              90,
+              90,
+              80,
+              90,
+              90,
+              250,
+              390,
+              190,
+              100,
+              280,
+              560,
+              600,
+              290,
+              90,
+              370,
+              670,
+              230,
+              160,
+              90,
+              70,
+              70,
+              70,
+              70,
+              70,
+              70,
+              70,
+              70,
+              80,
+              60,
+              50,
+              60,
+              40,
+              70,
+              70,
+              60,
+              80,
+              70,
+              80,
+              70,
+              70,
+              70,
+              70,
+              70,
+              70,
+              60,
+              70,
+              80,
+              110,
+              70,
+              50,
+              50,
+              40,
+              20,
+              40,
+              30,
+              70,
+              50,
+              60,
+              50,
+              50,
+              60,
+              40,
+              60,
+              50,
+              60,
+              50,
+              60,
+              50,
+              40,
+              50,
+              40,
+              50,
+              50,
+              60,
+              50,
+              60,
+              40,
+              20,
+              40,
+              40,
+              50,
+              50,
+              60,
+              50,
+              60,
+              50,
+              50,
+              50,
+              50,
+              50,
+              60,
+              50,
+              60,
+              60,
+              50,
+              50,
+              50,
+              50,
+              50,
+              60,
+              60,
+              80,
+              50,
+              50,
+              60,
+              60
+            ],
+            "Selected Prediction": [
+              108.23988336821333,
+              109.78952388933196,
+              111.84766672591337,
+              117.43223621424369,
+              115.63909958215534,
+              120.34431946802978,
+              122.11990186713794,
+              120.95877339481436,
+              122.43799988926288,
+              123.03616297820199,
+              123.58050820563261,
+              129.71816187602028,
+              134.65222595730685,
+              143.07010346857078,
+              150.32099969215034,
+              156.7717192219391,
+              164.003041967927,
+              169.57458290902642,
+              175.55683388936285,
+              182.62294829814772,
+              185.34961539728238,
+              187.02839363436357,
+              182.8865276422504,
+              181.42505346169645,
+              159.67536763101316,
+              151.9522810542859,
+              166.33460861700763,
+              179.7384810777775,
+              188.1400323084324,
+              196.09807265802164,
+              201.81387321559487,
+              207.38595176533934,
+              208.6341311442772,
+              208.91590916845652,
+              204.9242060526974,
+              200.10202209556792,
+              199.45006941026497,
+              196.8789305180162,
+              194.43545921177213,
+              193.6345129756272,
+              192.48824800451553,
+              187.7894293313219,
+              182.68391237170323,
+              181.1773663836188,
+              177.01789392743677,
+              177.71884839973492,
+              172.9302426846424,
+              172.63501637768798,
+              168.45102559560274,
+              167.19697774785902,
+              165.41743106019553,
+              165.1783665550559,
+              161.90101309256278,
+              164.483662001386,
+              167.29891663126787,
+              172.97969323570663,
+              180.60948307314737,
+              183.66455792050058,
+              181.42459071982188,
+              179.3679995048886,
+              178.63685311365958,
+              179.21368880857747,
+              174.58140104984278,
+              172.36948230579824,
+              172.09005460886738,
+              168.61049524736947,
+              168.16979100374658,
+              166.6843156739053,
+              167.1261875659319,
+              163.21780864386784,
+              161.24818200480507,
+              158.07381735830035,
+              159.09908031312682,
+              155.20999164665793,
+              153.68051617675061,
+              152.34758599117364,
+              151.05024374744454,
+              147.5519548536293,
+              148.84087656245367,
+              147.74705695432763,
+              145.6742402370686,
+              143.54506832120742,
+              142.82591458724144,
+              142.12339937154204,
+              141.62054637504144,
+              140.99198012941565,
+              144.2777189986673,
+              144.24244305284208,
+              141.74954641568368,
+              142.7053101312476,
+              140.17003123559667,
+              139.64869099657764,
+              138.24833596748186,
+              138.1318787369963,
+              137.44351623079515,
+              136.6399790280208,
+              138.34719605131522,
+              136.6495323284708,
+              136.35373644817633,
+              137.75026583761672,
+              137.65865255858296,
+              138.17935695958334,
+              137.10403528303078,
+              137.99633325865113,
+              137.66356289331986,
+              136.9150829449538,
+              135.72136741719657,
+              135.11498586259285,
+              134.63431755711437,
+              133.96785246432586,
+              133.8208788863045,
+              133.04071725202783,
+              131.7391336364661,
+              133.41226818702023,
+              133.2560376264209,
+              132.2885564163824,
+              131.0379921959832,
+              130.22442151256985,
+              127.78268044765935,
+              126.7275609925628,
+              126.64092432635562,
+              126.0911298113603,
+              124.82011617320674,
+              125.48228096770995,
+              124.89109110697541,
+              124.73969666825168,
+              125.09927353523463,
+              125.18986102357486,
+              125.27770255579581,
+              125.25526796649063,
+              124.20183377994786,
+              124.1861627876483,
+              123.78314090074713,
+              123.76095620972504,
+              121.63015615229801,
+              123.28028790424648,
+              121.36500494873721,
+              119.71297881855642,
+              118.47341490918609,
+              113.66591623617055,
+              113.72997412119662,
+              113.31298460906687,
+              116.98747534604095,
+              119.99888586519069
+            ],
+            "Selected Lower 95": [
+              -92.40564463326209,
+              -90.85534139816887,
+              -88.79919304395389,
+              -83.2176522189852,
+              -85.01105108334893,
+              -80.3111965960059,
+              -78.5392658946343,
+              -79.69847518234656,
+              -78.22078696066929,
+              -77.62363611531134,
+              -77.08275159691559,
+              -70.94807294952133,
+              -66.01915958049676,
+              -57.60854639043464,
+              -50.36685367866781,
+              -43.92602313865535,
+              -36.71086752499875,
+              -31.15035526280664,
+              -25.179289220935573,
+              -18.127070600863902,
+              -15.408764503983207,
+              -13.731697081795346,
+              -17.869992037447958,
+              -19.32998371783222,
+              -41.099214618024575,
+              -48.877697216464014,
+              -34.46326163011216,
+              -21.05890634083906,
+              -12.659321502047248,
+              -4.710396711966467,
+              0.9960312628100496,
+              6.559469702390203,
+              7.802820264684158,
+              8.089237079875119,
+              4.112283518553028,
+              -0.6919300071444923,
+              -1.3399261918847003,
+              -3.9030228888440206,
+              -6.340203887426696,
+              -7.1372880332010595,
+              -8.280592044040873,
+              -12.968933961981776,
+              -18.064366974983386,
+              -19.56810331317331,
+              -23.718557514997087,
+              -23.01772892167881,
+              -27.797842226365134,
+              -28.094026163707326,
+              -32.2667506124543,
+              -33.51891865213881,
+              -35.29452674766358,
+              -35.53342966602321,
+              -38.80510978967203,
+              -36.225475200068246,
+              -33.414453761745676,
+              -27.742171596064566,
+              -20.12841743079997,
+              -17.07752713084608,
+              -19.316935312602368,
+              -21.368123314001338,
+              -22.10051196753659,
+              -21.523684603705533,
+              -26.14789510172315,
+              -28.354920117002877,
+              -28.634991670540387,
+              -32.10622901447647,
+              -32.548461474950386,
+              -34.03463032660642,
+              -33.59572374744744,
+              -37.4965638888454,
+              -39.461592094783214,
+              -42.62853633011477,
+              -41.60290987138097,
+              -45.485310444389256,
+              -47.01081619776596,
+              -48.33939212578099,
+              -49.63271454502046,
+              -53.12631680649881,
+              -51.83685588276501,
+              -52.928914771709714,
+              -54.99766700561949,
+              -57.12246965229656,
+              -57.839917470002035,
+              -58.54083011381226,
+              -59.04257477239719,
+              -59.669801081396315,
+              -56.38716080536247,
+              -56.42371341886613,
+              -58.91435498766063,
+              -57.957928575589534,
+              -60.49016223316835,
+              -61.01053707583091,
+              -62.40914317807881,
+              -62.525023877656935,
+              -63.21400659927889,
+              -64.01717918975504,
+              -62.31182011562484,
+              -64.00747161834192,
+              -64.30280025091037,
+              -62.90836306334401,
+              -63.0010769503198,
+              -62.47973246353078,
+              -63.554794635698215,
+              -62.662466583522445,
+              -62.99472141721668,
+              -63.74295623920764,
+              -64.93744804666179,
+              -65.54297220950639,
+              -66.02299429882723,
+              -66.68861229329585,
+              -66.8354067109425,
+              -67.61466360039836,
+              -68.9152589732191,
+              -67.2464897744432,
+              -67.4019080979505,
+              -68.36907594612074,
+              -69.6178377865005,
+              -70.43023737666533,
+              -72.86979405193989,
+              -73.92380276064243,
+              -74.011196164334,
+              -74.56064910542449,
+              -75.83259453909366,
+              -75.17041051745517,
+              -75.76145972952241,
+              -75.91293781186629,
+              -75.55370822049494,
+              -75.46321082932006,
+              -75.37561597869659,
+              -75.39759440773736,
+              -76.45184062448129,
+              -76.46828261022918,
+              -76.8709610928012,
+              -76.89312748428196,
+              -79.0235220060751,
+              -77.37341476205194,
+              -79.28670182334781,
+              -80.9386562295202,
+              -82.17728647687736,
+              -86.98219218026304,
+              -86.91598962987138,
+              -87.33486612487438,
+              -83.66452625589667,
+              -80.6620680033009
+            ],
+            "Selected Upper 95": [
+              308.88541136968877,
+              310.4343891768328,
+              312.49452649578063,
+              318.0821246474726,
+              316.2892502476596,
+              320.99983553206545,
+              322.7790696289102,
+              321.6160219719753,
+              323.09678673919507,
+              323.6959620717153,
+              324.24376800818084,
+              330.38439670156185,
+              335.32361149511047,
+              343.7487533275762,
+              351.00885306296846,
+              357.46946158253354,
+              364.7169514608528,
+              370.29952108085945,
+              376.29295699966127,
+              383.37296719715937,
+              386.10799529854796,
+              387.7884843505225,
+              383.64304732194876,
+              382.1800906412251,
+              360.4499498800509,
+              352.7822593250358,
+              367.1324788641274,
+              380.5358684963941,
+              388.93938611891207,
+              396.90654202800977,
+              402.6317151683797,
+              408.21243382828845,
+              409.46544202387025,
+              409.74258125703795,
+              405.7361285868418,
+              400.8959741982803,
+              400.2400650124147,
+              397.66088392487643,
+              395.21112231097095,
+              394.40631398445544,
+              393.2570880530719,
+              388.5477926246256,
+              383.43219171838984,
+              381.9228360804109,
+              377.75434536987063,
+              378.4554257211487,
+              373.6583275956499,
+              373.3640589190833,
+              369.1688018036598,
+              367.9128741478569,
+              366.12938886805466,
+              365.890162776135,
+              362.6071359747976,
+              365.1927992028402,
+              368.0122870242814,
+              373.70155806747783,
+              381.3473835770947,
+              384.40664297184725,
+              382.1661167522461,
+              380.1041223237785,
+              379.37421819485576,
+              379.9510622208605,
+              375.31069720140874,
+              373.0938847285994,
+              372.81510088827514,
+              369.3272195092154,
+              368.88804348244355,
+              367.403261674417,
+              367.84809887931124,
+              363.9321811765811,
+              361.95795610439336,
+              358.7761710467155,
+              359.8010704976346,
+              355.9052937377051,
+              354.3718485512672,
+              353.0345641081283,
+              351.73320203990954,
+              348.23022651375743,
+              349.51860900767235,
+              348.42302868036495,
+              346.3461474797567,
+              344.2126062947114,
+              343.4917466444849,
+              342.78762885689633,
+              342.2836675224801,
+              341.6537613402276,
+              344.94259880269703,
+              344.90859952455025,
+              342.41344781902797,
+              343.36854883808473,
+              340.8302247043617,
+              340.30791906898617,
+              338.90581511304254,
+              338.7887813516495,
+              338.1010390608692,
+              337.29713724579665,
+              339.0062122182553,
+              337.3065362752835,
+              337.01027314726304,
+              338.4088947385775,
+              338.3183820674857,
+              338.8384463826975,
+              337.7628652017598,
+              338.65513310082474,
+              338.3218472038564,
+              337.5731221291153,
+              336.3801828810549,
+              335.7729439346921,
+              335.29162941305594,
+              334.62431722194754,
+              334.4771644835515,
+              333.696098104454,
+              332.3935262461513,
+              334.07102614848367,
+              333.91398335079225,
+              332.9461887788855,
+              331.6938221784669,
+              330.879080401805,
+              328.4351549472586,
+              327.378924745768,
+              327.29304481704526,
+              326.7429087281451,
+              325.4728268855072,
+              326.1349724528751,
+              325.54364194347323,
+              325.39233114836964,
+              325.7522552909642,
+              325.8429328764698,
+              325.9310210902882,
+              325.9081303407186,
+              324.855508184377,
+              324.84060818552575,
+              324.4372428942954,
+              324.415039903732,
+              322.2838343106711,
+              323.9339905705449,
+              322.01671172082223,
+              320.364613866633,
+              319.12411629524956,
+              314.31402465260413,
+              314.3759378722646,
+              313.9608353430081,
+              317.63947694797855,
+              320.65983973368225
+            ]
+          }
+        },
+        "model_performance_comparison.png": {
+          "source": "prediction_comparison.csv",
+          "metrics": {
+            "baseline": {
+              "MAE": 52.01410537697308,
+              "MSE": 7522.6026240807805,
+              "RMSE": 86.73293851865496,
+              "R2": 0.09235159638436585
+            },
+            "selected": {
+              "MAE": 53.60586130503112,
+              "MSE": 8179.71435314757,
+              "RMSE": 90.44177327511646,
+              "R2": 0.013067013416318884
+            }
+          }
+        },
+        "interval_coverage_comparison.png": {
+          "source": "prediction_comparison.csv",
+          "empirical_coverage": {
+            "baseline": 0.960983025082341,
+            "selected": 0.9581960983025082
+          },
+          "nominal_coverage": 0.95
+        },
+        "interval_width_comparison.png": {
+          "source": "prediction_comparison.csv",
+          "widths": {
+            "baseline": {
+              "Average Width": 376.1045334652823,
+              "Median Width": 375.91519707811426,
+              "Width Standard Deviation": 0.7814290623391105
+            },
+            "selected": {
+              "Average Width": 401.44276077932034,
+              "Median Width": 401.4369314352467,
+              "Width Standard Deviation": 0.09218862342120163
+            }
+          }
+        }
+      }
+    }
+  }
+}

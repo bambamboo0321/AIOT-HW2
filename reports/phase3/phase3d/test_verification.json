@@ -1,0 +1,59 @@
+{
+  "phase": "3D",
+  "status": "PASS",
+  "record_note": "依本次實際執行命令與輸出整理；不覆寫任何歷史驗收紀錄。",
+  "audit_before_search": {
+    "status": "PASS",
+    "existing_tests": 132,
+    "failures": 0,
+    "errors": 0,
+    "records_checked": 1974,
+    "major_problem_found": false
+  },
+  "tests": {
+    "command": ".venv/bin/python -B -m unittest discover -s tests -v",
+    "run": 149,
+    "existing": 132,
+    "phase3d_new": 17,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "elapsed_seconds": 9.77
+  },
+  "acceptance": {
+    "random_combinations": 1000,
+    "unique": 1000,
+    "features_per_combination": 6,
+    "training_only": true,
+    "holdout_used_for_selection": false,
+    "independent_best_and_mi_six_column_pipeline_match": true,
+    "csv_json_and_plot_data_consistent": true,
+    "plots_visually_reviewed": 3,
+    "utf8_lf_and_whitespace": "PASS",
+    "private_path_email_secret_pattern_scan": "PASS",
+    "git_diff_check": "PASS"
+  },
+  "integrity": {
+    "checked_starting_files": 125,
+    "changed_starting_files": [],
+    "dataset_sha256": "2820bf712ad0275cb18b85a05250926100d8e65ebb9f4d2d016ca91ea152a25d",
+    "existing_models_unchanged": true,
+    "phase1_to_3c_unchanged": true,
+    "phase4b1_unchanged": true,
+    "phase4b2_including_readme_and_dashboard_unchanged": true,
+    "staging_empty": true
+  },
+  "limitations": [
+    "固定方法六欄組合由完整 Training 選出，回顧性固定組合 CV 有資料重用偏差。",
+    "1,000 組最低 CV RMSE 有搜尋選取偏差，不是無偏泛化誤差。",
+    "B fold-local 方法比較與 A 固定組合分數分開。",
+    "Joblib 既有測試出現 macOS physical-core detection warning，回退 logical cores；測試無失敗。"
+  ],
+  "git_operations": {
+    "add": false,
+    "commit": false,
+    "push": false
+  },
+  "exhaustive_search_executed": false,
+  "phase4b3_started": false
+}

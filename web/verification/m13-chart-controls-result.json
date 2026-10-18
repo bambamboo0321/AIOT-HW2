@@ -1,0 +1,70 @@
+{
+  "scope": "M13 k explanation and clickable Holdout series legend",
+  "status": "passed",
+  "modified_files": [
+    "web/components/custom-training-panel.tsx",
+    "web/components/custom-comparison-panel.tsx",
+    "web/app/globals.css",
+    "web/README.md"
+  ],
+  "behavior": {
+    "k": "Feature count, not column index; shows example, candidate count, default comparison range and view/apply/confirm distinction.",
+    "legend": "Click/Enter/Space toggles individual scatter or time-line series; hidden names remain available and marked, all-hidden state offers recovery.",
+    "scores_and_exports": "unchanged; no training/API request caused by toggling"
+  },
+  "checks": {
+    "web_tests": {
+      "passed": 120,
+      "failed": 0
+    },
+    "lint": "passed",
+    "typecheck": "passed",
+    "production_build": "passed",
+    "browser": {
+      "selected_random_scatter": "72 points initially, 48 after hiding all-feature LR, 72 on restore; 0 with all hidden, 24 with selected LR restored",
+      "unselected_original_site": "2 buttons, 48 points; Space hides to 24, click restores to 48",
+      "chronological": "4 curves; hide actual gives 3, restore gives 4",
+      "keyboard": "Enter and Space tested",
+      "score_table_unchanged": true,
+      "scatter_and_time_axis_unchanged": true,
+      "toggle_network_requests": 0,
+      "before_after_metrics_csv_byte_identical": true,
+      "csv_sha256": "eaefcdbee2024934e29c86f5bfafbddf917c494ab13d61a02ae5d80b7280d333",
+      "desktop_light_mobile_dark": "visually inspected; no mobile horizontal overflow",
+      "k_guides": "main guide and selected-k explanation verified",
+      "original_site": "http://127.0.0.1:3000/custom-dataset verified",
+      "test_models_deleted": true,
+      "task_space_finished": true
+    }
+  },
+  "integrity": {
+    "baseline_files": 268,
+    "untouched_existing_files": 264,
+    "unexpected_changes": [],
+    "backend_or_research_files_changed": false,
+    "existing_uncommitted_work_preserved": true,
+    "committed": false,
+    "pushed": false
+  },
+  "screenshots": [
+    {
+      "path": "web/artifacts/legend-desktop-light.png",
+      "sha256": "177d4c411aa72a02fbc28825720ef4dfba37e8c3a527bb383e8f3a0b272a801c",
+      "visually_inspected": true
+    },
+    {
+      "path": "web/artifacts/legend-mobile-dark.png",
+      "sha256": "921c6b4ad52363a6693847daad8ec1696d8a60a9c98ce0d879e37f16cbff0df5",
+      "visually_inspected": true
+    }
+  ],
+  "manual_acceptance": [
+    "Refresh Custom Dataset and review the k example and view/apply explanation.",
+    "On a completed Holdout plot click model names below the plot to hide/reveal each series.",
+    "Check grey all-feature LR can be hidden to reveal selected LR points, and scores remain unchanged."
+  ],
+  "environment": {
+    "original_dev_server": "preserved",
+    "isolated_test_server": "stopped"
+  }
+}

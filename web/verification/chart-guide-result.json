@@ -1,0 +1,65 @@
+{
+  "milestone": "M9 follow-up: Holdout chart explanations",
+  "status": "passed",
+  "modified_files": [
+    "web/components/custom-training-panel.tsx",
+    "web/app/globals.css",
+    "web/README.md"
+  ],
+  "checks": {
+    "web_tests": {
+      "passed": 97,
+      "failed": 0
+    },
+    "lint": "passed",
+    "typecheck": "passed",
+    "production_build": "passed",
+    "python": "Not rerun for this display-only change; M9 record remains 182/182, Python files unchanged.",
+    "browser": {
+      "random_axes": "X actual / Y predicted, with dynamic target and original units",
+      "chronological_axes": "X Holdout position sorted by time / Y actual and predicted; no future-forecast claim",
+      "reading_guide": "Equality line, overestimate, underestimate, mean comparator, distinction from input features",
+      "desktop_light_and_mobile_dark": "passed; four screenshots inspected",
+      "horizontal_overflow": false,
+      "test_models_deleted": true,
+      "task_space_finished": true
+    }
+  },
+  "integrity": {
+    "baseline_files": 244,
+    "untouched_files_verified": 241,
+    "unexpected_changes": [],
+    "existing_uncommitted_work_preserved": true,
+    "research_retrained": false,
+    "committed": false,
+    "pushed": false
+  },
+  "screenshots": [
+    {
+      "path": "web/artifacts/chart-guide-chronological-desktop-light.png",
+      "sha256": "2fee71c5483184b8c0ada3d50bc3241bef9a3ad7f9bd847246e38a321b78c134",
+      "visually_inspected": true
+    },
+    {
+      "path": "web/artifacts/chart-guide-chronological-mobile-dark.png",
+      "sha256": "45a6c271acf2e6cb977993ac15bd394174ec31c3e37d08023a506c028f44a854",
+      "visually_inspected": true
+    },
+    {
+      "path": "web/artifacts/chart-guide-random-desktop-light.png",
+      "sha256": "b5b4bfd70c107597487902481cb881d028f5e74fb3d9960509a203a45a5d9548",
+      "visually_inspected": true
+    },
+    {
+      "path": "web/artifacts/chart-guide-random-mobile-dark.png",
+      "sha256": "9708fa59e2d499d7c6e278162b1806effadd05935800f2ba0ab16fc6cafb95a1",
+      "visually_inspected": true
+    }
+  ],
+  "manual_acceptance": [
+    "Open /custom-dataset and complete a numeric CSV experiment.",
+    "For random splitting inspect X actual and Y predicted plus selected target name.",
+    "For chronological splitting inspect X sorted Holdout position and Y actual/predicted.",
+    "Read over/underestimation and mean-baseline guidance; check mobile wrapping and theme."
+  ]
+}

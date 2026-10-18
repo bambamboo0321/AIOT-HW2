@@ -1,0 +1,28 @@
+{
+  "checked_files": 125,
+  "changed_files": [],
+  "staging_empty": true,
+  "dataset_sha256": "2820bf712ad0275cb18b85a05250926100d8e65ebb9f4d2d016ca91ea152a25d",
+  "outputs": {
+    "experiment_config.json": "7e72024f021043a55236989ec97b410d3f2c7c539d636fd607d3156494246776",
+    "test_verification.json": "1258e4122966871d64c2fdbca804f56cf1af76d70aee1889a2b5f84d765ac84a",
+    "comparison_summary.json": "b9d3dd44c4c97f19ce6667510bf1298a5931b2b6ffb0ca23eba966737dab57f3",
+    "method_comparison.png": "871ea300286fe8d47868d491145533d9789ca076cfdac691fcdea903d7bab376",
+    "audit_details.json": "ec8a6ab2658c66f369815c07befae5bac0bd360f9fc2b00a57b2f2a29d5cbe5b",
+    "integrity_baseline.json": "599264b99aee57b6a2fb96871eefb113519d4f23bbe37e2a78e1c17728cb69b5",
+    "top10_combinations.csv": "c28a7312fe3a910140f26310b1e28f07e855beb6552eff8efd6f3563b8bccc63",
+    "feature_correlation.png": "f7799ebc104f39ec7756ef3d4661ff5bb2dffe83b8bbb5945af4c19c6bc9f942",
+    "random_search_results.csv": "16aee38a7f7cf8f3a5f0e0666c6a210c652cace743b122f04de50ae8f2c1c975",
+    "plot_data.json": "c40ff96b146c81e2a1c5464dab043f496e3c21d0be948dcaa4a296c7507b1288",
+    "phase3d_summary.md": "a950b985d3f8e61b6b25d81ea4b102651cfe06ea2c6d5da98dcf0cdb5a20ada9",
+    "rmse_distribution.png": "e1f5e0b49c31f761a42cb1092cb96683b2310d530769d70ce0497fd7bcd92fe7",
+    "verification_report.md": "b68a8950ef964069594de727c6a35be6239069567a120c860c5372f519cd1c48",
+    "method_cv_results.json": "1faf1e7e4f4854923312ea8525853b6924e0cf4bf1e1edc55f423ba65164e747",
+    "worst10_combinations.csv": "0be87df2d70e542009edc2bee476fbf78802b5c2cfd30e12dc46adfa02fc1c5e",
+    "training_correlation.json": "aa9627d2e54974d58f812f23ae1e87fb651b21fafd7952504fa9693a2984ccb9"
+  },
+  "code": {
+    "src/phase3d_search.py": "4141ec211677a8b935aad6b7fc09c77c991481a042eb322336d309451dadf531",
+    "tests/test_phase3d.py": "5e73e5ba2e0cf73a0204c762477421f280f5b58f978f3114856333ec0f491d7c"
+  }
+}

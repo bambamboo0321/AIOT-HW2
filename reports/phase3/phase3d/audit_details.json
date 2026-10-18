@@ -1,0 +1,150 @@
+{
+  "status": "PASS",
+  "record_audit": {
+    "records_checked": 1974,
+    "levels": {
+      "inner_k_cv": 1260,
+      "outer_k_curve": 420,
+      "outer_evaluation": 30,
+      "final_selection_cv": 258,
+      "final_refit_training": 6
+    },
+    "status_counts": {
+      "ok": 1974
+    },
+    "range_and_gap_checks": "PASS",
+    "all_predeclared_k_executed": true,
+    "common_outer_folds": {
+      "1": {
+        "train_range": [
+          0,
+          2627
+        ],
+        "validation_range": [
+          2633,
+          5264
+        ]
+      },
+      "2": {
+        "train_range": [
+          0,
+          5258
+        ],
+        "validation_range": [
+          5264,
+          7895
+        ]
+      },
+      "3": {
+        "train_range": [
+          0,
+          7889
+        ],
+        "validation_range": [
+          7895,
+          10526
+        ]
+      },
+      "4": {
+        "train_range": [
+          0,
+          10520
+        ],
+        "validation_range": [
+          10526,
+          13157
+        ]
+      },
+      "5": {
+        "train_range": [
+          0,
+          13151
+        ],
+        "validation_range": [
+          13157,
+          15788
+        ]
+      }
+    },
+    "inner_choices_match_outer_evaluation": true,
+    "winner_uses_final_selection_cv_only": true,
+    "holdout_used_for_selection": false,
+    "limitation": "Range checks, loader contract and fold-local integration tests; not a claim of unbiased best-of-six assessment."
+  },
+  "comparison_cv": "Phase 3B final_selection_cv",
+  "folds": [
+    {
+      "fold": 1,
+      "train_range": [
+        0,
+        3941
+      ],
+      "validation_range": [
+        3947,
+        7894
+      ]
+    },
+    {
+      "fold": 2,
+      "train_range": [
+        0,
+        7888
+      ],
+      "validation_range": [
+        7894,
+        11841
+      ]
+    },
+    {
+      "fold": 3,
+      "train_range": [
+        0,
+        11835
+      ],
+      "validation_range": [
+        11841,
+        15788
+      ]
+    }
+  ],
+  "mi_score_defaults": {
+    "discrete_features": "auto",
+    "n_neighbors": 3,
+    "copy": true
+  },
+  "train_metrics_reproduced_without_fit": {
+    "rmse": 102.32677150116135,
+    "mae": 60.09601269710763,
+    "r2": 0.053787486889167124
+  },
+  "training_rows": 15788,
+  "candidates": [
+    "lights",
+    "T1",
+    "RH_1",
+    "T2",
+    "RH_2",
+    "T3",
+    "RH_3",
+    "T4",
+    "RH_4",
+    "T5",
+    "RH_5",
+    "T6",
+    "RH_6",
+    "T7",
+    "RH_7",
+    "T8",
+    "RH_8",
+    "T9",
+    "RH_9",
+    "T_out",
+    "Press_mm_hg",
+    "RH_out",
+    "Windspeed",
+    "Visibility",
+    "Tdewpoint"
+  ],
+  "prior_tests": 132,
+  "major_problem_found": false
+}

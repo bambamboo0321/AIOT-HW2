@@ -1,0 +1,11 @@
+{
+  "name": "aep-python-compute-gateway",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=24.0.0" },
+  "scripts": {
+    "start": "node --disable-warning=ExperimentalWarning --experimental-strip-types server.ts",
+    "test": "node --disable-warning=ExperimentalWarning --experimental-strip-types --test tests/*.test.ts"
+  }
+}

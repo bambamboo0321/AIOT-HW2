@@ -1,0 +1,238 @@
+{
+  "milestone": "M6-B",
+  "status": "passed",
+  "scope": "Local Next.js website API invoking the existing M6-A Python pretraining validator; no fitting, transformation, inference or model training",
+  "changed_files": [
+    "web/README.md",
+    "web/app/api/custom-dataset/validate/route.ts",
+    "web/app/custom-dataset/page.tsx",
+    "web/app/globals.css",
+    "web/components/custom-dataset-wizard.tsx",
+    "web/components/shell.tsx",
+    "web/lib/custom-validation-result.ts",
+    "web/lib/custom-validation-service.ts",
+    "web/tests/custom-validation-api.test.ts"
+  ],
+  "checks": {
+    "web_tests": {
+      "passed": 83,
+      "failed": 0
+    },
+    "focused_python_validator_tests": {
+      "passed": 10,
+      "failed": 0
+    },
+    "lint": "passed",
+    "typecheck": "passed",
+    "production_build": "passed",
+    "browser": {
+      "noAutomaticRequest": true,
+      "confirmationRequired": true,
+      "valid": {
+        "status": 200,
+        "body": {
+          "schema_version": 1,
+          "scope": "pretraining_validation_only",
+          "training_started": false,
+          "status": "valid",
+          "dataset": {
+            "sha256": "be511019f8b9b014f1d39dc15fc418d1e965adac83dbe0f2998236e242b654bc",
+            "bytes": 1053,
+            "rows": 40,
+            "columns": 3
+          },
+          "config_sha256": "ca286d4ac76429fcf6f0bc8521b0bbf2b2dcc1718670bf03dda9592221882018",
+          "review_checked": true,
+          "split": {
+            "strategy": "chronological",
+            "training_rows": 32,
+            "holdout_rows": 8,
+            "target_missing_dropped": 0,
+            "cv_folds": [
+              {
+                "fold": 1,
+                "training_rows": 6,
+                "validation_rows": 5
+              },
+              {
+                "fold": 2,
+                "training_rows": 11,
+                "validation_rows": 5
+              },
+              {
+                "fold": 3,
+                "training_rows": 16,
+                "validation_rows": 5
+              },
+              {
+                "fold": 4,
+                "training_rows": 21,
+                "validation_rows": 5
+              },
+              {
+                "fold": 5,
+                "training_rows": 26,
+                "validation_rows": 5
+              }
+            ]
+          },
+          "warnings": [
+            "原始候選輸入少於 13 欄；此為作業資料規範，與選取後 k 分開。"
+          ],
+          "limits": [
+            "未 fit 或 transform，未估計補值、縮放、IQR 門檻或選特徵。",
+            "驗證通過不代表模型效果、PI 適用性或後續訓練成功。"
+          ]
+        }
+      },
+      "displayedFoldCounts": [
+        [
+          6,
+          5
+        ],
+        [
+          11,
+          5
+        ],
+        [
+          16,
+          5
+        ],
+        [
+          21,
+          5
+        ],
+        [
+          26,
+          5
+        ]
+      ],
+      "resultClearedBySettingChange": true,
+      "desktopDarkMobileLight": true,
+      "invalidConstantTraining": true,
+      "cancelAndRetry": true,
+      "energy": {
+        "status": 200,
+        "body": {
+          "schema_version": 1,
+          "scope": "pretraining_validation_only",
+          "training_started": false,
+          "status": "valid",
+          "dataset": {
+            "sha256": "2820bf712ad0275cb18b85a05250926100d8e65ebb9f4d2d016ca91ea152a25d",
+            "bytes": 11979363,
+            "rows": 19735,
+            "columns": 29
+          },
+          "config_sha256": "c099a6e1686b044435a609f75972f73d3dd6461402b6e2cfb178fa03c0486c69",
+          "review_checked": true,
+          "split": {
+            "strategy": "chronological",
+            "training_rows": 15788,
+            "holdout_rows": 3947,
+            "target_missing_dropped": 0,
+            "cv_folds": [
+              {
+                "fold": 1,
+                "training_rows": 2627,
+                "validation_rows": 2631
+              },
+              {
+                "fold": 2,
+                "training_rows": 5258,
+                "validation_rows": 2631
+              },
+              {
+                "fold": 3,
+                "training_rows": 7889,
+                "validation_rows": 2631
+              },
+              {
+                "fold": 4,
+                "training_rows": 10520,
+                "validation_rows": 2631
+              },
+              {
+                "fold": 5,
+                "training_rows": 13151,
+                "validation_rows": 2631
+              }
+            ]
+          },
+          "warnings": [],
+          "limits": [
+            "未 fit 或 transform，未估計補值、縮放、IQR 門檻或選特徵。",
+            "驗證通過不代表模型效果、PI 適用性或後續訓練成功。"
+          ]
+        }
+      },
+      "routes": {
+        "/": 200,
+        "/feature-selection": 200,
+        "/model-evaluation": 200,
+        "/prediction-explorer": 200,
+        "/custom-dataset": 200
+      },
+      "lassoActualK": [
+        2,
+        16,
+        3,
+        14,
+        16
+      ],
+      "lassoDots": 5,
+      "predictionInitialRows": 144,
+      "productionBuildUploadAndPythonValidation": true
+    },
+    "integration_cases": [
+      "actual Python output and temporary-file cleanup",
+      "invalid config and stale digest rejected",
+      "loopback Host and matching Origin required, including Next internal bind address",
+      "unknown and duplicate form fields rejected",
+      "declared and streamed request size bounded",
+      "missing interpreter produces safe 503",
+      "timeout kills Python and cleans temporary files",
+      "abort releases single execution slot",
+      "concurrent request returns 429",
+      "malformed interpreter output produces safe 500",
+      "runtime report schema and count validation"
+    ]
+  },
+  "integrity": {
+    "baseline_files": 217,
+    "unchanged_existing_files": 212,
+    "non_web_baseline_files": 147,
+    "changed_existing_files": [
+      "web/README.md",
+      "web/app/custom-dataset/page.tsx",
+      "web/app/globals.css",
+      "web/components/custom-dataset-wizard.tsx",
+      "web/components/shell.tsx"
+    ],
+    "web_data_snapshots_unchanged": true
+  },
+  "screenshots": [
+    "artifacts/m6b-desktop-dark.png",
+    "artifacts/m6b-mobile-light.png",
+    "artifacts/m6b-mobile-invalid.png",
+    "artifacts/m6b-desktop-light-energy.png"
+  ],
+  "manual_acceptance": [
+    "Open http://127.0.0.1:3000/custom-dataset and choose a numeric regression CSV.",
+    "Select target, input columns and split settings; confirm the settings.",
+    "Click 傳送至本機 Python 驗證 and verify the result and actual fold row counts.",
+    "Change settings or cancel to verify old results are cleared; confirm again before retrying.",
+    "Check desktop/mobile and both themes."
+  ],
+  "limitations": [
+    "Numeric regression validation only; no model scores or training workflow yet.",
+    "Single local service instance; no multi-user deployment or durable job queue.",
+    "Abnormal OS/process shutdown recovery for orphaned temporary files is not implemented."
+  ],
+  "training_started": false,
+  "model_inference_performed": false,
+  "committed": false,
+  "pushed": false,
+  "original_development_server_preserved": true,
+  "owned_production_test_server_stopped": true
+}

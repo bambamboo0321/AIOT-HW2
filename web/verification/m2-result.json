@@ -1,0 +1,60 @@
+{
+  "milestone": "M2",
+  "implementation": "Feature Selection",
+  "status": "functional_checks_passed_manual_visual_acceptance_pending",
+  "branch": "main",
+  "head": "4619bd493a337f32d34593f12686035f2c70a630",
+  "checks": {
+    "lint": "pass",
+    "typecheck": "pass",
+    "build": "pass in isolated working copy using original node_modules",
+    "web_tests": {
+      "passed": 24,
+      "failed": 0
+    },
+    "browser": "six methods x three metrics, actual k, auto single points, feature mappings, two CV tables, themes/persistence, mobile navigation, five HTTP 200 routes",
+    "visual": "Page.captureScreenshot timed out twice; manual visual acceptance required",
+    "original_project": {
+      "lint": "pass",
+      "typecheck": "pass",
+      "test": "pass"
+    }
+  },
+  "integrity": {
+    "starting_files": 178,
+    "protected_non_web_files": 144,
+    "protected_models": 3,
+    "existing_overview_snapshot": "byte-identical",
+    "no_training": true,
+    "no_commit_or_push": true,
+    "all_non_web_files_unchanged": true,
+    "unchanged_existing_files_verified": 170,
+    "existing_uncommitted_changes_preserved": true
+  },
+  "changed_files": [
+    "web/README.md",
+    "web/app/feature-selection/page.tsx",
+    "web/app/globals.css",
+    "web/components/feature-selection-explorer.tsx",
+    "web/components/shell.tsx",
+    "web/data/feature-selection.json",
+    "web/lib/feature-selection-data.ts",
+    "web/lib/feature-selection-types.ts",
+    "web/lib/load-feature-selection.ts",
+    "web/lib/research-data.ts",
+    "web/lib/write-snapshot.ts",
+    "web/scripts/sync-data.ts",
+    "web/tests/feature-selection.test.ts",
+    "web/tests/research-data.test.ts",
+    "web/verification/m2-browser-checks.json",
+    "web/verification/m2-result.json"
+  ],
+  "manual_acceptance": [
+    "Open http://127.0.0.1:3000/feature-selection",
+    "Check desktop 1440px/mobile 390px in light and dark",
+    "Switch all methods, three metrics and measured k; SFS has only 9 k values",
+    "RFECV/LassoCV show one CV summary point plus final k, not invented curves",
+    "Compare final refit features, CV levels, two-model Holdout, separated Phase 3D A/B tables",
+    "Check layout visually; screenshots unavailable"
+  ]
+}

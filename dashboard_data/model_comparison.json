@@ -1,0 +1,237 @@
+{
+  "schema_version": 1,
+  "artifact_type": "model_comparison",
+  "sources": [
+    {
+      "path": "reports/phase2/baseline_metrics.json",
+      "sha256": "866010d204a7c4f305217206a3a80082e06841ee1138e59f1f621b333062c691"
+    },
+    {
+      "path": "reports/phase2/models/chronological_baseline.joblib",
+      "sha256": "9f9330522d7b52d6d279bf4b05f9a5f9123e1693e760dbd540910d74cd6a33ed"
+    },
+    {
+      "path": "reports/phase3/phase3c/prediction_metrics.json",
+      "sha256": "b36c1b9cd2546e9a0fa9ef484e10ef9a1893e199bfffb9891810437a34cc3176"
+    },
+    {
+      "path": "reports/phase3/results/models/final_linear_regression.joblib",
+      "sha256": "8be97c965b56fed6d4a665703b44faf57508fd9a759b837d48cf3a2ad418eb12"
+    }
+  ],
+  "units": {
+    "mae": "Wh",
+    "mse": "Wh^2",
+    "rmse": "Wh",
+    "r2": "dimensionless",
+    "coverage": "fraction [0,1]",
+    "interval_width": "Wh",
+    "runtime_seconds": "s",
+    "feature_count": "count; selection k counts transformed numeric columns"
+  },
+  "missing_fields": [],
+  "data": {
+    "evaluation": "fixed chronological holdout, descriptive",
+    "plan": {
+      "alpha": 0.05,
+      "nominal_coverage": 0.95,
+      "training_rows": 15788,
+      "holdout_rows": 3947,
+      "split": "reuse Phase 2 chronological manifest, unchanged row order",
+      "plot_window": {
+        "holdout_start_position": 0,
+        "consecutive_samples": 144
+      },
+      "rank_policy": "eps(float64)*max(n,p)*s_max, SVD of training design",
+      "width_std_ddof": 0,
+      "intervals_clipped": false,
+      "method_or_parameter_selection_using_holdout": false,
+      "interval_estimation_inputs": "training design, training y, saved training predictions only",
+      "holdout_role": "single fixed descriptive evaluation; already viewed in Phase 2",
+      "no_fit_guard": true,
+      "thread_limit": 1
+    },
+    "models": {
+      "baseline": {
+        "model_name": "Baseline LinearRegression",
+        "feature_count": 25,
+        "selected_features": [
+          "lights",
+          "T1",
+          "RH_1",
+          "T2",
+          "RH_2",
+          "T3",
+          "RH_3",
+          "T4",
+          "RH_4",
+          "T5",
+          "RH_5",
+          "T6",
+          "RH_6",
+          "T7",
+          "RH_7",
+          "T8",
+          "RH_8",
+          "T9",
+          "RH_9",
+          "T_out",
+          "Press_mm_hg",
+          "RH_out",
+          "Windspeed",
+          "Visibility",
+          "Tdewpoint"
+        ],
+        "model_file": "reports/phase2/models/chronological_baseline.joblib",
+        "model_sha256": "9f9330522d7b52d6d279bf4b05f9a5f9123e1693e760dbd540910d74cd6a33ed",
+        "training_metrics": {
+          "mae": 54.28918787278201,
+          "mse": 9152.687408646965,
+          "rmse": 95.66967862727964,
+          "r2": 0.1728985669935369
+        },
+        "holdout_metrics": {
+          "mae": 52.01410537697308,
+          "mse": 7522.6026240807805,
+          "rmse": 86.73293851865496,
+          "r2": 0.09235159638436585
+        },
+        "training_period": {
+          "rows": 15788,
+          "start": "2016-01-11T17:00:00",
+          "end": "2016-04-30T08:10:00"
+        },
+        "holdout_period": {
+          "rows": 3947,
+          "start": "2016-04-30T08:20:00",
+          "end": "2016-05-27T18:00:00"
+        }
+      },
+      "selected": {
+        "model_name": "MI + LinearRegression",
+        "feature_count": 6,
+        "selected_features": [
+          "T3",
+          "T4",
+          "T5",
+          "RH_6",
+          "T8",
+          "T9"
+        ],
+        "model_file": "reports/phase3/results/models/final_linear_regression.joblib",
+        "model_sha256": "8be97c965b56fed6d4a665703b44faf57508fd9a759b837d48cf3a2ad418eb12",
+        "training_metrics": {
+          "mae": 60.09601269710763,
+          "mse": 10470.768165850885,
+          "rmse": 102.32677150116135,
+          "r2": 0.053787486889167124
+        },
+        "holdout_metrics": {
+          "mae": 53.60586130503112,
+          "mse": 8179.71435314757,
+          "rmse": 90.44177327511646,
+          "r2": 0.013067013416318884
+        },
+        "training_period": {
+          "rows": 15788,
+          "start": "2016-01-11T17:00:00",
+          "end": "2016-04-30T08:10:00"
+        },
+        "holdout_period": {
+          "rows": 3947,
+          "start": "2016-04-30T08:20:00",
+          "end": "2016-05-27T18:00:00"
+        }
+      }
+    },
+    "transformations": {
+      "baseline": {
+        "space": "raw numeric features, no scaler or imputer",
+        "matches_saved_input_order": true
+      },
+      "selected": {
+        "space": "saved Phase 2 median imputer + StandardScaler, then saved MI support",
+        "training_scaler_and_imputer_statistics_match": true,
+        "matches_saved_input_order": true,
+        "selection_or_preprocessing_refit": false
+      }
+    },
+    "random_baseline_comparison_only": {
+      "split": {
+        "method": "random_train_test_split",
+        "role": "comparison_only",
+        "shuffle": true,
+        "random_state": 42,
+        "requested_train_fraction": 0.8,
+        "requested_test_fraction": 0.2,
+        "train": {
+          "count": 15788,
+          "date_range": {
+            "start": "2016-01-11T17:10:00",
+            "end": "2016-05-27T18:00:00"
+          },
+          "row_index_sha256": "9d5009f0bb9adcaa861601efe673d74d62ac4b5c22272cffc380c08d1b990f6e",
+          "target_statistics": {
+            "mean_wh": 97.94970863947302,
+            "std_wh": 103.13632811489292,
+            "std_ddof": 1
+          }
+        },
+        "test": {
+          "count": 3947,
+          "date_range": {
+            "start": "2016-01-11T17:00:00",
+            "end": "2016-05-27T17:50:00"
+          },
+          "row_index_sha256": "ba6043c005e6eb4287b7c4a44f8b7138ed109be12409f509f5a140dc86488580",
+          "target_statistics": {
+            "mean_wh": 96.67595642259944,
+            "std_wh": 100.04812393521446,
+            "std_ddof": 1
+          }
+        },
+        "feature_names": [
+          "lights",
+          "T1",
+          "RH_1",
+          "T2",
+          "RH_2",
+          "T3",
+          "RH_3",
+          "T4",
+          "RH_4",
+          "T5",
+          "RH_5",
+          "T6",
+          "RH_6",
+          "T7",
+          "RH_7",
+          "T8",
+          "RH_8",
+          "T9",
+          "RH_9",
+          "T_out",
+          "Press_mm_hg",
+          "RH_out",
+          "Windspeed",
+          "Visibility",
+          "Tdewpoint"
+        ],
+        "row_index_manifest": "reports/phase2/split_indices.json"
+      },
+      "training_metrics": {
+        "mae": 53.217383065933596,
+        "mse": 8897.953795713318,
+        "rmse": 94.32896583612755,
+        "r2": 0.16344533755537327
+      },
+      "test_metrics": {
+        "mae": 52.547077972163486,
+        "mse": 8312.271343525232,
+        "rmse": 91.17165866389199,
+        "r2": 0.1693618789522977
+      }
+    },
+    "cv_results": "feature_selection.json；不可與 Holdout 混成同一排名。"
+  }
+}

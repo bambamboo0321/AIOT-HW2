@@ -1,0 +1,121 @@
+{
+  "milestone": "M10 result downloads",
+  "status": "passed",
+  "modified_files": [
+    "web/README.md",
+    "web/app/globals.css",
+    "web/components/custom-prediction-form.tsx",
+    "web/components/custom-training-panel.tsx",
+    "web/components/shell.tsx"
+  ],
+  "added_files": [
+    "web/components/custom-result-download.tsx",
+    "web/lib/custom-result-export.ts",
+    "web/lib/browser-download.ts",
+    "web/tests/custom-result-export.test.ts"
+  ],
+  "scope": "Browser-generated evaluation JSON, full-scope metrics CSV, bounded Holdout-preview CSV, and single-prediction JSON bound to the submitted input snapshot. No additional API, refit, persistence or model export.",
+  "checks": {
+    "web_tests": {
+      "passed": 103,
+      "failed": 0,
+      "new_export_tests": 6
+    },
+    "lint": "passed",
+    "typecheck": "passed",
+    "production_build": "passed",
+    "python": "Unchanged and not rerun for browser-only export; prior M9 record 182/182 remains.",
+    "downloaded_files": {
+      "all_metrics_match_actual_worker_output": true,
+      "preprocessing_sha256_matches": true,
+      "preview_rows": 144,
+      "holdout_rows": 180,
+      "undefined_r2_preserved": true,
+      "single_inputs_and_imputation_match": true,
+      "model_handle_excluded": true,
+      "artifacts": [
+        {
+          "filename": "custom-evaluation-metrics.csv",
+          "sha256": "8cad649a07151aa2fcb6fb326fda4d82582276240e0debc6ffc506a2487a135f"
+        },
+        {
+          "filename": "custom-evaluation-report.json",
+          "sha256": "6c1e93dcf866876fe598f1d206175e95299cad8bf5b5c41f2b7fd6ce9a8520fe"
+        },
+        {
+          "filename": "custom-holdout-preview.csv",
+          "sha256": "27cd47552483ddabe9b4f07ae3947a9f80e19f36f0b460230ae34ce3a028f76f"
+        },
+        {
+          "filename": "custom-single-prediction.json",
+          "sha256": "44ab3647564b95ddba78e357fcf300b3e4c68046156141893f51ec6253354474"
+        }
+      ]
+    },
+    "browser": {
+      "production_url": "http://127.0.0.1:3011/custom-dataset",
+      "original_dev_url": "http://127.0.0.1:3000/custom-dataset",
+      "actual_downloads": 4,
+      "preview_button": "144 / 180 rows",
+      "evaluation_downloads_add_no_api_call": true,
+      "single_download_adds_no_api_call": true,
+      "mobile_download_byte_identical": true,
+      "changed_input_clears_single_download": true,
+      "changed_method_clears_evaluation_downloads": true,
+      "deleted_model_keeps_evaluation_downloads": true,
+      "original_dev_report_download": "passed; 36/36 preview",
+      "mobile_overflow": false,
+      "desktop_light_mobile_dark": "inspected",
+      "test_models_deleted": true,
+      "task_space_finished": true
+    }
+  },
+  "integrity": {
+    "baseline_files": 245,
+    "untouched_files_verified": 240,
+    "unexpected_changes": [],
+    "existing_uncommitted_work_preserved": true,
+    "research_retrained": false,
+    "committed": false,
+    "pushed": false
+  },
+  "screenshots": [
+    {
+      "path": "web/artifacts/m10-download-desktop-light.png",
+      "sha256": "2e6ffe065a181e6b435935baf73ec22bd0dddabb8482250c628d02ccc7018313",
+      "visually_inspected": true
+    },
+    {
+      "path": "web/artifacts/m10-download-mobile-dark.png",
+      "sha256": "a1c0ee1f0200d5593238a1b0220c7fcf707be179d657769d0067ec822bf98533",
+      "visually_inspected": true
+    },
+    {
+      "path": "web/artifacts/m10-original-dev-download.png",
+      "sha256": "cb15f1674e9edeb362451febe7d1c4709321ef9184539fbf3fadf50f962237d6",
+      "visually_inspected": true
+    },
+    {
+      "path": "web/artifacts/m10-single-desktop-light.png",
+      "sha256": "e8ca6bd7dc6d77bb8bd94bf26bfacf3bb98337ff02f9cfb9bbe0a066ceabc65d",
+      "visually_inspected": true
+    }
+  ],
+  "manual_acceptance": [
+    "Refresh /custom-dataset, upload a numeric regression CSV, confirm and validate, then explicitly train.",
+    "At the bottom of results download evaluation JSON, metrics CSV and preview CSV; inspect target/features, full metrics and explicit preview counts.",
+    "Predict a single row, download its JSON, and compare submitted values and Training imputation with the form and result.",
+    "Editing input or changing method must clear stale result downloads; verify mobile button wrapping and theme."
+  ],
+  "limits": [
+    "CSV preview exports only the already retained maximum 144 rows, not a full Holdout row export.",
+    "JSON exports exclude temporary model IDs and cannot restore models; no import service.",
+    "CSV formula-like text is prefixed with apostrophe; numeric negatives and precision preserved.",
+    "Single-row output has no actual answer, error scores or PI."
+  ],
+  "environment": {
+    "original_dev_server": "preserved and verified",
+    "isolated_production_server": "stopped",
+    "staging_directory": "<historical-temporary-directory>/aep-m10-20261018 (original absolute prefix redacted)"
+  }
+}

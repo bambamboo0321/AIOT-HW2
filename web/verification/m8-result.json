@@ -1,0 +1,1384 @@
+{
+  "milestone": "M8 first increment",
+  "status": "passed",
+  "scope": "User-specified none/F-test/Mutual Information with fixed integer k, fold-local numeric preprocessing and selection, independent LR plus all-candidate LR and Training-mean comparators",
+  "changed_files": [
+    "src/custom_dataset_training.py",
+    "docs/custom_dataset_training.md",
+    "web/README.md",
+    "web/app/globals.css",
+    "web/app/custom-dataset/page.tsx",
+    "web/components/shell.tsx",
+    "web/components/custom-training-panel.tsx",
+    "web/lib/custom-training-result.ts",
+    "tests/test_custom_dataset_selection.py",
+    "web/tests/custom-selection.test.ts"
+  ],
+  "checks": {
+    "web_tests": {
+      "passed": 91,
+      "failed": 0
+    },
+    "full_python_tests_in_original_git_repository": {
+      "passed": 175,
+      "failed": 0
+    },
+    "new_python_selection_tests": {
+      "passed": 8,
+      "failed": 0
+    },
+    "lint": "passed",
+    "typecheck": "passed",
+    "production_build": "passed",
+    "browser": {
+      "noAutoTraining": true,
+      "invalidKBlocked": true,
+      "fTest": {
+        "status": 200,
+        "body": {
+          "schema_version": 1,
+          "scope": "custom_baseline_training",
+          "status": "completed",
+          "training_started": true,
+          "validation": {
+            "schema_version": 1,
+            "scope": "pretraining_validation_only",
+            "training_started": false,
+            "status": "valid",
+            "dataset": {
+              "sha256": "21716461f101ed01db1aa3987e0351ccb3be04ee8ad9e6ac4f1004e1c3d260e9",
+              "bytes": 21247,
+              "rows": 180,
+              "columns": 6
+            },
+            "config_sha256": "d6bf0e0e6a6cf7979ba1d4c5ed35e1b3b3cf79c5771af517555bd5a208503c47",
+            "review_checked": true,
+            "split": {
+              "strategy": "random",
+              "training_rows": 144,
+              "holdout_rows": 36,
+              "target_missing_dropped": 0,
+              "cv_folds": [
+                {
+                  "fold": 1,
+                  "training_rows": 115,
+                  "validation_rows": 29
+                },
+                {
+                  "fold": 2,
+                  "training_rows": 115,
+                  "validation_rows": 29
+                },
+                {
+                  "fold": 3,
+                  "training_rows": 115,
+                  "validation_rows": 29
+                },
+                {
+                  "fold": 4,
+                  "training_rows": 115,
+                  "validation_rows": 29
+                },
+                {
+                  "fold": 5,
+                  "training_rows": 116,
+                  "validation_rows": 28
+                }
+              ]
+            },
+            "warnings": [
+              "原始候選輸入少於 13 欄；此為作業資料規範，與選取後 k 分開。",
+              "未選欄位含 ISO 日期；請確認隨機切分適合此資料。"
+            ],
+            "limits": [
+              "未 fit 或 transform，未估計補值、縮放、IQR 門檻或選特徵。",
+              "驗證通過不代表模型效果、PI 適用性或後續訓練成功。"
+            ]
+          },
+          "method": "linear_regression",
+          "target": "target",
+          "features": [
+            "signal",
+            "weak",
+            "noise_a",
+            "noise_b"
+          ],
+          "selection": {
+            "method": "f_test",
+            "requested_k": 2,
+            "ranking_performed": true,
+            "final_features": [
+              "signal",
+              "noise_b"
+            ],
+            "fold_features": [
+              {
+                "fold": 1,
+                "features": [
+                  "signal",
+                  "weak"
+                ]
+              },
+              {
+                "fold": 2,
+                "features": [
+                  "signal",
+                  "noise_b"
+                ]
+              },
+              {
+                "fold": 3,
+                "features": [
+                  "signal",
+                  "weak"
+                ]
+              },
+              {
+                "fold": 4,
+                "features": [
+                  "signal",
+                  "weak"
+                ]
+              },
+              {
+                "fold": 5,
+                "features": [
+                  "signal",
+                  "weak"
+                ]
+              }
+            ]
+          },
+          "cv": {
+            "folds": [
+              {
+                "fold": 1,
+                "training_rows": 115,
+                "validation_rows": 29,
+                "linear_regression": {
+                  "rmse": 0.32952626122404827,
+                  "mae": 0.2459613257697528,
+                  "r2": 0.9987779582619333
+                },
+                "all_features": {
+                  "rmse": 0.329575800542741,
+                  "mae": 0.24531324965254378,
+                  "r2": 0.9987775908031125
+                },
+                "training_mean": {
+                  "rmse": 9.540573469808157,
+                  "mae": 8.185256073128144,
+                  "r2": -0.02436548746480427
+                }
+              },
+              {
+                "fold": 2,
+                "training_rows": 115,
+                "validation_rows": 29,
+                "linear_regression": {
+                  "rmse": 2.1194607725338734,
+                  "mae": 1.740912213125084,
+                  "r2": 0.9514028749627993
+                },
+                "all_features": {
+                  "rmse": 0.2838131497048557,
+                  "mae": 0.2427244552944383,
+                  "r2": 0.999128585386941
+                },
+                "training_mean": {
+                  "rmse": 9.915882732034026,
+                  "mae": 8.168571471192681,
+                  "r2": -0.06370836785739153
+                }
+              },
+              {
+                "fold": 3,
+                "training_rows": 115,
+                "validation_rows": 29,
+                "linear_regression": {
+                  "rmse": 0.28689658125810574,
+                  "mae": 0.2431946645575692,
+                  "r2": 0.9991791813118948
+                },
+                "all_features": {
+                  "rmse": 0.2870542795491791,
+                  "mae": 0.24644824189088094,
+                  "r2": 0.9991782787059529
+                },
+                "training_mean": {
+                  "rmse": 10.015250009867026,
+                  "mae": 8.07054061659903,
+                  "r2": -0.0002765316963786457
+                }
+              },
+              {
+                "fold": 4,
+                "training_rows": 115,
+                "validation_rows": 29,
+                "linear_regression": {
+                  "rmse": 0.3667928475602026,
+                  "mae": 0.24551629857546614,
+                  "r2": 0.9988309938189988
+                },
+                "all_features": {
+                  "rmse": 0.3628568620854963,
+                  "mae": 0.241347928770211,
+                  "r2": 0.9988559479810912
+                },
+                "training_mean": {
+                  "rmse": 10.744957257264064,
+                  "mae": 8.825450789156132,
+                  "r2": -0.003192958629786302
+                }
+              },
+              {
+                "fold": 5,
+                "training_rows": 116,
+                "validation_rows": 28,
+                "linear_regression": {
+                  "rmse": 0.28386730266761395,
+                  "mae": 0.229454844217538,
+                  "r2": 0.9991901418968292
+                },
+                "all_features": {
+                  "rmse": 0.28803956298207994,
+                  "mae": 0.23028164093975662,
+                  "r2": 0.99916616047673
+                },
+                "training_mean": {
+                  "rmse": 10.131527346341018,
+                  "mae": 8.019695920593147,
+                  "r2": -0.03163966502294424
+                }
+              }
+            ],
+            "linear_regression": {
+              "rmse": {
+                "mean": 0.6773087530487688,
+                "std": 0.7217192078982644,
+                "defined_folds": 5
+              },
+              "mae": {
+                "mean": 0.5410078692490821,
+                "std": 0.5999826927346644,
+                "defined_folds": 5
+              },
+              "r2": {
+                "mean": 0.989476230050491,
+                "std": 0.019037444508427034,
+                "defined_folds": 5
+              }
+            },
+            "training_mean": {
+              "rmse": {
+                "mean": 10.069638163062859,
+                "std": 0.391508468216763,
+                "defined_folds": 5
+              },
+              "mae": {
+                "mean": 8.253902974133828,
+                "std": 0.2922791355391539,
+                "defined_folds": 5
+              },
+              "r2": {
+                "mean": -0.024636602134261,
+                "std": 0.022930164186920402,
+                "defined_folds": 5
+              }
+            },
+            "all_features": {
+              "rmse": {
+                "mean": 0.3102679309728704,
+                "std": 0.031212878466392004,
+                "defined_folds": 5
+              },
+              "mae": {
+                "mean": 0.24122310330956612,
+                "std": 0.005762232349861995,
+                "defined_folds": 5
+              },
+              "r2": {
+                "mean": 0.9990213126707654,
+                "std": 0.0001696304737328846,
+                "defined_folds": 5
+              }
+            }
+          },
+          "holdout": {
+            "rows": 36,
+            "linear_regression": {
+              "rmse": 2.2102269074772565,
+              "mae": 1.895958973837541,
+              "r2": 0.9481225603005147
+            },
+            "all_features": {
+              "rmse": 0.3539941118373517,
+              "mae": 0.28606107422219407,
+              "r2": 0.9986692487362591
+            },
+            "training_mean": {
+              "rmse": 9.835477861226272,
+              "mae": 7.88169901192437,
+              "r2": -0.0272963406482869
+            }
+          },
+          "preview": [
+            {
+              "position": 1,
+              "source_row": 20,
+              "timestamp": null,
+              "actual": 56.15669147688941,
+              "prediction": 53.963166155530175,
+              "baseline_prediction": 56.21896294546551,
+              "training_mean": 49.64798333114214
+            },
+            {
+              "position": 2,
+              "source_row": 43,
+              "timestamp": null,
+              "actual": 52.76532455509826,
+              "prediction": 48.32264860549705,
+              "baseline_prediction": 51.82015566061525,
+              "training_mean": 49.64798333114214
+            },
+            {
+              "position": 3,
+              "source_row": 154,
+              "timestamp": null,
+              "actual": 40.71712286581447,
+              "prediction": 43.273216919022616,
+              "baseline_prediction": 40.117183595872376,
+              "training_mean": 49.64798333114214
+            },
+            {
+              "position": 4,
+              "source_row": 79,
+              "timestamp": null,
+              "actual": 59.988334043130585,
+              "prediction": 61.31674658343452,
+              "baseline_prediction": 59.722987923836456,
+              "training_mean": 49.64798333114214
+            },
+            {
+              "position": 5,
+              "source_row": 146,
+              "timestamp": null,
+              "actual": 37.395895028885285,
+              "prediction": 38.2674023940682,
+              "baseline_prediction": 37.23144317378137,
+              "training_mean": 49.64798333114214
+            },
+            {
+              "position": 6,
+              "source_row": 16,
+              "timestamp": null,
+              "actual": 43.81352689299848,
+              "prediction": 41.69095899495103,
+              "baseline_prediction": 43.606154921018266,
+              "training_mean": 49.64798333114214
+            },
+            {
+              "position": 7,
+              "source_row": 25,
+              "timestamp": null,
+              "actual": 48.76074421272282,
+              "prediction": 50.757002002247695,
+              "baseline_prediction": 48.55660559344201,
+              "training_mean": 49.64798333114214
+            },
+            {
+              "position": 8,
+              "source_row": 69,
+              "timestamp": null,
+              "actual": 50.35748178030865,
+              "prediction": 51.95470207788867,
+              "baseline_prediction": 50.660236516797404,
+              "training_mean": 49.64798333114214
+            },
+            {
+              "position": 9,
+              "source_row": 114,
+              "timestamp": null,
+              "actual": 38.519127566086,
+              "prediction": 34.85221255755339,
+              "baseline_prediction": 39.00465792149508,
+              "training_mean": 49.64798333114214
+            },
+            {
+              "position": 10,
+              "source_row": 119,
+              "timestamp": null,
+              "actual": 52.401594123494185,
+              "prediction": 53.880597566466264,
+              "baseline_prediction": 52.69885223067672,
+              "training_mean": 49.64798333114214
+            },
+            {
+              "position": 11,
+              "source_row": 94,
+              "timestamp": null,
+              "actual": 48.89394365290115,
+              "prediction": 48.57817065558473,
+              "baseline_prediction": 49.027054752188825,
+              "training_mean": 49.64798333114214
+            },
+            {
+              "position": 12,
+              "source_row": 160,
+              "timestamp": null,
+              "actual": 63.38494184061505,
+              "prediction": 66.97760152896582,
+              "baseline_prediction": 63.50160872247314,
+              "training_mean": 49.64798333114214
+            },
+            {
+              "position": 13,
+              "source_row": 70,
+              "timestamp": null,
+              "actual": 68.96808225550495,
+              "prediction": 67.32162587238045,
+              "baseline_prediction": 69.24559149683569,
+              "training_mean": 49.64798333114214
+            },
+            {
+              "position": 14,
+              "source_row": 143,
+              "timestamp": null,
+              "actual": 41.172418930237775,
+              "prediction": 44.11094414430903,
+              "baseline_prediction": 41.33264311217197,
+              "training_mean": 49.64798333114214
+            },
+            {
+              "position": 15,
+              "source_row": 46,
+              "timestamp": null,
+              "actual": 51.38071340204804,
+              "prediction": 54.73168384036604,
+              "baseline_prediction": 50.71867114213897,
+              "training_mean": 49.64798333114214
+            },
+            {
+              "position": 16,
+              "source_row": 17,
+              "timestamp": null,
+              "actual": 42.00773324259294,
+              "prediction": 42.63469403307318,
+              "baseline_prediction": 42.225508371164835,
+              "training_mean": 49.64798333114214
+            },
+            {
+              "position": 17,
+              "source_row": 52,
+              "timestamp": null,
+              "actual": 51.61213698112755,
+              "prediction": 49.59216538190619,
+              "baseline_prediction": 50.94457011735205,
+              "training_mean": 49.64798333114214
+            },
+            {
+              "position": 18,
+              "source_row": 126,
+              "timestamp": null,
+              "actual": 46.814267243821945,
+              "prediction": 45.98623678164113,
+              "baseline_prediction": 46.840031048808584,
+              "training_mean": 49.64798333114214
+            },
+            {
+              "position": 19,
+              "source_row": 97,
+              "timestamp": null,
+              "actual": 49.80359529912595,
+              "prediction": 49.322688550812735,
+              "baseline_prediction": 49.325397138127414,
+              "training_mean": 49.64798333114214
+            },
+            {
+              "position": 20,
+              "source_row": 57,
+              "timestamp": null,
+              "actual": 46.66493709624825,
+              "prediction": 48.515503901869714,
+              "baseline_prediction": 47.3518783038066,
+              "training_mean": 49.64798333114214
+            },
+            {
+              "position": 21,
+              "source_row": 98,
+              "timestamp": null,
+              "actual": 27.26925316318336,
+              "prediction": 30.237863971372292,
+              "baseline_prediction": 27.44904822932483,
+              "training_mean": 49.64798333114214
+            },
+            {
+              "position": 22,
+              "source_row": 121,
+              "timestamp": null,
+              "actual": 65.18162259984638,
+              "prediction": 63.53636691760245,
+              "baseline_prediction": 65.35027643601634,
+              "training_mean": 49.64798333114214
+            },
+            {
+              "position": 23,
+              "source_row": 144,
+              "timestamp": null,
+              "actual": 52.42520713591023,
+              "prediction": 50.05680000140877,
+              "baseline_prediction": 52.25106786075145,
+              "training_mean": 49.64798333114214
+            },
+            {
+              "position": 24,
+              "source_row": 31,
+              "timestamp": null,
+              "actual": 64.5478166451466,
+              "prediction": 64.34886671940164,
+              "baseline_prediction": 64.39564805557842,
+              "training_mean": 49.64798333114214
+            },
+            {
+              "position": 25,
+              "source_row": 10,
+              "timestamp": null,
+              "actual": 54.58353588615971,
+              "prediction": 53.32886123494087,
+              "baseline_prediction": 54.840632205528536,
+              "training_mean": 49.64798333114214
+            },
+            {
+              "position": 26,
+              "source_row": 173,
+              "timestamp": null,
+              "actual": 56.49856439491254,
+              "prediction": 57.15698971397558,
+              "baseline_prediction": 56.07136019480494,
+              "training_mean": 49.64798333114214
+            },
+            {
+              "position": 27,
+              "source_row": 61,
+              "timestamp": null,
+              "actual": 59.00798348330757,
+              "prediction": 60.04397542363883,
+              "baseline_prediction": 58.976289291793336,
+              "training_mean": 49.64798333114214
+            },
+            {
+              "position": 28,
+              "source_row": 19,
+              "timestamp": null,
+              "actual": 62.90513712631583,
+              "prediction": 60.562725122657845,
+              "baseline_prediction": 62.68896862423828,
+              "training_mean": 49.64798333114214
+            },
+            {
+              "position": 29,
+              "source_row": 149,
+              "timestamp": null,
+              "actual": 36.86580439030806,
+              "prediction": 40.6970023829883,
+              "baseline_prediction": 37.01006018399089,
+              "training_mean": 49.64798333114214
+            },
+            {
+              "position": 30,
+              "source_row": 174,
+              "timestamp": null,
+              "actual": 54.85305230034531,
+              "prediction": 55.07175814961143,
+              "baseline_prediction": 54.559745979527214,
+              "training_mean": 49.64798333114214
+            },
+            {
+              "position": 31,
+              "source_row": 110,
+              "timestamp": null,
+              "actual": 65.74080895663812,
+              "prediction": 63.719993860784655,
+              "baseline_prediction": 65.88015404974043,
+              "training_mean": 49.64798333114214
+            },
+            {
+              "position": 32,
+              "source_row": 56,
+              "timestamp": null,
+              "actual": 56.09130521441523,
+              "prediction": 53.58376952830228,
+              "baseline_prediction": 55.71490077351882,
+              "training_mean": 49.64798333114214
+            },
+            {
+              "position": 33,
+              "source_row": 141,
+              "timestamp": null,
+              "actual": 33.51683116433158,
+              "prediction": 36.90230988654132,
+              "baseline_prediction": 33.41784887065583,
+              "training_mean": 49.64798333114214
+            },
+            {
+              "position": 34,
+              "source_row": 127,
+              "timestamp": null,
+              "actual": 61.78112054887919,
+              "prediction": 61.952914465605815,
+              "baseline_prediction": 61.71356625493392,
+              "training_mean": 49.64798333114214
+            },
+            {
+              "position": 35,
+              "source_row": 67,
+              "timestamp": null,
+              "actual": 51.88444952515604,
+              "prediction": 52.79018910483623,
+              "baseline_prediction": 51.50879077173989,
+              "training_mean": 49.64798333114214
+            },
+            {
+              "position": 36,
+              "source_row": 30,
+              "timestamp": null,
+              "actual": 50.31310361645552,
+              "prediction": 53.14863157381676,
+              "baseline_prediction": 50.07736214205127,
+              "training_mean": 49.64798333114214
+            }
+          ],
+          "warnings": [
+            "原始候選輸入少於 13 欄；此為作業資料規範，與選取後 k 分開。",
+            "未選欄位含 ISO 日期；請確認隨機切分適合此資料。"
+          ],
+          "limits": [
+            "方法與 k 由使用者事先指定；同時比較全部候選欄位 LR 與 Training 平均值，沒有自動挑選方法或 k。",
+            "CV 為 Training 區內的逐 fold 評估；平均／標準差為各 fold 等權計算，標準差 ddof=0。",
+            "Holdout 未用於 fit、前處理學習或參數選擇；查看後再修改設定會造成測試集重用。",
+            "前處理與 Selector 只在當前 Training fit；目標維持原單位，未裁切預測或極端測試資料。",
+            "這是同列目標估計；時間切分不代表已完成多步未來預報。",
+            "沒有 Prediction Interval、模型保存或新資料推論服務。預覽僅前 144 筆；指標使用全部 Holdout。"
+          ]
+        }
+      },
+      "displayedFoldFeatures": [
+        [
+          "signal",
+          "weak"
+        ],
+        [
+          "signal",
+          "noise_b"
+        ],
+        [
+          "signal",
+          "weak"
+        ],
+        [
+          "signal",
+          "weak"
+        ],
+        [
+          "signal",
+          "weak"
+        ]
+      ],
+      "threeComparators": true,
+      "metricSwitches": true,
+      "mobileOverflow": false,
+      "mutualInformation": {
+        "status": 200,
+        "body": {
+          "schema_version": 1,
+          "scope": "custom_baseline_training",
+          "status": "completed",
+          "training_started": true,
+          "validation": {
+            "schema_version": 1,
+            "scope": "pretraining_validation_only",
+            "training_started": false,
+            "status": "valid",
+            "dataset": {
+              "sha256": "21716461f101ed01db1aa3987e0351ccb3be04ee8ad9e6ac4f1004e1c3d260e9",
+              "bytes": 21247,
+              "rows": 180,
+              "columns": 6
+            },
+            "config_sha256": "d6bf0e0e6a6cf7979ba1d4c5ed35e1b3b3cf79c5771af517555bd5a208503c47",
+            "review_checked": true,
+            "split": {
+              "strategy": "random",
+              "training_rows": 144,
+              "holdout_rows": 36,
+              "target_missing_dropped": 0,
+              "cv_folds": [
+                {
+                  "fold": 1,
+                  "training_rows": 115,
+                  "validation_rows": 29
+                },
+                {
+                  "fold": 2,
+                  "training_rows": 115,
+                  "validation_rows": 29
+                },
+                {
+                  "fold": 3,
+                  "training_rows": 115,
+                  "validation_rows": 29
+                },
+                {
+                  "fold": 4,
+                  "training_rows": 115,
+                  "validation_rows": 29
+                },
+                {
+                  "fold": 5,
+                  "training_rows": 116,
+                  "validation_rows": 28
+                }
+              ]
+            },
+            "warnings": [
+              "原始候選輸入少於 13 欄；此為作業資料規範，與選取後 k 分開。",
+              "未選欄位含 ISO 日期；請確認隨機切分適合此資料。"
+            ],
+            "limits": [
+              "未 fit 或 transform，未估計補值、縮放、IQR 門檻或選特徵。",
+              "驗證通過不代表模型效果、PI 適用性或後續訓練成功。"
+            ]
+          },
+          "method": "linear_regression",
+          "target": "target",
+          "features": [
+            "signal",
+            "weak",
+            "noise_a",
+            "noise_b"
+          ],
+          "selection": {
+            "method": "mutual_information",
+            "requested_k": 1,
+            "ranking_performed": true,
+            "final_features": [
+              "signal"
+            ],
+            "fold_features": [
+              {
+                "fold": 1,
+                "features": [
+                  "signal"
+                ]
+              },
+              {
+                "fold": 2,
+                "features": [
+                  "signal"
+                ]
+              },
+              {
+                "fold": 3,
+                "features": [
+                  "signal"
+                ]
+              },
+              {
+                "fold": 4,
+                "features": [
+                  "signal"
+                ]
+              },
+              {
+                "fold": 5,
+                "features": [
+                  "signal"
+                ]
+              }
+            ]
+          },
+          "cv": {
+            "folds": [
+              {
+                "fold": 1,
+                "training_rows": 115,
+                "validation_rows": 29,
+                "linear_regression": {
+                  "rmse": 1.7642112290272454,
+                  "mae": 1.320524204869195,
+                  "r2": 0.9649726613381698
+                },
+                "all_features": {
+                  "rmse": 0.329575800542741,
+                  "mae": 0.24531324965254378,
+                  "r2": 0.9987775908031125
+                },
+                "training_mean": {
+                  "rmse": 9.540573469808157,
+                  "mae": 8.185256073128144,
+                  "r2": -0.02436548746480427
+                }
+              },
+              {
+                "fold": 2,
+                "training_rows": 115,
+                "validation_rows": 29,
+                "linear_regression": {
+                  "rmse": 2.131579076180244,
+                  "mae": 1.7546620443599616,
+                  "r2": 0.9508455649856841
+                },
+                "all_features": {
+                  "rmse": 0.2838131497048557,
+                  "mae": 0.2427244552944383,
+                  "r2": 0.999128585386941
+                },
+                "training_mean": {
+                  "rmse": 9.915882732034026,
+                  "mae": 8.168571471192681,
+                  "r2": -0.06370836785739153
+                }
+              },
+              {
+                "fold": 3,
+                "training_rows": 115,
+                "validation_rows": 29,
+                "linear_regression": {
+                  "rmse": 1.8572577603312892,
+                  "mae": 1.31838362481483,
+                  "r2": 0.9656013932317803
+                },
+                "all_features": {
+                  "rmse": 0.2870542795491791,
+                  "mae": 0.24644824189088094,
+                  "r2": 0.9991782787059529
+                },
+                "training_mean": {
+                  "rmse": 10.015250009867026,
+                  "mae": 8.07054061659903,
+                  "r2": -0.0002765316963786457
+                }
+              },
+              {
+                "fold": 4,
+                "training_rows": 115,
+                "validation_rows": 29,
+                "linear_regression": {
+                  "rmse": 2.047281736387315,
+                  "mae": 1.6059420044604067,
+                  "r2": 0.9635808072649451
+                },
+                "all_features": {
+                  "rmse": 0.3628568620854963,
+                  "mae": 0.241347928770211,
+                  "r2": 0.9988559479810912
+                },
+                "training_mean": {
+                  "rmse": 10.744957257264064,
+                  "mae": 8.825450789156132,
+                  "r2": -0.003192958629786302
+                }
+              },
+              {
+                "fold": 5,
+                "training_rows": 116,
+                "validation_rows": 28,
+                "linear_regression": {
+                  "rmse": 1.8584342873500739,
+                  "mae": 1.42879506340875,
+                  "r2": 0.9652885617632608
+                },
+                "all_features": {
+                  "rmse": 0.28803956298207994,
+                  "mae": 0.23028164093975662,
+                  "r2": 0.99916616047673
+                },
+                "training_mean": {
+                  "rmse": 10.131527346341018,
+                  "mae": 8.019695920593147,
+                  "r2": -0.03163966502294424
+                }
+              }
+            ],
+            "linear_regression": {
+              "rmse": {
+                "mean": 1.9317528178552332,
+                "std": 0.13584753883034062,
+                "defined_folds": 5
+              },
+              "mae": {
+                "mean": 1.4856613883826288,
+                "std": 0.17047856052848048,
+                "defined_folds": 5
+              },
+              "r2": {
+                "mean": 0.9620577977167679,
+                "std": 0.005648452112381343,
+                "defined_folds": 5
+              }
+            },
+            "training_mean": {
+              "rmse": {
+                "mean": 10.069638163062859,
+                "std": 0.391508468216763,
+                "defined_folds": 5
+              },
+              "mae": {
+                "mean": 8.253902974133828,
+                "std": 0.2922791355391539,
+                "defined_folds": 5
+              },
+              "r2": {
+                "mean": -0.024636602134261,
+                "std": 0.022930164186920402,
+                "defined_folds": 5
+              }
+            },
+            "all_features": {
+              "rmse": {
+                "mean": 0.3102679309728704,
+                "std": 0.031212878466392004,
+                "defined_folds": 5
+              },
+              "mae": {
+                "mean": 0.24122310330956612,
+                "std": 0.005762232349861995,
+                "defined_folds": 5
+              },
+              "r2": {
+                "mean": 0.9990213126707654,
+                "std": 0.0001696304737328846,
+                "defined_folds": 5
+              }
+            }
+          },
+          "holdout": {
+            "rows": 36,
+            "linear_regression": {
+              "rmse": 2.2045768145061473,
+              "mae": 1.8890853539441836,
+              "r2": 0.9483874541074738
+            },
+            "all_features": {
+              "rmse": 0.3539941118373517,
+              "mae": 0.28606107422219407,
+              "r2": 0.9986692487362591
+            },
+            "training_mean": {
+              "rmse": 9.835477861226272,
+              "mae": 7.88169901192437,
+              "r2": -0.0272963406482869
+            }
+          },
+          "preview": [
+            {
+              "position": 1,
+              "source_row": 20,
+              "timestamp": null,
+              "actual": 56.15669147688941,
+              "prediction": 53.69878625959422,
+              "baseline_prediction": 56.21896294546551,
+              "training_mean": 49.64798333114214
+            },
+            {
+              "position": 2,
+              "source_row": 43,
+              "timestamp": null,
+              "actual": 52.76532455509826,
+              "prediction": 48.278605764357074,
+              "baseline_prediction": 51.82015566061525,
+              "training_mean": 49.64798333114214
+            },
+            {
+              "position": 3,
+              "source_row": 154,
+              "timestamp": null,
+              "actual": 40.71712286581447,
+              "prediction": 43.03131075587591,
+              "baseline_prediction": 40.117183595872376,
+              "training_mean": 49.64798333114214
+            },
+            {
+              "position": 4,
+              "source_row": 79,
+              "timestamp": null,
+              "actual": 59.988334043130585,
+              "prediction": 61.132992422038186,
+              "baseline_prediction": 59.722987923836456,
+              "training_mean": 49.64798333114214
+            },
+            {
+              "position": 5,
+              "source_row": 146,
+              "timestamp": null,
+              "actual": 37.395895028885285,
+              "prediction": 38.075439280411494,
+              "baseline_prediction": 37.23144317378137,
+              "training_mean": 49.64798333114214
+            },
+            {
+              "position": 6,
+              "source_row": 16,
+              "timestamp": null,
+              "actual": 43.81352689299848,
+              "prediction": 41.705837818800546,
+              "baseline_prediction": 43.606154921018266,
+              "training_mean": 49.64798333114214
+            },
+            {
+              "position": 7,
+              "source_row": 25,
+              "timestamp": null,
+              "actual": 48.76074421272282,
+              "prediction": 50.897225331418284,
+              "baseline_prediction": 48.55660559344201,
+              "training_mean": 49.64798333114214
+            },
+            {
+              "position": 8,
+              "source_row": 69,
+              "timestamp": null,
+              "actual": 50.35748178030865,
+              "prediction": 51.928018234808555,
+              "baseline_prediction": 50.660236516797404,
+              "training_mean": 49.64798333114214
+            },
+            {
+              "position": 9,
+              "source_row": 114,
+              "timestamp": null,
+              "actual": 38.519127566086,
+              "prediction": 35.027657317280116,
+              "baseline_prediction": 39.00465792149508,
+              "training_mean": 49.64798333114214
+            },
+            {
+              "position": 10,
+              "source_row": 119,
+              "timestamp": null,
+              "actual": 52.401594123494185,
+              "prediction": 53.64350292842897,
+              "baseline_prediction": 52.69885223067672,
+              "training_mean": 49.64798333114214
+            },
+            {
+              "position": 11,
+              "source_row": 94,
+              "timestamp": null,
+              "actual": 48.89394365290115,
+              "prediction": 48.58285482313646,
+              "baseline_prediction": 49.027054752188825,
+              "training_mean": 49.64798333114214
+            },
+            {
+              "position": 12,
+              "source_row": 160,
+              "timestamp": null,
+              "actual": 63.38494184061505,
+              "prediction": 67.16623146763636,
+              "baseline_prediction": 63.50160872247314,
+              "training_mean": 49.64798333114214
+            },
+            {
+              "position": 13,
+              "source_row": 70,
+              "timestamp": null,
+              "actual": 68.96808225550495,
+              "prediction": 67.35663236612191,
+              "baseline_prediction": 69.24559149683569,
+              "training_mean": 49.64798333114214
+            },
+            {
+              "position": 14,
+              "source_row": 143,
+              "timestamp": null,
+              "actual": 41.172418930237775,
+              "prediction": 44.164425451977394,
+              "baseline_prediction": 41.33264311217197,
+              "training_mean": 49.64798333114214
+            },
+            {
+              "position": 15,
+              "source_row": 46,
+              "timestamp": null,
+              "actual": 51.38071340204804,
+              "prediction": 54.53563765952575,
+              "baseline_prediction": 50.71867114213897,
+              "training_mean": 49.64798333114214
+            },
+            {
+              "position": 16,
+              "source_row": 17,
+              "timestamp": null,
+              "actual": 42.00773324259294,
+              "prediction": 42.77513085899879,
+              "baseline_prediction": 42.225508371164835,
+              "training_mean": 49.64798333114214
+            },
+            {
+              "position": 17,
+              "source_row": 52,
+              "timestamp": null,
+              "actual": 51.61213698112755,
+              "prediction": 49.610355153568946,
+              "baseline_prediction": 50.94457011735205,
+              "training_mean": 49.64798333114214
+            },
+            {
+              "position": 18,
+              "source_row": 126,
+              "timestamp": null,
+              "actual": 46.814267243821945,
+              "prediction": 46.184887175062016,
+              "baseline_prediction": 46.840031048808584,
+              "training_mean": 49.64798333114214
+            },
+            {
+              "position": 19,
+              "source_row": 97,
+              "timestamp": null,
+              "actual": 49.80359529912595,
+              "prediction": 49.14439888125304,
+              "baseline_prediction": 49.325397138127414,
+              "training_mean": 49.64798333114214
+            },
+            {
+              "position": 20,
+              "source_row": 57,
+              "timestamp": null,
+              "actual": 46.66493709624825,
+              "prediction": 48.5815378328779,
+              "baseline_prediction": 47.3518783038066,
+              "training_mean": 49.64798333114214
+            },
+            {
+              "position": 21,
+              "source_row": 98,
+              "timestamp": null,
+              "actual": 27.26925316318336,
+              "prediction": 30.43082585318593,
+              "baseline_prediction": 27.44904822932483,
+              "training_mean": 49.64798333114214
+            },
+            {
+              "position": 22,
+              "source_row": 121,
+              "timestamp": null,
+              "actual": 65.18162259984638,
+              "prediction": 63.483560960027106,
+              "baseline_prediction": 65.35027643601634,
+              "training_mean": 49.64798333114214
+            },
+            {
+              "position": 23,
+              "source_row": 144,
+              "timestamp": null,
+              "actual": 52.42520713591023,
+              "prediction": 50.08808009955312,
+              "baseline_prediction": 52.25106786075145,
+              "training_mean": 49.64798333114214
+            },
+            {
+              "position": 24,
+              "source_row": 31,
+              "timestamp": null,
+              "actual": 64.5478166451466,
+              "prediction": 64.25200446773056,
+              "baseline_prediction": 64.39564805557842,
+              "training_mean": 49.64798333114214
+            },
+            {
+              "position": 25,
+              "source_row": 10,
+              "timestamp": null,
+              "actual": 54.58353588615971,
+              "prediction": 53.390592401684586,
+              "baseline_prediction": 54.840632205528536,
+              "training_mean": 49.64798333114214
+            },
+            {
+              "position": 26,
+              "source_row": 173,
+              "timestamp": null,
+              "actual": 56.49856439491254,
+              "prediction": 57.38768126421455,
+              "baseline_prediction": 56.07136019480494,
+              "training_mean": 49.64798333114214
+            },
+            {
+              "position": 27,
+              "source_row": 61,
+              "timestamp": null,
+              "actual": 59.00798348330757,
+              "prediction": 60.156809058154124,
+              "baseline_prediction": 58.976289291793336,
+              "training_mean": 49.64798333114214
+            },
+            {
+              "position": 28,
+              "source_row": 19,
+              "timestamp": null,
+              "actual": 62.90513712631583,
+              "prediction": 60.65835184034571,
+              "baseline_prediction": 62.68896862423828,
+              "training_mean": 49.64798333114214
+            },
+            {
+              "position": 29,
+              "source_row": 149,
+              "timestamp": null,
+              "actual": 36.86580439030806,
+              "prediction": 40.5351887609157,
+              "baseline_prediction": 37.01006018399089,
+              "training_mean": 49.64798333114214
+            },
+            {
+              "position": 30,
+              "source_row": 174,
+              "timestamp": null,
+              "actual": 54.85305230034531,
+              "prediction": 54.956524779367534,
+              "baseline_prediction": 54.559745979527214,
+              "training_mean": 49.64798333114214
+            },
+            {
+              "position": 31,
+              "source_row": 110,
+              "timestamp": null,
+              "actual": 65.74080895663812,
+              "prediction": 63.69294831852197,
+              "baseline_prediction": 65.88015404974043,
+              "training_mean": 49.64798333114214
+            },
+            {
+              "position": 32,
+              "source_row": 56,
+              "timestamp": null,
+              "actual": 56.09130521441523,
+              "prediction": 53.59006331264653,
+              "baseline_prediction": 55.71490077351882,
+              "training_mean": 49.64798333114214
+            },
+            {
+              "position": 33,
+              "source_row": 141,
+              "timestamp": null,
+              "actual": 33.51683116433158,
+              "prediction": 36.960860835556545,
+              "baseline_prediction": 33.41784887065583,
+              "training_mean": 49.64798333114214
+            },
+            {
+              "position": 34,
+              "source_row": 127,
+              "timestamp": null,
+              "actual": 61.78112054887919,
+              "prediction": 61.86176798665789,
+              "baseline_prediction": 61.71356625493392,
+              "training_mean": 49.64798333114214
+            },
+            {
+              "position": 35,
+              "source_row": 67,
+              "timestamp": null,
+              "actual": 51.88444952515604,
+              "prediction": 52.83262585521479,
+              "baseline_prediction": 51.50879077173989,
+              "training_mean": 49.64798333114214
+            },
+            {
+              "position": 36,
+              "source_row": 30,
+              "timestamp": null,
+              "actual": 50.31310361645552,
+              "prediction": 53.0989027494013,
+              "baseline_prediction": 50.07736214205127,
+              "training_mean": 49.64798333114214
+            }
+          ],
+          "warnings": [
+            "原始候選輸入少於 13 欄；此為作業資料規範，與選取後 k 分開。",
+            "未選欄位含 ISO 日期；請確認隨機切分適合此資料。"
+          ],
+          "limits": [
+            "方法與 k 由使用者事先指定；同時比較全部候選欄位 LR 與 Training 平均值，沒有自動挑選方法或 k。",
+            "CV 為 Training 區內的逐 fold 評估；平均／標準差為各 fold 等權計算，標準差 ddof=0。",
+            "Holdout 未用於 fit、前處理學習或參數選擇；查看後再修改設定會造成測試集重用。",
+            "前處理與 Selector 只在當前 Training fit；目標維持原單位，未裁切預測或極端測試資料。",
+            "這是同列目標估計；時間切分不代表已完成多步未來預報。",
+            "沒有 Prediction Interval、模型保存或新資料推論服務。預覽僅前 144 筆；指標使用全部 Holdout。"
+          ]
+        }
+      },
+      "kEqualsCandidatesNoRanking": true,
+      "noneMode": true,
+      "chronologicalFourSeries": true,
+      "changesClearConfirmationAndResults": true,
+      "clientCancelWithDelayedActualResponse": true,
+      "lateResponseIgnoredAfterMethodChange": true,
+      "originalDevMITraining": true,
+      "routes": {
+        "/": 200,
+        "/feature-selection": 200,
+        "/model-evaluation": 200,
+        "/prediction-explorer": 200,
+        "/custom-dataset": 200
+      }
+    },
+    "python_selection_invariants": [
+      "Independent selector and LR predictions match both methods.",
+      "Each selector sees only its CV Training or final Training partition.",
+      "Changing Holdout targets does not alter CV scores, selected columns or predictions.",
+      "All-candidate comparator is unchanged across selector methods.",
+      "Legacy none and k=p use all candidates without claiming a ranking.",
+      "Invalid method, bool/fractional/string/out-of-range k and extra selector options are rejected before fit.",
+      "Too-small CV Training is rejected before fitting.",
+      "Selector failures expose no private error text or partial scores."
+    ]
+  },
+  "integrity": {
+    "baseline_files": 231,
+    "unchanged_existing_files": 223,
+    "changed_existing_files": [
+      "web/README.md",
+      "web/app/globals.css",
+      "web/app/custom-dataset/page.tsx",
+      "web/components/shell.tsx",
+      "web/components/custom-training-panel.tsx",
+      "web/lib/custom-training-result.ts",
+      "docs/custom_dataset_training.md",
+      "src/custom_dataset_training.py"
+    ],
+    "four_web_snapshots_unchanged": true,
+    "existing_research_data_models_and_phase2_phase3_modules_unchanged": true,
+    "applied_files_match_tested_copy": true
+  },
+  "screenshots": [
+    "artifacts/m8-desktop-dark-selection.png",
+    "artifacts/m8-mobile-light-selection.png",
+    "artifacts/m8-mobile-scatter.png",
+    "artifacts/m8-chronological-comparison.png",
+    "artifacts/m8-mobile-dark-controls.png"
+  ],
+  "manual_acceptance": [
+    "Open http://127.0.0.1:3000/custom-dataset; select CSV, candidates and split; confirm and validate with Python.",
+    "In section 06 select none, F-test or Mutual Information; specify k when required.",
+    "Confirm the experiment and run; inspect final Training and per-fold names, CV and complete Holdout comparisons.",
+    "Change method or k: prior results and consent must clear. Test invalid k and k equal to all candidates.",
+    "Check metric switches, prediction preview and both themes on mobile and desktop."
+  ],
+  "limitations": [
+    "Only two fixed-k selectors in this increment; SFS, RFE, RFECV and LassoCV are not enabled for custom data.",
+    "No automatic method/k search, measured-k curve, Nested CV or independent validation of choosing the best observed result.",
+    "Numeric one-to-one features only; no new encoding, date expansion, PI, persisted models or inference API.",
+    "M7 local-process limits and cleanup behavior retained, including 120-second deadline and no OS RAM hard limit or multi-user deployment.",
+    "Viewing Holdout then changing methods or k reuses the test set; the UI explicitly warns and does not automatically choose a winner."
+  ],
+  "research_retraining_performed": false,
+  "synthetic_custom_experiments_performed": true,
+  "committed": false,
+  "pushed": false,
+  "original_development_server_preserved": true,
+  "owned_production_test_server_stopped": true,
+  "browser_testing_space_finished": true
+}

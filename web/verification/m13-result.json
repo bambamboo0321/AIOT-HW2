@@ -1,0 +1,158 @@
+{
+  "milestone": "M13 RFE formal training and comparison handoff",
+  "status": "passed",
+  "scope": "Apply an explicitly selected comparison method/k to formal training; RFE CV, final Training selection, Holdout evaluation, retained-model single/batch inference and exports. No automatic training or best-point selection.",
+  "modified_files": [
+    "src/custom_dataset_training.py",
+    "tests/test_custom_dataset_selection.py",
+    "web/lib/custom-training-result.ts",
+    "web/components/custom-training-panel.tsx",
+    "web/components/custom-comparison-panel.tsx",
+    "web/tests/custom-selection.test.ts",
+    "web/components/shell.tsx",
+    "web/app/custom-dataset/page.tsx",
+    "web/README.md",
+    "docs/custom_dataset_training.md"
+  ],
+  "added_files": [
+    "tests/test_custom_dataset_rfe.py",
+    "web/lib/custom-training-choice.ts",
+    "web/tests/custom-rfe.test.ts"
+  ],
+  "checks": {
+    "web_tests": {
+      "passed": 120,
+      "failed": 0,
+      "new_rfe_tests": 4
+    },
+    "full_python_tests_in_original_git_repository": {
+      "passed": 201,
+      "failed": 0,
+      "new_rfe_tests": 7
+    },
+    "lint": "passed",
+    "typecheck": "passed",
+    "production_build": "passed",
+    "python_rfe_cases": [
+      "chronological and random with missing values and IQR clip",
+      "exact per-fold scores/features match M12 comparison",
+      "independent final sklearn RFE/LR prediction check",
+      "raw current Training fit indices exclude validation/Holdout",
+      "Holdout target mutation cannot affect CV/final selection/predictions",
+      "frozen RFE single and batch inference with no fit",
+      "full k bypasses ranking",
+      "scaling/cost rejection before fit",
+      "safe failure has no partial scores or private paths"
+    ],
+    "browser": {
+      "isolated_production_url": "http://127.0.0.1:3011/custom-dataset",
+      "original_dev_url": "http://127.0.0.1:3000/custom-dataset",
+      "fixture": "synthetic numeric CSV only",
+      "apply_methods_tested": [
+        "mutual_information",
+        "rfe",
+        "f_test"
+      ],
+      "applied_k_values": [
+        1,
+        2
+      ],
+      "train_requests_before_explicit_confirmation": 0,
+      "apply_resets_existing_training_consent": true,
+      "apply_disabled_during_training": true,
+      "hint_cleared_when_training_starts": true,
+      "original_rfe_training": "completed, 3 candidates to 2 final features",
+      "final_selected_features": [
+        "x",
+        "z"
+      ],
+      "single_partial_prediction": "completed with frozen Training median for missing z",
+      "batch_prediction": "2 rows, one using frozen Training imputation",
+      "reapply_clears_old_evaluation_and_consent": true,
+      "holdout_reuse_warning_persists_after_reapply": true,
+      "unscaled_rfe_blocked_in_original_site": true,
+      "desktop_and_mobile_horizontal_overflow": false,
+      "themes": "desktop light/dark and mobile light/dark visually inspected",
+      "test_models_deleted": true,
+      "task_space_finished": true
+    },
+    "actual_downloads": {
+      "evaluation_json_exact_selection_cv_holdout": true,
+      "metrics_csv_exact_holdout_values_and_rfe_method": true,
+      "batch_rows": 2,
+      "batch_predictions_inputs_missing_snapshot_and_source_sha_match": true,
+      "model_capability_excluded_from_evaluation_json": true,
+      "sha256": {
+        "evaluation.json": "cb6fa7c3999a9c25e1100b36d59553e9b7dfbeffa213488d065d7f1d180f7e95",
+        "metrics.csv": "6d1dfd3ea4ab243e72c1c644bfc971677cb88989b63a9ed3c83163bb790da77e",
+        "batch.csv": "9f2ae57dca36e6f92ce2d990b332ebd6f28c582bc705eda1376a999b1b43ae0b"
+      }
+    }
+  },
+  "limits": {
+    "formal_methods": [
+      "none",
+      "f_test",
+      "mutual_information",
+      "rfe"
+    ],
+    "rfe_rows": 5000,
+    "rfe_candidate_features": 25,
+    "rfe_requires_explicit_standard_scaling": true,
+    "max_rfe_work_units": 100000000,
+    "work_formula": "(p-k+2 if k<p else 1) * p * (sum CV Training rows + full Training rows)",
+    "timeout_seconds": 120,
+    "automatic_methods_pending": [
+      "rfecv",
+      "lasso_cv"
+    ],
+    "forward_sfs_pending": true,
+    "holdout": "Choosing settings from exploratory CV can be optimistic; fix settings before independent Holdout. Changing after viewing Holdout is test reuse.",
+    "inference": "Only frozen selected preprocessing and LR; no re-selection/refit. Existing TTL, input limits and no-PI rules remain."
+  },
+  "integrity": {
+    "baseline_files": 264,
+    "untouched_files_verified": 254,
+    "unexpected_changes": [],
+    "existing_uncommitted_work_preserved": true,
+    "research_results_retrained": false,
+    "research_results_overwritten": false,
+    "committed": false,
+    "pushed": false
+  },
+  "screenshots": [
+    {
+      "path": "web/artifacts/m13-apply-desktop-light.png",
+      "sha256": "aa2d69bf934c263d6ad97253db27fafcb946cb11d11e7fc16caae3185b21ec2a",
+      "visually_inspected": true
+    },
+    {
+      "path": "web/artifacts/m13-apply-mobile-light.png",
+      "sha256": "659c70c981a0fe10b725b7538dd44b951788080bfb5fc645da0bc581b982b76c",
+      "visually_inspected": true
+    },
+    {
+      "path": "web/artifacts/m13-original-mobile-dark.png",
+      "sha256": "a1e1f0fe57feb541ec9aad91a6074ea271ee5c7d587fd0f42d522491f20e2af8",
+      "visually_inspected": true
+    },
+    {
+      "path": "web/artifacts/m13-prediction-desktop-dark.png",
+      "sha256": "36a8a1238bfc68aece9d4922f9a795cb0e0377f39c2a5fbbebe17c4f6e065f24",
+      "visually_inspected": true
+    }
+  ],
+  "manual_acceptance": [
+    "Refresh /custom-dataset and upload a numeric regression CSV.",
+    "Select target/candidates and StandardScaler; confirm and run Python validation.",
+    "Compare methods/k, choose a k to inspect, and click Apply RFE (or F-test/MI).",
+    "Verify method/k are carried over, no old evaluation remains and training confirmation is unchecked.",
+    "Confirm and train; inspect final/fold features and RMSE/MAE/R2 on Holdout.",
+    "Use selected features for single input or batch CSV, inspect fills and downloads, then clear the temporary model."
+  ],
+  "environment": {
+    "original_dev_server": "preserved and verified",
+    "isolated_production_server": "stopped",
+    "staging_directory": "<historical-temporary-directory>/aep-m13-20261018 (original absolute prefix redacted)"
+  }
+}

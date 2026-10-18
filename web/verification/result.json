@@ -1,0 +1,99 @@
+{
+  "milestone": "Phase 4B-3 M1",
+  "status": "PASS_WITH_MANUAL_VISUAL_REVIEW_PENDING",
+  "repository": {
+    "branch": "main",
+    "head": "4619bd493a337f32d34593f12686035f2c70a630",
+    "staging_empty": true
+  },
+  "stack": {
+    "dependencies": {
+      "next": "16.4.2",
+      "react": "19.3.1",
+      "react-dom": "19.3.1",
+      "recharts": "3.10.1"
+    },
+    "devDependencies": {
+      "@tailwindcss/postcss": "4.3.3",
+      "@types/node": "24.19.2",
+      "@types/react": "19.3.0",
+      "@types/react-dom": "19.3.0",
+      "eslint": "10.12.0",
+      "eslint-plugin-react-hooks": "7.1.1",
+      "tailwindcss": "4.3.3",
+      "typescript": "5.9.3",
+      "typescript-eslint": "8.71.2"
+    },
+    "node": "24.13.1",
+    "npm": "11.8.0"
+  },
+  "checks": {
+    "npm_install": "PASS",
+    "npm_build": "PASS (Webpack; all five pages statically prerendered)",
+    "npm_lint": "PASS (zero warnings)",
+    "typescript_strict": "PASS",
+    "website_tests": {
+      "passed": 12,
+      "failed": 0
+    },
+    "existing_python_tests": {
+      "passed": 149,
+      "failed": 0,
+      "elapsed_seconds": 10.936
+    },
+    "npm_audit": {
+      "known_vulnerabilities": 0
+    },
+    "git_diff_check": "PASS",
+    "browser": "see browser_checks.json"
+  },
+  "integrity": {
+    "existing_files_checked": 144,
+    "all_unchanged": true,
+    "changed_existing_files": [],
+    "dataset_sha256": "2820bf712ad0275cb18b85a05250926100d8e65ebb9f4d2d016ca91ea152a25d",
+    "models_unchanged": {
+      "reports/phase2/models/chronological_baseline.joblib": "9f9330522d7b52d6d279bf4b05f9a5f9123e1693e760dbd540910d74cd6a33ed",
+      "reports/phase2/models/random_baseline.joblib": "1df09b4eb709aa9048f6db5b16e3519fca31a96b9a5991154e6275b123c8ccf9",
+      "reports/phase3/results/models/final_linear_regression.joblib": "8be97c965b56fed6d4a665703b44faf57508fd9a759b837d48cf3a2ad418eb12"
+    },
+    "phase3d_unchanged": true,
+    "phase4b1_unchanged": true,
+    "phase4b2_unchanged": true,
+    "all_new_files_under": "web/"
+  },
+  "data_sync": {
+    "output": "web/data/overview.json",
+    "sources": [
+      "dashboard_data/dataset_summary.json",
+      "dashboard_data/model_comparison.json",
+      "dashboard_data/prediction_intervals.json",
+      "reports/phase3/phase3d/comparison_summary.json"
+    ],
+    "allowlist_only": true,
+    "source_digests": true,
+    "deterministic": true,
+    "no_raw_dataset_or_models_copied": true,
+    "no_training": true
+  },
+  "browser_limitations": [
+    "Page.captureScreenshot repeatedly timed out in both SDK and direct CDP; no visual screenshots were accepted as evidence.",
+    "Desktop pointer interactions verified; mobile also used DOM click fallback when SDK scrolling stalled.",
+    "Manual visual review remains required."
+  ],
+  "runtime_notes": [
+    "Default Turbopack build hit sandbox port restrictions; official Webpack build passed.",
+    "Replaced unsupported ESLint 9 / vulnerable Next ESLint preset with compatible ESLint 10 + typescript-eslint + React Hooks rules; final npm audit has zero known vulnerabilities.",
+    "Development server successfully started for browser tests and was stopped after verification."
+  ],
+  "scope": {
+    "overview_complete": true,
+    "other_pages": "Coming Soon",
+    "python_api": false,
+    "m2_started": false,
+    "m3_started": false,
+    "commit": false,
+    "push": false,
+    "deployment": false
+  }
+}

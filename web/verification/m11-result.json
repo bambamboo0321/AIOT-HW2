@@ -1,0 +1,140 @@
+{
+  "milestone": "M11 batch prediction",
+  "status": "passed",
+  "scope": "New numeric CSV inference through the existing final Training model and frozen selected preprocessing; no fit, selection rerun, target scoring or model export.",
+  "modified_files": [
+    "src/custom_dataset_prediction.py",
+    "tests/test_custom_dataset_prediction.py",
+    "web/lib/custom-validation-service.ts",
+    "web/lib/custom-prediction-service.ts",
+    "web/components/custom-prediction-form.tsx",
+    "web/components/shell.tsx",
+    "web/app/globals.css",
+    "web/app/custom-dataset/page.tsx",
+    "web/README.md",
+    "docs/custom_dataset_training.md"
+  ],
+  "added_files": [
+    "web/lib/custom-batch-types.ts",
+    "web/lib/custom-batch-input.ts",
+    "web/components/custom-batch-prediction.tsx",
+    "web/tests/custom-batch.test.ts",
+    "web/app/api/custom-dataset/predict-batch/route.ts"
+  ],
+  "checks": {
+    "web_tests": {
+      "passed": 110,
+      "failed": 0,
+      "new_batch_tests": 7
+    },
+    "full_python_tests_in_original_git_repository": {
+      "passed": 187,
+      "failed": 0,
+      "new_batch_tests": 5
+    },
+    "python_prediction_tests": {
+      "passed": 12,
+      "failed": 0
+    },
+    "lint": "passed",
+    "typecheck": "passed",
+    "production_build": "passed",
+    "actual_download": {
+      "download_rows": 155,
+      "preview_rows": 10,
+      "all_predictions_inputs_fills_ranges_match_worker": true,
+      "input_csv_sha256_matches": true,
+      "ignored_columns_and_model_id_excluded": true,
+      "sha256": "8601e49c10dde689b38495d46096027224f720d5255ade73273d40c5f044c414"
+    },
+    "browser": {
+      "production_url": "http://127.0.0.1:3011/custom-dataset",
+      "original_dev_url": "http://127.0.0.1:3000/custom-dataset",
+      "selected_features": [
+        "x",
+        "y"
+      ],
+      "batch_rows": 155,
+      "preview_rows": 10,
+      "browser_check_before_send": "No batch API request before explicit prediction",
+      "column_reordering": "passed",
+      "ignored_columns": [
+        "id",
+        "profit",
+        "noise"
+      ],
+      "missing_columns_blocked": true,
+      "invalid_numeric_row_blocks_entire_batch": true,
+      "all_missing_model_input_row_blocked": true,
+      "row_limit_blocked": true,
+      "no_imputation_mode_blocks_missing_and_accepts_complete_rows": true,
+      "controlled_delayed_actual_response_ignored_after_cancel_and_new_file": true,
+      "fresh_prediction_after_cancel": true,
+      "clear_removes_old_download": true,
+      "model_deletion_invalidates_batch_but_keeps_evaluation": true,
+      "mobile_horizontal_overflow": false,
+      "original_dev_no_target_csv": "3 rows predicted and downloaded",
+      "file_picker_polish": "Custom accessible label matches initial upload; filename shown separately",
+      "themes": "Desktop dark/mobile light result plus final desktop light/mobile dark picker verified",
+      "test_models_deleted": true,
+      "task_space_finished": true
+    }
+  },
+  "limits": {
+    "csv_bytes": 2097152,
+    "rows": 500,
+    "selected_cells": 10000,
+    "raw_columns": 200,
+    "timeout_seconds": 30,
+    "worker_stdout_mib": 8,
+    "worker_stderr_kib": 64,
+    "csv_preview_rows": 10,
+    "download": "all batch rows",
+    "preconditions": "All final selected feature headers required; column order may differ. Common NA/empty cells use frozen Training fill unless none. At least one numeric value per row. Any invalid row rejects the entire batch.",
+    "extra_columns": "listed then ignored; raw CSV and ignored contents never sent",
+    "scores": "No R2, RMSE, MAE or PI; optional target is ignored"
+  },
+  "integrity": {
+    "baseline_files": 250,
+    "untouched_files_verified": 240,
+    "unexpected_changes": [],
+    "existing_uncommitted_work_preserved": true,
+    "research_results_retrained": false,
+    "committed": false,
+    "pushed": false
+  },
+  "screenshots": [
+    {
+      "path": "web/artifacts/m11-result-desktop-dark.png",
+      "sha256": "79731d03d8f96b4db768886fb3658ce1e229922f2fc829b3b5d7602f5f39098c",
+      "visually_inspected": true
+    },
+    {
+      "path": "web/artifacts/m11-result-mobile-light.png",
+      "sha256": "4ffda658a40fcbce8c9bd42501cca97e2af08b5a67eac78af5c84369c21c8f6d",
+      "visually_inspected": true
+    },
+    {
+      "path": "web/artifacts/m11-original-desktop-light.png",
+      "sha256": "3a435b5fafd07692c4b34908ab1d2f6c0a6b00bbc2652d046c21e526e8176c55",
+      "visually_inspected": true
+    },
+    {
+      "path": "web/artifacts/m11-original-mobile-dark.png",
+      "sha256": "ad6331d4a5540d88a8afaff00c0857050a4e91efbb32fdf6ea8a8c4966051a90",
+      "visually_inspected": true
+    }
+  ],
+  "manual_acceptance": [
+    "Refresh /custom-dataset, upload and configure a numeric regression training CSV, validate and explicitly train.",
+    "Below single prediction choose a new CSV with exact selected feature headers; target is optional and ignored.",
+    "Review accepted row count and ignored columns, explicitly predict, inspect imputation/range flags.",
+    "Download all batch rows; replace/clear file to confirm old result disappears.",
+    "Test missing columns, invalid values and none-mode blanks; inspect desktop/mobile and themes."
+  ],
+  "environment": {
+    "original_dev_server": "preserved and verified",
+    "isolated_production_server": "stopped",
+    "staging_directory": "<historical-temporary-directory>/aep-m11-20261018 (original absolute prefix redacted)"
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "milestone": "M16: opt-in Vercel backend transport and signed anonymous session",
+  "verified_at": "2026-10-18T07:49:28.266222+00:00",
+  "scope": "bounded follow-up chosen for user with limited remaining usage; no cloud publishing",
+  "checks": {
+    "website_tests": {
+      "pass": 134,
+      "fail": 0,
+      "new_tests": 7
+    },
+    "typecheck": "PASS",
+    "lint": "PASS",
+    "production_build": "PASS",
+    "real_http_integration": "proxy -> standalone backend -> Python: validate, RFECV train, single/batch predict, delete and expired handle"
+  },
+  "behavior": {
+    "local": "without remote configuration and outside Vercel, exact original handler is used",
+    "remote": "all four private environment values required; partial configuration and unconfigured Vercel fail closed",
+    "routing": "fixed allowlisted operation and method; no redirects or browser-supplied upstream URL/credentials",
+    "origin": "exact configured origin and host; forwarded-host and cross-site requests rejected",
+    "sessions": "origin-bound HMAC; 30-minute HttpOnly SameSite=Strict cookie, Secure for HTTPS; infer/delete require existing valid cookie",
+    "limits": {
+      "csv_bytes": 3145728,
+      "request_response_bytes": 4194304
+    },
+    "errors": "bounded JSON responses; service secret and upstream cookies/diagnostics are not reflected",
+    "timeouts": "upstream fetch cancellation and bounded deadlines; API maxDuration 180 seconds"
+  },
+  "validation_scope": {
+    "transport_error_and_cancel_tests": "controlled fetch responses",
+    "real_backend_fixture": "80-row synthetic numeric dataset, RFECV; not new energy research training",
+    "browser_manual_retest": false,
+    "full_python_suite_rerun": false,
+    "reason": "no Python/backend implementation or UI changes; 127 existing website tests plus 7 proxy tests run"
+  },
+  "changes": {
+    "modified": [
+      "web/app/api/custom-dataset/validate/route.ts",
+      "web/app/api/custom-dataset/train/route.ts",
+      "web/app/api/custom-dataset/compare/route.ts",
+      "web/app/api/custom-dataset/predict/route.ts",
+      "web/app/api/custom-dataset/predict-batch/route.ts",
+      "web/README.md",
+      "docs/vercel_deployment_plan.md"
+    ],
+    "added": [
+      "web/lib/custom-compute-proxy.ts",
+      "web/lib/custom-compute-route.ts",
+      "web/tests/custom-compute-proxy.test.ts"
+    ]
+  },
+  "integrity": {
+    "baseline_files": 291,
+    "unchanged_existing_files": 284,
+    "backend_python_research_and_models_unchanged": true,
+    "remote_environment_enabled": false,
+    "existing_uncommitted_changes_preserved": true,
+    "commit": false,
+    "push": false
+  },
+  "remaining": [
+    "cloud-mode upload/privacy wording",
+    "deployment snapshot build and runtime files",
+    "Docker build/hosting verification",
+    "public abuse controls or login if required",
+    "Vercel Preview and Production publishing"
+  ],
+  "status": "proxy_implemented_and_tested; cloud_not_deployed",
+  "files": {
+    "web/app/api/custom-dataset/validate/route.ts": "9e5c82a7a46014f1b840d987fc7efac468a3ce15263d7e51a9c1c63f585f3758",
+    "web/app/api/custom-dataset/train/route.ts": "fa22ad6ac3b5aabe3ee4ad97c9310c67175dc7366a73982c7ecde31085ba15b6",
+    "web/app/api/custom-dataset/compare/route.ts": "3b38a4c9f99cadeec0c14ef3826f677693b172a7445d5a1d465e4fec035ff751",
+    "web/app/api/custom-dataset/predict/route.ts": "a667e46f7cb0bb0a5a012180b6ceed5dceb8fba78923c80f8c5adc4e2cee4eef",
+    "web/app/api/custom-dataset/predict-batch/route.ts": "6554f7c7a57424b8e0c945ae605f6e9d20fde767243ef87b0e70b1058e51d170",
+    "web/README.md": "cc0e011bdaa431e77e3fb2cd92bf8d2f306ac37f295cc541ce37add4c509bec7",
+    "docs/vercel_deployment_plan.md": "eddac3f75f9f80433cf0e2b4febd19a8ec65176073b108d132dc4bd5c2293211",
+    "web/lib/custom-compute-proxy.ts": "a6fa365c72a6805b149e7757a7f20c5f2ad29ba12a110fb8616b657f8594350c",
+    "web/lib/custom-compute-route.ts": "93a26bcf120112b1aabb1d1e10fb01e439c2b0c99828e31ac4c7d51dbd499f74",
+    "web/tests/custom-compute-proxy.test.ts": "ddbb7f475ef91771cb4baa15c4250e81e1acb56032b03a53f40c683d7c1334aa"
+  }
+}

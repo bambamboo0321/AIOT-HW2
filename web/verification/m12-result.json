@@ -1,0 +1,134 @@
+{
+  "milestone": "M12 fixed-k feature comparison",
+  "status": "passed",
+  "scope": "Custom CSV Training-only F-test, MI and RFE curves, shared CV splits and independent LR; no research retraining or Holdout scoring in comparison.",
+  "modified_files": [
+    "web/lib/custom-training-result.ts",
+    "web/lib/custom-validation-service.ts",
+    "web/components/custom-training-panel.tsx",
+    "web/components/shell.tsx",
+    "web/app/globals.css",
+    "web/app/custom-dataset/page.tsx",
+    "web/README.md",
+    "docs/custom_dataset_training.md",
+    "web/components/custom-prediction-form.tsx",
+    "web/components/custom-batch-prediction.tsx"
+  ],
+  "added_files": [
+    "src/custom_dataset_comparison.py",
+    "tests/test_custom_dataset_comparison.py",
+    "web/lib/custom-comparison-result.ts",
+    "web/lib/custom-comparison-export.ts",
+    "web/app/api/custom-dataset/compare/route.ts",
+    "web/components/custom-comparison-panel.tsx",
+    "web/tests/custom-comparison.test.ts"
+  ],
+  "checks": {
+    "web_tests": {
+      "passed": 116,
+      "failed": 0,
+      "new_comparison_tests": 6
+    },
+    "full_python_tests_in_original_git_repository": {
+      "passed": 194,
+      "failed": 0,
+      "new_comparison_tests": 7
+    },
+    "lint": "passed",
+    "typecheck": "passed",
+    "production_build": "passed",
+    "actual_download": {
+      "csv_data_rows": 162,
+      "points": 9,
+      "folds": 5,
+      "all_scores_summaries_selected_features_match_worker": true,
+      "json_points_and_provenance_match_worker": true,
+      "csv_sha256": "251e61d29e244fbc8d1bb91710fd2ce156a5e5df6d0c30bd266baff542c2ac50"
+    },
+    "browser": {
+      "isolated_production_url": "http://127.0.0.1:3011/custom-dataset",
+      "original_dev_url": "http://127.0.0.1:3000/custom-dataset",
+      "three_real_curves": true,
+      "rmse_mae_r2_switching": true,
+      "fold_feature_inspection": true,
+      "no_holdout_results_after_comparison": true,
+      "range_change_clears_result_and_consent": true,
+      "cancelled_actual_response_ignored_with_controlled_delivery_delay": true,
+      "fresh_single_k_retry": true,
+      "formal_training_disabled_during_comparison": true,
+      "none_scaling_blocked_then_standard_revalidated": true,
+      "fractional_k_blocked": true,
+      "formal_training_after_comparison": true,
+      "holdout_reuse_warning_after_training": true,
+      "desktop_and_mobile_horizontal_overflow": false,
+      "themes": "desktop light and dark, mobile light and dark visually inspected",
+      "test_model_deleted": true,
+      "task_space_finished": true
+    }
+  },
+  "limits": {
+    "methods": [
+      "f_test",
+      "mutual_information",
+      "rfe"
+    ],
+    "data_rows": 5000,
+    "candidate_features": 25,
+    "k_values": 25,
+    "cv_training_minimum_rows": 4,
+    "scaling": "explicit standard required; config is never silently changed",
+    "max_work_units": 100000000,
+    "work_formula": "sum over method/k of (p-k+2 for RFE k<p, else 1) * p * sum CV Training rows",
+    "timeout_seconds": 120,
+    "stdout_mib": 8,
+    "stderr_kib": 64,
+    "formal_training_methods": "none/F-test/MI; RFE currently comparison only",
+    "automatic_k_methods": "RFECV/LassoCV deferred; no fabricated curves",
+    "selection_bias": "Exploratory CV; choosing the best point may be optimistic. Fix settings before independent Holdout evaluation."
+  },
+  "integrity": {
+    "baseline_files": 256,
+    "untouched_files_verified": 246,
+    "unexpected_changes": [],
+    "existing_uncommitted_work_preserved": true,
+    "research_results_retrained": false,
+    "research_results_overwritten": false,
+    "committed": false,
+    "pushed": false
+  },
+  "screenshots": [
+    {
+      "path": "web/artifacts/m12-desktop-light.png",
+      "sha256": "0f8795cb3a52099543c499e4eca7007d328cf390fb31569568952672a03f9a27",
+      "visually_inspected": true
+    },
+    {
+      "path": "web/artifacts/m12-mobile-dark.png",
+      "sha256": "8667f1383db22f8e4e1bd611667633280997c8b714408ffee6aeade5ac547194",
+      "visually_inspected": true
+    },
+    {
+      "path": "web/artifacts/m12-original-desktop-dark.png",
+      "sha256": "13cec9cbf0cf4814fbe314cdb149f295e8b0ff1fbd7521c7f125d0cddffb6f5f",
+      "visually_inspected": true
+    },
+    {
+      "path": "web/artifacts/m12-original-mobile-light.png",
+      "sha256": "8460de874b03332425bd0045d9bd167d5a4f2313605362dd450014b19a431b2d",
+      "visually_inspected": true
+    }
+  ],
+  "manual_acceptance": [
+    "Refresh /custom-dataset, upload a numeric regression CSV and choose target/candidates.",
+    "Use StandardScaler, confirm configuration and run Python validation.",
+    "Choose comparison methods and integer k range, confirm and start.",
+    "Switch RMSE/MAE/R2, inspect folds and selected features, download CSV/JSON.",
+    "Change range or methods and verify old results clear; test cancellation and desktop/mobile themes.",
+    "Fix F-test/MI settings before running formal Holdout; RFE formal training and auto-k algorithms are pending."
+  ],
+  "environment": {
+    "original_dev_server": "preserved and verified",
+    "isolated_production_server": "stopped",
+    "staging_directory": "<historical-temporary-directory>/aep-m12-20261018 (original absolute prefix redacted)"
+  }
+}

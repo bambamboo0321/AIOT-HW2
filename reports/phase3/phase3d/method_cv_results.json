@@ -1,0 +1,433 @@
+{
+  "evaluation": "B_selector_inside_each_training_fold",
+  "methods": [
+    {
+      "method": "mutual_information",
+      "evaluation": "B_selector_inside_each_training_fold",
+      "k": 6,
+      "source": "existing_phase3b_final_selection_cv_rechecked",
+      "folds": [
+        {
+          "fold": 1,
+          "features": [
+            "T2",
+            "T3",
+            "T4",
+            "T5",
+            "RH_7",
+            "Press_mm_hg"
+          ],
+          "indices": [
+            3,
+            5,
+            7,
+            9,
+            14,
+            20
+          ],
+          "train_range": [
+            0,
+            3941
+          ],
+          "validation_range": [
+            3947,
+            7894
+          ],
+          "rmse": 98.62996137236037,
+          "mae": 66.65857333434018,
+          "r2": 0.011505375576937316,
+          "source": "existing_phase3b_final_selection_cv_rechecked",
+          "runtime_seconds": 0.009435162979643792
+        },
+        {
+          "fold": 2,
+          "features": [
+            "T2",
+            "T3",
+            "T7",
+            "RH_7",
+            "T8",
+            "Press_mm_hg"
+          ],
+          "indices": [
+            3,
+            5,
+            13,
+            14,
+            15,
+            20
+          ],
+          "train_range": [
+            0,
+            7888
+          ],
+          "validation_range": [
+            7894,
+            11841
+          ],
+          "rmse": 96.98528766103404,
+          "mae": 54.62065074986321,
+          "r2": 0.05281532961254631,
+          "source": "existing_phase3b_final_selection_cv_rechecked",
+          "runtime_seconds": 0.0182309852889739
+        },
+        {
+          "fold": 3,
+          "features": [
+            "T3",
+            "T7",
+            "T8",
+            "RH_8",
+            "T9",
+            "Press_mm_hg"
+          ],
+          "indices": [
+            5,
+            13,
+            15,
+            16,
+            17,
+            20
+          ],
+          "train_range": [
+            0,
+            11835
+          ],
+          "validation_range": [
+            11841,
+            15788
+          ],
+          "rmse": 99.77013971807364,
+          "mae": 58.33579126861273,
+          "r2": 0.06533398057744066,
+          "source": "existing_phase3b_final_selection_cv_rechecked",
+          "runtime_seconds": 0.026766670651268212
+        }
+      ],
+      "rmse": 98.46179625048934,
+      "mae": 59.87167178427203,
+      "r2": 0.04321822858897476
+    },
+    {
+      "method": "f_test",
+      "evaluation": "B_selector_inside_each_training_fold",
+      "k": 6,
+      "source": "existing_phase3b_final_selection_cv_rechecked",
+      "folds": [
+        {
+          "fold": 1,
+          "features": [
+            "lights",
+            "T1",
+            "T2",
+            "RH_2",
+            "T4",
+            "RH_8"
+          ],
+          "indices": [
+            0,
+            1,
+            3,
+            4,
+            7,
+            16
+          ],
+          "train_range": [
+            0,
+            3941
+          ],
+          "validation_range": [
+            3947,
+            7894
+          ],
+          "rmse": 101.20253293546546,
+          "mae": 64.02307210668462,
+          "r2": -0.04073305969516072,
+          "source": "existing_phase3b_final_selection_cv_rechecked",
+          "runtime_seconds": 0.0019206133531406522
+        },
+        {
+          "fold": 2,
+          "features": [
+            "lights",
+            "T2",
+            "T3",
+            "T4",
+            "RH_8",
+            "RH_out"
+          ],
+          "indices": [
+            0,
+            3,
+            5,
+            7,
+            16,
+            21
+          ],
+          "train_range": [
+            0,
+            7888
+          ],
+          "validation_range": [
+            7894,
+            11841
+          ],
+          "rmse": 96.08367901955488,
+          "mae": 56.91101385831696,
+          "r2": 0.07034418192273328,
+          "source": "existing_phase3b_final_selection_cv_rechecked",
+          "runtime_seconds": 0.0024475946347229183
+        },
+        {
+          "fold": 3,
+          "features": [
+            "lights",
+            "T2",
+            "RH_2",
+            "T3",
+            "RH_8",
+            "RH_out"
+          ],
+          "indices": [
+            0,
+            3,
+            4,
+            5,
+            16,
+            21
+          ],
+          "train_range": [
+            0,
+            11835
+          ],
+          "validation_range": [
+            11841,
+            15788
+          ],
+          "rmse": 100.2072583954837,
+          "mae": 61.17515543424075,
+          "r2": 0.057126014173424444,
+          "source": "existing_phase3b_final_selection_cv_rechecked",
+          "runtime_seconds": 0.002775336639024317
+        }
+      ],
+      "rmse": 99.16449011683467,
+      "mae": 60.703080466414114,
+      "r2": 0.028912378800332334
+    },
+    {
+      "method": "forward_sfs",
+      "evaluation": "B_selector_inside_each_training_fold",
+      "k": 6,
+      "source": "new_phase3d_fold_local_sfs_k6",
+      "folds": [
+        {
+          "fold": 1,
+          "features": [
+            "lights",
+            "RH_2",
+            "RH_3",
+            "RH_9",
+            "RH_out",
+            "Tdewpoint"
+          ],
+          "indices": [
+            0,
+            4,
+            6,
+            18,
+            21,
+            24
+          ],
+          "train_range": [
+            0,
+            3941
+          ],
+          "validation_range": [
+            3947,
+            7894
+          ],
+          "rmse": 98.90902791636346,
+          "mae": 58.106829742628136,
+          "r2": 0.005903709875585639,
+          "source": "new_phase3d_fold_local_sfs_k6",
+          "runtime_seconds": 2.433061291987542
+        },
+        {
+          "fold": 2,
+          "features": [
+            "lights",
+            "RH_1",
+            "RH_2",
+            "RH_3",
+            "RH_9",
+            "RH_out"
+          ],
+          "indices": [
+            0,
+            2,
+            4,
+            6,
+            18,
+            21
+          ],
+          "train_range": [
+            0,
+            7888
+          ],
+          "validation_range": [
+            7894,
+            11841
+          ],
+          "rmse": 107.16226635498941,
+          "mae": 65.06370510770526,
+          "r2": -0.15639638087636398,
+          "source": "new_phase3d_fold_local_sfs_k6",
+          "runtime_seconds": 2.4890397079871036
+        },
+        {
+          "fold": 3,
+          "features": [
+            "RH_1",
+            "T2",
+            "RH_3",
+            "T5",
+            "RH_8",
+            "Press_mm_hg"
+          ],
+          "indices": [
+            2,
+            3,
+            6,
+            9,
+            16,
+            20
+          ],
+          "train_range": [
+            0,
+            11835
+          ],
+          "validation_range": [
+            11841,
+            15788
+          ],
+          "rmse": 99.87353837756058,
+          "mae": 58.306686230429044,
+          "r2": 0.06339565929704793,
+          "source": "new_phase3d_fold_local_sfs_k6",
+          "runtime_seconds": 2.6667001659516245
+        }
+      ],
+      "rmse": 101.98161088297115,
+      "mae": 60.49240702692081,
+      "r2": -0.029032337234576804
+    },
+    {
+      "method": "rfe",
+      "evaluation": "B_selector_inside_each_training_fold",
+      "k": 6,
+      "source": "existing_phase3b_final_selection_cv_rechecked",
+      "folds": [
+        {
+          "fold": 1,
+          "features": [
+            "RH_1",
+            "T2",
+            "RH_2",
+            "T_out",
+            "RH_out",
+            "Tdewpoint"
+          ],
+          "indices": [
+            2,
+            3,
+            4,
+            19,
+            21,
+            24
+          ],
+          "train_range": [
+            0,
+            3941
+          ],
+          "validation_range": [
+            3947,
+            7894
+          ],
+          "rmse": 97.74220281381854,
+          "mae": 58.914486490870665,
+          "r2": 0.02921997679346955,
+          "source": "existing_phase3b_final_selection_cv_rechecked",
+          "runtime_seconds": 0.01658121630549431
+        },
+        {
+          "fold": 2,
+          "features": [
+            "lights",
+            "RH_1",
+            "RH_2",
+            "RH_3",
+            "RH_9",
+            "T_out"
+          ],
+          "indices": [
+            0,
+            2,
+            4,
+            6,
+            18,
+            19
+          ],
+          "train_range": [
+            0,
+            7888
+          ],
+          "validation_range": [
+            7894,
+            11841
+          ],
+          "rmse": 106.16736626772921,
+          "mae": 65.15702402116943,
+          "r2": -0.13502396587642074,
+          "source": "existing_phase3b_final_selection_cv_rechecked",
+          "runtime_seconds": 0.019944364333059638
+        },
+        {
+          "fold": 3,
+          "features": [
+            "RH_1",
+            "RH_2",
+            "RH_8",
+            "T_out",
+            "RH_out",
+            "Tdewpoint"
+          ],
+          "indices": [
+            2,
+            4,
+            16,
+            19,
+            21,
+            24
+          ],
+          "train_range": [
+            0,
+            11835
+          ],
+          "validation_range": [
+            11841,
+            15788
+          ],
+          "rmse": 99.91619823419325,
+          "mae": 59.201965856597965,
+          "r2": 0.06259536843330027,
+          "source": "existing_phase3b_final_selection_cv_rechecked",
+          "runtime_seconds": 0.023377121672965587
+        }
+      ],
+      "rmse": 101.27525577191368,
+      "mae": 61.09115878954602,
+      "r2": -0.01440287354988364
+    }
+  ]
+}

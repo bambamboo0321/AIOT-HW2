@@ -1,0 +1,1482 @@
+{
+  "milestone": "M7",
+  "status": "passed",
+  "scope": "Explicitly confirmed local numeric Linear Regression plus training-mean baseline; Training-only fold-local preprocessing/CV and separate complete Holdout evaluation",
+  "changed_source_files": [
+    "web/README.md",
+    "web/components/custom-dataset-wizard.tsx",
+    "web/lib/custom-validation-service.ts",
+    "web/app/custom-dataset/page.tsx",
+    "web/components/shell.tsx",
+    "web/app/globals.css",
+    "src/custom_dataset_training.py",
+    "tests/test_custom_dataset_training.py",
+    "docs/custom_dataset_training.md",
+    "web/components/custom-training-panel.tsx",
+    "web/lib/custom-training-result.ts",
+    "web/app/api/custom-dataset/train/route.ts",
+    "web/tests/custom-training-api.test.ts"
+  ],
+  "checks": {
+    "web_tests": {
+      "passed": 88,
+      "failed": 0
+    },
+    "full_python_tests_in_original_repository": {
+      "passed": 167,
+      "failed": 0
+    },
+    "new_python_training_tests": {
+      "passed": 8,
+      "failed": 0
+    },
+    "lint": "passed",
+    "typecheck": "passed",
+    "production_build": "passed",
+    "isolated_python_suite_note": "An initial isolated-copy run could not execute the Git integrity assertion because the copy has no .git; the complete 167-test suite was then run successfully in the original Git repository.",
+    "browser": {
+      "noAutoTraining": true,
+      "explicitConsent": true,
+      "training": {
+        "status": 200,
+        "body": {
+          "schema_version": 1,
+          "scope": "custom_baseline_training",
+          "status": "completed",
+          "training_started": true,
+          "validation": {
+            "schema_version": 1,
+            "scope": "pretraining_validation_only",
+            "training_started": false,
+            "status": "valid",
+            "dataset": {
+              "sha256": "da75f893a31c13bfcab2557002ecf947e80f7820308d8d88c038f70c32a43dc1",
+              "bytes": 22751,
+              "rows": 900,
+              "columns": 3
+            },
+            "config_sha256": "ca286d4ac76429fcf6f0bc8521b0bbf2b2dcc1718670bf03dda9592221882018",
+            "review_checked": true,
+            "split": {
+              "strategy": "chronological",
+              "training_rows": 720,
+              "holdout_rows": 180,
+              "target_missing_dropped": 0,
+              "cv_folds": [
+                {
+                  "fold": 1,
+                  "training_rows": 119,
+                  "validation_rows": 120
+                },
+                {
+                  "fold": 2,
+                  "training_rows": 239,
+                  "validation_rows": 120
+                },
+                {
+                  "fold": 3,
+                  "training_rows": 359,
+                  "validation_rows": 120
+                },
+                {
+                  "fold": 4,
+                  "training_rows": 479,
+                  "validation_rows": 120
+                },
+                {
+                  "fold": 5,
+                  "training_rows": 599,
+                  "validation_rows": 120
+                }
+              ]
+            },
+            "warnings": [
+              "原始候選輸入少於 13 欄；此為作業資料規範，與選取後 k 分開。"
+            ],
+            "limits": [
+              "未 fit 或 transform，未估計補值、縮放、IQR 門檻或選特徵。",
+              "驗證通過不代表模型效果、PI 適用性或後續訓練成功。"
+            ]
+          },
+          "method": "linear_regression",
+          "target": "target",
+          "features": [
+            "x"
+          ],
+          "cv": {
+            "folds": [
+              {
+                "fold": 1,
+                "training_rows": 119,
+                "validation_rows": 120,
+                "linear_regression": {
+                  "rmse": 2.0479881547853886,
+                  "mae": 1.776497175141261,
+                  "r2": 0.9991268637031409
+                },
+                "training_mean": {
+                  "rmse": 250.75213525179268,
+                  "mae": 240.98333333333332,
+                  "r2": -12.089300597304174
+                }
+              },
+              {
+                "fold": 2,
+                "training_rows": 239,
+                "validation_rows": 120,
+                "linear_regression": {
+                  "rmse": 1.996233464153894,
+                  "mae": 1.7208333333333399,
+                  "r2": 0.9991694030425559
+                },
+                "training_mean": {
+                  "rmse": 367.5890881267581,
+                  "mae": 361.004218967922,
+                  "r2": -27.163906531235686
+                }
+              },
+              {
+                "fold": 3,
+                "training_rows": 359,
+                "validation_rows": 120,
+                "linear_regression": {
+                  "rmse": 1.9918889945011422,
+                  "mae": 1.7031031263130094,
+                  "r2": 0.9991726709830859
+                },
+                "training_mean": {
+                  "rmse": 485.9733516589857,
+                  "mae": 481.01392757660153,
+                  "r2": -48.246220264542856
+                }
+              },
+              {
+                "fold": 4,
+                "training_rows": 479,
+                "validation_rows": 120,
+                "linear_regression": {
+                  "rmse": 1.9937692653739076,
+                  "mae": 1.7088135003479417,
+                  "r2": 0.9991714523947619
+                },
+                "training_mean": {
+                  "rmse": 604.9989793928886,
+                  "mae": 601.0208594293667,
+                  "r2": -75.29164102135245
+                }
+              },
+              {
+                "fold": 5,
+                "training_rows": 599,
+                "validation_rows": 120,
+                "linear_regression": {
+                  "rmse": 1.9999842287178762,
+                  "mae": 1.7169413720005668,
+                  "r2": 0.9991673158393405
+                },
+                "training_mean": {
+                  "rmse": 724.3501532461215,
+                  "mae": 721.0266833611572,
+                  "r2": -108.22555856944959
+                }
+              }
+            ],
+            "linear_regression": {
+              "rmse": {
+                "mean": 2.005972821506442,
+                "std": 0.02118153687136033,
+                "defined_folds": 5
+              },
+              "mae": {
+                "mean": 1.7252377014272238,
+                "std": 0.026364578442605917,
+                "defined_folds": 5
+              },
+              "r2": {
+                "mean": 0.9991615411925769,
+                "std": 1.7434377932406073e-05,
+                "defined_folds": 5
+              }
+            },
+            "training_mean": {
+              "rmse": {
+                "mean": 486.7327415353093,
+                "std": 167.5300395317738,
+                "defined_folds": 5
+              },
+              "mae": {
+                "mean": 481.0098045336761,
+                "std": 169.72024209276287,
+                "defined_folds": 5
+              },
+              "r2": {
+                "mean": -54.20332539677695,
+                "std": 34.36081224825052,
+                "defined_folds": 5
+              }
+            }
+          },
+          "holdout": {
+            "rows": 180,
+            "linear_regression": {
+              "rmse": 2.0044812610783063,
+              "mae": 1.7201085612734486,
+              "r2": 0.999628024863855
+            },
+            "training_mean": {
+              "rmse": 905.968625217492,
+              "mae": 899.9875,
+              "r2": -74.98646234471799
+            }
+          },
+          "preview": [
+            {
+              "position": 1,
+              "source_row": 721,
+              "timestamp": "2024-01-01T12:00",
+              "actual": 1446,
+              "prediction": 1443.0167246175247,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 2,
+              "source_row": 722,
+              "timestamp": "2024-01-01T12:01",
+              "actual": 1442,
+              "prediction": 1445.0167825683825,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 3,
+              "source_row": 723,
+              "timestamp": "2024-01-01T12:02",
+              "actual": 1445,
+              "prediction": 1447.01684051924,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 4,
+              "source_row": 724,
+              "timestamp": "2024-01-01T12:03",
+              "actual": 1448,
+              "prediction": 1449.0168984700977,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 5,
+              "source_row": 725,
+              "timestamp": "2024-01-01T12:04",
+              "actual": 1451,
+              "prediction": 1451.0169564209555,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 6,
+              "source_row": 726,
+              "timestamp": "2024-01-01T12:05",
+              "actual": 1454,
+              "prediction": 1453.017014371813,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 7,
+              "source_row": 727,
+              "timestamp": "2024-01-01T12:06",
+              "actual": 1457,
+              "prediction": 1455.0170723226709,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 8,
+              "source_row": 728,
+              "timestamp": "2024-01-01T12:07",
+              "actual": 1460,
+              "prediction": 1457.0171302735284,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 9,
+              "source_row": 729,
+              "timestamp": "2024-01-01T12:08",
+              "actual": 1456,
+              "prediction": 1459.0171882243862,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 10,
+              "source_row": 730,
+              "timestamp": "2024-01-01T12:09",
+              "actual": 1459,
+              "prediction": 1461.0172461752436,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 11,
+              "source_row": 731,
+              "timestamp": "2024-01-01T12:10",
+              "actual": 1462,
+              "prediction": 1463.0173041261014,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 12,
+              "source_row": 732,
+              "timestamp": "2024-01-01T12:11",
+              "actual": 1465,
+              "prediction": 1465.0173620769592,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 13,
+              "source_row": 733,
+              "timestamp": "2024-01-01T12:12",
+              "actual": 1468,
+              "prediction": 1467.0174200278168,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 14,
+              "source_row": 734,
+              "timestamp": "2024-01-01T12:13",
+              "actual": 1471,
+              "prediction": 1469.0174779786744,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 15,
+              "source_row": 735,
+              "timestamp": "2024-01-01T12:14",
+              "actual": 1474,
+              "prediction": 1471.0175359295322,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 16,
+              "source_row": 736,
+              "timestamp": "2024-01-01T12:15",
+              "actual": 1470,
+              "prediction": 1473.01759388039,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 17,
+              "source_row": 737,
+              "timestamp": "2024-01-01T12:16",
+              "actual": 1473,
+              "prediction": 1475.0176518312473,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 18,
+              "source_row": 738,
+              "timestamp": "2024-01-01T12:17",
+              "actual": 1476,
+              "prediction": 1477.0177097821052,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 19,
+              "source_row": 739,
+              "timestamp": "2024-01-01T12:18",
+              "actual": 1479,
+              "prediction": 1479.017767732963,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 20,
+              "source_row": 740,
+              "timestamp": "2024-01-01T12:19",
+              "actual": 1482,
+              "prediction": 1481.0178256838205,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 21,
+              "source_row": 741,
+              "timestamp": "2024-01-01T12:20",
+              "actual": 1485,
+              "prediction": 1483.0178836346781,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 22,
+              "source_row": 742,
+              "timestamp": "2024-01-01T12:21",
+              "actual": 1488,
+              "prediction": 1485.017941585536,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 23,
+              "source_row": 743,
+              "timestamp": "2024-01-01T12:22",
+              "actual": 1484,
+              "prediction": 1487.0179995363937,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 24,
+              "source_row": 744,
+              "timestamp": "2024-01-01T12:23",
+              "actual": 1487,
+              "prediction": 1489.018057487251,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 25,
+              "source_row": 745,
+              "timestamp": "2024-01-01T12:24",
+              "actual": 1490,
+              "prediction": 1491.018115438109,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 26,
+              "source_row": 746,
+              "timestamp": "2024-01-01T12:25",
+              "actual": 1493,
+              "prediction": 1493.0181733889667,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 27,
+              "source_row": 747,
+              "timestamp": "2024-01-01T12:26",
+              "actual": 1496,
+              "prediction": 1495.0182313398243,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 28,
+              "source_row": 748,
+              "timestamp": "2024-01-01T12:27",
+              "actual": 1499,
+              "prediction": 1497.0182892906819,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 29,
+              "source_row": 749,
+              "timestamp": "2024-01-01T12:28",
+              "actual": 1502,
+              "prediction": 1499.0183472415397,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 30,
+              "source_row": 750,
+              "timestamp": "2024-01-01T12:29",
+              "actual": 1498,
+              "prediction": 1501.0184051923973,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 31,
+              "source_row": 751,
+              "timestamp": "2024-01-01T12:30",
+              "actual": 1501,
+              "prediction": 1503.0184631432548,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 32,
+              "source_row": 752,
+              "timestamp": "2024-01-01T12:31",
+              "actual": 1504,
+              "prediction": 1505.0185210941127,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 33,
+              "source_row": 753,
+              "timestamp": "2024-01-01T12:32",
+              "actual": 1507,
+              "prediction": 1507.0185790449702,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 34,
+              "source_row": 754,
+              "timestamp": "2024-01-01T12:33",
+              "actual": 1510,
+              "prediction": 1509.018636995828,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 35,
+              "source_row": 755,
+              "timestamp": "2024-01-01T12:34",
+              "actual": 1513,
+              "prediction": 1511.0186949466856,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 36,
+              "source_row": 756,
+              "timestamp": "2024-01-01T12:35",
+              "actual": 1516,
+              "prediction": 1513.0187528975434,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 37,
+              "source_row": 757,
+              "timestamp": "2024-01-01T12:36",
+              "actual": 1512,
+              "prediction": 1515.018810848401,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 38,
+              "source_row": 758,
+              "timestamp": "2024-01-01T12:37",
+              "actual": 1515,
+              "prediction": 1517.0188687992586,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 39,
+              "source_row": 759,
+              "timestamp": "2024-01-01T12:38",
+              "actual": 1518,
+              "prediction": 1519.0189267501164,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 40,
+              "source_row": 760,
+              "timestamp": "2024-01-01T12:39",
+              "actual": 1521,
+              "prediction": 1521.018984700974,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 41,
+              "source_row": 761,
+              "timestamp": "2024-01-01T12:40",
+              "actual": 1524,
+              "prediction": 1523.0190426518316,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 42,
+              "source_row": 762,
+              "timestamp": "2024-01-01T12:41",
+              "actual": 1527,
+              "prediction": 1525.0191006026894,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 43,
+              "source_row": 763,
+              "timestamp": "2024-01-01T12:42",
+              "actual": 1530,
+              "prediction": 1527.0191585535472,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 44,
+              "source_row": 764,
+              "timestamp": "2024-01-01T12:43",
+              "actual": 1526,
+              "prediction": 1529.0192165044045,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 45,
+              "source_row": 765,
+              "timestamp": "2024-01-01T12:44",
+              "actual": 1529,
+              "prediction": 1531.0192744552623,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 46,
+              "source_row": 766,
+              "timestamp": "2024-01-01T12:45",
+              "actual": 1532,
+              "prediction": 1533.0193324061202,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 47,
+              "source_row": 767,
+              "timestamp": "2024-01-01T12:46",
+              "actual": 1535,
+              "prediction": 1535.0193903569777,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 48,
+              "source_row": 768,
+              "timestamp": "2024-01-01T12:47",
+              "actual": 1538,
+              "prediction": 1537.0194483078353,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 49,
+              "source_row": 769,
+              "timestamp": "2024-01-01T12:48",
+              "actual": 1541,
+              "prediction": 1539.0195062586931,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 50,
+              "source_row": 770,
+              "timestamp": "2024-01-01T12:49",
+              "actual": 1544,
+              "prediction": 1541.019564209551,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 51,
+              "source_row": 771,
+              "timestamp": "2024-01-01T12:50",
+              "actual": 1540,
+              "prediction": 1543.0196221604083,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 52,
+              "source_row": 772,
+              "timestamp": "2024-01-01T12:51",
+              "actual": 1543,
+              "prediction": 1545.019680111266,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 53,
+              "source_row": 773,
+              "timestamp": "2024-01-01T12:52",
+              "actual": 1546,
+              "prediction": 1547.019738062124,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 54,
+              "source_row": 774,
+              "timestamp": "2024-01-01T12:53",
+              "actual": 1549,
+              "prediction": 1549.0197960129815,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 55,
+              "source_row": 775,
+              "timestamp": "2024-01-01T12:54",
+              "actual": 1552,
+              "prediction": 1551.019853963839,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 56,
+              "source_row": 776,
+              "timestamp": "2024-01-01T12:55",
+              "actual": 1555,
+              "prediction": 1553.0199119146969,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 57,
+              "source_row": 777,
+              "timestamp": "2024-01-01T12:56",
+              "actual": 1558,
+              "prediction": 1555.0199698655545,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 58,
+              "source_row": 778,
+              "timestamp": "2024-01-01T12:57",
+              "actual": 1554,
+              "prediction": 1557.020027816412,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 59,
+              "source_row": 779,
+              "timestamp": "2024-01-01T12:58",
+              "actual": 1557,
+              "prediction": 1559.0200857672698,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 60,
+              "source_row": 780,
+              "timestamp": "2024-01-01T12:59",
+              "actual": 1560,
+              "prediction": 1561.0201437181277,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 61,
+              "source_row": 781,
+              "timestamp": "2024-01-01T13:00",
+              "actual": 1563,
+              "prediction": 1563.020201668985,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 62,
+              "source_row": 782,
+              "timestamp": "2024-01-01T13:01",
+              "actual": 1566,
+              "prediction": 1565.0202596198428,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 63,
+              "source_row": 783,
+              "timestamp": "2024-01-01T13:02",
+              "actual": 1569,
+              "prediction": 1567.0203175707006,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 64,
+              "source_row": 784,
+              "timestamp": "2024-01-01T13:03",
+              "actual": 1572,
+              "prediction": 1569.0203755215582,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 65,
+              "source_row": 785,
+              "timestamp": "2024-01-01T13:04",
+              "actual": 1568,
+              "prediction": 1571.0204334724158,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 66,
+              "source_row": 786,
+              "timestamp": "2024-01-01T13:05",
+              "actual": 1571,
+              "prediction": 1573.0204914232736,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 67,
+              "source_row": 787,
+              "timestamp": "2024-01-01T13:06",
+              "actual": 1574,
+              "prediction": 1575.0205493741312,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 68,
+              "source_row": 788,
+              "timestamp": "2024-01-01T13:07",
+              "actual": 1577,
+              "prediction": 1577.0206073249888,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 69,
+              "source_row": 789,
+              "timestamp": "2024-01-01T13:08",
+              "actual": 1580,
+              "prediction": 1579.0206652758466,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 70,
+              "source_row": 790,
+              "timestamp": "2024-01-01T13:09",
+              "actual": 1583,
+              "prediction": 1581.0207232267041,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 71,
+              "source_row": 791,
+              "timestamp": "2024-01-01T13:10",
+              "actual": 1586,
+              "prediction": 1583.0207811775617,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 72,
+              "source_row": 792,
+              "timestamp": "2024-01-01T13:11",
+              "actual": 1582,
+              "prediction": 1585.0208391284195,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 73,
+              "source_row": 793,
+              "timestamp": "2024-01-01T13:12",
+              "actual": 1585,
+              "prediction": 1587.0208970792773,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 74,
+              "source_row": 794,
+              "timestamp": "2024-01-01T13:13",
+              "actual": 1588,
+              "prediction": 1589.0209550301352,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 75,
+              "source_row": 795,
+              "timestamp": "2024-01-01T13:14",
+              "actual": 1591,
+              "prediction": 1591.0210129809925,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 76,
+              "source_row": 796,
+              "timestamp": "2024-01-01T13:15",
+              "actual": 1594,
+              "prediction": 1593.0210709318503,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 77,
+              "source_row": 797,
+              "timestamp": "2024-01-01T13:16",
+              "actual": 1597,
+              "prediction": 1595.0211288827081,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 78,
+              "source_row": 798,
+              "timestamp": "2024-01-01T13:17",
+              "actual": 1600,
+              "prediction": 1597.0211868335657,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 79,
+              "source_row": 799,
+              "timestamp": "2024-01-01T13:18",
+              "actual": 1596,
+              "prediction": 1599.0212447844233,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 80,
+              "source_row": 800,
+              "timestamp": "2024-01-01T13:19",
+              "actual": 1599,
+              "prediction": 1601.021302735281,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 81,
+              "source_row": 801,
+              "timestamp": "2024-01-01T13:20",
+              "actual": 1602,
+              "prediction": 1603.0213606861387,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 82,
+              "source_row": 802,
+              "timestamp": "2024-01-01T13:21",
+              "actual": 1605,
+              "prediction": 1605.0214186369963,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 83,
+              "source_row": 803,
+              "timestamp": "2024-01-01T13:22",
+              "actual": 1608,
+              "prediction": 1607.021476587854,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 84,
+              "source_row": 804,
+              "timestamp": "2024-01-01T13:23",
+              "actual": 1611,
+              "prediction": 1609.0215345387116,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 85,
+              "source_row": 805,
+              "timestamp": "2024-01-01T13:24",
+              "actual": 1614,
+              "prediction": 1611.0215924895692,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 86,
+              "source_row": 806,
+              "timestamp": "2024-01-01T13:25",
+              "actual": 1610,
+              "prediction": 1613.021650440427,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 87,
+              "source_row": 807,
+              "timestamp": "2024-01-01T13:26",
+              "actual": 1613,
+              "prediction": 1615.0217083912848,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 88,
+              "source_row": 808,
+              "timestamp": "2024-01-01T13:27",
+              "actual": 1616,
+              "prediction": 1617.0217663421422,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 89,
+              "source_row": 809,
+              "timestamp": "2024-01-01T13:28",
+              "actual": 1619,
+              "prediction": 1619.021824293,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 90,
+              "source_row": 810,
+              "timestamp": "2024-01-01T13:29",
+              "actual": 1622,
+              "prediction": 1621.0218822438578,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 91,
+              "source_row": 811,
+              "timestamp": "2024-01-01T13:30",
+              "actual": 1625,
+              "prediction": 1623.0219401947154,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 92,
+              "source_row": 812,
+              "timestamp": "2024-01-01T13:31",
+              "actual": 1628,
+              "prediction": 1625.021998145573,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 93,
+              "source_row": 813,
+              "timestamp": "2024-01-01T13:32",
+              "actual": 1624,
+              "prediction": 1627.0220560964308,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 94,
+              "source_row": 814,
+              "timestamp": "2024-01-01T13:33",
+              "actual": 1627,
+              "prediction": 1629.0221140472884,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 95,
+              "source_row": 815,
+              "timestamp": "2024-01-01T13:34",
+              "actual": 1630,
+              "prediction": 1631.022171998146,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 96,
+              "source_row": 816,
+              "timestamp": "2024-01-01T13:35",
+              "actual": 1633,
+              "prediction": 1633.0222299490038,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 97,
+              "source_row": 817,
+              "timestamp": "2024-01-01T13:36",
+              "actual": 1636,
+              "prediction": 1635.0222878998613,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 98,
+              "source_row": 818,
+              "timestamp": "2024-01-01T13:37",
+              "actual": 1639,
+              "prediction": 1637.022345850719,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 99,
+              "source_row": 819,
+              "timestamp": "2024-01-01T13:38",
+              "actual": 1642,
+              "prediction": 1639.0224038015767,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 100,
+              "source_row": 820,
+              "timestamp": "2024-01-01T13:39",
+              "actual": 1638,
+              "prediction": 1641.0224617524345,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 101,
+              "source_row": 821,
+              "timestamp": "2024-01-01T13:40",
+              "actual": 1641,
+              "prediction": 1643.0225197032923,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 102,
+              "source_row": 822,
+              "timestamp": "2024-01-01T13:41",
+              "actual": 1644,
+              "prediction": 1645.0225776541497,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 103,
+              "source_row": 823,
+              "timestamp": "2024-01-01T13:42",
+              "actual": 1647,
+              "prediction": 1647.0226356050075,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 104,
+              "source_row": 824,
+              "timestamp": "2024-01-01T13:43",
+              "actual": 1650,
+              "prediction": 1649.0226935558653,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 105,
+              "source_row": 825,
+              "timestamp": "2024-01-01T13:44",
+              "actual": 1653,
+              "prediction": 1651.022751506723,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 106,
+              "source_row": 826,
+              "timestamp": "2024-01-01T13:45",
+              "actual": 1656,
+              "prediction": 1653.0228094575805,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 107,
+              "source_row": 827,
+              "timestamp": "2024-01-01T13:46",
+              "actual": 1652,
+              "prediction": 1655.0228674084383,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 108,
+              "source_row": 828,
+              "timestamp": "2024-01-01T13:47",
+              "actual": 1655,
+              "prediction": 1657.0229253592959,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 109,
+              "source_row": 829,
+              "timestamp": "2024-01-01T13:48",
+              "actual": 1658,
+              "prediction": 1659.0229833101534,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 110,
+              "source_row": 830,
+              "timestamp": "2024-01-01T13:49",
+              "actual": 1661,
+              "prediction": 1661.0230412610113,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 111,
+              "source_row": 831,
+              "timestamp": "2024-01-01T13:50",
+              "actual": 1664,
+              "prediction": 1663.0230992118688,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 112,
+              "source_row": 832,
+              "timestamp": "2024-01-01T13:51",
+              "actual": 1667,
+              "prediction": 1665.0231571627264,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 113,
+              "source_row": 833,
+              "timestamp": "2024-01-01T13:52",
+              "actual": 1670,
+              "prediction": 1667.0232151135842,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 114,
+              "source_row": 834,
+              "timestamp": "2024-01-01T13:53",
+              "actual": 1666,
+              "prediction": 1669.023273064442,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 115,
+              "source_row": 835,
+              "timestamp": "2024-01-01T13:54",
+              "actual": 1669,
+              "prediction": 1671.0233310152994,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 116,
+              "source_row": 836,
+              "timestamp": "2024-01-01T13:55",
+              "actual": 1672,
+              "prediction": 1673.0233889661572,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 117,
+              "source_row": 837,
+              "timestamp": "2024-01-01T13:56",
+              "actual": 1675,
+              "prediction": 1675.023446917015,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 118,
+              "source_row": 838,
+              "timestamp": "2024-01-01T13:57",
+              "actual": 1678,
+              "prediction": 1677.0235048678726,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 119,
+              "source_row": 839,
+              "timestamp": "2024-01-01T13:58",
+              "actual": 1681,
+              "prediction": 1679.0235628187302,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 120,
+              "source_row": 840,
+              "timestamp": "2024-01-01T13:59",
+              "actual": 1684,
+              "prediction": 1681.023620769588,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 121,
+              "source_row": 841,
+              "timestamp": "2024-01-01T14:00",
+              "actual": 1680,
+              "prediction": 1683.0236787204456,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 122,
+              "source_row": 842,
+              "timestamp": "2024-01-01T14:01",
+              "actual": 1683,
+              "prediction": 1685.0237366713031,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 123,
+              "source_row": 843,
+              "timestamp": "2024-01-01T14:02",
+              "actual": 1686,
+              "prediction": 1687.023794622161,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 124,
+              "source_row": 844,
+              "timestamp": "2024-01-01T14:03",
+              "actual": 1689,
+              "prediction": 1689.0238525730188,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 125,
+              "source_row": 845,
+              "timestamp": "2024-01-01T14:04",
+              "actual": 1692,
+              "prediction": 1691.023910523876,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 126,
+              "source_row": 846,
+              "timestamp": "2024-01-01T14:05",
+              "actual": 1695,
+              "prediction": 1693.023968474734,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 127,
+              "source_row": 847,
+              "timestamp": "2024-01-01T14:06",
+              "actual": 1698,
+              "prediction": 1695.0240264255917,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 128,
+              "source_row": 848,
+              "timestamp": "2024-01-01T14:07",
+              "actual": 1694,
+              "prediction": 1697.0240843764495,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 129,
+              "source_row": 849,
+              "timestamp": "2024-01-01T14:08",
+              "actual": 1697,
+              "prediction": 1699.024142327307,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 130,
+              "source_row": 850,
+              "timestamp": "2024-01-01T14:09",
+              "actual": 1700,
+              "prediction": 1701.0242002781647,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 131,
+              "source_row": 851,
+              "timestamp": "2024-01-01T14:10",
+              "actual": 1703,
+              "prediction": 1703.0242582290225,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 132,
+              "source_row": 852,
+              "timestamp": "2024-01-01T14:11",
+              "actual": 1706,
+              "prediction": 1705.02431617988,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 133,
+              "source_row": 853,
+              "timestamp": "2024-01-01T14:12",
+              "actual": 1709,
+              "prediction": 1707.0243741307377,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 134,
+              "source_row": 854,
+              "timestamp": "2024-01-01T14:13",
+              "actual": 1712,
+              "prediction": 1709.0244320815955,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 135,
+              "source_row": 855,
+              "timestamp": "2024-01-01T14:14",
+              "actual": 1708,
+              "prediction": 1711.024490032453,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 136,
+              "source_row": 856,
+              "timestamp": "2024-01-01T14:15",
+              "actual": 1711,
+              "prediction": 1713.0245479833106,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 137,
+              "source_row": 857,
+              "timestamp": "2024-01-01T14:16",
+              "actual": 1714,
+              "prediction": 1715.0246059341684,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 138,
+              "source_row": 858,
+              "timestamp": "2024-01-01T14:17",
+              "actual": 1717,
+              "prediction": 1717.024663885026,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 139,
+              "source_row": 859,
+              "timestamp": "2024-01-01T14:18",
+              "actual": 1720,
+              "prediction": 1719.0247218358836,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 140,
+              "source_row": 860,
+              "timestamp": "2024-01-01T14:19",
+              "actual": 1723,
+              "prediction": 1721.0247797867414,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 141,
+              "source_row": 861,
+              "timestamp": "2024-01-01T14:20",
+              "actual": 1726,
+              "prediction": 1723.0248377375992,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 142,
+              "source_row": 862,
+              "timestamp": "2024-01-01T14:21",
+              "actual": 1722,
+              "prediction": 1725.0248956884568,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 143,
+              "source_row": 863,
+              "timestamp": "2024-01-01T14:22",
+              "actual": 1725,
+              "prediction": 1727.0249536393144,
+              "training_mean": 721.9958333333333
+            },
+            {
+              "position": 144,
+              "source_row": 864,
+              "timestamp": "2024-01-01T14:23",
+              "actual": 1728,
+              "prediction": 1729.0250115901722,
+              "training_mean": 721.9958333333333
+            }
+          ],
+          "warnings": [
+            "原始候選輸入少於 13 欄；此為作業資料規範，與選取後 k 分開。"
+          ],
+          "limits": [
+            "只執行固定 Linear Regression 與 Training 平均值基準，沒有選模或調參。",
+            "CV 為 Training 區內的逐 fold 評估；平均／標準差為各 fold 等權計算，標準差 ddof=0。",
+            "Holdout 未用於 fit、前處理學習或參數選擇；查看後再修改設定會造成測試集重用。",
+            "前處理只在當前 Training fit；目標維持原單位，未裁切預測或極端測試資料。",
+            "這是同列目標估計；時間切分不代表已完成多步未來預報。",
+            "沒有 Prediction Interval、模型保存或新資料推論服務。預覽僅前 144 筆；指標使用全部 Holdout。"
+          ]
+        }
+      },
+      "metricSwitches": true,
+      "previewPagination": true,
+      "settingInvalidatesResults": true,
+      "mobileOverflow": false,
+      "cancelWithControlledDelayedActualResponse": true,
+      "lateResultIgnored": true,
+      "retryAfterCancel": true,
+      "randomScatter": true,
+      "replacingFileClearsResult": true,
+      "constantHoldoutR2": null,
+      "mobileDark": true,
+      "productionAndOriginalDevTraining": [
+        {
+          "port": 3008,
+          "status": 200,
+          "rmse": 2.0044812610783063
+        },
+        {
+          "port": 3000,
+          "status": 200,
+          "rmse": 2.0044812610783063
+        }
+      ],
+      "routes": {
+        "/": 200,
+        "/feature-selection": 200,
+        "/model-evaluation": 200,
+        "/prediction-explorer": 200,
+        "/custom-dataset": 200
+      }
+    },
+    "server_training_integration": [
+      "actual Python fit and independent metric verification",
+      "separate explicit confirmation required",
+      "stale digest, unknown method and extra execution parameters rejected before fit",
+      "local-origin, streamed body limit and unknown field checks",
+      "timeout, abort, concurrent request and private temporary-file cleanup",
+      "runtime parsing rejects inconsistent fold counts, summaries, metrics and preview"
+    ]
+  },
+  "integrity": {
+    "baseline_files": 223,
+    "unchanged_baseline_files": 217,
+    "existing_non_web_files_unchanged": 148,
+    "changed_existing_files": [
+      "web/README.md",
+      "web/app/globals.css",
+      "web/app/custom-dataset/page.tsx",
+      "web/components/shell.tsx",
+      "web/components/custom-dataset-wizard.tsx",
+      "web/lib/custom-validation-service.ts"
+    ],
+    "research_data_models_and_previous_python_unchanged": true,
+    "four_web_data_snapshots_unchanged": true
+  },
+  "screenshots": [
+    "artifacts/m7-desktop-dark.png",
+    "artifacts/m7-mobile-light.png",
+    "artifacts/m7-mobile-chart.png",
+    "artifacts/m7-random-scatter.png",
+    "artifacts/m7-mobile-dark-null-r2.png"
+  ],
+  "manual_acceptance": [
+    "Refresh http://127.0.0.1:3000/custom-dataset.",
+    "Choose a numeric regression CSV, select the target and input columns, configure the split, then confirm settings.",
+    "Run Python validation. Confirm the separate training checkbox and click 開始本機訓練與評估.",
+    "Compare LR with the Training-mean baseline; inspect CV and Holdout separately and switch RMSE/MAE/R².",
+    "Inspect first-144 preview and paged table; change settings or cancel to verify invalidation."
+  ],
+  "limitations": [
+    "Fixed numeric LR and mean baseline only; no six-selector search, tuning, Nested CV or PI.",
+    "No saved model, new-data inference, durable job/progress service or public deployment.",
+    "Local synchronous child process; 120-second training deadline, bounded data/output and one execution per handler instance; no OS RAM hard limit or cross-process global scheduler.",
+    "Holdout is marked as viewed; repeated manual configuration changes can reuse the test set.",
+    "All training acceptance used isolated synthetic CSVs; existing energy research models were not retrained."
+  ],
+  "custom_synthetic_training_performed": true,
+  "research_retraining_performed": false,
+  "committed": false,
+  "pushed": false,
+  "original_dev_server_preserved": true,
+  "owned_test_servers_stopped": true,
+  "browser_space_finished": true
+}

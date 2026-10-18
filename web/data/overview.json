@@ -1,0 +1,118 @@
+{
+  "schemaVersion": 1,
+  "status": "ready",
+  "sources": [
+    {
+      "path": "dashboard_data/dataset_summary.json",
+      "sha256": "cf461d3338e618f9d37e68337999af871e71829e8ce7f72c5cfd25147cc1f205"
+    },
+    {
+      "path": "dashboard_data/model_comparison.json",
+      "sha256": "14af4e6ea27d2fb608e614923daf6cb15c4bd182b426d5880ed4e1b2189c8430"
+    },
+    {
+      "path": "dashboard_data/prediction_intervals.json",
+      "sha256": "07a415d35a12660d307d1a19b792bb90517aa6a24c731e1663f5a0a7386c2022"
+    },
+    {
+      "path": "reports/phase3/phase3d/comparison_summary.json",
+      "sha256": "b9d3dd44c4c97f19ce6667510bf1298a5931b2b6ffb0ca23eba966737dab57f3"
+    }
+  ],
+  "data": {
+    "dataset": {
+      "name": "Appliances Energy Prediction",
+      "records": 19735,
+      "rawFeatures": 28,
+      "modelingFeatures": 25,
+      "target": "Appliances",
+      "targetUnit": "Wh",
+      "samplingSeconds": 600,
+      "start": "2016-01-11T17:00:00",
+      "end": "2016-05-27T18:00:00"
+    },
+    "trainingRows": 15788,
+    "holdoutRows": 3947,
+    "nominalCoverage": 0.95,
+    "holdoutRole": "single fixed descriptive evaluation; already viewed in Phase 2",
+    "errorUnit": "Wh",
+    "widthUnit": "Wh",
+    "models": [
+      {
+        "id": "baseline",
+        "label": "Baseline Linear Regression",
+        "features": 25,
+        "selectedFeatures": [
+          "lights",
+          "T1",
+          "RH_1",
+          "T2",
+          "RH_2",
+          "T3",
+          "RH_3",
+          "T4",
+          "RH_4",
+          "T5",
+          "RH_5",
+          "T6",
+          "RH_6",
+          "T7",
+          "RH_7",
+          "T8",
+          "RH_8",
+          "T9",
+          "RH_9",
+          "T_out",
+          "Press_mm_hg",
+          "RH_out",
+          "Windspeed",
+          "Visibility",
+          "Tdewpoint"
+        ],
+        "rmse": 86.73293851865496,
+        "mae": 52.01410537697308,
+        "r2": 0.09235159638436585,
+        "coverage": 0.960983025082341,
+        "averageWidth": 376.1045334652823
+      },
+      {
+        "id": "selected",
+        "label": "MI + Linear Regression",
+        "features": 6,
+        "selectedFeatures": [
+          "T3",
+          "T4",
+          "T5",
+          "RH_6",
+          "T8",
+          "T9"
+        ],
+        "rmse": 90.44177327511646,
+        "mae": 53.60586130503112,
+        "r2": 0.013067013416318884,
+        "coverage": 0.9581960983025082,
+        "averageWidth": 401.44276077932034
+      }
+    ],
+    "exploration": {
+      "available": true,
+      "sampleCount": 1000,
+      "bestRmse": 95.277933015806,
+      "fixedMiRmse": 100.07871205956015,
+      "bestFeatures": [
+        "T3",
+        "RH_3",
+        "T6",
+        "T8",
+        "RH_8",
+        "T9"
+      ],
+      "betterCount": 371,
+      "rank": 372,
+      "rankPopulation": 1001,
+      "folds": 3,
+      "gap": 6,
+      "warning": "A fixed method subsets reused full Training targets; random minimum reuses 1000 CV assessments. Neither is unbiased generalization error; do not rank them against B as equivalent estimators."
+    }
+  }
+}

@@ -1,0 +1,145 @@
+{
+  "milestone": "M6-A",
+  "scope": "Independent Python custom dataset pretraining validation CLI; not connected to HTTP/UI",
+  "status": "passed",
+  "new_files": [
+    "src/custom_dataset_validation.py",
+    "tests/test_custom_dataset_validation.py",
+    "docs/custom_dataset_validation.md"
+  ],
+  "checks": {
+    "focused_tests": {
+      "passed": 10,
+      "failed": 0
+    },
+    "syntax": "compile passed without creating bytecode",
+    "actual_download_and_energy_csv": {
+      "browser-download-check": {
+        "schema_version": 1,
+        "status": "valid",
+        "scope": "pretraining_validation_only",
+        "training_started": false,
+        "dataset": {
+          "sha256": "7a2ce02d1d043cec3ff6cf288cc9888859f7492b5b3156f86958f744ff40422f",
+          "bytes": 2370,
+          "rows": 40,
+          "columns": 8
+        },
+        "config_sha256": "3f18d3416d0a970df66f4c31ba116edcb06870a8cb6db0c7ac040e29593e127d",
+        "review_checked": true,
+        "split": {
+          "strategy": "chronological",
+          "training_rows": 32,
+          "holdout_rows": 8,
+          "target_missing_dropped": 0,
+          "cv_folds": [
+            {
+              "fold": 1,
+              "training_rows": 6,
+              "validation_rows": 5
+            },
+            {
+              "fold": 2,
+              "training_rows": 11,
+              "validation_rows": 5
+            },
+            {
+              "fold": 3,
+              "training_rows": 16,
+              "validation_rows": 5
+            },
+            {
+              "fold": 4,
+              "training_rows": 21,
+              "validation_rows": 5
+            },
+            {
+              "fold": 5,
+              "training_rows": 26,
+              "validation_rows": 5
+            }
+          ]
+        },
+        "warnings": [
+          "原始候選輸入少於 13 欄；此為作業資料規範，與選取後 k 分開。"
+        ],
+        "limits": [
+          "未 fit 或 transform，未估計補值、縮放、IQR 門檻或選特徵。",
+          "驗證通過不代表模型效果、PI 適用性或後續訓練成功。"
+        ]
+      },
+      "energy-check": {
+        "schema_version": 1,
+        "status": "valid",
+        "scope": "pretraining_validation_only",
+        "training_started": false,
+        "dataset": {
+          "sha256": "2820bf712ad0275cb18b85a05250926100d8e65ebb9f4d2d016ca91ea152a25d",
+          "bytes": 11979363,
+          "rows": 19735,
+          "columns": 29
+        },
+        "config_sha256": "118f8094028aac32bd8f63463491378ac209cdd018a4dc0f9f2a501233ec6b0e",
+        "review_checked": false,
+        "split": {
+          "strategy": "chronological",
+          "training_rows": 15788,
+          "holdout_rows": 3947,
+          "target_missing_dropped": 0,
+          "cv_folds": [
+            {
+              "fold": 1,
+              "training_rows": 2627,
+              "validation_rows": 2631
+            },
+            {
+              "fold": 2,
+              "training_rows": 5258,
+              "validation_rows": 2631
+            },
+            {
+              "fold": 3,
+              "training_rows": 7889,
+              "validation_rows": 2631
+            },
+            {
+              "fold": 4,
+              "training_rows": 10520,
+              "validation_rows": 2631
+            },
+            {
+              "fold": 5,
+              "training_rows": 13151,
+              "validation_rows": 2631
+            }
+          ]
+        },
+        "warnings": [],
+        "limits": [
+          "未 fit 或 transform，未估計補值、縮放、IQR 門檻或選特徵。",
+          "驗證通過不代表模型效果、PI 適用性或後續訓練成功。"
+        ]
+      }
+    },
+    "no_fit_boundary": "LR, scaler and imputer fit plus prepare_fold patched to reject execution during validation test",
+    "input_files_unchanged": "validated in isolated tests"
+  },
+  "integrity": {
+    "all_starting_files_unchanged": 213,
+    "non_web_starting_files_unchanged": 144,
+    "all_four_website_snapshots_unchanged": true,
+    "existing_uncommitted_changes_preserved": true,
+    "no_training_or_inference": true,
+    "no_commit_or_push": true
+  },
+  "manual_acceptance": [
+    "Download config and optional review JSON from Custom Dataset after confirming settings",
+    "Run .venv/bin/python -B -m src.custom_dataset_validation --csv /path/data.csv --config /path/custom-dataset-config.json --review /path/custom-dataset-review.json",
+    "Expect status valid and exit code 0 for compatible data; invalid and exit code 2 for rejected input",
+    "Change CSV or settings and verify old review is rejected"
+  ],
+  "remaining": [
+    "HTTP API and front-end validation integration",
+    "Training jobs, general selector runner, progress/cancel, models and predictions"
+  ]
+}

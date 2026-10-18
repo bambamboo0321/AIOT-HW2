@@ -1,0 +1,235 @@
+{
+  "scope": "M4 research interpretation and website wrap-up",
+  "status": "functional_and_representative_visual_checks_passed",
+  "changes": [
+    "Shared Overview / Model Evaluation research conclusion using saved metrics",
+    "Feature Selection explanation link while preserving real fold curves",
+    "Dynamic Prediction Explorer interpretation of actual maximum, same-row predictions, R2 and PI counts",
+    "README manual acceptance steps; Custom Dataset remains deferred"
+  ],
+  "checks": {
+    "lint": "pass",
+    "typecheck": "pass",
+    "build": "pass in isolated working copy using original dependencies",
+    "tests": {
+      "passed": 57,
+      "failed": 0
+    },
+    "browser": {
+      "prediction": {
+        "screenshotWindow": {
+          "start": 3744,
+          "size": 72,
+          "actualMaximum": 850,
+          "peakTime": "2016-05-26T16:40:00",
+          "coverageCounts": [
+            58,
+            58
+          ],
+          "r2Negative": [
+            true,
+            true
+          ],
+          "maximumTimePredictions": [
+            149.17,
+            129.05
+          ]
+        },
+        "windowSizes": [
+          72,
+          144,
+          288
+        ],
+        "globalReferenceUnchanged": true,
+        "chartTogglesPreserveInterpretation": true,
+        "tailWindow": {
+          "first": "3660",
+          "last": "3947",
+          "count": 288,
+          "lastDisabled": true,
+          "cards": [
+            "Baseline LR最大值當下預測 149.17 Wh，低估 700.83 Wh；未落在該筆 PI 內。視窗 R²：0.153。平方誤差低於以這批實際平均值作為固定預測的事後比較基準；仍需搭配誤差大小與使用需求判斷。視窗 PI 涵蓋 266／288 筆（92.36%），平均寬度 376.07 Wh；實際值高於上界 22 筆、低於下界 0 筆。",
+            "MI + LR最大值當下預測 129.05 Wh，低估 720.95 Wh；未落在該筆 PI 內。視窗 R²：0.037。平方誤差低於以這批實際平均值作為固定預測的事後比較基準；仍需搭配誤差大小與使用需求判斷。視窗 PI 涵蓋 265／288 筆（92.01%），平均寬度 401.44 Wh；實際值高於上界 23 筆、低於下界 0 筆。"
+          ]
+        },
+        "mobileOverflow": false
+      },
+      "viewports": [
+        {
+          "path": "/",
+          "width": 1440,
+          "theme": "light",
+          "pass": true
+        },
+        {
+          "path": "/feature-selection",
+          "width": 1440,
+          "theme": "light",
+          "pass": true
+        },
+        {
+          "path": "/model-evaluation",
+          "width": 1440,
+          "theme": "light",
+          "pass": true
+        },
+        {
+          "path": "/prediction-explorer",
+          "width": 1440,
+          "theme": "light",
+          "pass": true
+        },
+        {
+          "path": "/",
+          "width": 1440,
+          "theme": "dark",
+          "pass": true
+        },
+        {
+          "path": "/feature-selection",
+          "width": 1440,
+          "theme": "dark",
+          "pass": true
+        },
+        {
+          "path": "/model-evaluation",
+          "width": 1440,
+          "theme": "dark",
+          "pass": true
+        },
+        {
+          "path": "/prediction-explorer",
+          "width": 1440,
+          "theme": "dark",
+          "pass": true
+        },
+        {
+          "path": "/",
+          "width": 390,
+          "theme": "light",
+          "pass": true
+        },
+        {
+          "path": "/feature-selection",
+          "width": 390,
+          "theme": "light",
+          "pass": true
+        },
+        {
+          "path": "/model-evaluation",
+          "width": 390,
+          "theme": "light",
+          "pass": true
+        },
+        {
+          "path": "/prediction-explorer",
+          "width": 390,
+          "theme": "light",
+          "pass": true
+        },
+        {
+          "path": "/",
+          "width": 390,
+          "theme": "dark",
+          "pass": true
+        },
+        {
+          "path": "/feature-selection",
+          "width": 390,
+          "theme": "dark",
+          "pass": true
+        },
+        {
+          "path": "/model-evaluation",
+          "width": 390,
+          "theme": "dark",
+          "pass": true
+        },
+        {
+          "path": "/prediction-explorer",
+          "width": 390,
+          "theme": "dark",
+          "pass": true
+        }
+      ],
+      "conclusionLink": true,
+      "evaluationToggles": true,
+      "mobileNavigation": true,
+      "featureSelection": {
+        "lassoK": [
+          2,
+          16,
+          3,
+          14,
+          16
+        ],
+        "rfecvK": [
+          11,
+          9,
+          11,
+          10,
+          9
+        ],
+        "fiveRealFoldPoints": true,
+        "metricSwitches": true
+      },
+      "overviewMetricSwitches": true,
+      "routes": [
+        {
+          "path": "/",
+          "status": 200
+        },
+        {
+          "path": "/feature-selection",
+          "status": 200
+        },
+        {
+          "path": "/model-evaluation",
+          "status": 200
+        },
+        {
+          "path": "/prediction-explorer",
+          "status": 200
+        },
+        {
+          "path": "/custom-dataset",
+          "status": 200
+        }
+      ]
+    },
+    "visual": "Four representative screenshots inspected: desktop dark and mobile light for conclusions and prediction interpretation"
+  },
+  "integrity": {
+    "starting_files": 204,
+    "protected_starting_files_unchanged": 198,
+    "non_web_files_unchanged": 144,
+    "all_four_website_snapshots_unchanged": true,
+    "existing_uncommitted_changes_preserved": true,
+    "no_training_or_inference": true,
+    "no_commit_or_push": true
+  },
+  "changed_files": [
+    "web/README.md",
+    "web/app/feature-selection/page.tsx",
+    "web/app/globals.css",
+    "web/app/model-evaluation/page.tsx",
+    "web/app/page.tsx",
+    "web/components/prediction-explorer.tsx",
+    "web/components/research-conclusion.tsx",
+    "web/lib/result-interpretation.ts",
+    "web/tests/result-interpretation.test.ts"
+  ],
+  "manual_acceptance": [
+    "Refresh http://127.0.0.1:3000/prediction-explorer",
+    "Select 12 hours and jump to 2016-05-26 08:20; inspect the new window interpretation: actual max 850 Wh, both PI 58/72",
+    "Change time window and size; interpretation follows the active data while full Holdout references stay fixed",
+    "Open Overview and follow the conclusion link to /model-evaluation#research-conclusion",
+    "Check Feature Selection LassoCV / RFECV real fold scores and mobile light/dark modes"
+  ],
+  "screenshots": [
+    "web/artifacts/wrap-prediction-desktop-dark.png",
+    "web/artifacts/wrap-prediction-mobile-light.png",
+    "web/artifacts/wrap-overview-mobile-light.png",
+    "web/artifacts/wrap-evaluation-desktop-dark.png"
+  ]
+}

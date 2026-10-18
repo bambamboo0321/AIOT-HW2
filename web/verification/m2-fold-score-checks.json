@@ -1,0 +1,437 @@
+{
+  "implementation": "Measured Outer fold scores for automatic selectors",
+  "checks": [
+    {
+      "width": 1440,
+      "theme": "light",
+      "method": "lasso_cv",
+      "metric": "rmse",
+      "points": 5,
+      "actualK": [
+        2,
+        16,
+        3,
+        14,
+        16
+      ],
+      "referenceLine": true,
+      "tooltipScores": "all five exact scores verified",
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "theme": "light",
+      "method": "lasso_cv",
+      "metric": "mae",
+      "points": 5,
+      "actualK": [
+        2,
+        16,
+        3,
+        14,
+        16
+      ],
+      "referenceLine": true,
+      "tooltipScores": "all five exact scores verified",
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "theme": "light",
+      "method": "lasso_cv",
+      "metric": "r2",
+      "points": 5,
+      "actualK": [
+        2,
+        16,
+        3,
+        14,
+        16
+      ],
+      "referenceLine": true,
+      "tooltipScores": "all five exact scores verified",
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "theme": "light",
+      "method": "rfecv",
+      "metric": "rmse",
+      "points": 5,
+      "actualK": [
+        11,
+        9,
+        11,
+        10,
+        9
+      ],
+      "referenceLine": true,
+      "tooltipScores": "all five exact scores verified",
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "theme": "light",
+      "method": "rfecv",
+      "metric": "mae",
+      "points": 5,
+      "actualK": [
+        11,
+        9,
+        11,
+        10,
+        9
+      ],
+      "referenceLine": true,
+      "tooltipScores": "all five exact scores verified",
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "theme": "light",
+      "method": "rfecv",
+      "metric": "r2",
+      "points": 5,
+      "actualK": [
+        11,
+        9,
+        11,
+        10,
+        9
+      ],
+      "referenceLine": true,
+      "tooltipScores": "all five exact scores verified",
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "theme": "dark",
+      "method": "lasso_cv",
+      "metric": "rmse",
+      "points": 5,
+      "actualK": [
+        2,
+        16,
+        3,
+        14,
+        16
+      ],
+      "referenceLine": true,
+      "tooltipScores": "all five exact scores verified",
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "theme": "dark",
+      "method": "lasso_cv",
+      "metric": "mae",
+      "points": 5,
+      "actualK": [
+        2,
+        16,
+        3,
+        14,
+        16
+      ],
+      "referenceLine": true,
+      "tooltipScores": "all five exact scores verified",
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "theme": "dark",
+      "method": "lasso_cv",
+      "metric": "r2",
+      "points": 5,
+      "actualK": [
+        2,
+        16,
+        3,
+        14,
+        16
+      ],
+      "referenceLine": true,
+      "tooltipScores": "all five exact scores verified",
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "theme": "dark",
+      "method": "rfecv",
+      "metric": "rmse",
+      "points": 5,
+      "actualK": [
+        11,
+        9,
+        11,
+        10,
+        9
+      ],
+      "referenceLine": true,
+      "tooltipScores": "all five exact scores verified",
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "theme": "dark",
+      "method": "rfecv",
+      "metric": "mae",
+      "points": 5,
+      "actualK": [
+        11,
+        9,
+        11,
+        10,
+        9
+      ],
+      "referenceLine": true,
+      "tooltipScores": "all five exact scores verified",
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "theme": "dark",
+      "method": "rfecv",
+      "metric": "r2",
+      "points": 5,
+      "actualK": [
+        11,
+        9,
+        11,
+        10,
+        9
+      ],
+      "referenceLine": true,
+      "tooltipScores": "all five exact scores verified",
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "theme": "light",
+      "method": "lasso_cv",
+      "metric": "rmse",
+      "points": 5,
+      "actualK": [
+        2,
+        16,
+        3,
+        14,
+        16
+      ],
+      "referenceLine": true,
+      "tooltipScores": "all five exact scores verified",
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "theme": "light",
+      "method": "lasso_cv",
+      "metric": "mae",
+      "points": 5,
+      "actualK": [
+        2,
+        16,
+        3,
+        14,
+        16
+      ],
+      "referenceLine": true,
+      "tooltipScores": "all five exact scores verified",
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "theme": "light",
+      "method": "lasso_cv",
+      "metric": "r2",
+      "points": 5,
+      "actualK": [
+        2,
+        16,
+        3,
+        14,
+        16
+      ],
+      "referenceLine": true,
+      "tooltipScores": "all five exact scores verified",
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "theme": "light",
+      "method": "rfecv",
+      "metric": "rmse",
+      "points": 5,
+      "actualK": [
+        11,
+        9,
+        11,
+        10,
+        9
+      ],
+      "referenceLine": true,
+      "tooltipScores": "all five exact scores verified",
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "theme": "light",
+      "method": "rfecv",
+      "metric": "mae",
+      "points": 5,
+      "actualK": [
+        11,
+        9,
+        11,
+        10,
+        9
+      ],
+      "referenceLine": true,
+      "tooltipScores": "all five exact scores verified",
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "theme": "light",
+      "method": "rfecv",
+      "metric": "r2",
+      "points": 5,
+      "actualK": [
+        11,
+        9,
+        11,
+        10,
+        9
+      ],
+      "referenceLine": true,
+      "tooltipScores": "all five exact scores verified",
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "theme": "dark",
+      "method": "lasso_cv",
+      "metric": "rmse",
+      "points": 5,
+      "actualK": [
+        2,
+        16,
+        3,
+        14,
+        16
+      ],
+      "referenceLine": true,
+      "tooltipScores": "all five exact scores verified",
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "theme": "dark",
+      "method": "lasso_cv",
+      "metric": "mae",
+      "points": 5,
+      "actualK": [
+        2,
+        16,
+        3,
+        14,
+        16
+      ],
+      "referenceLine": true,
+      "tooltipScores": "all five exact scores verified",
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "theme": "dark",
+      "method": "lasso_cv",
+      "metric": "r2",
+      "points": 5,
+      "actualK": [
+        2,
+        16,
+        3,
+        14,
+        16
+      ],
+      "referenceLine": true,
+      "tooltipScores": "all five exact scores verified",
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "theme": "dark",
+      "method": "rfecv",
+      "metric": "rmse",
+      "points": 5,
+      "actualK": [
+        11,
+        9,
+        11,
+        10,
+        9
+      ],
+      "referenceLine": true,
+      "tooltipScores": "all five exact scores verified",
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "theme": "dark",
+      "method": "rfecv",
+      "metric": "mae",
+      "points": 5,
+      "actualK": [
+        11,
+        9,
+        11,
+        10,
+        9
+      ],
+      "referenceLine": true,
+      "tooltipScores": "all five exact scores verified",
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "theme": "dark",
+      "method": "rfecv",
+      "metric": "r2",
+      "points": 5,
+      "actualK": [
+        11,
+        9,
+        11,
+        10,
+        9
+      ],
+      "referenceLine": true,
+      "tooltipScores": "all five exact scores verified",
+      "overflow": false
+    }
+  ],
+  "screenshots": "Not attempted again after capture timeouts in prior verification",
+  "checks_summary": {
+    "lint": "pass",
+    "typecheck": "pass",
+    "build": "pass in isolated copy using original node_modules",
+    "web_tests": "29/29 pass",
+    "fold_data": "all 30 measured outer_evaluation records match source and nested means"
+  },
+  "research_integrity": {
+    "protected_non_web_files": 144,
+    "unchanged": true,
+    "overview_unchanged": true,
+    "no_retraining": true,
+    "no_commit_or_push": true
+  },
+  "changed_files": [
+    "web/components/feature-selection-explorer.tsx",
+    "web/app/globals.css",
+    "web/README.md",
+    "web/lib/feature-selection-data.ts",
+    "web/lib/feature-selection-types.ts",
+    "web/tests/feature-selection.test.ts",
+    "web/data/feature-selection.json"
+  ]
+}
