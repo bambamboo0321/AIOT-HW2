@@ -22,3 +22,11 @@ export function parseFeatureInput(text: string): number | null {
   if (!/^[+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:e[+-]?\d+)?$/i.test(value)) throw new Error("請輸入數字；空白才會依訓練設定補值。");
   const n=Number(value);if(!Number.isFinite(n)||Math.abs(n)>Number.MAX_SAFE_INTEGER)throw new Error("數值必須有限，且絕對值不超過 9,007,199,254,740,991。");return n;
 }
+
+export type TrainingInputRanges = {source:"full_training_raw";training_rows:number;features:{feature:string;min:number|null;max:number|null}[]};
+export function parseTrainingInputRanges(value:unknown, features:string[], rows:number):TrainingInputRanges {
+ const v=object(value);
+ if(v.source!=="full_training_raw"||v.training_rows!==rows||!Array.isArray(v.features)||v.features.length!==features.length)throw new Error("Training 輸入範圍來源不符。");
+ const ranges=v.features.map((raw,i)=>{const r=object(raw);if(r.feature!==features[i]||!((r.min===null&&r.max===null)||(typeof r.min==="number"&&typeof r.max==="number"&&Number.isFinite(r.min)&&Number.isFinite(r.max)&&r.min<=r.max&&Math.max(Math.abs(r.min),Math.abs(r.max))<=Number.MAX_SAFE_INTEGER)))throw new Error("Training 輸入範圍不符。");return {feature:features[i],min:r.min as number|null,max:r.max as number|null};});
+ return {source:"full_training_raw",training_rows:rows,features:ranges};
+}

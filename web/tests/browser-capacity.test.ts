@@ -1,0 +1,21 @@
+import {test} from 'node:test';
+import assert from 'node:assert/strict';
+import {readFile} from 'node:fs/promises';
+import {BROWSER_LIMITS} from '../lib/browser-compute/protocol.ts';
+import {BrowserComputeClient,type WorkerPort} from '../lib/browser-compute/client.ts';
+import {comparisonWork} from '../lib/custom-comparison-work.ts';
+import {trainingSelectionError} from '../lib/custom-training-choice.ts';
+import {nestedSelectionError} from '../lib/custom-selection-policy.ts';
+import {BATCH_LIMITS} from '../lib/custom-batch-types.ts';
+import {CSV_LIMITS,type PreprocessingPlan} from '../lib/custom-dataset.ts';
+import type {ValidationReport} from '../lib/custom-validation-result.ts';
+const methods=['f_test','mutual_information','rfe','forward_sfs','rfecv','lasso_cv'] as const;
+const grid=(n:number)=>Array.from({length:n},(_,i)=>i+1);
+async function configuration(){const cases=JSON.parse(await readFile(new URL('./fixtures/browser-compute/cases.json',import.meta.url),'utf8'));const base=cases.cases[0];const config={...base.config,feature_columns:grid(15).map(n=>'x'+n)} as PreprocessingPlan;const validation={...base.validation,dataset:{...base.validation.dataset,rows:2000,columns:16},split:{...base.validation.split,training_rows:1600,holdout_rows:400,cv_folds:grid(5).map(fold=>({fold,training_rows:1280,validation_rows:320}))}} as Extract<ValidationReport,{status:'valid'}>;return {config,validation};}
+test('2000 x 15 admits six independent training choices while aggregate multi-k remains blocked',async()=>{const {config,validation}=await configuration();for(const method of methods)assert.equal(trainingSelectionError(method,['rfecv','lasso_cv'].includes(method)?null:5,config,validation),null,method);const rows=validation.split.cv_folds.map(f=>f.training_rows);assert.equal(comparisonWork(methods,grid(10),15,rows),212832000);assert.equal(comparisonWork(['forward_sfs'],grid(10),15,rows),191040000);assert.ok(comparisonWork(methods,grid(10),15,rows)>100000000);assert.equal(comparisonWork(methods,grid(5),15,rows),76032000);assert.equal(comparisonWork(['rfecv'],[],15,rows),5952000);assert.equal(comparisonWork(['f_test','mutual_information','rfe'],grid(10),15,rows),12960000);});
+test('training still enforces original SFS, RFECV, CV and workload safety independently',async()=>{const {config,validation}=await configuration();assert.match(nestedSelectionError('forward_sfs',5,16,2000,[1280],'random',0)!,/15/);assert.match(nestedSelectionError('rfecv',null,15,5001,[1280],'random',0)!,/5,000/);assert.match(nestedSelectionError('rfecv',null,15,2000,[3],'random',0)!,/CV/);const large={...config,cv_splits:10};const bound={...validation,split:{...validation.split,cv_folds:grid(10).map(fold=>({fold,training_rows:1440,validation_rows:160}))}};assert.equal(trainingSelectionError('forward_sfs',14,large,bound),null);assert.match(nestedSelectionError('rfecv',null,25,5000,[...Array(10).fill(3600),4000],'random',0)!,/運算量/);assert.equal(BATCH_LIMITS.rows,500);assert.equal(BATCH_LIMITS.cells,10000);assert.equal(BATCH_LIMITS.bytes,2*1024*1024);assert.equal(CSV_LIMITS.rows,50000);assert.equal(CSV_LIMITS.bytes,25*1024*1024);});
+test('Browser client permits exact 3 MiB / 15 candidate boundary and still rejects overflow before worker',async()=>{
+ assert.deepEqual(BROWSER_LIMITS,{bytes:3145728,rows:2000,features:15});let sent:Parameters<WorkerPort['postMessage']>[0]|undefined;const worker:WorkerPort={onmessage:null,onerror:null,onmessageerror:null,postMessage:m=>{sent=m;},terminate:()=>{}};const client=new BrowserComputeClient({workerFactory:()=>worker});
+ const csv=new Blob(['x'.repeat(BROWSER_LIMITS.bytes)]);const input={csv,config:{feature_columns:grid(15).map(n=>'x'+n)},review:{}};const accepted=client.validate(input);const rejected=assert.rejects(accepted,{code:'ABORTED'});for(let i=0;!sent&&i<100;i++)await new Promise(r=>setTimeout(r,2));assert.equal(sent?.csv?.byteLength,BROWSER_LIMITS.bytes);client.cancel();await rejected;
+ await assert.rejects(client.validate({...input,csv:new Blob(['x'.repeat(BROWSER_LIMITS.bytes+1)])}),{code:'LIMIT'});await assert.rejects(client.validate({...input,config:{feature_columns:grid(16).map(n=>'x'+n)}}),{code:'LIMIT'});client.dispose();
+});

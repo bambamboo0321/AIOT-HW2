@@ -12,7 +12,7 @@ The bridge only handles admission, files, progress and lifecycle. Comparison fir
 
 Models are original trusted joblib bundles in MEMFS. They expire after 30 minutes; at most three remain in a Worker. Original single/batch functions use frozen selected branches without refitting. There is no model upload or permanent storage. Cancel, timeout, changing CSV/configuration/mode or leaving the page terminate the Worker and erase its memory. Changing the training choice releases previous Browser models. After cancel, revalidate before training again.
 
-Browser limits: 500 CSV rows, 10 numeric candidate features, 1 MiB per CSV. Server limits stay unchanged. Watchdogs: 60 seconds per method, 90 per job, 45 for explicit initialization. These are safety bounds, not an arbitrary-CSV completion guarantee. CV, sampling and auto-k behavior are never silently altered.
+Browser training input limits: 2,000 CSV rows, 15 numeric candidate features, 3 MiB per CSV. Original Python per-method and aggregate comparison work guards remain unchanged; rejected comparisons do not prevent independently permitted training. Batch inference remains separately limited to 500 rows, 10,000 values and 2 MiB. Server limits stay unchanged. Watchdogs: 60 seconds per method, 90 per job, 45 for explicit initialization. These are safety bounds, not an arbitrary-CSV completion guarantee. CV, sampling and auto-k behavior are never silently altered.
 
 Only the Worker receives the new scoped CSP: same-origin modules, fixed CDN path, WASM compilation. No global unsafe-eval/unsafe-inline, backend CORS, SharedArrayBuffer or COOP/COEP change is introduced. Main document policy stays unchanged. CDN package caching is independent of CSV/model memory lifetime.
 

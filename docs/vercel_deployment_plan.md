@@ -45,7 +45,7 @@
 - [ ] Worker、manifest、9 個模組均 200／正確 MIME；Worker CSP／nosniff／快取標頭符合設定，無 CSP／CORS／WASM console 錯誤。
 - [ ] 官方固定 CDN runtime、WASM、科學套件均成功；版本與 source hash 正確。記錄新快取分區、停用快取與暖快取各自條件，不混稱冷啟動。
 - [ ] Browser 輸入 CSV 後驗證、六方法、多 k、LR、Holdout 指標、單筆與批次推論、圖表／下載均可用；Network 中不得出現 Browser 資料的 /api/custom-dataset 請求或任何 CSV 上傳。
-- [ ] 500 列／10 候選特徵／1 MiB 邊界與超限提示、缺失值及時間切分正常，Server 限制不變。
+- [ ] 2,000 列／15 候選特徵／3 MiB 訓練資料邊界與超限提示、比較超限不阻止合法訓練、缺失值及時間切分正常，Server 限制不變。
 - [ ] 取消／逾時／重試、改設定、換 CSV、切模式、離頁及模型過期清理均正確，沒有殘留 Worker 或舊結果。
 - [ ] 桌面與手機、深淺色與圖表正常，量測實際裝置等待時間；不宣稱任意資料皆低於 60 秒。
 - [ ] CDN 被阻擋時顯示載入失敗，可手動重試，不能自動上傳到 Server；若另啟用 Server，再驗證來源限制、Session 隔離、取消、超量及完整 Gateway 流程。

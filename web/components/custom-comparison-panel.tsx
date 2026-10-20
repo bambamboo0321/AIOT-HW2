@@ -2,7 +2,8 @@
 import { useCustomCompute } from "./custom-compute-provider";
 import { useEffect, useRef, useState } from "react";
 import { CartesianGrid, Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
-import { isAutoMethod, estimatedFits, nestedSelectionError } from "@/lib/custom-selection-policy";
+import { isAutoMethod, nestedSelectionError } from "@/lib/custom-selection-policy";
+import { comparisonWork } from "@/lib/custom-comparison-work";
 import { CustomSelectionDetails } from "./custom-selection-details";
 import type { PreprocessingPlan } from "@/lib/custom-dataset";
 import type { ValidationReport } from "@/lib/custom-validation-result";
@@ -25,8 +26,7 @@ export function CustomComparisonPanel({file,config,validation,disabled,holdoutVi
   const rangeValid=/^[1-9]\d*$/.test(min)&&/^[1-9]\d*$/.test(max)&&Number.isSafeInteger(lo)&&Number.isSafeInteger(hi)&&lo<=hi&&hi<=p&&hi-lo<25;
   const hasFixed=methods.some(m=>!isAutoMethod(m));
   const ks=rangeValid&&hasFixed?Array.from({length:hi-lo+1},(_,i)=>lo+i):[];
-  const fits=methods.reduce((sum,m)=>sum+(isAutoMethod(m)?[null]:ks).reduce<number>((n,k)=>n+estimatedFits(m,k,p),0),0);
-  const work=fits*p*validation.split.cv_folds.reduce((sum,f)=>sum+f.training_rows,0);
+  const work=comparisonWork(methods,ks,p,validation.split.cv_folds.map(f=>f.training_rows));
   const nestedError=methods.flatMap(m=>(isAutoMethod(m)?[null]:ks).map(k=>nestedSelectionError(m,k,p,validation.dataset.rows,validation.split.cv_folds.map(f=>f.training_rows),config.split_strategy,config.cv_gap))).find(Boolean);
   const blocked=nestedError??(config.numerical_scaling!=="standard"?"比較需要標準化。請回上方將數值縮放設為 StandardScaler，再確認並重新驗證。":p>25||validation.dataset.rows>5000?"本版比較限 5,000 筆與 25 個候選特徵；請縮小資料或候選欄位。":validation.split.cv_folds.some(f=>f.training_rows<4)?"每個 CV Training 至少需要 4 筆，請調整切分或 folds。":hasFixed&&!rangeValid?`k 須為 1～${p} 的整數，起點不可大於終點，最多 25 個 k。`:!methods.length?"請至少選擇一種方法。":work>100_000_000?"比較運算量過大，請縮小 k 範圍、減少方法／folds 或資料筆數。":null);
   async function compare(){
@@ -49,11 +49,12 @@ export function CustomComparisonPanel({file,config,validation,disabled,holdoutVi
   return <section className="panel cd-comparison" aria-labelledby="custom-comparison-title" aria-busy={busy}><div className="panel-header"><div><div className="section-kicker">06 · COMPARE BEFORE HOLDOUT</div><h2 id="custom-comparison-title">特徵選擇 × k 比較</h2><p>先用 Training CV 比較方法與特徵數，再決定正式測試的設定。</p></div><span className="neutral-tag">探索性 CV</span></div><div className="cd-body">
     <p>F-test／MI 依關聯排名，RFE 逐次移除特徵，Forward SFS 逐次加入特徵。RFECV／LassoCV 會自動選 k，另外呈現逐 fold 結果。全部方法使用相同外層切分，選欄後另 fit Linear Regression；SFS 與自動方法的內層為 3-fold CV。</p>
     <div className="cd-chart-guide" id="comparison-k-guide"><strong>k 是保留幾個特徵，不是第幾個欄位</strong><p>例如 k＝{Math.min(3,p)}，就是從你勾選的 {p} 個候選欄位中，讓各方法選出 {Math.min(3,p)} 欄，再用線性迴歸預測。實際選到哪些欄位，要看下方的特徵清單。</p><p>起始／結束 k 決定這次要比較的數量範圍，預設先比較 1～{Math.min(10,p)}；可調整到候選欄位數（本版最多 25 欄）。保留更多欄位不一定更準，先看 Training CV 的誤差與穩定性。</p></div>
+    <p className="cd-confirmation" id="comparison-work-guide">比較限制：目前預估 {work.toLocaleString("en-US")}／100,000,000 工作量，計入所有方法、k 與外層 folds。資料符合訓練上限，不代表任意多 k 比較都可執行；超限時只阻止這次比較，不會自動減少 k、folds 或抽樣。</p>
     <fieldset className="cd-comparison-methods" disabled={busy||disabled}><legend>要比較的方法</legend>{allMethods.map(m=><label key={m}><input type="checkbox" checked={methods.includes(m)} onChange={e=>{reset();setMethods(allMethods.filter(n=>n===m?e.target.checked:methods.includes(n)));}}/>{labels[m]}</label>)}</fieldset>
     <div className="cd-config-grid"><label htmlFor="comparison-k-min">起始特徵數 k<input disabled={busy||disabled||!hasFixed} id="comparison-k-min" type="number" min={1} max={p} step={1} value={min} onChange={e=>{reset();setMin(e.target.value);}}/></label><label htmlFor="comparison-k-max">結束特徵數 k<input disabled={busy||disabled||!hasFixed} id="comparison-k-max" type="number" min={1} max={p} step={1} value={max} onChange={e=>{reset();setMax(e.target.value);}}/></label></div>
     {!hasFixed&&methods.length>0&&<p className="cd-confirmation">目前只選自動方法，不使用上方的起始／結束 k；系統會在各 Training 區自行決定 k。</p>}
     <p className="cd-confirmation">{methods.filter(m=>!isAutoMethod(m)).length} 種固定方法 × {ks.length} 個 k；{methods.filter(isAutoMethod).length} 種自動方法 · {config.cv_splits} 個外層 folds · 候選 {p} 欄 · k 等於候選數時保留全部，未執行排名。上限 {compute.mode==="browser"?90:120} 秒，可取消；較大資料請分段比較。</p>
-    {blocked&&<p className="cd-error" role="alert">{blocked}</p>}{holdoutViewed&&<p className="cd-validation cd-cautions">你已看過這份資料的 Holdout。此時調整方法或 k 後再次測試，不能視為全新的獨立驗證。</p>}
+    {blocked&&<p className="cd-error" role="alert" id="comparison-limit-error">比較限制：{blocked} 此限制只阻止本次比較；下方訓練依指定方法與 k 另外檢查。</p>}{holdoutViewed&&<p className="cd-validation cd-cautions">你已看過這份資料的 Holdout。此時調整方法或 k 後再次測試，不能視為全新的獨立驗證。</p>}
     <label className="cd-consent"><input id="comparison-consent" type="checkbox" checked={consent} disabled={busy||disabled||!!blocked} onChange={e=>setConsent(e.target.checked)}/>我確認只在 Training CV 比較，不使用 Holdout 選方法或 k；本次不保存模型。</label>
     <div className="cd-download-actions"><button id="dataset-compare" className="cd-button cd-primary" disabled={busy||disabled||!!blocked||!consent} onClick={()=>void compare()}>{busy?"正在比較…":"開始方法與 k 比較"}</button>{busy&&<button className="cd-button" id="comparison-cancel" onClick={cancel}>取消比較</button>}</div>
     {busy&&<p role="status">Python 正在逐 fold 計算真實成績；完成前不顯示部分結果。</p>}{error&&<p role="alert" className="cd-error">{error}</p>}{result&&result.status!=="compared"&&<div role="alert" className="cd-error">{result.errors.map((e,i)=><p key={i}>{e.message}</p>)}</div>}

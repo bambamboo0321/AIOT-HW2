@@ -1,0 +1,31 @@
+{
+  "api": [],
+  "ops": [
+    "validate",
+    "train",
+    "predict",
+    "predict"
+  ],
+  "server_default": true,
+  "isolated_limits": {
+    "comparison_blocked": true,
+    "comparison_reason": "比較限制：比較運算量過大，請縮小 k 範圍、減少方法／folds 或資料筆數。 此限制只阻止本次比較；下方訓練依指定方法與 k 另外檢查。",
+    "training_enabled": true,
+    "comparison_k_max": "10",
+    "training_k": "5",
+    "folds": "5"
+  },
+  "result": {
+    "live_input": "100.5",
+    "slider_thumb": "1.997780541",
+    "warning": "外插預測警告：x1 超出 Training 範圍。滑桿僅顯示邊界；預測仍使用 Number Input 原值，可靠性可能降低。",
+    "prediction": "531.108799",
+    "train_ops": 1,
+    "predict_ops": 2,
+    "api_calls": [],
+    "training_errors": []
+  },
+  "remaining_workers": 0,
+  "old_model_ui_removed": true,
+  "status": "PASS"
+}

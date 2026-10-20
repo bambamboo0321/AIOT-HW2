@@ -36,3 +36,11 @@ export function parseFeatureInput(text) {
         throw new Error("數值必須有限，且絕對值不超過 9,007,199,254,740,991。");
     return n;
 }
+export function parseTrainingInputRanges(value, features, rows) {
+    const v = object(value);
+    if (v.source !== "full_training_raw" || v.training_rows !== rows || !Array.isArray(v.features) || v.features.length !== features.length)
+        throw new Error("Training 輸入範圍來源不符。");
+    const ranges = v.features.map((raw, i) => { const r = object(raw); if (r.feature !== features[i] || !((r.min === null && r.max === null) || (typeof r.min === "number" && typeof r.max === "number" && Number.isFinite(r.min) && Number.isFinite(r.max) && r.min <= r.max && Math.max(Math.abs(r.min), Math.abs(r.max)) <= Number.MAX_SAFE_INTEGER)))
+        throw new Error("Training 輸入範圍不符。"); return { feature: features[i], min: r.min, max: r.max }; });
+    return { source: "full_training_raw", training_rows: rows, features: ranges };
+}

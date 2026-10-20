@@ -1,0 +1,202 @@
+{
+  "task": "AIOT-HW2 Live Predictor UI",
+  "status": "PASS",
+  "branch": "experiment/m17-pyodide",
+  "head": "f5327ead6c95ea3ca5a58c8710040c44403db91a",
+  "verified_at": "2026-10-20T10:00:23.750546+00:00",
+  "initial_state": "Existing single inference had manual number inputs only; sliders and debounce added.",
+  "implementation": {
+    "training_ranges": "Descriptive report metadata from selected split.X_train columns, dropna min/max only, before outlier filtering as in saved model bundle. Never derives from Holdout. No changes to model fitting/selection/CV/splitting.",
+    "debounce_ms": 500,
+    "timeout_ms": 15000,
+    "request_policy": "Serial inference, latest-input snapshots, stale-response suppression. Edits never abort active Browser inference; explicit cancel, timeout and dispose retain Worker termination semantics.",
+    "limits_unchanged": {
+      "rows": 500,
+      "features": 10,
+      "csv_bytes": 1048576
+    },
+    "backwards_compatibility": "Optional range metadata; old reports remain valid, sliders disabled when missing, manual inputs remain usable."
+  },
+  "tests": {
+    "typecheck": "PASS",
+    "lint": "PASS",
+    "node_tests": {
+      "passed": 154,
+      "failed": 0,
+      "new_live_tests": 7,
+      "includes": "Real M16 proxy-to-backend RFECV training, single/batch inference, delete, origin/session/timeout/concurrency protections."
+    },
+    "python_custom_dataset_tests": {
+      "passed": 63,
+      "failed": 0,
+      "includes": "Adversarial Holdout feature extrema do not change Training input ranges or CV; original independent-fit metric and holdout-isolation tests."
+    },
+    "production_build": "PASS",
+    "production_ui": {
+      "server": {
+        "slider": {
+          "number": "-1.9540759122",
+          "slider": "-1.9540759122",
+          "min": "-1.9540759122",
+          "synced": true
+        },
+        "extrapolation": {
+          "number": "100.5",
+          "thumb": "1.984485521",
+          "max": "1.984485521",
+          "warning": "外插預測警告：x1 超出 Training 範圍。滑桿僅顯示邊界；預測仍使用 Number Input 原值，可靠性可能降低。",
+          "submitted": {
+            "x1": 100.5,
+            "x2": -0.010042913249999952
+          },
+          "output": "412.253015",
+          "train_calls": 1
+        },
+        "before_manual": 3,
+        "live_disabled": {
+          "before": 3,
+          "after": 3,
+          "no_output": true
+        },
+        "final": {
+          "batch80": true,
+          "train_calls": 1,
+          "errors": []
+        }
+      },
+      "browser": {
+        "api_before": 7,
+        "initial": {
+          "ranges": [
+            "Training Min -1.954076 · Max 1.984486",
+            "Training Min -1.961321 · Max 1.941235"
+          ],
+          "output": "20.195832",
+          "ops": [
+            "validate",
+            "train",
+            "predict"
+          ],
+          "api_calls": 0
+        },
+        "slider": {
+          "number": "1.984485521",
+          "thumb": "1.984485521",
+          "max": "1.984485521"
+        },
+        "extrapolation": {
+          "number": "100.5",
+          "thumb": "1.984485521",
+          "warning": true,
+          "output": "412.253015",
+          "train_ops": 1,
+          "api_calls": 0
+        },
+        "batch": {
+          "passed": true,
+          "live_resumed": true,
+          "errors": [],
+          "ops": [
+            "validate",
+            "train",
+            "predict",
+            "predict",
+            "predict",
+            "predict-batch"
+          ]
+        },
+        "burst_before": 4,
+        "burst": {
+          "requests": 1,
+          "final": "0.3",
+          "train_ops": 1
+        },
+        "missing": {
+          "input": "",
+          "output": "target · 預測值（原始單位）20.265706這是單筆估計，未提供預測區間；沒有實際答案，就無法計算這一筆的 R²、RMSE 或 MAE。本次補值：x2 = 0.334689空白欄位已使用完整 Training 學到的補值；這不代表已知道該筆資料的真實特徵。下載這筆預測 JSON下載包含送出當時的原始輸入與實際補值，不含模型。"
+        },
+        "final": {
+          "train_ops": 1,
+          "predict_ops": 6,
+          "api_calls": 0,
+          "errors": []
+        },
+        "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36"
+      },
+      "mobile": {
+        "width": 390,
+        "scroll_width": 390,
+        "theme": "light",
+        "controls_visual_review": "390px light-mode screenshot inspected; native slider, number input and action controls fit the viewport."
+      },
+      "mode_switch": {
+        "old_result_removed": true,
+        "csv_removed": true
+      },
+      "worker_cleanup": {
+        "remaining": 0,
+        "model_ui_removed": true
+      }
+    },
+    "extrapolation_download": {
+      "input": 100.5,
+      "preserved_in_both_modes": true,
+      "server_browser_prediction_absolute_difference": 0.0
+    },
+    "final_checks_after_copy_update": {
+      "typecheck": "PASS",
+      "lint": "PASS",
+      "live_predictor_tests": "7/7 PASS",
+      "production_build": "PASS"
+    }
+  },
+  "integrity": {
+    "baseline_changed_paths": [
+      "src/custom_dataset_training.py",
+      "tests/test_custom_dataset_training.py",
+      "web/README.md",
+      "web/app/globals.css",
+      "web/components/custom-batch-prediction.tsx",
+      "web/components/custom-prediction-form.tsx",
+      "web/components/custom-training-panel.tsx",
+      "web/lib/browser-compute/source-lock.ts",
+      "web/lib/custom-prediction-types.ts",
+      "web/lib/custom-training-result.ts",
+      "web/public/browser-compute/modules/lib/browser-compute/source-lock.mjs",
+      "web/public/browser-compute/modules/lib/custom-prediction-types.mjs",
+      "web/public/browser-compute/modules/lib/custom-training-result.mjs",
+      "web/public/browser-compute/python-manifest.json"
+    ],
+    "existing_experiments_changed": [],
+    "boston_unchanged": true,
+    "gateway_api_session_unchanged": true,
+    "dependencies_unchanged": true,
+    "no_commit_push_deploy": true
+  },
+  "limitations": [
+    "Production UI automated in Chromium only. Safari interaction/visual acceptance remains manual; no new deployment.",
+    "Explicit Browser inference cancel/timeout clears MEMFS models and requires retraining, as before.",
+    "Cancellation/timeout/stale-reply paths validated by new controller and existing Browser/M16 API tests, not by inducing failures in real Safari.",
+    "Historical full Python HEAD-contract failure was not rerun, altered, skipped or counted as passing. Only the 63 custom-dataset tests ran this task."
+  ],
+  "modified_files": [
+    "src/custom_dataset_training.py",
+    "tests/test_custom_dataset_training.py",
+    "web/README.md",
+    "web/app/globals.css",
+    "web/components/custom-batch-prediction.tsx",
+    "web/components/custom-prediction-form.tsx",
+    "web/components/custom-training-panel.tsx",
+    "web/lib/browser-compute/source-lock.ts",
+    "web/lib/custom-prediction-types.ts",
+    "web/lib/custom-training-result.ts",
+    "web/public/browser-compute/modules/lib/browser-compute/source-lock.mjs",
+    "web/public/browser-compute/modules/lib/custom-prediction-types.mjs",
+    "web/public/browser-compute/modules/lib/custom-training-result.mjs",
+    "web/public/browser-compute/python-manifest.json",
+    "web/lib/live-prediction-controller.ts",
+    "web/lib/live-prediction-input.ts",
+    "web/tests/live-prediction.test.ts",
+    "web/verification/m17-live-predictor.json"
+  ]
+}

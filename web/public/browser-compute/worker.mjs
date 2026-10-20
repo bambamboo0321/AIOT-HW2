@@ -1,4 +1,4 @@
-import { RUNTIME } from "./modules/lib/browser-compute/protocol.mjs";
+import { RUNTIME, BROWSER_LIMITS } from "./modules/lib/browser-compute/protocol.mjs";
 import { SOURCE_SHA256 } from "./modules/lib/browser-compute/source-lock.mjs";
 let runtime, initialization, busy=false, currentJob, stage="idle";
 const send=value=>self.postMessage(value);
@@ -51,7 +51,7 @@ self.onmessage=async({data})=>{
   else{
    const payload=data.payload,root="/browser/jobs/"+data.jobId;
    if(["validate","train","compare"].includes(data.operation)){
-    if(!(data.csv instanceof ArrayBuffer)||data.csv.byteLength>1024*1024)throw new Error("Browser CSV size limit");
+    if(!(data.csv instanceof ArrayBuffer)||data.csv.byteLength>BROWSER_LIMITS.bytes)throw new Error("Browser Mode 限 CSV 3 MiB");
     runtime.FS.mkdirTree(root);runtime.FS.writeFile(root+"/input.csv",new Uint8Array(data.csv));
     for(const name of ["config","review","experiment"])if(payload[name]!==undefined)runtime.FS.writeFile(root+"/"+name+".json",encode(JSON.stringify(payload[name])));
     if(data.operation==="validate")await runtime.runPythonAsync("[__import__('pathlib').Path(v['path']).unlink(missing_ok=True) for v in bridge.MODELS.values()]\nbridge.MODELS.clear()");
@@ -67,6 +67,6 @@ self.onmessage=async({data})=>{
  }catch(error){
   // Do not forward Python tracebacks or raw CSV cells into the UI.
   const limit=String(error).includes("Browser Mode 限");
-  send({jobId:data.jobId,kind:"error",code:limit?"LIMIT":"EXECUTION_FAILED",message:limit?"Browser Mode 限 500 列、10 個數值候選特徵、1 MiB；不會自動抽樣或上傳。":"Browser 在「"+stage+"」階段失敗；請檢查網路、輸入與套件載入後手動重試。",stage});
+  send({jobId:data.jobId,kind:"error",code:limit?"LIMIT":"EXECUTION_FAILED",message:limit?"Browser 訓練 CSV 限 2,000 列、15 個數值候選特徵、3 MiB；不會自動抽樣或上傳。":"Browser 在「"+stage+"」階段失敗；請檢查網路、輸入與套件載入後手動重試。",stage});
  }finally{busy=false;}
 };

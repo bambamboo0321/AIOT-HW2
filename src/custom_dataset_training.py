@@ -186,12 +186,22 @@ def train_custom_dataset(csv_path, config_path, review_path, experiment_path, mo
         if model_output is not None:
             from .custom_dataset_prediction import save_model_bundle
             save_model_bundle(model_output, final, lr, indices, split.X_train, config, validation)
+        # Descriptive UI metadata only; same raw outer-Training range used by the
+        # saved prediction bundle. No Holdout rows, preprocessing fit or model change.
+        input_ranges = []
+        for index in indices:
+            name = config.feature_columns[int(index)]
+            observed = split.X_train[name].dropna()
+            input_ranges.append({"feature": name,
+                                 "min": float(observed.min()) if len(observed) else None,
+                                 "max": float(observed.max()) if len(observed) else None})
         return {**common, "status": "completed", "training_started": True, "validation": validation,
                 "method": "linear_regression", "target": config.target_column, "features": list(config.feature_columns),
                 "selection": {"method": selection["method"], "requested_k": selection["k"],
                               "ranking_performed": not details["search_bypassed"] if details else selection["method"] != "none" and selection["k"] < len(config.feature_columns),
                               "final_features": [config.feature_columns[int(j)] for j in indices], "fold_features": fold_features, **({"details": details} if details else {})},
                 "cv": {"folds": folds, "linear_regression": summary(folds, "linear_regression"), "training_mean": summary(folds, "training_mean"), "all_features": summary(folds, "all_features")},
+                "prediction_input_ranges": {"source": "full_training_raw", "training_rows": len(split.X_train), "features": input_ranges},
                 "holdout": holdout, "preview": preview, "warnings": list(dict.fromkeys(notes)),
                 "limits": ["方法由使用者指定；固定方法指定 k，RFECV／LassoCV 只在 Training 內部 3-fold CV 自動選 k／alpha。最終預測器仍為獨立 LR。",
                            "外層 CV 為 Training 區內的逐 fold 評估；SFS／RFECV／LassoCV 在每個外層 Training 另做內部 3-fold 選欄。平均／標準差為各 fold 等權計算，標準差 ddof=0。",

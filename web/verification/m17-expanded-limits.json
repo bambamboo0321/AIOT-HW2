@@ -1,0 +1,105 @@
+{
+  "task": "M17 Browser Mode expanded production admission",
+  "status": "PASS",
+  "branch": "experiment/m17-pyodide",
+  "head": "f5327ead6c95ea3ca5a58c8710040c44403db91a",
+  "verified_at": "2026-10-20T10:28:13.715569+00:00",
+  "changed_this_task": [
+    "docs/vercel_deployment_plan.md",
+    "web/README.md",
+    "web/browser-compute/README.md",
+    "web/browser-compute/bridge.py",
+    "web/components/custom-batch-prediction.tsx",
+    "web/components/custom-comparison-panel.tsx",
+    "web/components/custom-compute-provider.tsx",
+    "web/components/custom-dataset-wizard.tsx",
+    "web/components/custom-training-panel.tsx",
+    "web/lib/browser-compute/client.ts",
+    "web/lib/browser-compute/protocol.ts",
+    "web/lib/browser-compute/source-lock.ts",
+    "web/public/browser-compute/modules/lib/browser-compute/client.mjs",
+    "web/public/browser-compute/modules/lib/browser-compute/protocol.mjs",
+    "web/public/browser-compute/modules/lib/browser-compute/source-lock.mjs",
+    "web/public/browser-compute/python-manifest.json",
+    "web/public/browser-compute/worker.mjs",
+    "web/tests/browser-compute.test.ts"
+  ],
+  "new_this_task": [
+    "web/lib/custom-comparison-work.ts",
+    "web/tests/browser-capacity.test.ts",
+    "web/tests/browser-compute/expanded-limits.mjs",
+    "web/verification/m17-expanded-browser.json",
+    "web/verification/m17-expanded-ui.json",
+    "web/verification/m17-expanded-limits.json"
+  ],
+  "limits": {
+    "training_input": {
+      "rows": 2000,
+      "numeric_candidates": 15,
+      "csv_bytes": 3145728
+    },
+    "batch_inference_unchanged_python_bounds": {
+      "rows": 500,
+      "model_input_values": 10000,
+      "csv_bytes": 2097152
+    },
+    "comparisons": "Original per-method rules and aggregate 100000000 work units retained. Each operation validates independently; comparison rejection does not gate permitted training.",
+    "method_timeout_ms": 60000,
+    "job_timeout_ms": 90000
+  },
+  "tests": {
+    "typecheck": "PASS",
+    "lint": "PASS",
+    "website_tests": {
+      "passed": 157,
+      "failed": 0,
+      "new_capacity_tests": 3,
+      "includes": "M16 real proxy/backend RFECV validate/train/single/batch/delete, signed session, origin, timeout, stale confirmation; seven Live Predictor debounce/serialization/cancel/timeout tests."
+    },
+    "production_build": "PASS",
+    "production_worker_result": "web/verification/m17-expanded-browser.json",
+    "production_ui_result": "web/verification/m17-expanded-ui.json",
+    "six_method_status": "6/6 PASS",
+    "holdout_predictions_checked": 2400,
+    "preview_prediction_matches": 864,
+    "selected_names_and_metrics": "Match prior original-entry-point browser reference, rtol 1e-7 and atol 1e-9 unchanged. No new native training benchmark performed.",
+    "method_training_ms": {
+      "f_test": 666.3000000715256,
+      "mutual_information": 1187.1000000238419,
+      "forward_sfs": 10339.200000047684,
+      "rfe": 1894.8999999761581,
+      "lasso_cv": 1392.1999999284744,
+      "rfecv": 6837.300000071526
+    },
+    "six_method_e2e_ms": 29001.299999952316,
+    "timing_scope": "Worker creation/initialization, formal validation, rejected aggregate comparison, six formal training jobs, inference verification and cleanup. Uncontrolled HTTP cache; not a cold-start guarantee.",
+    "oversized_input": "2001 rows rejected by real Worker/Python. Exact 3 MiB and 15 features complete real training; byte/feature overflow rejected by client tests.",
+    "comparison_checks": {
+      "six_1_10": "Rejected before fit, 212832000 work units",
+      "six_1_5_estimate": 76032000,
+      "f_test_4_5": "Actual multi-k execution PASS",
+      "training_after_rejection": "All six formal calls succeeded; actual UI comparison disabled while separate RFE k=5 train remained enabled and completed."
+    }
+  },
+  "integrity": {
+    "baseline_file_count": 527,
+    "protected_changes": [],
+    "research_sources_unchanged_since_task_start": true,
+    "historical_experiments_unchanged": true,
+    "existing_live_prediction_files_preserved": true,
+    "m16_api_gateway_session_unchanged": true,
+    "boston_unchanged": true,
+    "existing_uncommitted_live_predictor_changes_preserved": true,
+    "staging_empty": true,
+    "no_commit_push_deployment": true
+  },
+  "local_production": {
+    "url": "http://127.0.0.1:3018/custom-dataset",
+    "running": true
+  },
+  "remaining": [
+    "Not every CSV, k grid, fold count, device or network can complete within 60 seconds. Original method and workload safeguards continue to apply.",
+    "Expanded-capacity UI was automated in Chromium; Safari larger-data acceptance has not been repeated. Earlier user Live Predictor Safari acceptance retained.",
+    "Public Preview still requires a separately authorized commit/push/release; this task did not deploy."
+  ]
+}

@@ -54,10 +54,10 @@ def execute(raw):
         csv, config, review = root/'input.csv', root/'config.json', root/'review.json'
         cfg = _document(config, 128*1024)
         # Independent browser admission limits; production rules and algorithms stay unchanged.
-        if csv.stat().st_size > 1024*1024 or len(cfg.get('feature_columns', [])) > 10:
-            raise ValueError('Browser Mode 限 1 MiB、10 個數值候選特徵。')
-        if len(_frame(csv.read_bytes())) > 500:
-            raise ValueError('Browser Mode 限 500 列；不會自動抽樣。')
+        if csv.stat().st_size > 3*1024*1024 or len(cfg.get('feature_columns', [])) > 15:
+            raise ValueError('Browser Mode 限 3 MiB、15 個數值候選特徵。')
+        if len(_frame(csv.read_bytes())) > 2000:
+            raise ValueError('Browser Mode 限 2,000 列；不會自動抽樣。')
         validation = validate_custom_dataset(csv, config, review)
         if op == 'validate':
             return validation

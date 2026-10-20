@@ -1,0 +1,211 @@
+{
+  "status": "PASS",
+  "stage": "complete",
+  "methods": [
+    {
+      "method": "f_test",
+      "status": "PASS",
+      "requested_k": 5,
+      "selected_features": [
+        "x1",
+        "x2",
+        "x3",
+        "x4",
+        "x5"
+      ],
+      "k": 5,
+      "training_ms": 666.3000000715256,
+      "metrics": {
+        "rmse": 0.5182871353053926,
+        "mae": 0.41762346881425244,
+        "r2": 0.9967139556967493
+      },
+      "holdout_predictions": 400,
+      "preview_checks": 144,
+      "live_inference": true
+    },
+    {
+      "method": "mutual_information",
+      "status": "PASS",
+      "requested_k": 5,
+      "selected_features": [
+        "x1",
+        "x2",
+        "x3",
+        "x4",
+        "x5"
+      ],
+      "k": 5,
+      "training_ms": 1187.1000000238419,
+      "metrics": {
+        "rmse": 0.5182871353053926,
+        "mae": 0.41762346881425244,
+        "r2": 0.9967139556967493
+      },
+      "holdout_predictions": 400,
+      "preview_checks": 144,
+      "live_inference": true
+    },
+    {
+      "method": "forward_sfs",
+      "status": "PASS",
+      "requested_k": 5,
+      "selected_features": [
+        "x1",
+        "x2",
+        "x3",
+        "x4",
+        "x5"
+      ],
+      "k": 5,
+      "training_ms": 10339.200000047684,
+      "metrics": {
+        "rmse": 0.5182871353053926,
+        "mae": 0.41762346881425244,
+        "r2": 0.9967139556967493
+      },
+      "holdout_predictions": 400,
+      "preview_checks": 144,
+      "live_inference": true
+    },
+    {
+      "method": "rfe",
+      "status": "PASS",
+      "requested_k": 5,
+      "selected_features": [
+        "x1",
+        "x2",
+        "x3",
+        "x4",
+        "x5"
+      ],
+      "k": 5,
+      "training_ms": 1894.8999999761581,
+      "metrics": {
+        "rmse": 0.5182871353053926,
+        "mae": 0.41762346881425244,
+        "r2": 0.9967139556967493
+      },
+      "holdout_predictions": 400,
+      "preview_checks": 144,
+      "live_inference": true
+    },
+    {
+      "method": "lasso_cv",
+      "status": "PASS",
+      "requested_k": null,
+      "selected_features": [
+        "x1",
+        "x2",
+        "x3",
+        "x4",
+        "x5",
+        "x6",
+        "x8",
+        "x11"
+      ],
+      "k": 8,
+      "training_ms": 1392.1999999284744,
+      "metrics": {
+        "rmse": 0.5207276373743062,
+        "mae": 0.4207032852483391,
+        "r2": 0.9966829362920623
+      },
+      "holdout_predictions": 400,
+      "preview_checks": 144,
+      "live_inference": true
+    },
+    {
+      "method": "rfecv",
+      "status": "PASS",
+      "requested_k": null,
+      "selected_features": [
+        "x1",
+        "x2",
+        "x3",
+        "x4",
+        "x5",
+        "x11"
+      ],
+      "k": 6,
+      "training_ms": 6837.300000071526,
+      "metrics": {
+        "rmse": 0.5191087692070323,
+        "mae": 0.418594649932803,
+        "r2": 0.9967035287912901
+      },
+      "holdout_predictions": 400,
+      "preview_checks": 144,
+      "live_inference": true
+    }
+  ],
+  "api_calls": [],
+  "rtol": 1e-7,
+  "atol": 1e-9,
+  "cache": "Uncontrolled existing HTTP cache; not a first-use benchmark",
+  "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36",
+  "limits": {
+    "bytes": 3145728,
+    "rows": 2000,
+    "features": 15
+  },
+  "initialization": {
+    "report": {
+      "ready": true
+    },
+    "metadata": {
+      "engine": "browser",
+      "runtime": "314.0.7",
+      "versions": {
+        "python": "3.14.2",
+        "numpy": "2.4.6",
+        "pandas": "3.0.2",
+        "scipy": "1.18.0",
+        "sklearn": "1.8.0",
+        "joblib": "1.5.3"
+      },
+      "source_sha256": "b74566b2859e408532f711fa1aa1b4923c3e4fb493b464ea78571a2921969edf",
+      "elapsed_ms": 6002,
+      "timings": {
+        "runtime_ms": 849.2000000476837,
+        "packages_ms": 1370.6000000238419,
+        "modules_ms": 3781.7999999523163
+      }
+    }
+  },
+  "validation": {
+    "rows": 2000,
+    "training": 1600,
+    "holdout": 400,
+    "features": 15,
+    "bytes": 3145728
+  },
+  "blocked_comparison": {
+    "schema_version": 1,
+    "scope": "custom_feature_comparison",
+    "status": "rejected",
+    "comparison_started": false,
+    "errors": [
+      {
+        "stage": "confirmation",
+        "message": "比較運算量過大；請縮小 k 範圍、減少方法／folds 或資料筆數。"
+      }
+    ]
+  },
+  "six_method_training_ms": 22317.00000011921,
+  "six_method_end_to_end_ms": 29001.299999952316,
+  "allowed_comparison": {
+    "status": "compared",
+    "points": 2,
+    "k_values": [
+      4,
+      5
+    ]
+  },
+  "row_overflow": {
+    "code": "LIMIT",
+    "message": "Browser 訓練 CSV 限 2,000 列、15 個數值候選特徵、3 MiB；不會自動抽樣或上傳。"
+  },
+  "total_test_ms": 35673.09999990463,
+  "remaining_workers": 0
+}

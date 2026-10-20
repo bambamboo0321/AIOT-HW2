@@ -99,9 +99,9 @@ export class BrowserComputeClient {
     // Snapshot caller objects before the first await; Blob bytes are immutable.
     const configText=JSON.stringify(input.config),reviewText=JSON.stringify(input.review),experimentText=input.experiment===undefined?undefined:JSON.stringify(input.experiment);
     return this.job(operation,async()=>{
-      if(!input.csv.size||input.csv.size>BROWSER_LIMITS.bytes)throw new BrowserComputeError("LIMIT","Browser CSV 限非空檔案、1 MiB；不會自動上傳或抽樣。");
+      if(!input.csv.size||input.csv.size>BROWSER_LIMITS.bytes)throw new BrowserComputeError("LIMIT","Browser 訓練 CSV 限非空檔案、3 MiB；不會自動上傳或抽樣。");
       const config=JSON.parse(configText),review=JSON.parse(reviewText);
-      if(!Array.isArray(config.feature_columns)||config.feature_columns.length>BROWSER_LIMITS.features)throw new BrowserComputeError("LIMIT","Browser Mode 最多 10 個數值候選特徵。");
+      if(!Array.isArray(config.feature_columns)||config.feature_columns.length>BROWSER_LIMITS.features)throw new BrowserComputeError("LIMIT","Browser 訓練最多 15 個數值候選特徵。");
       const csv=await input.csv.arrayBuffer(),digest=await sha(csv);
       const key=digest+stable(config)+stable(review);
       if(operation!=="validate"&&(!this.binding||this.binding.key!==key))throw new BrowserComputeError("STALE","CSV 或設定與已驗證版本不同；請重新確認並驗證。");

@@ -63,6 +63,16 @@ class TrainingTests(unittest.TestCase):
         self.assertEqual(len(seen),4);self.assertTrue(all(max(indices)<64 for indices in seen))
         self.assertEqual([len(indices) for indices in seen],[16,32,48,64])
 
+    def test_prediction_ranges_exclude_adversarial_holdout_values(self):
+        first=self.run_training()
+        expected={'source':'full_training_raw','training_rows':64,'features':[{'feature':'x','min':0.,'max':63.}]}
+        self.assertEqual(first['prediction_input_ranges'],expected)
+        self.rows=[(d,x if i<64 else 100000+i,y) for i,(d,x,y) in enumerate(self.rows)]
+        self.write();second=self.run_training()
+        self.assertEqual(second['status'],'completed')
+        self.assertEqual(second['prediction_input_ranges'],expected)
+        self.assertEqual(first['cv'],second['cv'])
+
     def test_missing_confirmation_stale_digest_and_invalid_data_never_fit(self):
         for alteration in ['not_confirmed','method','digest','extra','invalid_data']:
             self.write();v=json.loads(self.experiment.read_text())

@@ -444,3 +444,10 @@ html[data-theme="dark"] { --comparison-sfs: #90bde5; }
 .cd-compute-mode { margin-bottom: 24px; }
 .cd-compute-mode code { overflow-wrap: anywhere; }
 .cd-compute-mode .segmented-control { flex-wrap: wrap; }
+
+.cd-live-feature { min-width: 0; padding: 14px; border: 1px solid var(--border); border-radius: 8px; background: var(--surface-soft); }
+.cd-live-feature label { display: grid; gap: 8px; }
+.cd-live-feature input[type="range"] { width: 100%; padding: 0; accent-color: var(--accent); margin: 12px 0 2px; cursor: pointer; }
+.cd-live-range { color: var(--muted); font-size: 12px; overflow-wrap: anywhere; }
+.cd-live-warning { color: var(--text); border-left: 3px solid var(--accent); padding-left: 10px; font-size: 12px; line-height: 1.7; }
+.cd-live-consent { display: flex; align-items: center; gap: 8px; margin: 18px 0; }

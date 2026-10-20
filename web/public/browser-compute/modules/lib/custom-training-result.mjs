@@ -1,5 +1,5 @@
 import { isAutoMethod, isNestedMethod, parseSelectionDetails } from "./custom-selection-policy.mjs";
-import { parsePredictionModel } from "./custom-prediction-types.mjs";
+import { parsePredictionModel, parseTrainingInputRanges } from "./custom-prediction-types.mjs";
 import { parseValidationReport } from "./custom-validation-result.mjs";
 export const SELECTION_LABELS = { none: "不自動選欄", f_test: "F-test", mutual_information: "Mutual Information", rfe: "RFE", forward_sfs: "Forward SFS", rfecv: "RFECV", lasso_cv: "LassoCV" };
 function object(v) { if (!v || typeof v !== "object" || Array.isArray(v))
@@ -94,7 +94,8 @@ export function parseTrainingReport(value) {
     const predictionModel = v.prediction_model === undefined ? undefined : parsePredictionModel(v.prediction_model);
     if (predictionModel && (predictionModel.target !== target || predictionModel.dataset_sha256 !== validation.dataset.sha256 || predictionModel.config_sha256 !== validation.config_sha256 || JSON.stringify(predictionModel.features) !== JSON.stringify(finalFeatures)))
         throw new Error("暫存模型與訓練結果不符。");
-    return { ...common, ...(predictionModel ? { prediction_model: predictionModel } : {}), status: "completed", training_started: true, validation, method: "linear_regression", target, features, selection, cv: { folds, linear_regression: average(c.linear_regression, folds.map(f => f.linear_regression)), training_mean: average(c.training_mean, folds.map(f => f.training_mean)), all_features: average(c.all_features, folds.map(f => f.all_features)) }, holdout: { rows: count(h.rows), linear_regression: scores(h.linear_regression), all_features: scores(h.all_features), training_mean: scores(h.training_mean) }, preview, warnings: strings(v.warnings, 250), limits: strings(v.limits, 20) };
+    const inputRanges = v.prediction_input_ranges === undefined ? undefined : parseTrainingInputRanges(v.prediction_input_ranges, finalFeatures, validation.split.training_rows);
+    return { ...common, ...(inputRanges ? { prediction_input_ranges: inputRanges } : {}), ...(predictionModel ? { prediction_model: predictionModel } : {}), status: "completed", training_started: true, validation, method: "linear_regression", target, features, selection, cv: { folds, linear_regression: average(c.linear_regression, folds.map(f => f.linear_regression)), training_mean: average(c.training_mean, folds.map(f => f.training_mean)), all_features: average(c.all_features, folds.map(f => f.all_features)) }, holdout: { rows: count(h.rows), linear_regression: scores(h.linear_regression), all_features: scores(h.all_features), training_mean: scores(h.training_mean) }, preview, warnings: strings(v.warnings, 250), limits: strings(v.limits, 20) };
 }
 // Shared invariant checks for numeric regression metrics in comparison reports.
 export { scores as parseScores, average as parseAverage };

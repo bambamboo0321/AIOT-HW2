@@ -1,5 +1,5 @@
 import { isAutoMethod, isNestedMethod, parseSelectionDetails, type SelectionDetails } from "./custom-selection-policy.ts";
-import { parsePredictionModel, type PredictionModel } from "./custom-prediction-types.ts";
+import { parsePredictionModel, parseTrainingInputRanges, type TrainingInputRanges, type PredictionModel } from "./custom-prediction-types.ts";
 import { parseValidationReport, type ValidationReport } from "./custom-validation-result.ts";
 export type SelectionMethod = "none" | "f_test" | "mutual_information" | "rfe" | "forward_sfs" | "rfecv" | "lasso_cv";
 export const SELECTION_LABELS: Record<SelectionMethod, string> = { none: "不自動選欄", f_test: "F-test", mutual_information: "Mutual Information", rfe: "RFE", forward_sfs: "Forward SFS", rfecv: "RFECV", lasso_cv: "LassoCV" };
@@ -10,6 +10,7 @@ export type TrainingReport = { schema_version: 1; scope: "custom_baseline_traini
   { status: "rejected" | "failed"; training_started: boolean; errors: { stage: string; message: string }[] } |
   { status: "completed"; training_started: true; validation: Extract<ValidationReport, { status: "valid" }>; method: "linear_regression"; target: string; features: string[];
     prediction_model?: PredictionModel;
+    prediction_input_ranges?: TrainingInputRanges;
     selection: { method: SelectionMethod; requested_k: number | null; ranking_performed: boolean; final_features: string[]; details?: SelectionDetails; fold_features: { fold: number; features: string[]; details?: SelectionDetails }[] };
     cv: { folds: Fold[]; linear_regression: Average; all_features: Average; training_mean: Average }; holdout: { rows: number; linear_regression: Scores; all_features: Scores; training_mean: Scores };
     preview: { position: number; source_row: number; timestamp: string | null; actual: number; prediction: number; baseline_prediction: number; training_mean: number }[]; warnings: string[]; limits: string[] }
@@ -63,7 +64,8 @@ export function parseTrainingReport(value: unknown): TrainingReport {
   if (new Set(preview.map(p=>p.source_row)).size !== preview.length || preview.some(p=>p.training_mean!==preview[0].training_mean)) throw new Error("預覽原列或平均基準不一致。");
   const predictionModel=v.prediction_model===undefined?undefined:parsePredictionModel(v.prediction_model);
   if(predictionModel && (predictionModel.target!==target || predictionModel.dataset_sha256!==validation.dataset.sha256 || predictionModel.config_sha256!==validation.config_sha256 || JSON.stringify(predictionModel.features)!==JSON.stringify(finalFeatures))) throw new Error("暫存模型與訓練結果不符。");
-  return { ...common,...(predictionModel?{prediction_model:predictionModel}:{}),status:"completed",training_started:true,validation,method:"linear_regression",target,features,selection,cv:{folds,linear_regression:average(c.linear_regression,folds.map(f=>f.linear_regression)),training_mean:average(c.training_mean,folds.map(f=>f.training_mean)),all_features:average(c.all_features,folds.map(f=>f.all_features))},holdout:{rows:count(h.rows),linear_regression:scores(h.linear_regression),all_features:scores(h.all_features),training_mean:scores(h.training_mean)},preview,warnings:strings(v.warnings,250),limits:strings(v.limits,20) };
+  const inputRanges=v.prediction_input_ranges===undefined?undefined:parseTrainingInputRanges(v.prediction_input_ranges,finalFeatures,validation.split.training_rows);
+  return { ...common,...(inputRanges?{prediction_input_ranges:inputRanges}:{}),...(predictionModel?{prediction_model:predictionModel}:{}),status:"completed",training_started:true,validation,method:"linear_regression",target,features,selection,cv:{folds,linear_regression:average(c.linear_regression,folds.map(f=>f.linear_regression)),training_mean:average(c.training_mean,folds.map(f=>f.training_mean)),all_features:average(c.all_features,folds.map(f=>f.all_features))},holdout:{rows:count(h.rows),linear_regression:scores(h.linear_regression),all_features:scores(h.all_features),training_mean:scores(h.training_mean)},preview,warnings:strings(v.warnings,250),limits:strings(v.limits,20) };
 }
 
 // Shared invariant checks for numeric regression metrics in comparison reports.

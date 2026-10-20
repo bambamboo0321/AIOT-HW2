@@ -1,4 +1,5 @@
 "use client";
+import { BROWSER_LIMITS } from "@/lib/browser-compute/protocol";
 import { useCustomCompute } from "./custom-compute-provider";
 import { useEffect, useRef, useState } from "react";
 import { parseValidationReport, type ValidationReport } from "@/lib/custom-validation-result";
@@ -33,7 +34,7 @@ export function CustomDatasetWizard() {
     if (files.length !== 1) { setError("請一次選擇一個 CSV。"); return; }
     const file = files[0];
     if (!file.name.toLowerCase().endsWith(".csv")) { setError("請選擇 .csv 檔案。"); return; }
-    if (!file.size || file.size > (compute.mode==="browser"?1024*1024:CSV_LIMITS.bytes)) { setError(compute.mode==="browser"?"Browser CSV 必須為非空檔案，且不超過 1 MiB。":"CSV 必須為非空檔案，且不超過 25 MiB。"); return; }
+    if (!file.size || file.size > (compute.mode==="browser"?BROWSER_LIMITS.bytes:CSV_LIMITS.bytes)) { setError(compute.mode==="browser"?"Browser CSV 必須為非空檔案，且不超過 3 MiB。":"CSV 必須為非空檔案，且不超過 25 MiB。"); return; }
     setSourceFile(file);
     setBusy(true); const token = generation.current;
     try {
@@ -42,7 +43,7 @@ export function CustomDatasetWizard() {
       next.onmessage = (event: MessageEvent<{ ok: true; data: DatasetUpload } | { ok: false; error: string }>) => {
         if (generation.current !== token) return;
         stop(); setBusy(false);
-        if (event.data.ok && compute.mode==="browser" && event.data.data.rows>500) { setSourceFile(null);setError("Browser Mode 限 500 列，不會自動抽樣。"); } else if (event.data.ok) setDataset(event.data.data); else { setSourceFile(null); setError(event.data.error); }
+        if (event.data.ok && compute.mode==="browser" && event.data.data.rows>BROWSER_LIMITS.rows) { setSourceFile(null);setError("Browser 訓練 CSV 限 2,000 列，不會自動抽樣。"); } else if (event.data.ok) setDataset(event.data.data); else { setSourceFile(null); setError(event.data.error); }
       };
       next.onerror = () => { if (generation.current === token) { stop(); setBusy(false); setError("資料檢查工具無法啟動，請重新整理後再試。"); } };
       next.postMessage({ file });
@@ -50,7 +51,7 @@ export function CustomDatasetWizard() {
   }
   const plan = dataset ? validatePlan(dataset, draft) : null;
   const reviewKey = dataset && plan ? dataset.sha256 + JSON.stringify(plan.config) : null;
-  const browserError=compute.mode==="browser"&&plan&&plan.config.feature_columns.length>10?"Browser Mode 最多 10 個數值候選特徵；請取消部分勾選，或自行切換 Server Mode。":null;
+  const browserError=compute.mode==="browser"&&plan&&plan.config.feature_columns.length>BROWSER_LIMITS.features?"Browser 訓練最多 15 個數值候選特徵；請取消部分勾選，或自行切換 Server Mode。":null;
   const ready = !!plan && plan.errors.length === 0 && !browserError;
   const confirmed = ready && reviewed === reviewKey;
   async function validateWithPython() {
@@ -83,7 +84,7 @@ export function CustomDatasetWizard() {
     <section className="panel cd-upload" aria-labelledby="upload-title"><div className="panel-header"><div><div className="section-kicker">01 · CHOOSE YOUR DATA</div><h2 id="upload-title">選擇 CSV，先理解資料</h2><p>{compute.mode==="browser"?"選檔、驗證、比較與訓練都在瀏覽器完成，不會上傳 CSV。":"選檔後先在瀏覽器檢查；只有按下驗證或訓練按鈕才傳送至運算服務。"}</p></div><span className="neutral-tag">UTF-8 · CSV</span></div>
       <div className="cd-body"><div className={`cd-dropzone ${busy ? "cd-busy" : ""}`} onDragOver={e => e.preventDefault()} onDrop={e => { e.preventDefault(); open(e.dataTransfer.files); }}>
         <Icon name="dataset" size={30}/><h3>拖曳一個 CSV 到這裡</h3><p>逗號分隔，首列為欄名；支援引號、換行內容與 UTF-8 BOM。</p><label className="cd-file-button">選擇 CSV 檔案<input id="dataset-file" type="file" accept=".csv,text/csv" aria-label="選擇 CSV 檔案" onChange={e => { open(e.currentTarget.files); e.currentTarget.value = ""; }}/></label>
-        <small>{compute.mode==="browser"?"上限 1 MiB、500 筆、10 個數值候選特徵。":"上限 25 MiB、50,000 筆、200 欄、100 萬個儲存格；遠端運算服務另限 3 MiB。"}</small></div>
+        <small>{compute.mode==="browser"?"訓練資料上限 3 MiB、2,000 筆、15 個數值候選特徵；比較另受工作量限制。":"上限 25 MiB、50,000 筆、200 欄、100 萬個儲存格；遠端運算服務另限 3 MiB。"}</small></div>
         {busy && <div className="cd-status" role="status">正在檢查 CSV…<button onClick={clear}>取消檢查</button></div>}
         {error && <p className="cd-error" role="alert">{error}</p>}
         {!dataset && !busy && !error && <p className="fs-note">先選檔案，再由你指定目標與特徵。完成設定後先依所選模式執行 Python 驗證，再另外確認開始訓練。</p>}
