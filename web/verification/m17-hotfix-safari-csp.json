@@ -1,0 +1,209 @@
+{
+  "task": "M17 Hotfix — Safari Worker CSP",
+  "status": "PASS_LOCAL_ACCEPTANCE_USER_CONFIRMED",
+  "base_commit": "4e027b7c132f081e06ba8a9ae3e33178176ec21f",
+  "branch": "experiment/m17-pyodide",
+  "cause": {
+    "observed": "Authenticated Preview Worker response has worker-src none. Both protocol.mjs and source-lock.mjs are same-origin static imports with HTTP 200 and JavaScript MIME. Safari user console explicitly reports their worker-src denial.",
+    "official_implementation_reference": "https://github.com/WebKit/WebKit/blob/main/Source/WebCore/bindings/js/WorkerModuleScriptLoader.cpp",
+    "interpretation": "WebKit module loading checks worker-src for Worker fetch destinations and script-src for Script/worklet destinations. Main document creation policy and Worker response policy are separate. The exact Safari failure is based on the supplied console, not a new Safari reproduction.",
+    "anonymous_preview": "HTTP 302 SSO protection; actual headers obtained read-only in existing authenticated Chrome context, without extracting cookies or credentials."
+  },
+  "preview_before_fix": {
+    "origin": "https://aiot-hw-2-mdczvqe9x-bambambooo.vercel.app",
+    "observed": [
+      {
+        "path": "/custom-dataset",
+        "status": 200,
+        "content_type": "text/html; charset=utf-8",
+        "csp": null,
+        "cache": "private, no-cache, no-store, max-age=0, must-revalidate"
+      },
+      {
+        "path": "/browser-compute/worker.mjs",
+        "status": 200,
+        "content_type": "application/javascript; charset=utf-8",
+        "csp": "default-src 'none'; script-src 'self' https://cdn.jsdelivr.net/pyodide/v314.0.7/full/ 'wasm-unsafe-eval'; connect-src 'self' https://cdn.jsdelivr.net/pyodide/v314.0.7/full/; worker-src 'none'; object-src 'none'",
+        "cache": "no-store"
+      },
+      {
+        "path": "/browser-compute/modules/lib/browser-compute/protocol.mjs",
+        "status": 200,
+        "content_type": "application/javascript; charset=utf-8",
+        "csp": null,
+        "cache": "public, max-age=0, must-revalidate"
+      },
+      {
+        "path": "/browser-compute/modules/lib/browser-compute/source-lock.mjs",
+        "status": 200,
+        "content_type": "application/javascript; charset=utf-8",
+        "csp": null,
+        "cache": "public, max-age=0, must-revalidate"
+      }
+    ],
+    "mode": "Authenticated existing browser context, HEAD only; cookies/credentials not extracted"
+  },
+  "fix": {
+    "file": "web/next.config.ts",
+    "change": "Worker response only: worker-src 'none' -> worker-src 'self'",
+    "unchanged": [
+      "script-src self + fixed Pyodide CDN + wasm-unsafe-eval",
+      "connect-src self + same fixed CDN",
+      "default-src none; object-src none",
+      "main document policy, APIs, Gateway and Session",
+      "module import URLs, algorithms, Python manifest and source lock"
+    ],
+    "security_boundary": "Allows same-origin Worker destinations only; no wildcard, blob/data origins, arbitrary cross-origin Worker scripts, unsafe-eval or global CSP removal."
+  },
+  "files": [
+    "web/next.config.ts",
+    "web/tests/browser-worker-csp.test.ts",
+    "web/browser-compute/SAFARI-CSP-HOTFIX.md",
+    "web/verification/m17-hotfix-safari-csp.json"
+  ],
+  "checks": {
+    "typecheck": "PASS",
+    "lint": "PASS",
+    "tests": {
+      "passed": 147,
+      "total": 147,
+      "new_check": "Worker-only same-origin CSP plus unchanged script/connect allowlists and no wildcard/unsafe-eval"
+    },
+    "production_build": "PASS",
+    "m16_regression": "PASS; includes real proxy-to-backend RFECV train, single/batch inference and model deletion, signed sessions, authentication, origin checks, cancellation and timeouts",
+    "git_diff_check": "PASS",
+    "all_historical_python_tests": "Not rerun; previous historical HEAD-contract failure remains unchanged."
+  },
+  "chrome_production": {
+    "status": "PASS",
+    "stage": "complete",
+    "rtol": 1e-07,
+    "atol": 1e-09,
+    "api_calls": [],
+    "cache": "uncontrolled; not a cold-start benchmark",
+    "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36",
+    "secure_context": true,
+    "server_default": true,
+    "server_unavailable": true,
+    "server_api_status": 503,
+    "initialization": {
+      "report": {
+        "ready": true
+      },
+      "metadata": {
+        "engine": "browser",
+        "runtime": "314.0.7",
+        "versions": {
+          "python": "3.14.2",
+          "numpy": "2.4.6",
+          "pandas": "3.0.2",
+          "scipy": "1.18.0",
+          "sklearn": "1.8.0",
+          "joblib": "1.5.3"
+        },
+        "source_sha256": "70fed11c74d780c1ca4e00c1ddfc4d5d8436afcfb89493b473ae0e855517ec60",
+        "elapsed_ms": 32192,
+        "timings": {
+          "runtime_ms": 4391,
+          "packages_ms": 7422.299999952316,
+          "modules_ms": 20378.199999928474
+        }
+      }
+    },
+    "holdout_predictions": 16,
+    "max_prediction_difference": 3.552713678800501e-15,
+    "single": true,
+    "batch_rows": 2,
+    "metrics": {
+      "rmse": 0.18683499380828994,
+      "mae": 0.15254170720649685,
+      "r2": 0.998458023055371
+    },
+    "model_deleted": true,
+    "remaining_workers": 0,
+    "headers": [
+      {
+        "path": "/custom-dataset",
+        "status": 200,
+        "content_type": "text/html; charset=utf-8",
+        "csp": null,
+        "cache": "private, no-cache, no-store, max-age=0, must-revalidate"
+      },
+      {
+        "path": "/browser-compute/worker.mjs",
+        "status": 200,
+        "content_type": "application/javascript; charset=UTF-8",
+        "csp": "default-src 'none'; script-src 'self' https://cdn.jsdelivr.net/pyodide/v314.0.7/full/ 'wasm-unsafe-eval'; connect-src 'self' https://cdn.jsdelivr.net/pyodide/v314.0.7/full/; worker-src 'self'; object-src 'none'",
+        "cache": "no-store"
+      },
+      {
+        "path": "/browser-compute/modules/lib/browser-compute/protocol.mjs",
+        "status": 200,
+        "content_type": "application/javascript; charset=UTF-8",
+        "csp": null,
+        "cache": "public, max-age=0"
+      },
+      {
+        "path": "/browser-compute/modules/lib/browser-compute/source-lock.mjs",
+        "status": 200,
+        "content_type": "application/javascript; charset=UTF-8",
+        "csp": null,
+        "cache": "public, max-age=0"
+      }
+    ]
+  },
+  "chrome_ui": {
+    "browser": true,
+    "validation_passed": true,
+    "training_completed": true,
+    "method": "rfe",
+    "k": "2",
+    "api_uploads": [],
+    "workers_after_mode_switch": 0
+  },
+  "safari": {
+    "status": "PASS_USER_REPORTED",
+    "installed_version": "26.2",
+    "native_control": "Initial native UI read was aborted after hanging; bounded retry also timed out. No Safari computation was observed.",
+    "user_choice": "Safari 由我手動驗收",
+    "safaridriver_used": false,
+    "preferences_or_security_changed": false,
+    "required_manual_checks": [
+      "Production Worker initializes without CSP/module failures",
+      "Python validation succeeds",
+      "At least one full RFE training with Holdout metrics succeeds"
+    ],
+    "guide": "web/browser-compute/SAFARI-CSP-HOTFIX.md",
+    "local_production_url": "http://127.0.0.1:3018/custom-dataset",
+    "user_confirmation": {
+      "date": "2026-10-20",
+      "source": "User follow-up in this chat",
+      "statements": [
+        "本機可以用椰",
+        "目前 Safari 在本機 Production Build 已通過"
+      ],
+      "scope": "Local Production Build only; no new automated Safari trace or public Preview acceptance claimed"
+    }
+  },
+  "integrity": {
+    "protected_changes": [],
+    "history_and_boston_hashes_checked": 155,
+    "history_and_boston_changes": [],
+    "staging_empty": true,
+    "head_unchanged": true
+  },
+  "remaining_risks": [
+    "Local Safari PASS was confirmed by the user; a new public Preview still requires Safari acceptance on its actual deployed headers.",
+    "Existing Vercel Preview still serves the unmodified old CSP; deployment-layer headers must be rechecked after a later separately authorized release.",
+    "No universal browser or arbitrary dataset performance guarantee."
+  ],
+  "scope": {
+    "committed": false,
+    "pushed": false,
+    "deployed": false,
+    "chrome_task_finished": true,
+    "local_production_server_running_for_manual_safari": true
+  },
+  "release_recommendation": "Local acceptance complete: automated, Chrome and M16 gates PASS; Safari PASS confirmed by the user. Commit/Push authorized separately; observe new Preview and do not deploy Production.",
+  "record_scope": "Acceptance snapshot prepared before Hotfix commit/push; resulting SHA and push outcome are recorded in Git history and task reply."
+}
