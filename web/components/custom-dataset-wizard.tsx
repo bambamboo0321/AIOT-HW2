@@ -1,4 +1,5 @@
 "use client";
+import { useCustomCompute } from "./custom-compute-provider";
 import { useEffect, useRef, useState } from "react";
 import { parseValidationReport, type ValidationReport } from "@/lib/custom-validation-result";
 import { CustomTrainingPanel } from "@/components/custom-training-panel";
@@ -11,6 +12,7 @@ function download(value: unknown, name: string) {
   const a = document.createElement("a"); a.href = url; a.download = name; a.click(); setTimeout(() => URL.revokeObjectURL(url), 1000);
 }
 export function CustomDatasetWizard() {
+  const compute=useCustomCompute();
   const [dataset, setDataset] = useState<DatasetUpload | null>(null);
   const [draft, setDraft] = useState(emptyDraft);
   const [busy, setBusy] = useState(false); const [error, setError] = useState<string | null>(null);
@@ -23,15 +25,15 @@ export function CustomDatasetWizard() {
   function stop() { generation.current++; worker.current?.terminate(); worker.current = null; if (timeout.current) clearTimeout(timeout.current); timeout.current = null; }
   useEffect(() => () => { backendController.current?.abort(); worker.current?.terminate(); if (timeout.current) clearTimeout(timeout.current); }, []);
   function invalidateBackend() { backendGeneration.current++; backendController.current?.abort(); backendController.current = null; setBackendBusy(false); setBackendResult(null); }
-  function change(next: Partial<WizardDraft>) { invalidateBackend(); setDraft(d => ({ ...d, ...next })); setReviewed(null); }
-  function clear() { invalidateBackend(); setSourceFile(null); stop(); setBusy(false); setDataset(null); setDraft(emptyDraft()); setReviewed(null); setError(null); }
+  function change(next: Partial<WizardDraft>) { compute.reset(); invalidateBackend(); setDraft(d => ({ ...d, ...next })); setReviewed(null); }
+  function clear() { compute.reset(); invalidateBackend(); setSourceFile(null); stop(); setBusy(false); setDataset(null); setDraft(emptyDraft()); setReviewed(null); setError(null); }
   function open(files: FileList | null) {
     clear();
     if (!files?.length) return;
     if (files.length !== 1) { setError("請一次選擇一個 CSV。"); return; }
     const file = files[0];
     if (!file.name.toLowerCase().endsWith(".csv")) { setError("請選擇 .csv 檔案。"); return; }
-    if (!file.size || file.size > CSV_LIMITS.bytes) { setError("CSV 必須為非空檔案，且不超過 25 MiB。"); return; }
+    if (!file.size || file.size > (compute.mode==="browser"?1024*1024:CSV_LIMITS.bytes)) { setError(compute.mode==="browser"?"Browser CSV 必須為非空檔案，且不超過 1 MiB。":"CSV 必須為非空檔案，且不超過 25 MiB。"); return; }
     setSourceFile(file);
     setBusy(true); const token = generation.current;
     try {
@@ -40,7 +42,7 @@ export function CustomDatasetWizard() {
       next.onmessage = (event: MessageEvent<{ ok: true; data: DatasetUpload } | { ok: false; error: string }>) => {
         if (generation.current !== token) return;
         stop(); setBusy(false);
-        if (event.data.ok) setDataset(event.data.data); else { setSourceFile(null); setError(event.data.error); }
+        if (event.data.ok && compute.mode==="browser" && event.data.data.rows>500) { setSourceFile(null);setError("Browser Mode 限 500 列，不會自動抽樣。"); } else if (event.data.ok) setDataset(event.data.data); else { setSourceFile(null); setError(event.data.error); }
       };
       next.onerror = () => { if (generation.current === token) { stop(); setBusy(false); setError("資料檢查工具無法啟動，請重新整理後再試。"); } };
       next.postMessage({ file });
@@ -48,18 +50,19 @@ export function CustomDatasetWizard() {
   }
   const plan = dataset ? validatePlan(dataset, draft) : null;
   const reviewKey = dataset && plan ? dataset.sha256 + JSON.stringify(plan.config) : null;
-  const ready = !!plan && plan.errors.length === 0;
+  const browserError=compute.mode==="browser"&&plan&&plan.config.feature_columns.length>10?"Browser Mode 最多 10 個數值候選特徵；請取消部分勾選，或自行切換 Server Mode。":null;
+  const ready = !!plan && plan.errors.length === 0 && !browserError;
   const confirmed = ready && reviewed === reviewKey;
   async function validateWithPython() {
     if (!confirmed || !dataset || !plan || !sourceFile) return;
     invalidateBackend(); const token = backendGeneration.current; const controller = new AbortController(); backendController.current = controller;
     setBackendBusy(true); let expired = false;
-    const timer = setTimeout(() => { expired = true; controller.abort(); }, 40_000);
+    const timer = setTimeout(() => { expired = true; controller.abort(); }, compute.mode==="browser"?95_000:40_000);
     const body = new FormData(); body.append("csv", sourceFile);
     body.append("config", JSON.stringify(plan.config));
     body.append("review", JSON.stringify({ schema_version: 1, artifact_type: "custom_dataset_review", dataset: { sha256: dataset.sha256 }, preprocessing: plan.config, review: { confirmed: true, training_started: false, scope: "configuration_only" } }));
     try {
-      const response = await fetch("/api/custom-dataset/validate", { method: "POST", body, signal: controller.signal, cache: "no-store" });
+      const response = await compute.request("/api/custom-dataset/validate", { method: "POST", body, signal: controller.signal, cache: "no-store" });
       const payload: unknown = await response.json().catch(() => { throw new Error("本機服務未回傳有效結果，請重新整理後重試。"); });
       if (response.status !== 200 && response.status !== 422) {
         const message = payload && typeof payload === "object" && "error" in payload && typeof payload.error === "string" ? payload.error : "本機驗證服務暫時無法完成，請稍後重試。";
@@ -76,13 +79,14 @@ export function CustomDatasetWizard() {
   const available = dataset?.columns.filter(c => c.kind === "numeric" && !c.infinite && !c.invalidNumeric && c.unique > 1 && c.name !== draft.target) ?? [];
   const dates = dataset?.columns.filter(c => c.dates) ?? [];
   return <>
-    <section className="panel cd-upload" aria-labelledby="upload-title"><div className="panel-header"><div><div className="section-kicker">01 · CHOOSE YOUR DATA</div><h2 id="upload-title">選擇 CSV，先理解資料</h2><p>選檔後先在瀏覽器檢查；只有按下驗證或訓練按鈕才會傳送至本機服務。</p></div><span className="neutral-tag">UTF-8 · CSV</span></div>
+    {browserError&&<p className="cd-error" role="alert">{browserError}</p>}
+    <section className="panel cd-upload" aria-labelledby="upload-title"><div className="panel-header"><div><div className="section-kicker">01 · CHOOSE YOUR DATA</div><h2 id="upload-title">選擇 CSV，先理解資料</h2><p>{compute.mode==="browser"?"選檔、驗證、比較與訓練都在瀏覽器完成，不會上傳 CSV。":"選檔後先在瀏覽器檢查；只有按下驗證或訓練按鈕才傳送至運算服務。"}</p></div><span className="neutral-tag">UTF-8 · CSV</span></div>
       <div className="cd-body"><div className={`cd-dropzone ${busy ? "cd-busy" : ""}`} onDragOver={e => e.preventDefault()} onDrop={e => { e.preventDefault(); open(e.dataTransfer.files); }}>
         <Icon name="dataset" size={30}/><h3>拖曳一個 CSV 到這裡</h3><p>逗號分隔，首列為欄名；支援引號、換行內容與 UTF-8 BOM。</p><label className="cd-file-button">選擇 CSV 檔案<input id="dataset-file" type="file" accept=".csv,text/csv" aria-label="選擇 CSV 檔案" onChange={e => { open(e.currentTarget.files); e.currentTarget.value = ""; }}/></label>
-        <small>上限 25 MiB、50,000 筆、200 欄、100 萬個儲存格。</small></div>
+        <small>{compute.mode==="browser"?"上限 1 MiB、500 筆、10 個數值候選特徵。":"上限 25 MiB、50,000 筆、200 欄、100 萬個儲存格；遠端運算服務另限 3 MiB。"}</small></div>
         {busy && <div className="cd-status" role="status">正在檢查 CSV…<button onClick={clear}>取消檢查</button></div>}
         {error && <p className="cd-error" role="alert">{error}</p>}
-        {!dataset && !busy && !error && <p className="fs-note">先選檔案，再由你指定目標與特徵。完成設定後先送至本機 Python 驗證，再另外確認開始訓練。</p>}
+        {!dataset && !busy && !error && <p className="fs-note">先選檔案，再由你指定目標與特徵。完成設定後先依所選模式執行 Python 驗證，再另外確認開始訓練。</p>}
       </div>
     </section>
     {dataset && plan && <>
@@ -101,7 +105,7 @@ export function CustomDatasetWizard() {
           <label htmlFor="dataset-test-size">保留測試資料比例<select id="dataset-test-size" value={draft.testSize} onChange={e => change({ testSize: Number(e.target.value) })}>{[0.2, 0.25, 0.3].map(v => <option key={v} value={v}>{v * 100}%</option>)}</select></label><label htmlFor="dataset-cv">訓練區內 CV folds<input id="dataset-cv" type="number" min={2} max={10} step={1} value={Number.isNaN(draft.cvSplits) ? "" : draft.cvSplits} onChange={e => change({ cvSplits: e.currentTarget.valueAsNumber })}/></label>{draft.split === "chronological" && <label htmlFor="dataset-gap">CV gap（觀測列）<input id="dataset-gap" type="number" min={0} max={50_000} step={1} value={Number.isNaN(draft.gap) ? "" : draft.gap} onChange={e => change({ gap: e.currentTarget.valueAsNumber })}/></label>}</div>
         <p className="fs-note">上述是待執行的規則，尚未補值、縮放、裁切或切分。正式流程必須在每個訓練 fold 內重新學習規則；類別編碼與日期衍生尚未串接。原始欄位數與未來選特徵的 k 分開計算。</p>
       </div></section>
-      <section className="panel cd-review" aria-labelledby="review-title"><div className="panel-header"><div><div className="section-kicker">04 · REVIEW BEFORE ANY EXPERIMENT</div><h2 id="review-title">確認與下載設定</h2><p>下載設定供後續流程使用；Python 驗證通過後，可另外確認並開始本機訓練。</p></div><span className="neutral-tag">設定預覽</span></div><div className="cd-body">
+      <section className="panel cd-review" aria-labelledby="review-title"><div className="panel-header"><div><div className="section-kicker">04 · REVIEW BEFORE ANY EXPERIMENT</div><h2 id="review-title">確認與下載設定</h2><p>下載設定供後續流程使用；Python 驗證通過後，可另外確認並開始訓練。</p></div><span className="neutral-tag">設定預覽</span></div><div className="cd-body">
         <div className="cd-review-summary"><p>目標：<strong>{draft.target || "尚未選擇"}</strong> · 輸入：<strong>{draft.features.length} 欄</strong></p><p>{plan.usableRows} 筆可用於規劃；預計訓練 {Number.isFinite(plan.trainRows) ? plan.trainRows : "—"} 筆／測試 {Number.isFinite(plan.testRows) ? plan.testRows : "—"} 筆。只計入指定的目標缺失排除；正式流程仍須逐 fold 驗證型態、變異與可用筆數。</p></div>
         {plan.errors.length > 0 && <div className="cd-validation" role="status"><strong>請先處理以下項目</strong><ul>{plan.errors.map(message => <li key={message}>{message}</li>)}</ul></div>}
         {plan.warnings.length > 0 && <div className="cd-validation cd-cautions"><strong>確認資料意義與評估限制</strong><ul>{plan.warnings.map(message => <li key={message}>{message}</li>)}</ul></div>}
@@ -110,9 +114,9 @@ export function CustomDatasetWizard() {
         <p className="cd-confirmation" role="status">{confirmed ? "此資料版本與設定已由你確認。修改任何設定後，需重新確認才能下載。" : "尚未確認；下載按鈕會在設定有效且經你確認後啟用。"}</p>
         <details className="cd-provenance"><summary>資料版本與檢查範圍</summary><p>CSV SHA-256：<code>{dataset.sha256}</code></p><p>摘要包含欄位統計與設定，不包含原始資料列或預覽內容。缺失記號：空字串、#N/A、#N/A N/A、#NA、-1.#IND、-1.#QNAN、-NaN、-nan、1.#IND、1.#QNAN、&lt;NA&gt;、N/A、NA、NULL、NaN、None、n/a、nan、null。</p><p>日期只辨識無時區的 ISO 年月日與時分秒，不猜日／月順序；正式 Python 流程仍會重新驗證。此摘要僅記錄設定，不代表已完成訓練；實際成績見下方訓練結果，不會改寫原始 CSV 或既有研究成果。</p></details>
       </div></section>
-      <section className="panel cd-python" aria-labelledby="python-validation-title" aria-busy={backendBusy}><div className="panel-header"><div><div className="section-kicker">05 · CHECK WITH PYTHON</div><h2 id="python-validation-title">本機 Python 驗證</h2><p>確認設定後，由 Python 實際檢查資料與每個 CV fold；不會訓練模型。</p></div><span className="neutral-tag">訓練前檢查</span></div><div className="cd-body">
-        <p>按下驗證會將目前 CSV、設定與版本確認送到本機網站服務。資料只供這次檢查，結束後自動清除伺服器暫存檔；不保存上傳資料或模型。</p>
-        <div className="cd-download-actions"><button id="dataset-python-validate" className="cd-button cd-primary" disabled={!confirmed || backendBusy} onClick={() => { void validateWithPython(); }}>{backendBusy ? "Python 驗證中…" : "傳送至本機 Python 驗證"}</button>{backendBusy && <button id="dataset-python-cancel" className="cd-button" onClick={() => { invalidateBackend(); setBackendResult({ error: "已取消本次 Python 驗證。" }); }}>取消驗證</button>}</div>
+      <section className="panel cd-python" aria-labelledby="python-validation-title" aria-busy={backendBusy}><div className="panel-header"><div><div className="section-kicker">05 · CHECK WITH PYTHON</div><h2 id="python-validation-title">{compute.mode==="browser"?"Browser Python 驗證":"Server Python 驗證"}</h2><p>確認設定後，由 Python 實際檢查資料與每個 CV fold；不會訓練模型。</p></div><span className="neutral-tag">訓練前檢查</span></div><div className="cd-body">
+        <p>{compute.mode==="browser"?"按下驗證會載入 Python，並在瀏覽器檢查 CSV、設定與版本確認；不會上傳。":"按下驗證會將 CSV、設定與版本確認送至運算服務；檢查結束後清除暫存檔。"}</p>
+        <div className="cd-download-actions"><button id="dataset-python-validate" className="cd-button cd-primary" disabled={!confirmed || backendBusy} onClick={() => { void validateWithPython(); }}>{backendBusy ? "Python 驗證中…" : compute.mode==="browser"?"在瀏覽器執行 Python 驗證":"傳送至 Server Python 驗證"}</button>{backendBusy && <button id="dataset-python-cancel" className="cd-button" onClick={() => { invalidateBackend(); setBackendResult({ error: "已取消本次 Python 驗證。" }); }}>取消驗證</button>}</div>
         {!confirmed && <p className="fs-note">請先完成上方的設定確認。更改資料或設定後，舊驗證結果會清除。</p>}
         {backendBusy && <p className="cd-confirmation" role="status">正在檢查資料、版本與時間／CV 切分，通常需要幾秒鐘…</p>}
         {backendResult && <div className="cd-python-result" role="status" aria-live="polite">{"error" in backendResult ? <p className="cd-error">{backendResult.error}</p> : <PythonResult report={backendResult.report}/>}</div>}

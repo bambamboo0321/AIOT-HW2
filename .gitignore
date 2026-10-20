@@ -25,3 +25,8 @@ id_rsa
 id_dsa
 id_ecdsa
 id_ed25519
+
+# Local user upload and experiment/dependency caches; preserve research CSVs.
+/BostonHousing.csv
+.npm-cache/
+.native-env/

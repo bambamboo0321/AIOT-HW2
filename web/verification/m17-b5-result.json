@@ -1,0 +1,177 @@
+{
+  "milestone": "M17-B5",
+  "functional": "PASS",
+  "branch": "experiment/m17-pyodide",
+  "head": "61478fc69f425d2928d6d5444abdb95de6f8035e",
+  "checks": {
+    "typecheck": "PASS",
+    "lint": "PASS",
+    "production_build": "PASS",
+    "production_worker": "PASS",
+    "website_tests": {
+      "passed": 143,
+      "total": 143
+    },
+    "custom_dataset_python_tests": {
+      "passed": 62,
+      "total": 62
+    },
+    "complete_python_suite": {
+      "passed": 210,
+      "total": 211,
+      "errors": 1,
+      "failed_test": "test_phase3d.SavedExperimentTests.test_all_original_models_data_research_and_dashboard_unchanged",
+      "reason": "Existing historical protection requires main/4619bd4. Current authorized branch/HEAD is experiment/m17-pyodide/61478fc. Historical README/.gitignore baseline predates M16 stable; both match M16 stable. Original protection was not changed or bypassed."
+    }
+  },
+  "browser": {
+    "training_methods": 6,
+    "baseline_holdout_predictions": 600,
+    "additional_missing_and_chronological_cases": 2,
+    "total_compared_holdout_predictions": 792,
+    "max_prediction_absolute_difference": 2.842170943040401e-14,
+    "rtol": 1e-07,
+    "atol": 1e-09,
+    "multi_k_comparison": "PASS",
+    "memfs_joblib_single_batch": "PASS",
+    "ui": "PASS",
+    "browser_upload_api_calls": 0,
+    "cancel_timeout_retry_and_cleanup": "PASS",
+    "limits": {
+      "rows": 500,
+      "features": 10,
+      "csv_bytes": 1048576
+    },
+    "runtime": "314.0.7",
+    "scientific_versions": {
+      "python": "3.14.2",
+      "numpy": "2.4.6",
+      "pandas": "3.0.2",
+      "scipy": "1.18.0",
+      "sklearn": "1.8.0",
+      "joblib": "1.5.3"
+    }
+  },
+  "integrity": {
+    "stable_files_checked": 292,
+    "unchanged_stable_files": 282,
+    "modified_stable_web_files": [
+      "web/app/custom-dataset/page.tsx",
+      "web/app/globals.css",
+      "web/components/custom-batch-prediction.tsx",
+      "web/components/custom-comparison-panel.tsx",
+      "web/components/custom-dataset-wizard.tsx",
+      "web/components/custom-prediction-form.tsx",
+      "web/components/custom-training-panel.tsx",
+      "web/next-env.d.ts",
+      "web/next.config.ts",
+      "web/package.json"
+    ],
+    "src_backend_gateway_api_session_models_research_unchanged": true,
+    "previous_experiment_hashes_checked": 118,
+    "b4_6_evidence_hashes_checked": 34,
+    "boston_unchanged": true,
+    "boston_untracked": true,
+    "staging_empty": true
+  },
+  "python_sources": [
+    {
+      "path": "src/__init__.py",
+      "sha256": "4f89c9f8311f68a8b565c1e9da6ce5fe7cd639f2ad664cbbd07ff7030cc0a38e"
+    },
+    {
+      "path": "src/custom_dataset_comparison.py",
+      "sha256": "8cf261002f5618604f282b51f14e79492caf414e623a619100527db1ba4a49c9"
+    },
+    {
+      "path": "src/custom_dataset_prediction.py",
+      "sha256": "75622f24ec73f030b1d7156ad72a970508d24425cffd2cbfe0eb36acd13a3a82"
+    },
+    {
+      "path": "src/custom_dataset_selectors.py",
+      "sha256": "073410f4134940ff8e5d32a71424e789a35069c3c2eafcb4364b0c28ab73788a"
+    },
+    {
+      "path": "src/custom_dataset_training.py",
+      "sha256": "9867fb42adc35ce0f78652e418b3702029c4bdba6f87fa547b45a85eb37279df"
+    },
+    {
+      "path": "src/custom_dataset_validation.py",
+      "sha256": "c7f4be174cfd22859fbe83b5d28dad9411747fb46fe42a5e67bad692c3051d5b"
+    },
+    {
+      "path": "src/data_splitting.py",
+      "sha256": "937661afc918f8a58a2010fc3a39931c8352472214b2147b05750b079852d335"
+    },
+    {
+      "path": "src/feature_selection.py",
+      "sha256": "3bb3c28b4041730084c0e53de1be0193fc30259e7afcc9dbb14ba60f1f631364"
+    },
+    {
+      "path": "src/preprocessing_config.py",
+      "sha256": "6dc5821d8cfdfbd7a67b25212d7e10b3538e7b1ad9367ad1df4331646df3b2de"
+    },
+    {
+      "path": "src/preprocessing.py",
+      "sha256": "d7c0513846367c373e44e99c8074b4974b40a1ea1e752d706bba055431179716"
+    },
+    {
+      "path": "src/profiling.py",
+      "sha256": "f6a8b0ec88ef7b5f11a69656c335b8e37fa57fe40f97c1ad25db3ab8983d5dd8"
+    }
+  ],
+  "manifest_sha256": "70fed11c74d780c1ca4e00c1ddfc4d5d8436afcfb89493b473ae0e855517ec60",
+  "new_web_files": [
+    "web/browser-compute/README.md",
+    "web/browser-compute/bridge.py",
+    "web/components/custom-compute-provider.tsx",
+    "web/lib/browser-compute/client.ts",
+    "web/lib/browser-compute/protocol.ts",
+    "web/lib/browser-compute/source-lock.ts",
+    "web/public/browser-compute/modules/lib/browser-compute/client.mjs",
+    "web/public/browser-compute/modules/lib/browser-compute/protocol.mjs",
+    "web/public/browser-compute/modules/lib/browser-compute/source-lock.mjs",
+    "web/public/browser-compute/modules/lib/custom-batch-types.mjs",
+    "web/public/browser-compute/modules/lib/custom-comparison-result.mjs",
+    "web/public/browser-compute/modules/lib/custom-prediction-types.mjs",
+    "web/public/browser-compute/modules/lib/custom-selection-policy.mjs",
+    "web/public/browser-compute/modules/lib/custom-training-result.mjs",
+    "web/public/browser-compute/modules/lib/custom-validation-result.mjs",
+    "web/public/browser-compute/python-manifest.json",
+    "web/public/browser-compute/worker.mjs",
+    "web/scripts/build-browser-compute.mjs",
+    "web/tests/browser-compute.test.ts",
+    "web/tests/browser-compute/collect-ui.mjs",
+    "web/tests/browser-compute/prepare.py",
+    "web/tests/browser-compute/run-browser.mjs",
+    "web/tests/browser-compute/runtime-faults.mjs",
+    "web/tests/fixtures/browser-compute/baseline.csv",
+    "web/tests/fixtures/browser-compute/cases.json",
+    "web/tests/fixtures/browser-compute/chronological_missing.csv",
+    "web/tests/fixtures/browser-compute/missing.csv",
+    "web/verification/m17-b5-browser.json",
+    "web/verification/m17-b5-faults.json",
+    "web/verification/m17-b5-production.json",
+    "web/verification/m17-b5-ui.json"
+  ],
+  "evidence": {
+    "browser": "m17-b5-browser.json",
+    "ui": "m17-b5-ui.json",
+    "faults": "m17-b5-faults.json",
+    "production": "m17-b5-production.json"
+  },
+  "scope": {
+    "committed": false,
+    "pushed": false,
+    "deployed": false,
+    "local_acceptance_server_stopped": true,
+    "browser_space_finished": true
+  },
+  "limitations": [
+    "Acceptance on the available local Chrome/macOS device; not all devices or arbitrary CSVs.",
+    "No new universal first-use performance claim; runtime cache state may be warm.",
+    "Public HTTPS/Vercel deployment acceptance remains pending.",
+    "Server Mode remains the default and requires a working Python service when deployed.",
+    "The complete Python suite retains one preexisting historical Git-contract error; no research safety gate was weakened."
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "failed_initialization": {
+    "code": "WORKER_FAILED",
+    "cleaned": true
+  },
+  "method_timeout": {
+    "code": "TIMEOUT",
+    "injected_watchdog_ms": 5,
+    "cleaned": true
+  }
+}

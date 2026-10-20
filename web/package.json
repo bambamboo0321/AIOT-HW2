@@ -8,14 +8,15 @@
   },
   "scripts": {
     "sync-data": "node --disable-warning=ExperimentalWarning --experimental-strip-types scripts/sync-data.ts",
-    "predev": "npm run sync-data",
+    "predev": "npm run sync-data && npm run build-browser-compute",
     "dev": "NEXT_TELEMETRY_DISABLED=1 next dev --webpack --hostname 127.0.0.1",
-    "prebuild": "npm run sync-data",
+    "prebuild": "npm run sync-data && npm run build-browser-compute",
     "build": "NEXT_TELEMETRY_DISABLED=1 next build --webpack",
     "start": "NEXT_TELEMETRY_DISABLED=1 next start --hostname 127.0.0.1",
     "lint": "eslint . --max-warnings=0",
     "typecheck": "tsc --noEmit",
-    "test": "node --disable-warning=ExperimentalWarning --experimental-strip-types --test tests/*.test.ts"
+    "test": "node --disable-warning=ExperimentalWarning --experimental-strip-types --test tests/*.test.ts",
+    "build-browser-compute": "node scripts/build-browser-compute.mjs"
   },
   "dependencies": {
     "next": "16.4.2",

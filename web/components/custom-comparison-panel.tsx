@@ -1,4 +1,5 @@
 "use client";
+import { useCustomCompute } from "./custom-compute-provider";
 import { useEffect, useRef, useState } from "react";
 import { CartesianGrid, Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { isAutoMethod, estimatedFits, nestedSelectionError } from "@/lib/custom-selection-policy";
@@ -12,6 +13,7 @@ type Validated=Extract<ValidationReport,{status:"valid"}>;
 const format=(n:number|null)=>n===null?"無法定義":n.toLocaleString("en-US",{maximumFractionDigits:4});
 const colors:Record<ComparisonMethod,string>={forward_sfs:"var(--comparison-sfs)",rfecv:"var(--selected)",lasso_cv:"var(--baseline)",f_test:"var(--baseline)",mutual_information:"var(--selected)",rfe:"var(--comparison-rfe)"};
 export function CustomComparisonPanel({file,config,validation,disabled,holdoutViewed,onBusyChange,onApply}:{file:File;config:PreprocessingPlan;validation:Validated;disabled:boolean;holdoutViewed:boolean;onBusyChange:(busy:boolean)=>void;onApply:(method:ComparisonMethod,k:number|null)=>void}) {
+  const compute=useCustomCompute();
   const [methods,setMethods]=useState<ComparisonMethod[]>(["f_test","mutual_information","rfe"]);
   const [min,setMin]=useState("1"),[max,setMax]=useState(String(Math.min(10,config.feature_columns.length)));
   const [consent,setConsent]=useState(false),[busy,setBusy]=useState(false),[result,setResult]=useState<ComparisonReport|null>(null),[error,setError]=useState<string|null>(null);
@@ -35,7 +37,7 @@ export function CustomComparisonPanel({file,config,validation,disabled,holdoutVi
     body.append("review",JSON.stringify({schema_version:1,artifact_type:"custom_dataset_review",dataset:{sha256:validation.dataset.sha256},preprocessing:config,review:{confirmed:true,training_started:false,scope:"configuration_only"}}));
     body.append("experiment",JSON.stringify({schema_version:1,confirmed:true,dataset_sha256:validation.dataset.sha256,config_sha256:validation.config_sha256,methods,k_values:ks}));
     try{
-      const response=await fetch("/api/custom-dataset/compare",{method:"POST",body,signal:abort.signal,cache:"no-store"}),payload:unknown=await response.json();
+      const response=await compute.request("/api/custom-dataset/compare",{method:"POST",body,signal:abort.signal,cache:"no-store"}),payload:unknown=await response.json();
       if(![200,422].includes(response.status))throw new Error(payload&&typeof payload==="object"&&"error" in payload&&typeof payload.error==="string"?payload.error:"本機比較服務無法完成，請稍後重試。");
       const report=parseComparisonReport(payload);
       if((response.status===200)!==(report.status==="compared"))throw new Error("比較回應狀態不一致。");
@@ -50,7 +52,7 @@ export function CustomComparisonPanel({file,config,validation,disabled,holdoutVi
     <fieldset className="cd-comparison-methods" disabled={busy||disabled}><legend>要比較的方法</legend>{allMethods.map(m=><label key={m}><input type="checkbox" checked={methods.includes(m)} onChange={e=>{reset();setMethods(allMethods.filter(n=>n===m?e.target.checked:methods.includes(n)));}}/>{labels[m]}</label>)}</fieldset>
     <div className="cd-config-grid"><label htmlFor="comparison-k-min">起始特徵數 k<input disabled={busy||disabled||!hasFixed} id="comparison-k-min" type="number" min={1} max={p} step={1} value={min} onChange={e=>{reset();setMin(e.target.value);}}/></label><label htmlFor="comparison-k-max">結束特徵數 k<input disabled={busy||disabled||!hasFixed} id="comparison-k-max" type="number" min={1} max={p} step={1} value={max} onChange={e=>{reset();setMax(e.target.value);}}/></label></div>
     {!hasFixed&&methods.length>0&&<p className="cd-confirmation">目前只選自動方法，不使用上方的起始／結束 k；系統會在各 Training 區自行決定 k。</p>}
-    <p className="cd-confirmation">{methods.filter(m=>!isAutoMethod(m)).length} 種固定方法 × {ks.length} 個 k；{methods.filter(isAutoMethod).length} 種自動方法 · {config.cv_splits} 個外層 folds · 候選 {p} 欄 · k 等於候選數時保留全部，未執行排名。上限 120 秒，可取消；較大資料請分段比較。</p>
+    <p className="cd-confirmation">{methods.filter(m=>!isAutoMethod(m)).length} 種固定方法 × {ks.length} 個 k；{methods.filter(isAutoMethod).length} 種自動方法 · {config.cv_splits} 個外層 folds · 候選 {p} 欄 · k 等於候選數時保留全部，未執行排名。上限 {compute.mode==="browser"?90:120} 秒，可取消；較大資料請分段比較。</p>
     {blocked&&<p className="cd-error" role="alert">{blocked}</p>}{holdoutViewed&&<p className="cd-validation cd-cautions">你已看過這份資料的 Holdout。此時調整方法或 k 後再次測試，不能視為全新的獨立驗證。</p>}
     <label className="cd-consent"><input id="comparison-consent" type="checkbox" checked={consent} disabled={busy||disabled||!!blocked} onChange={e=>setConsent(e.target.checked)}/>我確認只在 Training CV 比較，不使用 Holdout 選方法或 k；本次不保存模型。</label>
     <div className="cd-download-actions"><button id="dataset-compare" className="cd-button cd-primary" disabled={busy||disabled||!!blocked||!consent} onClick={()=>void compare()}>{busy?"正在比較…":"開始方法與 k 比較"}</button>{busy&&<button className="cd-button" id="comparison-cancel" onClick={cancel}>取消比較</button>}</div>

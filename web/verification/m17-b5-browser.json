@@ -1,0 +1,1335 @@
+{
+  "status": "passed",
+  "stage": "complete",
+  "cases": [
+    {
+      "name": "baseline",
+      "methods": [
+        {
+          "method": "f_test",
+          "k": 5,
+          "selected_features": [
+            "x1",
+            "x2",
+            "x3",
+            "x4",
+            "x5"
+          ],
+          "metrics": {
+            "rmse": 0.5753450796015974,
+            "mae": 0.45054189045551696,
+            "r2": 0.9953576843301665
+          },
+          "preview_predictions": 100,
+          "elapsed_ms": 248,
+          "single": true,
+          "batch": true,
+          "partial": false,
+          "delete": true
+        },
+        {
+          "method": "mutual_information",
+          "k": 5,
+          "selected_features": [
+            "x1",
+            "x2",
+            "x3",
+            "x4",
+            "x5"
+          ],
+          "metrics": {
+            "rmse": 0.5753450796015974,
+            "mae": 0.45054189045551696,
+            "r2": 0.9953576843301665
+          },
+          "preview_predictions": 100,
+          "elapsed_ms": 333.60000002384186,
+          "single": true,
+          "batch": true,
+          "partial": false,
+          "delete": true
+        },
+        {
+          "method": "forward_sfs",
+          "k": 5,
+          "selected_features": [
+            "x1",
+            "x2",
+            "x3",
+            "x4",
+            "x5"
+          ],
+          "metrics": {
+            "rmse": 0.5753450796015974,
+            "mae": 0.45054189045551696,
+            "r2": 0.9953576843301665
+          },
+          "preview_predictions": 100,
+          "elapsed_ms": 5633.100000023842,
+          "single": true,
+          "batch": true,
+          "partial": false,
+          "delete": true
+        },
+        {
+          "method": "rfe",
+          "k": 5,
+          "selected_features": [
+            "x1",
+            "x2",
+            "x3",
+            "x4",
+            "x5"
+          ],
+          "metrics": {
+            "rmse": 0.5753450796015974,
+            "mae": 0.45054189045551696,
+            "r2": 0.9953576843301665
+          },
+          "preview_predictions": 100,
+          "elapsed_ms": 734.5,
+          "single": true,
+          "batch": true,
+          "partial": false,
+          "delete": true
+        },
+        {
+          "method": "lasso_cv",
+          "k": 10,
+          "selected_features": [
+            "x1",
+            "x2",
+            "x3",
+            "x4",
+            "x5",
+            "x6",
+            "x7",
+            "x8",
+            "x9",
+            "x10"
+          ],
+          "metrics": {
+            "rmse": 0.5765702158591097,
+            "mae": 0.44940274149214127,
+            "r2": 0.9953378926438247
+          },
+          "preview_predictions": 100,
+          "elapsed_ms": 713.2000000476837,
+          "single": true,
+          "batch": true,
+          "partial": false,
+          "delete": true
+        },
+        {
+          "method": "rfecv",
+          "k": 5,
+          "selected_features": [
+            "x1",
+            "x2",
+            "x3",
+            "x4",
+            "x5"
+          ],
+          "metrics": {
+            "rmse": 0.5753450796015974,
+            "mae": 0.45054189045551696,
+            "r2": 0.9953576843301665
+          },
+          "preview_predictions": 100,
+          "elapsed_ms": 3001.600000023842,
+          "single": true,
+          "batch": true,
+          "partial": false,
+          "delete": true
+        }
+      ],
+      "comparison": {
+        "status": "compared",
+        "points": 12,
+        "automatic": 2,
+        "elapsed_ms": 13427.600000023842
+      }
+    },
+    {
+      "name": "missing",
+      "methods": [
+        {
+          "method": "f_test",
+          "k": 2,
+          "selected_features": [
+            "x1",
+            "x2"
+          ],
+          "metrics": {
+            "rmse": 0.18683499380828994,
+            "mae": 0.15254170720649685,
+            "r2": 0.998458023055371
+          },
+          "preview_predictions": 16,
+          "elapsed_ms": 81.59999990463257,
+          "single": true,
+          "batch": true,
+          "partial": true,
+          "delete": true
+        },
+        {
+          "method": "mutual_information",
+          "k": 2,
+          "selected_features": [
+            "x1",
+            "x2"
+          ],
+          "metrics": {
+            "rmse": 0.18683499380828994,
+            "mae": 0.15254170720649685,
+            "r2": 0.998458023055371
+          },
+          "preview_predictions": 16,
+          "elapsed_ms": 99.79999995231628,
+          "single": true,
+          "batch": true,
+          "partial": true,
+          "delete": true
+        },
+        {
+          "method": "forward_sfs",
+          "k": 2,
+          "selected_features": [
+            "x1",
+            "x2"
+          ],
+          "metrics": {
+            "rmse": 0.18683499380828994,
+            "mae": 0.15254170720649685,
+            "r2": 0.998458023055371
+          },
+          "preview_predictions": 16,
+          "elapsed_ms": 526,
+          "single": true,
+          "batch": true,
+          "partial": true,
+          "delete": true
+        },
+        {
+          "method": "rfe",
+          "k": 2,
+          "selected_features": [
+            "x1",
+            "x2"
+          ],
+          "metrics": {
+            "rmse": 0.18683499380828994,
+            "mae": 0.15254170720649685,
+            "r2": 0.998458023055371
+          },
+          "preview_predictions": 16,
+          "elapsed_ms": 167.69999992847443,
+          "single": true,
+          "batch": true,
+          "partial": true,
+          "delete": true
+        },
+        {
+          "method": "lasso_cv",
+          "k": 3,
+          "selected_features": [
+            "x1",
+            "x2",
+            "x3"
+          ],
+          "metrics": {
+            "rmse": 0.20797052894304796,
+            "mae": 0.175730339092099,
+            "r2": 0.9980894208716453
+          },
+          "preview_predictions": 16,
+          "elapsed_ms": 282.1999999284744,
+          "single": true,
+          "batch": true,
+          "partial": true,
+          "delete": true
+        },
+        {
+          "method": "rfecv",
+          "k": 2,
+          "selected_features": [
+            "x1",
+            "x2"
+          ],
+          "metrics": {
+            "rmse": 0.18683499380828994,
+            "mae": 0.15254170720649685,
+            "r2": 0.998458023055371
+          },
+          "preview_predictions": 16,
+          "elapsed_ms": 487.7000000476837,
+          "single": true,
+          "batch": true,
+          "partial": true,
+          "delete": true
+        }
+      ],
+      "comparison": {
+        "status": "compared",
+        "points": 12,
+        "automatic": 2,
+        "elapsed_ms": 1864.1999999284744
+      }
+    },
+    {
+      "name": "chronological_missing",
+      "methods": [
+        {
+          "method": "f_test",
+          "k": 2,
+          "selected_features": [
+            "x1",
+            "x2"
+          ],
+          "metrics": {
+            "rmse": 0.1382215869508922,
+            "mae": 0.11609577568042828,
+            "r2": 0.9989845647667647
+          },
+          "preview_predictions": 16,
+          "elapsed_ms": 94.79999995231628,
+          "single": true,
+          "batch": true,
+          "partial": true,
+          "delete": true
+        },
+        {
+          "method": "mutual_information",
+          "k": 2,
+          "selected_features": [
+            "x1",
+            "x2"
+          ],
+          "metrics": {
+            "rmse": 0.1382215869508922,
+            "mae": 0.11609577568042828,
+            "r2": 0.9989845647667647
+          },
+          "preview_predictions": 16,
+          "elapsed_ms": 102.5,
+          "single": true,
+          "batch": true,
+          "partial": true,
+          "delete": true
+        },
+        {
+          "method": "forward_sfs",
+          "k": 2,
+          "selected_features": [
+            "x1",
+            "x2"
+          ],
+          "metrics": {
+            "rmse": 0.1382215869508922,
+            "mae": 0.11609577568042828,
+            "r2": 0.9989845647667647
+          },
+          "preview_predictions": 16,
+          "elapsed_ms": 542.2000000476837,
+          "single": true,
+          "batch": true,
+          "partial": true,
+          "delete": true
+        },
+        {
+          "method": "rfe",
+          "k": 2,
+          "selected_features": [
+            "x1",
+            "x2"
+          ],
+          "metrics": {
+            "rmse": 0.1382215869508922,
+            "mae": 0.11609577568042828,
+            "r2": 0.9989845647667647
+          },
+          "preview_predictions": 16,
+          "elapsed_ms": 185.39999997615814,
+          "single": true,
+          "batch": true,
+          "partial": true,
+          "delete": true
+        },
+        {
+          "method": "lasso_cv",
+          "k": 3,
+          "selected_features": [
+            "x1",
+            "x2",
+            "x3"
+          ],
+          "metrics": {
+            "rmse": 0.18490218603346434,
+            "mae": 0.15316197780057594,
+            "r2": 0.9981828759769158
+          },
+          "preview_predictions": 16,
+          "elapsed_ms": 270.7999999523163,
+          "single": true,
+          "batch": true,
+          "partial": true,
+          "delete": true
+        },
+        {
+          "method": "rfecv",
+          "k": 2,
+          "selected_features": [
+            "x1",
+            "x2"
+          ],
+          "metrics": {
+            "rmse": 0.1382215869508922,
+            "mae": 0.11609577568042828,
+            "r2": 0.9989845647667647
+          },
+          "preview_predictions": 16,
+          "elapsed_ms": 493.5,
+          "single": true,
+          "batch": true,
+          "partial": true,
+          "delete": true
+        }
+      ],
+      "comparison": {
+        "status": "compared",
+        "points": 12,
+        "automatic": 2,
+        "elapsed_ms": 1858.7000000476837
+      }
+    }
+  ],
+  "progress": [
+    {
+      "stage": "runtime",
+      "at_ms": 267.2999999523163
+    },
+    {
+      "stage": "packages",
+      "at_ms": 1103.2000000476837
+    },
+    {
+      "stage": "package:numpy",
+      "at_ms": 1103.2999999523163
+    },
+    {
+      "stage": "package:pandas",
+      "at_ms": 1264.6000000238419
+    },
+    {
+      "stage": "package:scipy",
+      "at_ms": 1469.2000000476837
+    },
+    {
+      "stage": "package:scikit-learn",
+      "at_ms": 2126.2000000476837
+    },
+    {
+      "stage": "package:joblib",
+      "at_ms": 2501.100000023842
+    },
+    {
+      "stage": "modules",
+      "at_ms": 2501.100000023842
+    },
+    {
+      "stage": "ready",
+      "at_ms": 6068.700000047684
+    },
+    {
+      "stage": "validate",
+      "at_ms": 6075.399999976158
+    },
+    {
+      "stage": "train",
+      "at_ms": 6128.100000023842
+    },
+    {
+      "stage": "method",
+      "method": "f_test",
+      "phase": "started",
+      "at_ms": 6162.600000023842
+    },
+    {
+      "stage": "method",
+      "method": "f_test",
+      "phase": "completed",
+      "at_ms": 6374.700000047684
+    },
+    {
+      "stage": "predict",
+      "at_ms": 6377.200000047684
+    },
+    {
+      "stage": "predict-batch",
+      "at_ms": 6383.100000023842
+    },
+    {
+      "stage": "delete-model",
+      "at_ms": 6387.399999976158
+    },
+    {
+      "stage": "train",
+      "at_ms": 6388.399999976158
+    },
+    {
+      "stage": "method",
+      "method": "mutual_information",
+      "phase": "started",
+      "at_ms": 6421.399999976158
+    },
+    {
+      "stage": "method",
+      "method": "mutual_information",
+      "phase": "completed",
+      "at_ms": 6720.600000023842
+    },
+    {
+      "stage": "predict",
+      "at_ms": 6722.899999976158
+    },
+    {
+      "stage": "predict-batch",
+      "at_ms": 6726.799999952316
+    },
+    {
+      "stage": "delete-model",
+      "at_ms": 6730.799999952316
+    },
+    {
+      "stage": "train",
+      "at_ms": 6731.700000047684
+    },
+    {
+      "stage": "method",
+      "method": "forward_sfs",
+      "phase": "started",
+      "at_ms": 6762.399999976158
+    },
+    {
+      "stage": "method",
+      "method": "forward_sfs",
+      "phase": "completed",
+      "at_ms": 12363.700000047684
+    },
+    {
+      "stage": "predict",
+      "at_ms": 12365.899999976158
+    },
+    {
+      "stage": "predict-batch",
+      "at_ms": 12369.799999952316
+    },
+    {
+      "stage": "delete-model",
+      "at_ms": 12373.600000023842
+    },
+    {
+      "stage": "train",
+      "at_ms": 12374.5
+    },
+    {
+      "stage": "method",
+      "method": "rfe",
+      "phase": "started",
+      "at_ms": 12404.600000023842
+    },
+    {
+      "stage": "method",
+      "method": "rfe",
+      "phase": "completed",
+      "at_ms": 13108
+    },
+    {
+      "stage": "predict",
+      "at_ms": 13109.5
+    },
+    {
+      "stage": "predict-batch",
+      "at_ms": 13113.5
+    },
+    {
+      "stage": "delete-model",
+      "at_ms": 13117.200000047684
+    },
+    {
+      "stage": "train",
+      "at_ms": 13118.100000023842
+    },
+    {
+      "stage": "method",
+      "method": "lasso_cv",
+      "phase": "started",
+      "at_ms": 13148
+    },
+    {
+      "stage": "method",
+      "method": "lasso_cv",
+      "phase": "completed",
+      "at_ms": 13830.299999952316
+    },
+    {
+      "stage": "predict",
+      "at_ms": 13832.399999976158
+    },
+    {
+      "stage": "predict-batch",
+      "at_ms": 13839.100000023842
+    },
+    {
+      "stage": "delete-model",
+      "at_ms": 13845.799999952316
+    },
+    {
+      "stage": "train",
+      "at_ms": 13846.799999952316
+    },
+    {
+      "stage": "method",
+      "method": "rfecv",
+      "phase": "started",
+      "at_ms": 13877.100000023842
+    },
+    {
+      "stage": "method",
+      "method": "rfecv",
+      "phase": "completed",
+      "at_ms": 16847.299999952316
+    },
+    {
+      "stage": "predict",
+      "at_ms": 16849.100000023842
+    },
+    {
+      "stage": "predict-batch",
+      "at_ms": 16853
+    },
+    {
+      "stage": "delete-model",
+      "at_ms": 16857
+    },
+    {
+      "stage": "compare",
+      "at_ms": 16858.100000023842
+    },
+    {
+      "stage": "method",
+      "method": "f_test",
+      "phase": "started",
+      "at_ms": 16894
+    },
+    {
+      "stage": "method",
+      "method": "f_test",
+      "phase": "completed",
+      "at_ms": 17363.5
+    },
+    {
+      "stage": "method",
+      "method": "mutual_information",
+      "phase": "started",
+      "at_ms": 17363.5
+    },
+    {
+      "stage": "method",
+      "method": "mutual_information",
+      "phase": "completed",
+      "at_ms": 18080.200000047684
+    },
+    {
+      "stage": "method",
+      "method": "rfe",
+      "phase": "started",
+      "at_ms": 18080.200000047684
+    },
+    {
+      "stage": "method",
+      "method": "rfe",
+      "phase": "completed",
+      "at_ms": 19746.100000023842
+    },
+    {
+      "stage": "method",
+      "method": "forward_sfs",
+      "phase": "started",
+      "at_ms": 19746.200000047684
+    },
+    {
+      "stage": "method",
+      "method": "forward_sfs",
+      "phase": "completed",
+      "at_ms": 27430.399999976158
+    },
+    {
+      "stage": "method",
+      "method": "rfecv",
+      "phase": "started",
+      "at_ms": 27430.399999976158
+    },
+    {
+      "stage": "method",
+      "method": "rfecv",
+      "phase": "completed",
+      "at_ms": 29778.200000047684
+    },
+    {
+      "stage": "method",
+      "method": "lasso_cv",
+      "phase": "started",
+      "at_ms": 29778.200000047684
+    },
+    {
+      "stage": "method",
+      "method": "lasso_cv",
+      "phase": "completed",
+      "at_ms": 30284.299999952316
+    },
+    {
+      "stage": "validate",
+      "at_ms": 30287.899999976158
+    },
+    {
+      "stage": "train",
+      "at_ms": 30297.700000047684
+    },
+    {
+      "stage": "method",
+      "method": "f_test",
+      "phase": "started",
+      "at_ms": 30306.700000047684
+    },
+    {
+      "stage": "method",
+      "method": "f_test",
+      "phase": "completed",
+      "at_ms": 30378.899999976158
+    },
+    {
+      "stage": "predict",
+      "at_ms": 30379.600000023842
+    },
+    {
+      "stage": "predict",
+      "at_ms": 30382.100000023842
+    },
+    {
+      "stage": "predict-batch",
+      "at_ms": 30384.399999976158
+    },
+    {
+      "stage": "delete-model",
+      "at_ms": 30388.100000023842
+    },
+    {
+      "stage": "train",
+      "at_ms": 30392.399999976158
+    },
+    {
+      "stage": "method",
+      "method": "mutual_information",
+      "phase": "started",
+      "at_ms": 30402.399999976158
+    },
+    {
+      "stage": "method",
+      "method": "mutual_information",
+      "phase": "completed",
+      "at_ms": 30491.399999976158
+    },
+    {
+      "stage": "predict",
+      "at_ms": 30492.299999952316
+    },
+    {
+      "stage": "predict",
+      "at_ms": 30494.5
+    },
+    {
+      "stage": "predict-batch",
+      "at_ms": 30496.700000047684
+    },
+    {
+      "stage": "delete-model",
+      "at_ms": 30498.799999952316
+    },
+    {
+      "stage": "train",
+      "at_ms": 30499.700000047684
+    },
+    {
+      "stage": "method",
+      "method": "forward_sfs",
+      "phase": "started",
+      "at_ms": 30508.799999952316
+    },
+    {
+      "stage": "method",
+      "method": "forward_sfs",
+      "phase": "completed",
+      "at_ms": 31025
+    },
+    {
+      "stage": "predict",
+      "at_ms": 31026
+    },
+    {
+      "stage": "predict",
+      "at_ms": 31028.5
+    },
+    {
+      "stage": "predict-batch",
+      "at_ms": 31035.600000023842
+    },
+    {
+      "stage": "delete-model",
+      "at_ms": 31038.399999976158
+    },
+    {
+      "stage": "train",
+      "at_ms": 31039.399999976158
+    },
+    {
+      "stage": "method",
+      "method": "rfe",
+      "phase": "started",
+      "at_ms": 31049
+    },
+    {
+      "stage": "method",
+      "method": "rfe",
+      "phase": "completed",
+      "at_ms": 31206.399999976158
+    },
+    {
+      "stage": "predict",
+      "at_ms": 31207.299999952316
+    },
+    {
+      "stage": "predict",
+      "at_ms": 31209.399999976158
+    },
+    {
+      "stage": "predict-batch",
+      "at_ms": 31211.5
+    },
+    {
+      "stage": "delete-model",
+      "at_ms": 31213.5
+    },
+    {
+      "stage": "train",
+      "at_ms": 31214.200000047684
+    },
+    {
+      "stage": "method",
+      "method": "lasso_cv",
+      "phase": "started",
+      "at_ms": 31223.299999952316
+    },
+    {
+      "stage": "method",
+      "method": "lasso_cv",
+      "phase": "completed",
+      "at_ms": 31495.700000047684
+    },
+    {
+      "stage": "predict",
+      "at_ms": 31496.700000047684
+    },
+    {
+      "stage": "predict",
+      "at_ms": 31499.399999976158
+    },
+    {
+      "stage": "predict-batch",
+      "at_ms": 31502.100000023842
+    },
+    {
+      "stage": "delete-model",
+      "at_ms": 31504.5
+    },
+    {
+      "stage": "train",
+      "at_ms": 31505.5
+    },
+    {
+      "stage": "method",
+      "method": "rfecv",
+      "phase": "started",
+      "at_ms": 31514.700000047684
+    },
+    {
+      "stage": "method",
+      "method": "rfecv",
+      "phase": "completed",
+      "at_ms": 31992.600000023842
+    },
+    {
+      "stage": "predict",
+      "at_ms": 31993.399999976158
+    },
+    {
+      "stage": "predict",
+      "at_ms": 31995.600000023842
+    },
+    {
+      "stage": "predict-batch",
+      "at_ms": 31997.5
+    },
+    {
+      "stage": "delete-model",
+      "at_ms": 31999.399999976158
+    },
+    {
+      "stage": "compare",
+      "at_ms": 32000.299999952316
+    },
+    {
+      "stage": "method",
+      "method": "f_test",
+      "phase": "started",
+      "at_ms": 32013.600000023842
+    },
+    {
+      "stage": "method",
+      "method": "f_test",
+      "phase": "completed",
+      "at_ms": 32178.100000023842
+    },
+    {
+      "stage": "method",
+      "method": "mutual_information",
+      "phase": "started",
+      "at_ms": 32178.100000023842
+    },
+    {
+      "stage": "method",
+      "method": "mutual_information",
+      "phase": "completed",
+      "at_ms": 32363.700000047684
+    },
+    {
+      "stage": "method",
+      "method": "rfe",
+      "phase": "started",
+      "at_ms": 32363.700000047684
+    },
+    {
+      "stage": "method",
+      "method": "rfe",
+      "phase": "completed",
+      "at_ms": 32628.5
+    },
+    {
+      "stage": "method",
+      "method": "forward_sfs",
+      "phase": "started",
+      "at_ms": 32628.600000023842
+    },
+    {
+      "stage": "method",
+      "method": "forward_sfs",
+      "phase": "completed",
+      "at_ms": 33303.60000002384
+    },
+    {
+      "stage": "method",
+      "method": "rfecv",
+      "phase": "started",
+      "at_ms": 33303.60000002384
+    },
+    {
+      "stage": "method",
+      "method": "rfecv",
+      "phase": "completed",
+      "at_ms": 33675.60000002384
+    },
+    {
+      "stage": "method",
+      "method": "lasso_cv",
+      "phase": "started",
+      "at_ms": 33675.60000002384
+    },
+    {
+      "stage": "method",
+      "method": "lasso_cv",
+      "phase": "completed",
+      "at_ms": 33863.299999952316
+    },
+    {
+      "stage": "validate",
+      "at_ms": 33866.299999952316
+    },
+    {
+      "stage": "train",
+      "at_ms": 33880.700000047684
+    },
+    {
+      "stage": "method",
+      "method": "f_test",
+      "phase": "started",
+      "at_ms": 33891
+    },
+    {
+      "stage": "method",
+      "method": "f_test",
+      "phase": "completed",
+      "at_ms": 33975
+    },
+    {
+      "stage": "predict",
+      "at_ms": 33975.89999997616
+    },
+    {
+      "stage": "predict",
+      "at_ms": 33978
+    },
+    {
+      "stage": "predict-batch",
+      "at_ms": 33980.10000002384
+    },
+    {
+      "stage": "delete-model",
+      "at_ms": 33982.10000002384
+    },
+    {
+      "stage": "train",
+      "at_ms": 33982.89999997616
+    },
+    {
+      "stage": "method",
+      "method": "mutual_information",
+      "phase": "started",
+      "at_ms": 33992.799999952316
+    },
+    {
+      "stage": "method",
+      "method": "mutual_information",
+      "phase": "completed",
+      "at_ms": 34084.89999997616
+    },
+    {
+      "stage": "predict",
+      "at_ms": 34085.5
+    },
+    {
+      "stage": "predict",
+      "at_ms": 34087.5
+    },
+    {
+      "stage": "predict-batch",
+      "at_ms": 34089.60000002384
+    },
+    {
+      "stage": "delete-model",
+      "at_ms": 34091.700000047684
+    },
+    {
+      "stage": "train",
+      "at_ms": 34092.39999997616
+    },
+    {
+      "stage": "method",
+      "method": "forward_sfs",
+      "phase": "started",
+      "at_ms": 34102.200000047684
+    },
+    {
+      "stage": "method",
+      "method": "forward_sfs",
+      "phase": "completed",
+      "at_ms": 34634
+    },
+    {
+      "stage": "predict",
+      "at_ms": 34634.89999997616
+    },
+    {
+      "stage": "predict",
+      "at_ms": 34637.10000002384
+    },
+    {
+      "stage": "predict-batch",
+      "at_ms": 34639.10000002384
+    },
+    {
+      "stage": "delete-model",
+      "at_ms": 34641.10000002384
+    },
+    {
+      "stage": "train",
+      "at_ms": 34641.799999952316
+    },
+    {
+      "stage": "method",
+      "method": "rfe",
+      "phase": "started",
+      "at_ms": 34652.10000002384
+    },
+    {
+      "stage": "method",
+      "method": "rfe",
+      "phase": "completed",
+      "at_ms": 34826.200000047684
+    },
+    {
+      "stage": "predict",
+      "at_ms": 34827.299999952316
+    },
+    {
+      "stage": "predict",
+      "at_ms": 34831.700000047684
+    },
+    {
+      "stage": "predict-batch",
+      "at_ms": 34834.10000002384
+    },
+    {
+      "stage": "delete-model",
+      "at_ms": 34838.10000002384
+    },
+    {
+      "stage": "train",
+      "at_ms": 34839.700000047684
+    },
+    {
+      "stage": "method",
+      "method": "lasso_cv",
+      "phase": "started",
+      "at_ms": 34850.10000002384
+    },
+    {
+      "stage": "method",
+      "method": "lasso_cv",
+      "phase": "completed",
+      "at_ms": 35109.89999997616
+    },
+    {
+      "stage": "predict",
+      "at_ms": 35110.799999952316
+    },
+    {
+      "stage": "predict",
+      "at_ms": 35113.39999997616
+    },
+    {
+      "stage": "predict-batch",
+      "at_ms": 35116.10000002384
+    },
+    {
+      "stage": "delete-model",
+      "at_ms": 35118.799999952316
+    },
+    {
+      "stage": "train",
+      "at_ms": 35119.5
+    },
+    {
+      "stage": "method",
+      "method": "rfecv",
+      "phase": "started",
+      "at_ms": 35129.39999997616
+    },
+    {
+      "stage": "method",
+      "method": "rfecv",
+      "phase": "completed",
+      "at_ms": 35612.299999952316
+    },
+    {
+      "stage": "predict",
+      "at_ms": 35613.10000002384
+    },
+    {
+      "stage": "predict",
+      "at_ms": 35615.200000047684
+    },
+    {
+      "stage": "predict-batch",
+      "at_ms": 35617.299999952316
+    },
+    {
+      "stage": "delete-model",
+      "at_ms": 35619.200000047684
+    },
+    {
+      "stage": "compare",
+      "at_ms": 35619.89999997616
+    },
+    {
+      "stage": "method",
+      "method": "f_test",
+      "phase": "started",
+      "at_ms": 35630
+    },
+    {
+      "stage": "method",
+      "method": "f_test",
+      "phase": "completed",
+      "at_ms": 35796.89999997616
+    },
+    {
+      "stage": "method",
+      "method": "mutual_information",
+      "phase": "started",
+      "at_ms": 35796.89999997616
+    },
+    {
+      "stage": "method",
+      "method": "mutual_information",
+      "phase": "completed",
+      "at_ms": 35982.700000047684
+    },
+    {
+      "stage": "method",
+      "method": "rfe",
+      "phase": "started",
+      "at_ms": 35982.700000047684
+    },
+    {
+      "stage": "method",
+      "method": "rfe",
+      "phase": "completed",
+      "at_ms": 36250.60000002384
+    },
+    {
+      "stage": "method",
+      "method": "forward_sfs",
+      "phase": "started",
+      "at_ms": 36250.60000002384
+    },
+    {
+      "stage": "method",
+      "method": "forward_sfs",
+      "phase": "completed",
+      "at_ms": 36921.5
+    },
+    {
+      "stage": "method",
+      "method": "rfecv",
+      "phase": "started",
+      "at_ms": 36921.5
+    },
+    {
+      "stage": "method",
+      "method": "rfecv",
+      "phase": "completed",
+      "at_ms": 37291.200000047684
+    },
+    {
+      "stage": "method",
+      "method": "lasso_cv",
+      "phase": "started",
+      "at_ms": 37291.200000047684
+    },
+    {
+      "stage": "method",
+      "method": "lasso_cv",
+      "phase": "completed",
+      "at_ms": 37477.39999997616
+    },
+    {
+      "stage": "runtime",
+      "at_ms": 37490.89999997616
+    },
+    {
+      "stage": "packages",
+      "at_ms": 38317.200000047684
+    },
+    {
+      "stage": "package:numpy",
+      "at_ms": 38317.299999952316
+    },
+    {
+      "stage": "package:pandas",
+      "at_ms": 38479.799999952316
+    },
+    {
+      "stage": "package:scipy",
+      "at_ms": 38683.700000047684
+    },
+    {
+      "stage": "package:scikit-learn",
+      "at_ms": 39315.700000047684
+    },
+    {
+      "stage": "package:joblib",
+      "at_ms": 39697.39999997616
+    },
+    {
+      "stage": "modules",
+      "at_ms": 39697.5
+    },
+    {
+      "stage": "ready",
+      "at_ms": 43281.5
+    },
+    {
+      "stage": "validate",
+      "at_ms": 43282
+    },
+    {
+      "stage": "train",
+      "at_ms": 43334.39999997616
+    },
+    {
+      "stage": "method",
+      "method": "forward_sfs",
+      "phase": "started",
+      "at_ms": 43369.799999952316
+    }
+  ],
+  "rtol": 1e-7,
+  "atol": 1e-9,
+  "initialization": {
+    "report": {
+      "ready": true
+    },
+    "metadata": {
+      "engine": "browser",
+      "runtime": "314.0.7",
+      "versions": {
+        "python": "3.14.2",
+        "numpy": "2.4.6",
+        "pandas": "3.0.2",
+        "scipy": "1.18.0",
+        "sklearn": "1.8.0",
+        "joblib": "1.5.3"
+      },
+      "source_sha256": "70fed11c74d780c1ca4e00c1ddfc4d5d8436afcfb89493b473ae0e855517ec60",
+      "elapsed_ms": 5801.600000023842,
+      "timings": {
+        "runtime_ms": 835.8999999761581,
+        "packages_ms": 1398,
+        "modules_ms": 3567.5
+      }
+    }
+  },
+  "initialization_ms": 5809.899999976158,
+  "worker_headers": {
+    "accept-ranges": "bytes",
+    "cache-control": "no-store",
+    "connection": "keep-alive",
+    "content-length": "5207",
+    "content-security-policy": "default-src 'none'; script-src 'self' https://cdn.jsdelivr.net/pyodide/v314.0.7/full/ 'wasm-unsafe-eval'; connect-src 'self' https://cdn.jsdelivr.net/pyodide/v314.0.7/full/; worker-src 'none'; object-src 'none'",
+    "content-type": "application/javascript; charset=UTF-8",
+    "date": "Tue, 20 Oct 2026 04:28:14 GMT",
+    "etag": "W/\"1457-1a1577227a6\"",
+    "keep-alive": "timeout=5",
+    "last-modified": "Tue, 20 Oct 2026 03:54:21 GMT",
+    "vary": "Accept-Encoding",
+    "x-content-type-options": "nosniff"
+  },
+  "document_csp": null,
+  "real_cancel": true,
+  "predictions": 792,
+  "baseline_predictions": 600,
+  "max_prediction_difference": 2.842170943040401e-14,
+  "mismatches": [],
+  "finished_at": "2026-10-20T04:28:51.551Z",
+  "remaining_workers": 0
+}

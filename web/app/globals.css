@@ -439,3 +439,8 @@ h2 { font-size: 19px; letter-spacing: -.5px; font-weight: 600; line-height: 1.4;
 html[data-theme="dark"] { --comparison-sfs: #90bde5; }
 .cd-auto-comparison { margin-top: 28px; padding-top: 22px; border-top: 1px solid var(--border); }
 .cd-auto-comparison h3 { font-size: 16px; margin-bottom: 12px; }
+
+/* Browser compute status stays readable in narrow layouts. */
+.cd-compute-mode { margin-bottom: 24px; }
+.cd-compute-mode code { overflow-wrap: anywhere; }
+.cd-compute-mode .segmented-control { flex-wrap: wrap; }

@@ -1,6 +1,10 @@
-# Appliances Energy Prediction Lab — M1 + M2 + M3 + M4 + M5 + M6-B + M7 + M8 + M9 + M10 + M11 + M12 + M13 + M14
+# Appliances Energy Prediction Lab — M17 Browser Mode
 
-本機研究 Dashboard。使用 Next.js App Router、React、TypeScript strict、Tailwind CSS 與 Recharts；已實作 Overview、Feature Selection、Model Evaluation 與 Prediction Explorer；Custom Dataset 已支援瀏覽器 CSV 檢查、設定下載、本機 Python 驗證，以及另行確認後的數值型六方法選欄（固定 k／自動 k）、線性迴歸與基準比較。未部署；透過 Next.js 本機 API 呼叫 Python，未設獨立 Python 常駐服務，不改寫或重新產生既有正式研究成果。
+研究 Dashboard 與自訂 CSV 線性迴歸工具。M17 Browser Mode 已完成：CSV 正式驗證、六種特徵選擇、多 k 比較、CV／Holdout 評估、單筆與批次推論可在瀏覽器 Worker 執行，不需要 Python Gateway。M16 Server Mode 仍為預設；無後端時明確提示無法運算，請使用者自行切換 Browser Mode，不會自動上傳或回退。
+
+**尚未公開部署。** 已完成本機功能驗收與發布準備；公開 HTTPS 驗收仍待部署後執行。部署設定、資源與 HTTPS 清單見 [部署說明](../docs/vercel_deployment_plan.md)，本次提交候選與驗收見 [發布紀錄](verification/m17-release-result.json)。下方 M1～M16 段落保留各階段歷史，最新狀態以本節與部署說明為準。
+
+Browser 限制：500 列、10 個數值候選特徵、每份 CSV ≤1 MiB。Pyodide 314.0.7 與套件版本固定；載入官方 HTTPS CDN 後，運算和暫存 joblib 模型留在 Worker 記憶體。模型最多 3 個、30 分鐘，離頁／取消／切換模式或資料設定會清除。不同網路與裝置不保證 60 秒完成。詳見 [核心說明](browser-compute/README.md)。
 
 ## 安裝與啟動
 
@@ -25,9 +29,9 @@ npm run build
 npm start
 ```
 
-dev／build 的前置腳本會執行 sync-data。使用 Next 官方支援的 Webpack；此環境的預設 Turbopack 在 CSS 處理時受 sandbox 埠限制。Next 遙測已關閉，不使用第三方 Analytics、外部字型、API Keys 或付費服務。
+dev／build 的前置腳本會執行 sync-data 與 build-browser-compute（從目前 src/ 原樣封裝 11 個 Python 模組、manifest／hash 與瀏覽器模組）。建置需要完整 Repository 的上層來源，不能只上傳 web/。使用 Next 官方支援的 Webpack；此環境的預設 Turbopack 在 CSS 處理時受 sandbox 埠限制。Next 遙測已關閉，不使用第三方 Analytics、外部字型、API Keys 或付費服務。
 
-ESLint 使用穩定 ESLint 10、typescript-eslint 與 React Hooks recommended 規則。沒有使用 eslint-config-next：其當前 fast-glob → micromatch → braces 轉接依賴觸發未修補安全公告；未強制降版 Next 或忽略 peer dependencies。這是不同 lint 設定，未宣稱包含 Next 特有的全部 lint 規則。
+ESLint 使用 ESLint 10、typescript-eslint 與 React Hooks recommended 規則，沒有使用 eslint-config-next，也不宣稱包含 Next 特有的全部 lint 規則。歷史選型不代表目前套件漏洞狀態；請以發布時 npm audit 實測為準。
 
 ## 路由與元件
 
@@ -57,7 +61,7 @@ Overview 讀取下列四個來源：
 
 `sync-data` 從腳本本身的位置定位 Repository，不依賴私人絕對路徑。使用固定 allowlist、realpath 邊界檢查、schema／有限數值／比例／特徵數／切分一致性驗證，精簡成 `web/data/overview.json`；只寫入 web/data，以 temporary file＋rename 更新快照。每個來源保存相對路徑與 SHA-256，沒有時間戳，因此相同來源重複同步位元組一致。
 
-沒有複製 `data/raw/`、模型、逐筆預測、訓練診斷或完整 profiling；沒有 public 資料目錄，也沒有任意檔案 API。瀏覽器只收到顯示需要的摘要與兩模型圖表數值。M2 另外讀取 feature_selection 摘要；所有 dashboard JSON 原檔均保留原樣。Phase 3D 透過獨立 Adapter 讀取，未修改原始結果。
+沒有複製 `data/raw/`、模型、逐筆預測、訓練診斷或完整 profiling；研究資料沒有放進 public，也沒有任意檔案 API。M17 的 public/browser-compute 僅提供可公開的運算程式與原始碼 manifest，不含使用者 CSV、模型或研究原始資料。瀏覽器只收到顯示需要的摘要與兩模型圖表數值。M2 另外讀取 feature_selection 摘要；所有 dashboard JSON 原檔均保留原樣。Phase 3D 透過獨立 Adapter 讀取，未修改原始結果。
 
 Dataset／模型／PI 任一必要資料缺少或不符，頁面顯示「研究資料尚未就緒」，不填替代數值；只有 Phase 3D 缺少時仍顯示核心 Overview，另呈現探索性資料缺失訊息。來源修正後執行 sync-data 並重新啟動 dev；production build 須重新 build，因為頁面是靜態產生的快照，不提供即時訓練／檔案監看服務。
 

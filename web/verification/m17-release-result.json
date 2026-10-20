@@ -1,0 +1,152 @@
+{
+  "milestone": "M17 Release Preparation",
+  "status": "PASS_WITH_HISTORICAL_TEST_BLOCKER",
+  "branch": "experiment/m17-pyodide",
+  "head": "61478fc69f425d2928d6d5444abdb95de6f8035e",
+  "changes_this_stage": [
+    "Server default now explicitly reports missing Gateway/local Python; no CSV forwarding while unavailable",
+    "Custom Dataset capability message resolves per request; no credentials serialized, no transport/security changes",
+    "README and deployment instructions updated: Browser implemented, not publicly deployed",
+    "Ignore local Boston upload and native/dependency caches",
+    "Read-only candidate audit, focused capability tests and production smoke harness"
+  ],
+  "checks": {
+    "typecheck": "PASS",
+    "lint": "PASS",
+    "website_tests": {
+      "passed": 146,
+      "total": 146,
+      "includes": "M16 transport, session, local HTTP/Python and Browser client regressions"
+    },
+    "custom_dataset_python_tests": {
+      "passed": 62,
+      "total": 62
+    },
+    "production_build": "PASS",
+    "production_worker_without_gateway": "PASS",
+    "git_diff_check": "PASS",
+    "npm_audit": {
+      "total_known_vulnerabilities": 0,
+      "dependency_lock_changed": false
+    },
+    "production_trace_forbidden_env_nativeenv_boston_entries": 0
+  },
+  "production_browser": {
+    "evidence": "m17-release-browser.json",
+    "environment": "Local Next production; VERCEL=1; all four AEP remote settings and AEP_PYTHON unset; no Gateway started; local fallback disallowed by unchanged M16 proxy",
+    "server_default": true,
+    "server_unconfigured_api_status": 503,
+    "browser_ui_validation": "PASS",
+    "rfe_missing_values_training": "PASS",
+    "holdout_predictions_compared": 16,
+    "single_inference": "PASS",
+    "batch_inference_rows": 2,
+    "browser_api_upload_calls": 0,
+    "remaining_workers_after_dispose_and_mode_switch": 0,
+    "cache": "uncontrolled; no cold-start performance claim",
+    "public_https": "NOT_RUN; no deployment authorized"
+  },
+  "prior_b5_acceptance": {
+    "rerun_complete_benchmarks": false,
+    "source": "m17-b5-result.json",
+    "six_methods": "previously PASS",
+    "baseline_predictions": 600,
+    "total_baseline_missing_chronological_predictions": 792,
+    "max_absolute_prediction_difference": 2.842170943040401e-14,
+    "multi_k_and_inference": "previously PASS",
+    "rtol": 1e-07,
+    "atol": 1e-09
+  },
+  "historical_python_guard": {
+    "status": "FAIL_EXPECTED_EXISTING_CONTRACT",
+    "full_suite_this_stage": "NOT_RERUN",
+    "prior_full_suite": {
+      "passed": 210,
+      "total": 211,
+      "errors": 1
+    },
+    "isolated_guard_rerun": {
+      "tests": 1,
+      "errors": 1,
+      "message": "Branch／HEAD／空 staging 契約不符，停止。"
+    },
+    "test": "tests/test_phase3d.py:SavedExperimentTests.test_all_original_models_data_research_and_dashboard_unchanged",
+    "guard": "src/phase3d_search.py:check_protected",
+    "requires": {
+      "branch": "main",
+      "head": "4619bd493a337f32d34593f12686035f2c70a630",
+      "staging_empty": true
+    },
+    "historical_files": 125,
+    "changed_since_historical_baseline": [
+      ".gitignore",
+      "README.md"
+    ],
+    "remaining_historical_research_files_unchanged": 123,
+    "resolution": "Keep original guard and historical manifest unchanged. Supplement with M16 stable release attestation and explicit approved UI/docs differences. A mandatory all-211-green CI remains blocked until a separately authorized historical-versus-current test design is agreed; no skip/mock/manifest replacement."
+  },
+  "integrity": {
+    "stable_tracked_files": 292,
+    "modified_stable_files": [
+      ".gitignore",
+      "README.md",
+      "docs/vercel_deployment_plan.md",
+      "web/README.md",
+      "web/app/custom-dataset/page.tsx",
+      "web/app/globals.css",
+      "web/components/custom-batch-prediction.tsx",
+      "web/components/custom-comparison-panel.tsx",
+      "web/components/custom-dataset-wizard.tsx",
+      "web/components/custom-prediction-form.tsx",
+      "web/components/custom-training-panel.tsx",
+      "web/next-env.d.ts",
+      "web/next.config.ts",
+      "web/package.json"
+    ],
+    "src_backend_gateway_api_session_research_changes": [],
+    "historical_experiment_and_boston_hashes_checked": 155,
+    "historical_experiment_and_boston_changes": [],
+    "boston_tracked": false,
+    "staging_empty": true
+  },
+  "release": {
+    "candidate_list": "m17-release-candidates.json",
+    "audit_command": "node web/scripts/audit-release.mjs",
+    "suggested_message": "feat: add verified Pyodide browser compute mode",
+    "exclude": [
+      "BostonHousing.csv",
+      "Secrets and real .env files",
+      "experiments/ historical records and native environments",
+      "node_modules/ .next/ .vercel/ .npm-cache/ .venv/",
+      "artifacts/ coverage/ screenshots/ downloaded WASM and wheels"
+    ],
+    "synthetic_fixtures": "Retain required deterministic fixtures/reference JSON; largest ~0.76 MiB, not real user data or a runtime download",
+    "committed": false,
+    "pushed": false,
+    "deployed": false,
+    "browser_task_finished": true,
+    "acceptance_server_stopped": true
+  },
+  "deployment": {
+    "documentation": "docs/vercel_deployment_plan.md",
+    "vercel_settings": {
+      "framework": "Next.js",
+      "root": "web",
+      "node": "24.x",
+      "include_outside_root_sources": true,
+      "install": "npm ci",
+      "build": "npm run build",
+      "output": "Next.js default",
+      "gateway_required_for_browser": false,
+      "browser_secrets_required": false
+    },
+    "scoped_worker_csp": "PASS; no global policy relaxation",
+    "cdn_cors_wasm": "PASS local production, fixed official HTTPS CDN, WASM application/wasm",
+    "blockers": [
+      "M17 changes are local; later authorized commit/push required before Git deployment",
+      "Vercel account/project settings and actual public HTTPS acceptance not yet executed",
+      "Optional Server Mode requires a separately configured and tested Gateway",
+      "Whole-Python-suite green gate, if required, retains one historical Git-contract blocker"
+    ]
+  }
+}

@@ -1,4 +1,5 @@
 "use client";
+import { useCustomCompute } from "./custom-compute-provider";
 import { useEffect, useRef, useState } from "react";
 import { CartesianGrid, Line, LineChart, ReferenceLine, ResponsiveContainer, Scatter, ScatterChart, Tooltip, XAxis, YAxis } from "recharts";
 import { isAutoMethod, isNestedMethod } from "@/lib/custom-selection-policy";
@@ -16,6 +17,7 @@ const axisFormat = (n: number) => Math.abs(n) >= 1_000_000 || (n !== 0 && Math.a
 type Validated = Extract<ValidationReport, { status: "valid" }>;
 type Completed = Extract<TrainingReport, { status: "completed" }>;
 export function CustomTrainingPanel({ file, config, validation }: { file: File; config: PreprocessingPlan; validation: Validated }) {
+  const compute=useCustomCompute();
   const [selectionMethod, setSelectionMethod] = useState<SelectionMethod>("none");
   const [k, setK] = useState(String(Math.min(6,config.feature_columns.length)));
   const [appliedChoice,setAppliedChoice] = useState<string|null>(null);
@@ -29,7 +31,7 @@ export function CustomTrainingPanel({ file, config, validation }: { file: File; 
   const controller = useRef<AbortController | null>(null); const generation = useRef(0);
   useEffect(() => () => { generation.current++; controller.current?.abort(); }, []);
   function cancel() { generation.current++; controller.current?.abort(); controller.current = null; setBusy(false); setError("已取消本次訓練；不會顯示未完成的成績。"); }
-  function resetExperiment() { generation.current++; controller.current?.abort(); controller.current=null; setBusy(false); setConsent(false); setResult(null); setError(null); setAppliedChoice(null); }
+  function resetExperiment() { compute.clearModels(); generation.current++; controller.current?.abort(); controller.current=null; setBusy(false); setConsent(false); setResult(null); setError(null); setAppliedChoice(null); }
   function applyChoice(method:ComparisonMethod,nextK:number|null) {
     if(busy||comparisonBusy||trainingSelectionError(method,nextK,config,validation))return;
     resetExperiment();setSelectionMethod(method);if(nextK!==null)setK(String(nextK));
@@ -45,7 +47,7 @@ export function CustomTrainingPanel({ file, config, validation }: { file: File; 
     body.append("review", JSON.stringify({ schema_version: 1, artifact_type: "custom_dataset_review", dataset: { sha256: validation.dataset.sha256 }, preprocessing: config, review: { confirmed: true, training_started: false, scope: "configuration_only" } }));
     body.append("experiment", JSON.stringify({ schema_version: 1, method: "linear_regression", confirmed: true, dataset_sha256: validation.dataset.sha256, config_sha256: validation.config_sha256, selection: {method:selectionMethod,k:requestedK} }));
     try {
-      const response = await fetch("/api/custom-dataset/train", { method: "POST", body, signal: abort.signal, cache: "no-store" });
+      const response = await compute.request("/api/custom-dataset/train", { method: "POST", body, signal: abort.signal, cache: "no-store" });
       const payload: unknown = await response.json().catch(() => { throw new Error("本機服務未回傳有效訓練結果。"); });
       if (![200,422].includes(response.status)) throw new Error(payload && typeof payload === "object" && "error" in payload && typeof payload.error === "string" ? payload.error : "本機訓練暫時無法完成，請稍後重試。");
       const report = parseTrainingReport(payload);
@@ -56,17 +58,17 @@ export function CustomTrainingPanel({ file, config, validation }: { file: File; 
       if (token === generation.current) setError(expired ? "訓練等待逾時，請縮小資料後重試。" : e instanceof Error && e.name !== "AbortError" ? e.message : "訓練已取消。");
     } finally { clearTimeout(timer); if (token === generation.current) { setBusy(false); controller.current = null; } }
   }
-  return <><CustomComparisonPanel file={file} config={config} validation={validation} disabled={busy} holdoutViewed={holdoutViewed} onBusyChange={setComparisonBusy} onApply={applyChoice}/><section className="panel cd-training" aria-labelledby="custom-training-title" aria-busy={busy}><div className="panel-header"><div><div className="section-kicker">07 · EVALUATE YOUR CHOSEN SETTING</div><h2 id="custom-training-title">訓練與評估</h2><p>指定選欄方法與 k，比較選欄後、全部候選欄位及平均值基準。</p></div><span className="neutral-tag">本機實驗</span></div><div className="cd-body">
+  return <><CustomComparisonPanel file={file} config={config} validation={validation} disabled={busy} holdoutViewed={holdoutViewed} onBusyChange={setComparisonBusy} onApply={applyChoice}/><section className="panel cd-training" aria-labelledby="custom-training-title" aria-busy={busy}><div className="panel-header"><div><div className="section-kicker">07 · EVALUATE YOUR CHOSEN SETTING</div><h2 id="custom-training-title">訓練與評估</h2><p>指定選欄方法與 k，比較選欄後、全部候選欄位及平均值基準。</p></div><span className="neutral-tag">{compute.mode==="browser"?"Browser 實驗":"Server 實驗"}</span></div><div className="cd-body">
     <div className="cd-training-plan"><strong>最終預測器：Linear Regression</strong><p>目標 {config.target_column} · {config.feature_columns.length} 個輸入 · {validation.split.training_rows.toLocaleString()} 筆 Training／{validation.split.holdout_rows.toLocaleString()} 筆 Holdout · {config.cv_splits} folds</p><p>每個 CV fold 分別學習前處理與選欄，最後只用完整 Training 重新 fit。方法由你指定；固定方法需指定 k，RFECV／LassoCV 則在 Training 的內部 3-fold CV 自動選 k／alpha。</p></div>
     <div className="cd-config-grid cd-selection-controls"><label htmlFor="dataset-selection-method">特徵選擇方法<select id="dataset-selection-method" value={selectionMethod} disabled={busy||comparisonBusy} onChange={e=>{resetExperiment();setSelectionMethod(e.target.value as SelectionMethod);}}><option value="none">不自動選欄 · 使用全部候選欄位</option><option value="f_test">F-test · 線性關聯</option><option value="mutual_information">Mutual Information · 統計依賴</option><option value="rfe">RFE · 遞迴消除</option><option value="forward_sfs">Forward SFS · 逐步加入，指定 k</option><option value="rfecv">RFECV · 自動選 k</option><option value="lasso_cv">LassoCV · 自動選 alpha 與 k</option></select></label>{selectionMethod!=="none"&&!isAutoMethod(selectionMethod)&&<label htmlFor="dataset-selection-k">保留特徵數 k（1～{config.feature_columns.length}）<input id="dataset-selection-k" type="number" min={1} max={config.feature_columns.length} step={1} value={k} disabled={busy||comparisonBusy} onChange={e=>{resetExperiment();setK(e.target.value);}}/></label>}</div>
-    <p className="cd-confirmation">候選欄位是你在上方勾選的 {config.feature_columns.length} 欄。F-test 看線性關聯；MI 看統計依賴，但選完後仍用線性迴歸，不保證更準。k 等於候選數時保留全部，不執行排名。RFE 依標準化線性係數逐步移除欄位，與上方曲線使用相同選欄流程；需 StandardScaler，限 5,000 筆與 25 個候選欄位。SFS 每次加入一個特徵，限 2,000 筆與 15 欄；RFECV／LassoCV 自動選 k，限 5,000 筆與 25 欄。三者需 StandardScaler；內部切分沿用隨機或時間切分及 gap。</p>
+    <p className="cd-confirmation">候選欄位是你在上方勾選的 {config.feature_columns.length} 欄。F-test 看線性關聯；MI 看統計依賴，但選完後仍用線性迴歸，不保證更準。k 等於候選數時保留全部，不執行排名。RFE 依標準化線性係數逐步移除欄位，與上方曲線使用相同選欄流程。SFS 每次加入一個特徵；RFECV／LassoCV 自動選 k。這四種方法需 StandardScaler，內層 CV 沿用隨機或時間切分及 gap。{compute.mode==="browser"?"Browser Mode 一律限 500 筆、10 個候選特徵。":"Server Mode：RFE／RFECV／LassoCV 限 5,000 筆與 25 欄，SFS 限 2,000 筆與 15 欄。"}</p>
     {isAutoMethod(selectionMethod)&&<p id="custom-auto-k-guide" className="cd-chart-guide">此方法會在每個外層 Training 內自行選 k；不同 CV fold 可能選出不同數量，最終模型也會在完整 Training 再選一次。你不需要輸入固定 k。LassoCV 若選出 0 欄，會停止該次正式訓練，不強制補回特徵或改用其他模型。</p>}
     {selectionError&&<p className="cd-error" role="alert">{selectionError}</p>}{appliedChoice&&<p id="comparison-applied-choice" className="cd-validation" role="status">{appliedChoice}</p>}
     {holdoutViewed&&<p className="cd-validation cd-cautions">你已查看這份資料的 Holdout；改方法或 k 再執行屬於重複使用測試集，不能把最低 Holdout 誤差當成獨立驗證。</p>}
     <label className="cd-training-consent"><input id="dataset-training-consent" type="checkbox" checked={consent} disabled={busy||comparisonBusy} onChange={e => setConsent(e.target.checked)}/><span>我確認使用目前資料、方法與設定開始訓練，並了解查看 Holdout 後再調整設定，會重複使用測試集。</span></label>
-    <div className="cd-download-actions"><button id="dataset-train" className="cd-button cd-primary" disabled={!consent || busy || comparisonBusy || !!selectionError} onClick={() => { void train(); }}>{busy ? "訓練與評估中…" : "開始本機訓練與評估"}</button>{busy && <button id="dataset-train-cancel" className="cd-button" onClick={cancel}>取消訓練</button>}</div>
-    <p className="cd-confirmation">按下訓練會再次將目前 CSV 與已確認設定送至本機服務，完成後清除伺服器暫存檔；最長 120 秒。評估結果留在本頁記憶體；最終模型另在本機私有暫存約 30 分鐘，供單筆預測，最多保留 3 個並可手動清除。換檔、改設定或離頁會取消並清除頁面結果。</p>
-    {busy && <p role="status" className="cd-confirmation">正在本機訓練與評估；流程包含逐 fold CV 與保留測試集評估…</p>}{error && <p className="cd-error" role="alert">{error}</p>}
+    <div className="cd-download-actions"><button id="dataset-train" className="cd-button cd-primary" disabled={!consent || busy || comparisonBusy || !!selectionError} onClick={() => { void train(); }}>{busy ? "訓練與評估中…" : "開始訓練與評估"}</button>{busy && <button id="dataset-train-cancel" className="cd-button" onClick={cancel}>取消訓練</button>}</div>
+    <p className="cd-confirmation">{compute.mode==="browser"?"CSV 與已確認設定只在瀏覽器處理，不會上傳。每方法上限 60 秒、工作上限 90 秒；結果與最多 3 個暫存模型留在瀏覽器記憶體，模型約 30 分鐘到期。取消、逾時、換檔、改設定、離頁或切換模式會清除模型。":"按下訓練會將 CSV 與已確認設定送至運算服務，完成後清除上傳暫存檔；運算上限 120 秒。結果留在本頁記憶體，最終模型另在服務私有暫存約 30 分鐘，最多保留 3 個，可手動清除。"}</p>
+    {busy && <p role="status" className="cd-confirmation">正在訓練與評估；流程包含逐 fold CV 與保留測試集評估…</p>}{error && <p className="cd-error" role="alert">{error}</p>}
     {result && <div className="cd-training-result" role="status" aria-live="polite">{result.status === "completed" ? <TrainingResults report={result} config={config}/> : <div className="cd-validation"><h3>{result.training_started ? "訓練未完成" : "尚未開始訓練"}</h3><ul>{result.errors.map((e,i)=><li key={i}>{e.message}</li>)}</ul><p>不顯示部分分數；請檢查設定後重新驗證。</p></div>}</div>}
   </div></section></>;
 }

@@ -1,0 +1,28 @@
+{
+  "status": "PASS",
+  "result": {
+    "report": {
+      "ready": true
+    },
+    "metadata": {
+      "engine": "browser",
+      "runtime": "314.0.7",
+      "versions": {
+        "python": "3.14.2",
+        "numpy": "2.4.6",
+        "pandas": "3.0.2",
+        "scipy": "1.18.0",
+        "sklearn": "1.8.0",
+        "joblib": "1.5.3"
+      },
+      "source_sha256": "70fed11c74d780c1ca4e00c1ddfc4d5d8436afcfb89493b473ae0e855517ec60",
+      "elapsed_ms": 5743.799999952316,
+      "timings": {
+        "runtime_ms": 833,
+        "packages_ms": 1354.9000000953674,
+        "modules_ms": 3555.6999999284744
+      }
+    }
+  },
+  "remaining_workers": 0
+}

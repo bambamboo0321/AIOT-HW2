@@ -1,0 +1,78 @@
+{
+  "api_calls": [],
+  "events": [],
+  "initial_server": true,
+  "comparison": true,
+  "training": true,
+  "single": "21.413397",
+  "batch": "批次預測完成 · 80 筆",
+  "errors": [],
+  "mode_switch": {
+    "workers_before": 1,
+    "workers_after": 0,
+    "old_results_removed": true,
+    "csv_removed": true
+  },
+  "cancel_retry": true,
+  "config_change": {
+    "old_results_removed": true,
+    "confirmation_revoked": true,
+    "workers": 0
+  },
+  "server_ui": {
+    "validate": true,
+    "train": true,
+    "predict": true,
+    "delete": true
+  },
+  "mobile": {
+    "width": 390,
+    "scroll_width": 390,
+    "no_overflow": true,
+    "theme_before": "dark",
+    "theme_after": "light"
+  },
+  "remaining_workers": 0,
+  "status": "PASS",
+  "network": {
+    "head_checks": [
+      {
+        "name": "pyodide.mjs",
+        "status": 200,
+        "content_type": "text/javascript; charset=utf-8"
+      },
+      {
+        "name": "pyodide.asm.wasm",
+        "status": 200,
+        "content_type": "application/wasm"
+      }
+    ],
+    "cdn_headers": [
+      {
+        "url": "https://cdn.jsdelivr.net/pyodide/v314.0.7/full/pyodide.mjs",
+        "status": 200,
+        "headers": {
+          "content-encoding": "br",
+          "content-type": "text/javascript; charset=utf-8",
+          "cache-control": "public, max-age=31536000",
+          "access-control-allow-origin": "*",
+          "content-length": "7299"
+        }
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/pyodide/v314.0.7/full/pyodide.asm.wasm",
+        "status": 200,
+        "headers": {
+          "content-encoding": "br",
+          "content-type": "application/wasm",
+          "cache-control": "public, max-age=31536000",
+          "access-control-allow-origin": "*",
+          "content-length": "3438516"
+        }
+      }
+    ],
+    "worker_csp": "default-src 'none'; script-src 'self' https://cdn.jsdelivr.net/pyodide/v314.0.7/full/ 'wasm-unsafe-eval'; connect-src 'self' https://cdn.jsdelivr.net/pyodide/v314.0.7/full/; worker-src 'none'; object-src 'none'",
+    "document_csp": null,
+    "caveat": "Compatibility checks with cache state unspecified; not a new first-use benchmark."
+  }
+}

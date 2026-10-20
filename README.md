@@ -1,5 +1,15 @@
 # AIOT HW2：家庭家電耗能預測與特徵選擇
 
+目前網站版本為 **M17 Browser Mode（已完成本機驗收，尚未公開部署）**。預設仍是 M16 Server Mode；沒有 Python 後端時會提示不可運算，使用者可自行切換 Browser Mode，在瀏覽器完成自訂數值 CSV 六方法選欄、多 k 比較、LR 訓練與單筆／批次推論。Browser 上限 500 列／10 特徵／1 MiB，不影響 Server 原限制。研究資料、演算法與既有成果不變。
+
+- [網站現況與操作](web/README.md)
+- [Vercel 設定及部署後 HTTPS 驗收](docs/vercel_deployment_plan.md)
+- [M17 提交候選檔案](web/verification/m17-release-candidates.json)
+- [發布驗收與歷史 Python 保護說明](web/verification/m17-release-result.json)
+
+下方研究與里程碑敘述保留歷史背景；M14 的 211／211 不代表目前分支重新通過所有 Python 測試。
+
+
 本專案研究 **Appliances Energy Prediction Using Multiple Linear Regression and Feature Selection**，依作業要求使用 `sklearn.linear_model.LinearRegression`。已完成 Phase 1～3C 的資料驗證、EDA、可設定前處理、六種 Feature Selection、正式實驗與固定模型的 95% Prediction Interval，以及 M1～M14 的五頁互動網站、自訂數值 CSV 六方法比較、訓練與新資料推論。既有 Phase 4B-2 CLI 與 Dashboard JSON 仍保留。
 
 目前可讀取、核對與匯出既有成果，也可透過 Next.js 本機 API 呼叫 Python 進行自訂 CSV 實驗；使用者已確認本機操作驗收可接受。**獨立雲端後端、Vercel 正式部署、最終 PDF 與 ZIP 尚未完成**。使用者已選定 Vercel 前端＋獨立 Python 後端，部署計畫見下方文件；本機成功不等於雲端已上線。GitHub 是 Optional，不是必要交付條件。
