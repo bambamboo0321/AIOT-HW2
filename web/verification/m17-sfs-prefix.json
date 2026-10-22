@@ -1,0 +1,169 @@
+{
+  "task": "M17 SFS comparison prefix optimization",
+  "status": "PASS",
+  "created_at": "2026-10-21T03:08:46.930956+00:00",
+  "branch": "experiment/m17-pyodide",
+  "head": "4555ec599fffa0f6a3c8f16c68c1a5131c72a7c4",
+  "enabled": true,
+  "reference": "compare_custom_dataset(..., reuse_sfs_prefixes=False); original fit_custom_selection with no optional cache",
+  "algorithm": {
+    "search": "sklearn SequentialFeatureSelector.fit/get_support for each k; only original _get_best_new_feature_score step results are memoized",
+    "tie_breaking": "unchanged sklearn candidate order and original helper",
+    "fold_scope": "new cache per request and outer Training fold, full data/y/order/config/inner-partition fingerprints",
+    "outer_preprocessing": "same outer Training preprocessor only, not supplied to inner CV; independent downstream LR and transforms per k",
+    "supported_versions": [
+      "1.7.2",
+      "1.8.0"
+    ],
+    "unknown_version_or_hook": "original selector fallback"
+  },
+  "fixture": {
+    "csv_sha256": "7f919dd4559c9d16f4a387e961b8a7f076c2fa726c7c94cd57e34a0eabd88eff",
+    "rows": 500,
+    "numeric_features": 10,
+    "seed": 42,
+    "k_values": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "training": 400,
+    "holdout": 100,
+    "outer_cv": 5,
+    "inner_cv": 3,
+    "scoring": "neg_root_mean_squared_error",
+    "n_jobs": 1,
+    "preprocessing": "median imputation, StandardScaler, keep outliers"
+  },
+  "parity": {
+    "native_before_after": "exact complete formal report equality, all six methods",
+    "pyodide_before_after": "exact complete formal report equality, all six methods; original SFS assembled from all ten complete one-k references",
+    "sfs_fold_k_cases": 50,
+    "native_browser_rtol": 1e-07,
+    "native_browser_atol": 1e-09,
+    "max_sfs_fold_score_difference_native_production": 5.329070518200751e-15,
+    "mismatches": 0,
+    "missing_chronological_gap_exact_ties_nonmonotone_order_holdout_isolation": "PASS"
+  },
+  "timings_ms": {
+    "native_sfs_before": 24106.429415987805,
+    "native_sfs_after": 5095.960667007603,
+    "native_six_before": 30823.604041012004,
+    "native_six_after": 11479.318417026661,
+    "browser_original_sfs_split_reference": 272207.1999999285,
+    "browser_original_reference_note": "Ten complete one-k calls; sum includes repeated request validation and is NOT a monolithic end-to-end time. Original full-range attempt hit 180s; earlier separate diagnosis measured 132.85s. All observations retained, no fastest-run selection.",
+    "browser_final_sfs": 58605.200000047684,
+    "browser_final_six_compute": 128124.10000014305,
+    "browser_final_environment": 27449.799999952316,
+    "browser_final_diagnostic_total": 155597.5,
+    "production_compare_total_including_new_worker": 156786.5,
+    "production_method_progress_wall_ms": {
+      "f_test": 11505.199999928474,
+      "mutual_information": 16532.899999976158,
+      "rfe": 32449.5,
+      "forward_sfs": 58068.300000071526,
+      "rfecv": 2459.6999999284744,
+      "lasso_cv": 550.1000000238419
+    },
+    "production_environment": {
+      "runtime_ms": 5090.099999904633,
+      "packages_ms": 7877.400000095367,
+      "modules_ms": 21865
+    },
+    "production_validation_separate": 36785.39999997616,
+    "production_ordinary_rfe_training_separate": 6437.5
+  },
+  "fit_counts": {
+    "native_sfs_before": {
+      "preprocessor_fits": 5000,
+      "selector_linear_regression_fits": 4950
+    },
+    "native_sfs_after": {
+      "preprocessor_fits": 815,
+      "selector_linear_regression_fits": 810
+    },
+    "timed_browser": "no count_fits instrumentation in final timing"
+  },
+  "failures_retained": {
+    "original_full_range_with_counter_context": "m17-sfs-prefix-browser-attempt1.json; SFS method timeout at180s",
+    "prefix_only": "m17-sfs-prefix-browser-prefix-only.json; exact parity PASS, six compute147.92s + initialization35.36s exceeded180s",
+    "final_environment_attempt": "m17-sfs-prefix-browser-final-init-timeout.json; init45s, no algorithms ran",
+    "one_controlled_environment_retry": "PASS; no official timeout changed"
+  },
+  "limits_unchanged": {
+    "comparison_ms": 180000,
+    "hard_work": 100000000,
+    "warning_work": 10000000,
+    "original_work_estimation": "unchanged and conservative; still counts original repeated searches",
+    "browser_rows": 2000,
+    "browser_features": 15,
+    "browser_csv_bytes": 3145728,
+    "ordinary_browser_method_ms": 60000,
+    "ordinary_browser_job_ms": 90000
+  },
+  "regressions": {
+    "python_custom_tests": {
+      "pass": 78,
+      "fail": 0
+    },
+    "web_tests": {
+      "pass": 165,
+      "fail": 0
+    },
+    "m16_gateway_tests": {
+      "pass": 9,
+      "fail": 0
+    },
+    "typecheck": "PASS",
+    "lint": "PASS",
+    "production_build": "PASS",
+    "production_model_retained": true,
+    "production_sfs_cancel_and_model_prediction": true,
+    "remaining_workers": 0,
+    "browser_api_upload_calls": [],
+    "historical_python_HEAD_contract": "Not changed or bypassed. Full historical suite not re-run; related custom suite reported separately."
+  },
+  "source_manifest": {
+    "modules": 12,
+    "sha256": "53d2264f1ca72e1cf91c671d5e459100671afa266481eead3bde36c7dbae001f",
+    "helper_sha256": "9fd22b71df3eca1a102d4aa52692308dbb1e839980cbd42bfb81949f2f63863e"
+  },
+  "integrity": {
+    "baseline_files_checked": 614,
+    "protected_research_data_models_results_old_experiments_gateway_api_changed": [],
+    "staging_empty": true,
+    "boston_housing": "not touched, not tracked",
+    "commit_push_merge_deploy": false
+  },
+  "changed_existing_this_task": [
+    "src/custom_dataset_comparison.py",
+    "src/custom_dataset_selectors.py",
+    "web/README.md",
+    "web/browser-compute/README.md",
+    "web/lib/browser-compute/source-lock.ts",
+    "web/public/browser-compute/modules/lib/browser-compute/source-lock.mjs",
+    "web/public/browser-compute/python-manifest.json",
+    "web/tests/browser-compute.test.ts"
+  ],
+  "new_this_task": [
+    "src/custom_sfs_comparison.py",
+    "tests/test_custom_sfs_prefix.py",
+    "web/tests/browser-compute/sfs-prefix.mjs",
+    "experiments/m17-sfs-prefix/",
+    "web/verification/m17-sfs-prefix*.json"
+  ],
+  "risks": [
+    "Private sklearn hook requires version audit and parity before dependency upgrades; unsupported versions fall back.",
+    "Only synthetic500x10 performance measured here; larger inputs, arbitrary CSV, device load, network and Safari timing remain unproven.",
+    "Cache/JIT state uncontrolled, not a cold-profile benchmark; observed baseline variability and45s initialization failure retained.",
+    "Worker isolation preserves models on handled cancellation/timeouts, not renderer/OS-wide termination; model TTL remains unchanged."
+  ],
+  "server_3018": "latest Production Build left running; temporary benchmark server stopped"
+}

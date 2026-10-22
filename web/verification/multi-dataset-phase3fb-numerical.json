@@ -1,0 +1,275 @@
+{
+  "status": "PASS",
+  "policy": {
+    "schemaVersion": 1,
+    "modelVersion": "1.0.0",
+    "absoluteTolerance": 1e-10,
+    "relativeTolerance": 1e-10,
+    "formula": "abs(actual-reference) <= absoluteTolerance + relativeTolerance*abs(reference)",
+    "relativeErrorReportingFloor": 1e-12,
+    "policy": "Fixed before reconstruction or numerical comparisons; never loosen on failure. Holdout is verification only. No selector fitting, CV search or tuning."
+  },
+  "totalHoldoutPredictions": 8236,
+  "models": {
+    "appliances-energy--baseline": {
+      "status": "PASS",
+      "features": [
+        "lights",
+        "T1",
+        "RH_1",
+        "T2",
+        "RH_2",
+        "T3",
+        "RH_3",
+        "T4",
+        "RH_4",
+        "T5",
+        "RH_5",
+        "T6",
+        "RH_6",
+        "T7",
+        "RH_7",
+        "T8",
+        "RH_8",
+        "T9",
+        "RH_9",
+        "T_out",
+        "Press_mm_hg",
+        "RH_out",
+        "Windspeed",
+        "Visibility",
+        "Tdewpoint"
+      ],
+      "comparisons": {
+        "nativeVsSaved": {
+          "rows": 3947,
+          "maxAbsoluteError": 0,
+          "maxRelativeError": 0,
+          "failures": 0
+        },
+        "typescriptVsNative": {
+          "rows": 3947,
+          "maxAbsoluteError": 4.547473508864641e-13,
+          "maxRelativeError": 1.268188369287175e-13,
+          "failures": 0
+        },
+        "typescriptVsSaved": {
+          "rows": 3947,
+          "maxAbsoluteError": 4.547473508864641e-13,
+          "maxRelativeError": 1.268188369287175e-13,
+          "failures": 0
+        },
+        "extraCases": {
+          "rows": 78,
+          "maxAbsoluteError": 2.2737367544323206e-13,
+          "maxRelativeError": 2.023720970132103e-14,
+          "failures": 0
+        }
+      }
+    },
+    "appliances-energy--mutual_information": {
+      "status": "PASS",
+      "features": [
+        "T3",
+        "T4",
+        "T5",
+        "RH_6",
+        "T8",
+        "T9"
+      ],
+      "comparisons": {
+        "nativeVsSaved": {
+          "rows": 3947,
+          "maxAbsoluteError": 0,
+          "maxRelativeError": 0,
+          "failures": 0
+        },
+        "typescriptVsNative": {
+          "rows": 3947,
+          "maxAbsoluteError": 5.684341886080802e-14,
+          "maxRelativeError": 9.477677675742147e-16,
+          "failures": 0
+        },
+        "typescriptVsSaved": {
+          "rows": 3947,
+          "maxAbsoluteError": 5.684341886080802e-14,
+          "maxRelativeError": 9.477677675742147e-16,
+          "failures": 0
+        },
+        "extraCases": {
+          "rows": 28,
+          "maxAbsoluteError": 5.684341886080802e-14,
+          "maxRelativeError": 2.498996472510002e-15,
+          "failures": 0
+        }
+      }
+    },
+    "automobile-price--baseline": {
+      "status": "PASS",
+      "features": [
+        "normalized-losses",
+        "wheel-base",
+        "length",
+        "width",
+        "height",
+        "curb-weight",
+        "engine-size",
+        "bore",
+        "stroke",
+        "horsepower",
+        "city-mpg",
+        "highway-mpg",
+        "fuel-type",
+        "aspiration"
+      ],
+      "comparisons": {
+        "nativeVsSaved": {
+          "rows": 41,
+          "maxAbsoluteError": 0,
+          "maxRelativeError": 0,
+          "failures": 0
+        },
+        "typescriptVsNative": {
+          "rows": 41,
+          "maxAbsoluteError": 7.275957614183426e-12,
+          "maxRelativeError": 2.7327887503865826e-16,
+          "failures": 0
+        },
+        "typescriptVsSaved": {
+          "rows": 41,
+          "maxAbsoluteError": 7.275957614183426e-12,
+          "maxRelativeError": 2.7327887503865826e-16,
+          "failures": 0
+        },
+        "extraCases": {
+          "rows": 56,
+          "maxAbsoluteError": 7.275957614183426e-12,
+          "maxRelativeError": 4.0400790604220715e-16,
+          "failures": 0
+        }
+      }
+    },
+    "automobile-price--mutual_information": {
+      "status": "PASS",
+      "features": [
+        "length",
+        "width",
+        "curb-weight",
+        "engine-size",
+        "horsepower",
+        "city-mpg",
+        "highway-mpg"
+      ],
+      "comparisons": {
+        "nativeVsSaved": {
+          "rows": 41,
+          "maxAbsoluteError": 0,
+          "maxRelativeError": 0,
+          "failures": 0
+        },
+        "typescriptVsNative": {
+          "rows": 41,
+          "maxAbsoluteError": 3.637978807091713e-12,
+          "maxRelativeError": 2.6573894555344385e-16,
+          "failures": 0
+        },
+        "typescriptVsSaved": {
+          "rows": 41,
+          "maxAbsoluteError": 3.637978807091713e-12,
+          "maxRelativeError": 2.6573894555344385e-16,
+          "failures": 0
+        },
+        "extraCases": {
+          "rows": 32,
+          "maxAbsoluteError": 3.637978807091713e-12,
+          "maxRelativeError": 1.851014069364394e-16,
+          "failures": 0
+        }
+      }
+    },
+    "student-performance--baseline": {
+      "status": "PASS",
+      "features": [
+        "age",
+        "Medu",
+        "Fedu",
+        "traveltime",
+        "studytime",
+        "failures",
+        "famrel",
+        "freetime",
+        "goout",
+        "Dalc",
+        "Walc",
+        "health",
+        "absences",
+        "G1",
+        "G2"
+      ],
+      "comparisons": {
+        "nativeVsSaved": {
+          "rows": 130,
+          "maxAbsoluteError": 0,
+          "maxRelativeError": 0,
+          "failures": 0
+        },
+        "typescriptVsNative": {
+          "rows": 130,
+          "maxAbsoluteError": 3.552713678800501e-15,
+          "maxRelativeError": 5.0368649347425255e-15,
+          "failures": 0
+        },
+        "typescriptVsSaved": {
+          "rows": 130,
+          "maxAbsoluteError": 3.552713678800501e-15,
+          "maxRelativeError": 5.0368649347425255e-15,
+          "failures": 0
+        },
+        "extraCases": {
+          "rows": 53,
+          "maxAbsoluteError": 3.552713678800501e-15,
+          "maxRelativeError": 1.8733825480405198e-16,
+          "failures": 0
+        }
+      }
+    },
+    "student-performance--mutual_information": {
+      "status": "PASS",
+      "features": [
+        "Fedu",
+        "studytime",
+        "failures",
+        "Dalc",
+        "Walc",
+        "G1",
+        "G2"
+      ],
+      "comparisons": {
+        "nativeVsSaved": {
+          "rows": 130,
+          "maxAbsoluteError": 0,
+          "maxRelativeError": 0,
+          "failures": 0
+        },
+        "typescriptVsNative": {
+          "rows": 130,
+          "maxAbsoluteError": 3.552713678800501e-15,
+          "maxRelativeError": 2.093123439807917e-16,
+          "failures": 0
+        },
+        "typescriptVsSaved": {
+          "rows": 130,
+          "maxAbsoluteError": 3.552713678800501e-15,
+          "maxRelativeError": 2.093123439807917e-16,
+          "failures": 0
+        },
+        "extraCases": {
+          "rows": 27,
+          "maxAbsoluteError": 0,
+          "maxRelativeError": 0,
+          "failures": 0
+        }
+      }
+    }
+  }
+}

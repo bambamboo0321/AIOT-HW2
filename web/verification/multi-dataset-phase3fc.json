@@ -1,0 +1,353 @@
+{
+  "task": "Multi-Dataset Phase 3F-C: Research Live Predictor UI Integration",
+  "status": "PASS",
+  "branch": "experiment/m17-pyodide",
+  "head": "4555ec599fffa0f6a3c8f16c68c1a5131c72a7c4",
+  "date": "2026-10-22",
+  "modifiedExistingFiles": [
+    "web/components/study-overview.tsx",
+    "web/components/study-prediction-explorer.tsx",
+    "web/lib/dataset-registry.ts",
+    "web/tests/dataset-registry.test.ts",
+    "web/tests/multi-dataset-production.mjs",
+    "web/tests/study-evaluation.test.ts",
+    "web/tests/study-feature-selection.test.ts",
+    "web/tests/study-overview.test.ts",
+    "web/app/globals.css",
+    "web/app/prediction-explorer/page.tsx"
+  ],
+  "addedFiles": [
+    "web/components/research-live-predictor.tsx",
+    "web/lib/fixed-models/live-controller.ts",
+    "web/lib/fixed-models/live-input.ts",
+    "web/tests/research-live.test.ts",
+    "web/verification/multi-dataset-phase3fc.json"
+  ],
+  "tests": {
+    "typecheck": "PASS",
+    "lint": "PASS",
+    "unitAndIntegration": {
+      "passed": 225,
+      "failed": 0,
+      "skipped": 0,
+      "newResearchLiveTests": 9,
+      "includesRealM16ServerValidateTrainCompareSingleBatchRegression": true
+    },
+    "productionBuild": "PASS",
+    "productionHTTP": {
+      "checks": 26,
+      "status": "PASS",
+      "energyPredictionAPIUnchanged": true
+    },
+    "fixedModelNumerical": {
+      "UIParserHoldoutRows": 8236,
+      "failures": 0,
+      "absoluteTolerance": 1e-10,
+      "relativeTolerance": 1e-10,
+      "existingFixedCoreExtraCasesRerun": 274
+    },
+    "productionTrace": {
+      "files": 16,
+      "experimentDependencies": 0
+    },
+    "gitDiffCheck": "PASS"
+  },
+  "design": {
+    "inference": "Existing Phase 3F-B catalog + SHA-256 verification + pure TypeScript core. No fitting, Python, Worker, Gateway or new API.",
+    "stateIdentity": "dataset ID : model ID : model version; keyed dataset and model subtrees; revision tokens; abort/clear timers on disposal.",
+    "debounceMs": 350,
+    "modelLoadTimeoutMs": 15000,
+    "defaults": "Saved Training medians; Energy raw Baseline uses explicitly labelled Training range midpoints. Categories with no saved default and Student known G1/G2 remain blank and require user input.",
+    "rangePolicy": "Slider uses Training observed min/max; only the thumb clamps. Valid numeric input extrapolates unchanged and warns. Legal domains, integers and saved ordinal codes validated separately.",
+    "blankValues": "Only model-approved imputation uses exact saved Training median, reported per input; known G1/G2 remain required.",
+    "singlePredictionStatistics": "Point estimate only; no R²/MAE/RMSE/residual/new-input PI.",
+    "holdout": "Original component/API/JSON remains unchanged; 342 Automobile/Student displayed rows and seven columns checked against saved snapshot at six-decimal display precision; source tests verify full precision.",
+    "customIsolation": "No import of Custom provider/Worker/Session. Source hashes unchanged. Browser mode, CSV configuration and confirmation survive irrelevant research dataset query changes.",
+    "capabilityMetadata": "Only livePrediction connected status and an outdated Overview sentence updated; research results unchanged."
+  },
+  "integrity": {
+    "preExistingFiles": 810,
+    "unchangedFiles": 800,
+    "modifiedOnlyAllowlistedFiles": 10,
+    "deletedFiles": [],
+    "fixedModelArtifactsAndCoreUnchanged": {
+      "web/data/fixed-models/v1/manifest.json": "0f04355db76334fea3d30b0f1f283a75e6240cb73459b76a2e77d52cd398e8a2",
+      "web/data/fixed-models/v1/policy.json": "da73480718d166a857d05166947be82e457de1de2ab6b982de9b8f070222c2b8",
+      "web/lib/fixed-models/catalog.ts": "e4561fefe78b7293b740f93dead97bafd668ad6176f0786b47225836451b4908",
+      "web/lib/fixed-models/core.ts": "b815b35cf0d853a39c9e47cde35fbdbf65c9ebc840272b8f7c0c8bcffd0f4e11",
+      "web/public/research-models/v1/appliances-energy--baseline.json": "097cf67f9a69eafb2741b615b39a43549eab5d8db46d09732c2723edbee1878c",
+      "web/public/research-models/v1/appliances-energy--mutual_information.json": "5426069510189104b04cd09a3eca07833ece7430d90f5b7f87ade8bb531fb876",
+      "web/public/research-models/v1/automobile-price--baseline.json": "0f4a2cecbd9312ed685cc3234009bee78ce8446a1a11c5ff9414102b0b550eed",
+      "web/public/research-models/v1/automobile-price--mutual_information.json": "57fe7bb1f175a3d5c06dbc774daadf4a63af57a7638fcfd804aab3ef60510cb4",
+      "web/public/research-models/v1/student-performance--baseline.json": "46b94e2ee6976ad4c4880afaba4e816b7fcebbcb130cf3cb9536badc371f45e2",
+      "web/public/research-models/v1/student-performance--mutual_information.json": "a6a737d8f48686cca1b9d5f9d228d3af4bdb499d2d50b45dd32add9ab950ab9d"
+    },
+    "preExistingSFSAndExperimentsPreserved": true,
+    "customWorkerGatewaySessionAndResearchResultsPreserved": true,
+    "staging": "empty",
+    "headUnchanged": true,
+    "commitPushMergeDeploy": false
+  },
+  "browser": {
+    "tool": "ego-browser Chromium",
+    "Safari": "Not rerun in this milestone; no Safari acceptance claimed.",
+    "viewports": {
+      "desktop": [
+        1440,
+        1000
+      ],
+      "mobile": [
+        390,
+        844
+      ]
+    },
+    "screenshotsInspected": [
+      "aiot-phase3fc-desktop-light-top.png",
+      "aiot-phase3fc-desktop-light-result.png",
+      "aiot-phase3fc-desktop-dark-result.png",
+      "aiot-phase3fc-mobile-dark-top.png",
+      "aiot-phase3fc-mobile-light-top.png",
+      "aiot-phase3fc-mobile-dark-result.png"
+    ],
+    "screenshotLocation": "Local temporary test artifacts; not published.",
+    "taskSpaceFinished": true,
+    "userThemeRestored": true,
+    "modelsAutomobile": [
+      {
+        "dataset": "automobile-price",
+        "modelId": "baseline",
+        "fields": 14,
+        "prediction": 22323.678771864736,
+        "reference": 22323.67877186474,
+        "error": 3.637978807091713e-12,
+        "pointOnly": true,
+        "holdoutIndependent": true
+      },
+      {
+        "dataset": "automobile-price",
+        "modelId": "mutual_information",
+        "fields": 7,
+        "prediction": 20743.73489010388,
+        "reference": 20743.73489010388,
+        "error": 0,
+        "pointOnly": true,
+        "holdoutIndependent": true
+      }
+    ],
+    "modelsEnergy": [
+      {
+        "dataset": "appliances-energy",
+        "modelId": "baseline",
+        "fields": 25,
+        "prediction": 163.8556462251167,
+        "reference": 163.8556462251166,
+        "error": 8.526512829121202e-14,
+        "pointOnly": true,
+        "energyTimeControls": true
+      },
+      {
+        "dataset": "appliances-energy",
+        "modelId": "mutual_information",
+        "fields": 6,
+        "prediction": 83.66836122393482,
+        "reference": 83.66836122393482,
+        "error": 0,
+        "pointOnly": true,
+        "energyTimeControls": true
+      }
+    ],
+    "modelsStudent": [
+      {
+        "dataset": "student-performance",
+        "modelId": "baseline",
+        "fields": 15,
+        "prediction": 18.916224510939088,
+        "reference": 18.916224510939088,
+        "error": 0,
+        "gradesRequired": true,
+        "pointOnly": true,
+        "holdoutIndependent": true
+      },
+      {
+        "dataset": "student-performance",
+        "modelId": "mutual_information",
+        "fields": 7,
+        "prediction": 18.86817008823093,
+        "reference": 18.86817008823093,
+        "error": 0,
+        "gradesRequired": true,
+        "pointOnly": true,
+        "holdoutIndependent": true
+      }
+    ],
+    "interactions": {
+      "status": "PASS",
+      "extrapolation": {
+        "raw": "20",
+        "thumb": "18",
+        "pred": 20.962605572934272,
+        "warn": true
+      },
+      "integerAndIllegalRangeRejected": true,
+      "sliderNumberSync": true,
+      "studentResetRequiresKnownGrades": true,
+      "categoricalSelections": true,
+      "autoResetRequiresCategories": true,
+      "datasetResetToBaseline": true
+    },
+    "holdout": {
+      "status": "PASS",
+      "rows": 342,
+      "checks": [
+        {
+          "dataset": "automobile-price",
+          "model": "baseline",
+          "rows": 41,
+          "allSevenColumnsMatchSavedAtDisplayPrecision": true
+        },
+        {
+          "dataset": "automobile-price",
+          "model": "mutual_information",
+          "rows": 41,
+          "allSevenColumnsMatchSavedAtDisplayPrecision": true
+        },
+        {
+          "dataset": "student-performance",
+          "model": "baseline",
+          "rows": 130,
+          "allSevenColumnsMatchSavedAtDisplayPrecision": true
+        },
+        {
+          "dataset": "student-performance",
+          "model": "mutual_information",
+          "rows": 130,
+          "allSevenColumnsMatchSavedAtDisplayPrecision": true
+        }
+      ]
+    },
+    "lifecycle": {
+      "status": "PASS",
+      "blockedModelError": "Failed to fetch重新載入固定模型",
+      "manualRetry": true,
+      "historyResets": true,
+      "refreshPreservesDatasetAndResetsInputs": true,
+      "runtime": {
+        "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36",
+        "secureContext": true,
+        "resources": [],
+        "theme": "dark"
+      }
+    },
+    "mobile": {
+      "status": "PASS",
+      "layout": {
+        "width": 390,
+        "scrollWidth": 390,
+        "columns": "324px",
+        "theme": "dark",
+        "invalidRects": 0
+      }
+    },
+    "responsive": {
+      "status": "PASS",
+      "records": [
+        {
+          "dataset": "appliances-energy",
+          "model": "baseline",
+          "width": 390,
+          "scrollWidth": 390,
+          "fields": 25,
+          "columns": "324px",
+          "invalidRects": 0
+        },
+        {
+          "dataset": "appliances-energy",
+          "model": "mutual_information",
+          "width": 390,
+          "scrollWidth": 390,
+          "fields": 6,
+          "columns": "324px",
+          "invalidRects": 0
+        },
+        {
+          "dataset": "automobile-price",
+          "model": "baseline",
+          "width": 390,
+          "scrollWidth": 390,
+          "fields": 14,
+          "columns": "324px",
+          "invalidRects": 0
+        },
+        {
+          "dataset": "automobile-price",
+          "model": "mutual_information",
+          "width": 390,
+          "scrollWidth": 390,
+          "fields": 7,
+          "columns": "324px",
+          "invalidRects": 0
+        },
+        {
+          "dataset": "student-performance",
+          "model": "baseline",
+          "width": 390,
+          "scrollWidth": 390,
+          "fields": 15,
+          "columns": "324px",
+          "invalidRects": 0
+        },
+        {
+          "dataset": "student-performance",
+          "model": "mutual_information",
+          "width": 390,
+          "scrollWidth": 390,
+          "fields": 7,
+          "columns": "324px",
+          "invalidRects": 0
+        }
+      ]
+    },
+    "custom": {
+      "status": "PASS",
+      "serverWasDefault": true,
+      "browserModeSelected": true,
+      "researchQueryDoesNotRemountOrClearCustom": {
+        "target": "target",
+        "confirmed": "已確認目前設定",
+        "mode": [
+          "Browser Mode"
+        ],
+        "features": 10
+      },
+      "noResearchSelectorOrLivePanel": true
+    }
+  },
+  "limitations": [
+    "Automobile price currency remains unverified; no currency invented.",
+    "Student predictions require known G1/G2; absences accumulation cutoff remains unverified; out-of-range G3 point estimates preserved and explained.",
+    "Raw Energy Baseline requires 25 inputs; Training midpoint defaults are illustrative only. Energy is contemporaneous energy estimation, not multistep forecasting.",
+    "Only verified point inference is added. No new-input prediction interval is implemented.",
+    "Browser UI acceptance used Chromium desktop and mobile emulation; Safari and physical mobile devices were not tested."
+  ],
+  "remainingImplementationFailures": [],
+  "localProductionServer": {
+    "url": "http://127.0.0.1:3018/prediction-explorer",
+    "leftRunning": true
+  },
+  "artifactHashes": {
+    "web/components/study-overview.tsx": "5d348ebaff24ad6fbfb45359137c79e08a5afba99ae2043185eff972f70841f6",
+    "web/components/study-prediction-explorer.tsx": "16d808d699e68283ad8bdf9e795cae6a83fba481b2d2d87a4804b2b28fe312df",
+    "web/lib/dataset-registry.ts": "a01208deb3a97f2028f3c5f1a485570d468e3aeb773760df8777dbc2317c0247",
+    "web/tests/dataset-registry.test.ts": "7625ee73c46f1892f5023896abfd6f71a939cf58f971717c14a504459f25a64a",
+    "web/tests/multi-dataset-production.mjs": "565a70b1f0058230150955318d709fd9bfb6fd382c1a7e79813acee9f9df5ea3",
+    "web/tests/study-evaluation.test.ts": "37388334365da7be734a5df5b3228cbeebc08e761327b9d5dd320c952799f521",
+    "web/tests/study-feature-selection.test.ts": "8ad4766dc9e576ac2f629f521a1b048b599912278a86ada896a8643e18618c33",
+    "web/tests/study-overview.test.ts": "7250c6e59604d1f1959701434571d1d7a872c436afb03b4250b82c373d49f6a9",
+    "web/app/globals.css": "e76ff2188c70562a87d2637e4c42a8cebfe37fd0ad507dc98d191d64e6556abe",
+    "web/app/prediction-explorer/page.tsx": "474a8fbc7b36f3907f61a6864c733d8fd93d0f80e8c5098dfaca75764c4bcbc2",
+    "web/components/research-live-predictor.tsx": "e840fb335162aa1841d1ba64ce6ab0dbf967f5e7e8f8c01b215786216a9a194f",
+    "web/lib/fixed-models/live-controller.ts": "3ac85263a396261e23b683f975a2a7dcf4eb4cb940fcba2268ccb8d04c0d6ce1",
+    "web/lib/fixed-models/live-input.ts": "ecf6e596493e670fc0439cb4ed362bcdc4aed7941b20185db63f098a75adaa99",
+    "web/tests/research-live.test.ts": "6503402d1b2bd8adf40791564920cc342d7ffabc8e1ea5ccc4622555c9d743e8"
+  }
+}

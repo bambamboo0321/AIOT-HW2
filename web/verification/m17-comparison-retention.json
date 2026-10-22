@@ -1,0 +1,205 @@
+{
+  "status": "PASS",
+  "stage": "complete",
+  "api_calls": [],
+  "progress": [
+    {
+      "stage": "runtime"
+    },
+    {
+      "stage": "packages"
+    },
+    {
+      "stage": "package:numpy"
+    },
+    {
+      "stage": "package:pandas"
+    },
+    {
+      "stage": "package:scipy"
+    },
+    {
+      "stage": "package:scikit-learn"
+    },
+    {
+      "stage": "package:joblib"
+    },
+    {
+      "stage": "modules"
+    },
+    {
+      "stage": "ready"
+    },
+    {
+      "stage": "validate"
+    },
+    {
+      "stage": "train"
+    },
+    {
+      "stage": "method",
+      "method": "rfe",
+      "phase": "started"
+    },
+    {
+      "stage": "method",
+      "method": "rfe",
+      "phase": "completed"
+    },
+    {
+      "stage": "predict"
+    },
+    {
+      "stage": "runtime"
+    },
+    {
+      "stage": "packages"
+    },
+    {
+      "stage": "package:numpy"
+    },
+    {
+      "stage": "package:pandas"
+    },
+    {
+      "stage": "package:scipy"
+    },
+    {
+      "stage": "package:scikit-learn"
+    },
+    {
+      "stage": "package:joblib"
+    },
+    {
+      "stage": "modules"
+    },
+    {
+      "stage": "ready"
+    },
+    {
+      "stage": "compare"
+    },
+    {
+      "stage": "method",
+      "method": "f_test",
+      "phase": "started"
+    },
+    {
+      "stage": "method",
+      "method": "f_test",
+      "phase": "completed"
+    },
+    {
+      "stage": "predict"
+    },
+    {
+      "stage": "runtime"
+    },
+    {
+      "stage": "packages"
+    },
+    {
+      "stage": "package:numpy"
+    },
+    {
+      "stage": "package:pandas"
+    },
+    {
+      "stage": "package:scipy"
+    },
+    {
+      "stage": "package:scikit-learn"
+    },
+    {
+      "stage": "package:joblib"
+    },
+    {
+      "stage": "modules"
+    },
+    {
+      "stage": "ready"
+    },
+    {
+      "stage": "compare"
+    },
+    {
+      "stage": "method",
+      "method": "forward_sfs",
+      "phase": "started"
+    },
+    {
+      "stage": "predict"
+    },
+    {
+      "stage": "runtime"
+    },
+    {
+      "stage": "packages"
+    },
+    {
+      "stage": "package:numpy"
+    },
+    {
+      "stage": "package:pandas"
+    },
+    {
+      "stage": "package:scipy"
+    },
+    {
+      "stage": "package:scikit-learn"
+    },
+    {
+      "stage": "package:joblib"
+    },
+    {
+      "stage": "modules"
+    },
+    {
+      "stage": "ready"
+    },
+    {
+      "stage": "validate"
+    },
+    {
+      "stage": "train"
+    },
+    {
+      "stage": "method",
+      "method": "rfe",
+      "phase": "started"
+    },
+    {
+      "stage": "method",
+      "method": "rfe",
+      "phase": "completed"
+    },
+    {
+      "stage": "predict"
+    },
+    {
+      "stage": "runtime"
+    },
+    {
+      "stage": "predict"
+    }
+  ],
+  "checks": [
+    {
+      "label": "successful comparison",
+      "model_retained": true,
+      "prediction_unchanged": true
+    },
+    {
+      "label": "real method cancellation",
+      "model_retained": true,
+      "prediction_unchanged": true
+    },
+    {
+      "label": "controlled 25ms comparison timeout",
+      "model_retained": true,
+      "prediction_unchanged": true
+    }
+  ],
+  "timeout_scope": "Fault injection via documented client comparisonTimeoutMs; real 180s watchdog measured separately in synthetic benchmark.",
+  "remaining_workers": 0
+}

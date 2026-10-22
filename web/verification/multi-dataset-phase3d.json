@@ -1,0 +1,477 @@
+{
+  "task": "Multi-Dataset Phase 3D: Model Evaluation Integration",
+  "status": "PASS",
+  "recordedAt": "2026-10-21T08:37:57.360519+00:00",
+  "branch": "experiment/m17-pyodide",
+  "head": "4555ec599fffa0f6a3c8f16c68c1a5131c72a7c4",
+  "modifiedFiles": [
+    "web/app/model-evaluation/page.tsx",
+    "web/components/dataset-navigation.tsx",
+    "web/components/study-overview.tsx",
+    "web/lib/dataset-registry.ts",
+    "web/tests/dataset-registry.test.ts",
+    "web/tests/multi-dataset-production.mjs",
+    "web/tests/study-feature-selection.test.ts",
+    "web/tests/study-overview.test.ts"
+  ],
+  "addedFiles": [
+    "web/components/study-evaluation-explorer.tsx",
+    "web/components/study-model-evaluation.tsx",
+    "web/data/research-evaluation/README.md",
+    "web/data/research-evaluation/v1/automobile-price.json",
+    "web/data/research-evaluation/v1/manifest.json",
+    "web/data/research-evaluation/v1/student-performance.json",
+    "web/lib/load-study-evaluation.ts",
+    "web/lib/study-evaluation-data.ts",
+    "web/scripts/export-study-evaluation.py",
+    "web/tests/study-evaluation.test.ts",
+    "web/verification/multi-dataset-phase3d.json"
+  ],
+  "checks": {
+    "typecheck": "PASS",
+    "lint": "PASS",
+    "webTests": {
+      "pass": 200,
+      "fail": 0,
+      "skip": 0
+    },
+    "relatedTestsAfterFinalTextAdjustment": {
+      "pass": 10,
+      "fail": 0
+    },
+    "productionBuild": "PASS",
+    "exportReproductionAndOriginalCsvComparison": "PASS",
+    "savedModelPredictionsAndBoundPairsChecked": 342,
+    "maeRmseR2Recomputed": "PASS",
+    "piCountsAndWidthStatisticsRecomputed": "PASS",
+    "productionHttp": {
+      "status": "PASS",
+      "checks": 26,
+      "records": [
+        {
+          "path": "/",
+          "dataset": "automobile-price",
+          "state": "overview-ready",
+          "energyResultsAbsent": true
+        },
+        {
+          "path": "/",
+          "dataset": "student-performance",
+          "state": "overview-ready",
+          "energyResultsAbsent": true
+        },
+        {
+          "path": "/",
+          "query": "",
+          "state": "energy"
+        },
+        {
+          "path": "/",
+          "query": "?dataset=appliances-energy",
+          "state": "energy"
+        },
+        {
+          "path": "/",
+          "query": "?dataset=invalid",
+          "state": "energy"
+        },
+        {
+          "path": "/",
+          "query": "?dataset=student-performance&dataset=automobile-price",
+          "state": "energy"
+        },
+        {
+          "path": "/feature-selection",
+          "dataset": "automobile-price",
+          "state": "feature-selection-ready",
+          "energyResultsAbsent": true
+        },
+        {
+          "path": "/feature-selection",
+          "dataset": "student-performance",
+          "state": "feature-selection-ready",
+          "energyResultsAbsent": true
+        },
+        {
+          "path": "/feature-selection",
+          "query": "",
+          "state": "energy"
+        },
+        {
+          "path": "/feature-selection",
+          "query": "?dataset=appliances-energy",
+          "state": "energy"
+        },
+        {
+          "path": "/feature-selection",
+          "query": "?dataset=invalid",
+          "state": "energy"
+        },
+        {
+          "path": "/feature-selection",
+          "query": "?dataset=student-performance&dataset=automobile-price",
+          "state": "energy"
+        },
+        {
+          "path": "/model-evaluation",
+          "dataset": "automobile-price",
+          "state": "model-evaluation-ready",
+          "energyResultsAbsent": true
+        },
+        {
+          "path": "/model-evaluation",
+          "dataset": "student-performance",
+          "state": "model-evaluation-ready",
+          "energyResultsAbsent": true
+        },
+        {
+          "path": "/model-evaluation",
+          "query": "",
+          "state": "energy"
+        },
+        {
+          "path": "/model-evaluation",
+          "query": "?dataset=appliances-energy",
+          "state": "energy"
+        },
+        {
+          "path": "/model-evaluation",
+          "query": "?dataset=invalid",
+          "state": "energy"
+        },
+        {
+          "path": "/model-evaluation",
+          "query": "?dataset=student-performance&dataset=automobile-price",
+          "state": "energy"
+        },
+        {
+          "path": "/prediction-explorer",
+          "dataset": "automobile-price",
+          "state": "not-connected",
+          "energyResultsAbsent": true
+        },
+        {
+          "path": "/prediction-explorer",
+          "dataset": "student-performance",
+          "state": "not-connected",
+          "energyResultsAbsent": true
+        },
+        {
+          "path": "/prediction-explorer",
+          "query": "",
+          "state": "energy"
+        },
+        {
+          "path": "/prediction-explorer",
+          "query": "?dataset=appliances-energy",
+          "state": "energy"
+        },
+        {
+          "path": "/prediction-explorer",
+          "query": "?dataset=invalid",
+          "state": "energy"
+        },
+        {
+          "path": "/prediction-explorer",
+          "query": "?dataset=student-performance&dataset=automobile-price",
+          "state": "energy"
+        },
+        {
+          "path": "/custom-dataset",
+          "queryDataset": "automobile-price",
+          "state": "independent",
+          "serverDefault": true
+        },
+        {
+          "path": "/custom-dataset",
+          "queryDataset": "student-performance",
+          "state": "independent",
+          "serverDefault": true
+        }
+      ],
+      "energyPredictionApiUnchanged": true
+    },
+    "productionBrowser": {
+      "models": [
+        {
+          "dataset": "automobile-price",
+          "model": "baseline",
+          "rows": 41,
+          "scatterSymbols": 82,
+          "piDots": 41,
+          "piBand": true,
+          "maxSixDecimalDisplayDifference": 4.945777618559077e-07
+        },
+        {
+          "dataset": "automobile-price",
+          "model": "mutual_information",
+          "rows": 41,
+          "scatterSymbols": 82,
+          "piDots": 41,
+          "piBand": true,
+          "maxSixDecimalDisplayDifference": 4.982484824722633e-07
+        },
+        {
+          "dataset": "student-performance",
+          "model": "baseline",
+          "rows": 130,
+          "scatterSymbols": 260,
+          "piDots": 130,
+          "piBand": true,
+          "maxSixDecimalDisplayDifference": 4.999589395815462e-07
+        },
+        {
+          "dataset": "student-performance",
+          "model": "mutual_information",
+          "rows": 130,
+          "scatterSymbols": 260,
+          "piDots": 130,
+          "piBand": true,
+          "maxSixDecimalDisplayDifference": 4.997563216591061e-07
+        }
+      ],
+      "actualPredictionPointsChecked": 342,
+      "piBoundPairsChecked": 342,
+      "histogramTotals": true,
+      "datasetControlReset": true,
+      "mobile": {
+        "width": 390,
+        "overflow": false,
+        "piCount": 130,
+        "piBand": true,
+        "rect": {
+          "x": 33,
+          "y": 267.921875,
+          "width": 324,
+          "height": 290,
+          "top": 267.921875,
+          "right": 357,
+          "bottom": 557.921875,
+          "left": 33
+        }
+      },
+      "refreshReset": true,
+      "historyBackForward": true,
+      "featureSelectionNavigation": true,
+      "energy": {
+        "ownPage": true,
+        "timeSplit": true,
+        "wh": true,
+        "researchConclusion": true
+      },
+      "custom": {
+        "selectorHidden": true,
+        "serverDefault": true,
+        "sameInputNode": true,
+        "target": "target",
+        "confirmationRetained": true,
+        "csvRetained": true,
+        "browserModeRetained": true
+      },
+      "themes": {
+        "original": "dark",
+        "alternate": "light",
+        "restored": true
+      },
+      "finalProductionSmoke": true,
+      "status": "PASS",
+      "browser": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36"
+    },
+    "diffCheck": "PASS"
+  },
+  "studyEvaluation": {
+    "automobile-price": {
+      "target": "price",
+      "unit": "原始價格單位（幣別未核實）",
+      "rows": 201,
+      "candidates": 14,
+      "trainingRows": 160,
+      "holdoutRows": 41,
+      "models": [
+        {
+          "id": "baseline",
+          "k": 14,
+          "metrics": {
+            "rmse": 5215.616480249021,
+            "mae": 3657.6601741059035,
+            "r2": 0.777659397271883
+          },
+          "predictionCount": 41,
+          "pi": {
+            "nominal": 0.95,
+            "coverage": 0.8292682926829268,
+            "averageWidth": 11575.623151529651,
+            "medianWidth": 11508.170922484613,
+            "widthSD": 342.51326837459857,
+            "covered": 34,
+            "below": 0,
+            "above": 7,
+            "total": 41
+          }
+        },
+        {
+          "id": "mutual_information",
+          "k": 7,
+          "metrics": {
+            "rmse": 5394.760239130046,
+            "mae": 3788.5915644677207,
+            "r2": 0.7621233702826905
+          },
+          "predictionCount": 41,
+          "pi": {
+            "nominal": 0.95,
+            "coverage": 0.8292682926829268,
+            "averageWidth": 11792.98626996375,
+            "medianWidth": 11689.063758568847,
+            "widthSD": 229.30984689330623,
+            "covered": 34,
+            "below": 0,
+            "above": 7,
+            "total": 41
+          }
+        }
+      ]
+    },
+    "student-performance": {
+      "target": "G3",
+      "unit": "分數（0–20）",
+      "rows": 649,
+      "candidates": 15,
+      "trainingRows": 519,
+      "holdoutRows": 130,
+      "models": [
+        {
+          "id": "baseline",
+          "k": 15,
+          "metrics": {
+            "rmse": 1.1664402826147413,
+            "mae": 0.7348086550074645,
+            "r2": 0.8604775881282163
+          },
+          "predictionCount": 130,
+          "pi": {
+            "nominal": 0.95,
+            "coverage": 0.9923076923076923,
+            "averageWidth": 5.120599206283538,
+            "medianWidth": 5.1085007395123485,
+            "widthSD": 0.04093993900059674,
+            "covered": 129,
+            "below": 1,
+            "above": 0,
+            "total": 130
+          }
+        },
+        {
+          "id": "mutual_information",
+          "k": 7,
+          "metrics": {
+            "rmse": 1.1557841973700598,
+            "mae": 0.7360348555838029,
+            "r2": 0.8630151745464493
+          },
+          "predictionCount": 130,
+          "pi": {
+            "nominal": 0.95,
+            "coverage": 0.9923076923076923,
+            "averageWidth": 5.09677717662349,
+            "medianWidth": 5.089953136123999,
+            "widthSD": 0.02564737750635256,
+            "covered": 129,
+            "below": 1,
+            "above": 0,
+            "total": 130
+          }
+        }
+      ]
+    }
+  },
+  "productionTracing": {
+    "page": {
+      "versionedStudyDependencies": [
+        "../../../data/research-overviews/v1/automobile-price.json",
+        "../../../data/research-overviews/v1/manifest.json",
+        "../../../data/research-overviews/v1/student-performance.json"
+      ],
+      "experimentDependencies": []
+    },
+    "feature-selection/page": {
+      "versionedStudyDependencies": [
+        "../../../../data/research-feature-selection/v1/automobile-price.json",
+        "../../../../data/research-feature-selection/v1/manifest.json",
+        "../../../../data/research-feature-selection/v1/student-performance.json",
+        "../../../../data/research-overviews/v1/automobile-price.json",
+        "../../../../data/research-overviews/v1/manifest.json",
+        "../../../../data/research-overviews/v1/student-performance.json"
+      ],
+      "experimentDependencies": []
+    },
+    "model-evaluation/page": {
+      "versionedStudyDependencies": [
+        "../../../../data/research-evaluation/v1/automobile-price.json",
+        "../../../../data/research-evaluation/v1/manifest.json",
+        "../../../../data/research-evaluation/v1/student-performance.json",
+        "../../../../data/research-overviews/v1/automobile-price.json",
+        "../../../../data/research-overviews/v1/manifest.json",
+        "../../../../data/research-overviews/v1/student-performance.json"
+      ],
+      "experimentDependencies": []
+    },
+    "prediction-explorer/page": {
+      "versionedStudyDependencies": [],
+      "experimentDependencies": []
+    }
+  },
+  "integrity": {
+    "baselineFiles": 776,
+    "authorizedExistingFilesChanged": 8,
+    "otherBaselineFilesUnchanged": 768,
+    "deleted": 0,
+    "energyEvaluationPageBodyPreserved": true,
+    "energyJsonAndOriginalExplorerUnchanged": true,
+    "overviewNumericalDataUnchanged": true,
+    "overviewOnlyAvailabilityFooterUpdated": true,
+    "featureSelectionNumericalDataUnchanged": true,
+    "predictionExplorerCustomDatasetWorkerLivePredictorGatewaySessionUnchanged": true,
+    "pendingSfsOptimizationPreserved": true,
+    "allExistingExperimentsPreserved": true,
+    "stagingEmpty": true
+  },
+  "scope": {
+    "researchModelsRetrained": false,
+    "researchAlgorithmsModified": false,
+    "commit": false,
+    "push": false,
+    "merge": false,
+    "deployment": false,
+    "localProductionPort": 3018
+  },
+  "limitations": [
+    "Automobile currency remains unverified; displays original source price units, never Wh or an invented currency.",
+    "Student predictions require G1/G2; absences accumulation cutoff is unspecified.",
+    "PI nominal 95% does not guarantee empirical or future 95% coverage; no Holdout calibration or bound clipping.",
+    "Prediction Explorer and research-model Live Predictor for new datasets remain unconnected by scope.",
+    "Browser acceptance used Chromium and mobile viewport emulation; Safari and physical devices were not retested.",
+    "Full standalone Python suite and research model experiments were not rerun. Complete web suite includes existing M16 Server regression.",
+    "Custom configuration/query isolation was browser-tested; full Pyodide training was not rerun in this phase."
+  ],
+  "fileHashes": {
+    "web/app/model-evaluation/page.tsx": "5a7fe83cfef397b9d6912aa8476a854be4680fa801786f281cf76cc2a3a7326a",
+    "web/components/dataset-navigation.tsx": "dba1a3c30587ec820a6bf88b0a05e2a84045a1b1a3888f09623e6c70a4bbd63b",
+    "web/components/study-overview.tsx": "aa5ba7560c49e6cedd7aab5d42e4540fbcdf02db257de5809a5d9a787d6374fa",
+    "web/lib/dataset-registry.ts": "da3531616007ecb90db094567c49059b39139c26bab69a7389715fe4267731e8",
+    "web/tests/dataset-registry.test.ts": "db38325a046d27bd28724477b9836eb645abd8e45883989105bbd187fa076fa1",
+    "web/tests/multi-dataset-production.mjs": "ae6b542e88bf3f7268e4c43ea50db5fe6c17c97c7ce7fbe4f0e63a48278d3d41",
+    "web/tests/study-feature-selection.test.ts": "35ded8da369b03ec28463a10b53848e56fbfa500eab9072c279dd4ab44ffbc01",
+    "web/tests/study-overview.test.ts": "2bd4e71745f5c9524ea967e8bd86470df61b34bb8785deba6bd14c5122945401",
+    "web/components/study-evaluation-explorer.tsx": "3f5d50c719a41a2f2f0d1ce212f0e943ce97002b81f2f854fb64ecd30c762f56",
+    "web/components/study-model-evaluation.tsx": "28d1c18079564f78abe3d15fd75f780ffed0b98efdb1ad92521ff2e13f603121",
+    "web/data/research-evaluation/README.md": "2685eda20ec5777b3cc6574433df3e64fa183a3c4647cd9befcb73ad87aaca64",
+    "web/data/research-evaluation/v1/automobile-price.json": "48b849b872b9a09097150923a339396fa29e5ab8817b176b8d6038744d120297",
+    "web/data/research-evaluation/v1/manifest.json": "27e4ed22f2846bae684ad42b954ee347f356d0dc00111b3dca9fa084771b0a22",
+    "web/data/research-evaluation/v1/student-performance.json": "5fc5be58b02804f909ba3c12bd3e2d4211d844d335c86c1278d7d0a8a1a6588c",
+    "web/lib/load-study-evaluation.ts": "e99d0171ebde814221a6f92d24eb6c2b365f3d2bf4143288cf88c5d78a987c09",
+    "web/lib/study-evaluation-data.ts": "464ca2b7479931a23c91fb499cfe94c699b2d3ac488ca8e61216565808ba4d59",
+    "web/scripts/export-study-evaluation.py": "8399101a18342b968b477f7f4e7d487c89d7c752ef09b79250700ce4b518ad2f",
+    "web/tests/study-evaluation.test.ts": "e326ae0f99e6fa864b8521c3ba9ed074cc77985de6aad15492fc7302020ffcd8"
+  }
+}

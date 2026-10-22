@@ -1,0 +1,813 @@
+{
+  "task": "Multi-Dataset Phase 3F-B: Fixed Model Export & Numerical Verification",
+  "status": "PASS",
+  "clientDate": "2026-10-22",
+  "branch": "experiment/m17-pyodide",
+  "head": "4555ec599fffa0f6a3c8f16c68c1a5131c72a7c4",
+  "modifiedExistingFiles": [],
+  "addedFiles": [
+    "web/data/fixed-models/README.md",
+    "web/data/fixed-models/v1/manifest.json",
+    "web/data/fixed-models/v1/policy.json",
+    "web/lib/fixed-models/catalog.ts",
+    "web/lib/fixed-models/core.ts",
+    "web/public/research-models/v1/appliances-energy--baseline.json",
+    "web/public/research-models/v1/appliances-energy--mutual_information.json",
+    "web/public/research-models/v1/automobile-price--baseline.json",
+    "web/public/research-models/v1/automobile-price--mutual_information.json",
+    "web/public/research-models/v1/student-performance--baseline.json",
+    "web/public/research-models/v1/student-performance--mutual_information.json",
+    "web/scripts/export-fixed-models.py",
+    "web/scripts/verify-fixed-models.ts",
+    "web/tests/fixed-models-reference.ts",
+    "web/tests/fixed-models.test.ts",
+    "web/tests/fixtures/fixed-models/v1/holdout.json.gz",
+    "web/verification/multi-dataset-phase3fb-native.json",
+    "web/verification/multi-dataset-phase3fb-numerical.json",
+    "web/verification/multi-dataset-phase3fb.json"
+  ],
+  "artifactHashes": {
+    "web/data/fixed-models/README.md": "975e53a4e0c8500536d0301a41684fa6c911485240c93af62a8cb2914a1e55f2",
+    "web/data/fixed-models/v1/manifest.json": "0f04355db76334fea3d30b0f1f283a75e6240cb73459b76a2e77d52cd398e8a2",
+    "web/data/fixed-models/v1/policy.json": "da73480718d166a857d05166947be82e457de1de2ab6b982de9b8f070222c2b8",
+    "web/lib/fixed-models/catalog.ts": "e4561fefe78b7293b740f93dead97bafd668ad6176f0786b47225836451b4908",
+    "web/lib/fixed-models/core.ts": "b815b35cf0d853a39c9e47cde35fbdbf65c9ebc840272b8f7c0c8bcffd0f4e11",
+    "web/public/research-models/v1/appliances-energy--baseline.json": "097cf67f9a69eafb2741b615b39a43549eab5d8db46d09732c2723edbee1878c",
+    "web/public/research-models/v1/appliances-energy--mutual_information.json": "5426069510189104b04cd09a3eca07833ece7430d90f5b7f87ade8bb531fb876",
+    "web/public/research-models/v1/automobile-price--baseline.json": "0f4a2cecbd9312ed685cc3234009bee78ce8446a1a11c5ff9414102b0b550eed",
+    "web/public/research-models/v1/automobile-price--mutual_information.json": "57fe7bb1f175a3d5c06dbc774daadf4a63af57a7638fcfd804aab3ef60510cb4",
+    "web/public/research-models/v1/student-performance--baseline.json": "46b94e2ee6976ad4c4880afaba4e816b7fcebbcb130cf3cb9536badc371f45e2",
+    "web/public/research-models/v1/student-performance--mutual_information.json": "a6a737d8f48686cca1b9d5f9d228d3af4bdb499d2d50b45dd32add9ab950ab9d",
+    "web/scripts/export-fixed-models.py": "362a54aa2f5d84bffd936bea01bd5006a77eb9b0db16bf4814f33384232bdbdc",
+    "web/scripts/verify-fixed-models.ts": "5cddf417052dd699204ec530c5b6b03175f119770f517fe76d39dde7b8ea8aa7",
+    "web/tests/fixed-models-reference.ts": "a640c5fe076ab9e9f50cf25d9ae9ca63487eba66aedb995f6e66d4e326f7f99c",
+    "web/tests/fixed-models.test.ts": "743840104494399110bffedec23429e57ce9abf923885b8f5220471e9f627e84",
+    "web/tests/fixtures/fixed-models/v1/holdout.json.gz": "3fe3708a3b673c4ddeb2a343fe3841049d9c29bb6a23a9b2cb7f76da3031f6fa",
+    "web/verification/multi-dataset-phase3fb-native.json": "fff02dce692f9c5e36e63e1d3f779a30eed1096e5e0069e2449bb9fc73d9333c",
+    "web/verification/multi-dataset-phase3fb-numerical.json": "d6c1025e6dfd38039a78a816937d271b7e8496d48a0c9a78b23979370540a893"
+  },
+  "integrity": {
+    "baselineFiles": 791,
+    "allExistingContentsPreserved": true,
+    "stagingEmpty": true,
+    "protected": [
+      "four research pages",
+      "Energy saved model files and results",
+      "Phase 3A–3E versioned snapshots",
+      "Custom Dataset",
+      "Browser Worker",
+      "Gateway",
+      "Session",
+      "pending SFS optimization",
+      "all experiments",
+      "raw datasets including BostonHousing.csv when present"
+    ],
+    "commitPushMergeDeploymentPerformed": false
+  },
+  "acquisition": {
+    "energy": "Hash-locked original saved models; guarded against fitting",
+    "automobileStudent": "Four Training-only LinearRegression reconstructions with frozen Baseline/MI columns, original splits and preprocessing. No selector/CV/k-search/tuning.",
+    "nativeReference": {
+      "status": "PASS",
+      "policy": {
+        "schemaVersion": 1,
+        "modelVersion": "1.0.0",
+        "absoluteTolerance": 1e-10,
+        "relativeTolerance": 1e-10,
+        "formula": "abs(actual-reference) <= absoluteTolerance + relativeTolerance*abs(reference)",
+        "relativeErrorReportingFloor": 1e-12,
+        "policy": "Fixed before reconstruction or numerical comparisons; never loosen on failure. Holdout is verification only. No selector fitting, CV search or tuning."
+      },
+      "models": {
+        "appliances-energy--baseline": {
+          "status": "PASS",
+          "holdoutRows": 3947,
+          "features": [
+            "lights",
+            "T1",
+            "RH_1",
+            "T2",
+            "RH_2",
+            "T3",
+            "RH_3",
+            "T4",
+            "RH_4",
+            "T5",
+            "RH_5",
+            "T6",
+            "RH_6",
+            "T7",
+            "RH_7",
+            "T8",
+            "RH_8",
+            "T9",
+            "RH_9",
+            "T_out",
+            "Press_mm_hg",
+            "RH_out",
+            "Windspeed",
+            "Visibility",
+            "Tdewpoint"
+          ],
+          "acquisition": "original-saved-model-no-fit",
+          "nativeVsSaved": {
+            "maxAbsoluteError": 0.0,
+            "maxRelativeError": 0.0,
+            "failures": 0,
+            "rows": 3947
+          },
+          "extraCases": 78
+        },
+        "appliances-energy--mutual_information": {
+          "status": "PASS",
+          "holdoutRows": 3947,
+          "features": [
+            "T3",
+            "T4",
+            "T5",
+            "RH_6",
+            "T8",
+            "T9"
+          ],
+          "acquisition": "original-saved-model-no-fit",
+          "nativeVsSaved": {
+            "maxAbsoluteError": 0.0,
+            "maxRelativeError": 0.0,
+            "failures": 0,
+            "rows": 3947
+          },
+          "extraCases": 28
+        },
+        "automobile-price--baseline": {
+          "status": "PASS",
+          "holdoutRows": 41,
+          "features": [
+            "normalized-losses",
+            "wheel-base",
+            "length",
+            "width",
+            "height",
+            "curb-weight",
+            "engine-size",
+            "bore",
+            "stroke",
+            "horsepower",
+            "city-mpg",
+            "highway-mpg",
+            "fuel-type",
+            "aspiration"
+          ],
+          "acquisition": "training-only-refit-with-frozen-selected-columns-no-selector",
+          "nativeVsSaved": {
+            "maxAbsoluteError": 0.0,
+            "maxRelativeError": 0.0,
+            "failures": 0,
+            "rows": 41
+          },
+          "extraCases": 56
+        },
+        "automobile-price--mutual_information": {
+          "status": "PASS",
+          "holdoutRows": 41,
+          "features": [
+            "length",
+            "width",
+            "curb-weight",
+            "engine-size",
+            "horsepower",
+            "city-mpg",
+            "highway-mpg"
+          ],
+          "acquisition": "training-only-refit-with-frozen-selected-columns-no-selector",
+          "nativeVsSaved": {
+            "maxAbsoluteError": 0.0,
+            "maxRelativeError": 0.0,
+            "failures": 0,
+            "rows": 41
+          },
+          "extraCases": 32
+        },
+        "student-performance--baseline": {
+          "status": "PASS",
+          "holdoutRows": 130,
+          "features": [
+            "age",
+            "Medu",
+            "Fedu",
+            "traveltime",
+            "studytime",
+            "failures",
+            "famrel",
+            "freetime",
+            "goout",
+            "Dalc",
+            "Walc",
+            "health",
+            "absences",
+            "G1",
+            "G2"
+          ],
+          "acquisition": "training-only-refit-with-frozen-selected-columns-no-selector",
+          "nativeVsSaved": {
+            "maxAbsoluteError": 0.0,
+            "maxRelativeError": 0.0,
+            "failures": 0,
+            "rows": 130
+          },
+          "extraCases": 53
+        },
+        "student-performance--mutual_information": {
+          "status": "PASS",
+          "holdoutRows": 130,
+          "features": [
+            "Fedu",
+            "studytime",
+            "failures",
+            "Dalc",
+            "Walc",
+            "G1",
+            "G2"
+          ],
+          "acquisition": "training-only-refit-with-frozen-selected-columns-no-selector",
+          "nativeVsSaved": {
+            "maxAbsoluteError": 0.0,
+            "maxRelativeError": 0.0,
+            "failures": 0,
+            "rows": 130
+          },
+          "extraCases": 27
+        }
+      },
+      "selectorFits": 0,
+      "energyFits": 0,
+      "reconstructedLinearRegressionFits": 4,
+      "holdoutUsedForFitting": false,
+      "versions": {
+        "python": "3.10.17",
+        "numpy": "2.2.6",
+        "pandas": "2.3.3",
+        "scipy": "1.15.3",
+        "scikit-learn": "1.7.2",
+        "joblib": "1.6.0",
+        "threadpoolctl": "3.7.0"
+      },
+      "totalHoldoutPredictions": 8236,
+      "artifactHashes": {
+        "appliances-energy--baseline": "097cf67f9a69eafb2741b615b39a43549eab5d8db46d09732c2723edbee1878c",
+        "appliances-energy--mutual_information": "5426069510189104b04cd09a3eca07833ece7430d90f5b7f87ade8bb531fb876",
+        "automobile-price--baseline": "0f4a2cecbd9312ed685cc3234009bee78ce8446a1a11c5ff9414102b0b550eed",
+        "automobile-price--mutual_information": "57fe7bb1f175a3d5c06dbc774daadf4a63af57a7638fcfd804aab3ef60510cb4",
+        "student-performance--baseline": "46b94e2ee6976ad4c4880afaba4e816b7fcebbcb130cf3cb9536badc371f45e2",
+        "student-performance--mutual_information": "a6a737d8f48686cca1b9d5f9d228d3af4bdb499d2d50b45dd32add9ab950ab9d"
+      },
+      "fixtureBytes": 420130
+    }
+  },
+  "numericalVerification": {
+    "status": "PASS",
+    "policy": {
+      "schemaVersion": 1,
+      "modelVersion": "1.0.0",
+      "absoluteTolerance": 1e-10,
+      "relativeTolerance": 1e-10,
+      "formula": "abs(actual-reference) <= absoluteTolerance + relativeTolerance*abs(reference)",
+      "relativeErrorReportingFloor": 1e-12,
+      "policy": "Fixed before reconstruction or numerical comparisons; never loosen on failure. Holdout is verification only. No selector fitting, CV search or tuning."
+    },
+    "totalHoldoutPredictions": 8236,
+    "models": {
+      "appliances-energy--baseline": {
+        "status": "PASS",
+        "features": [
+          "lights",
+          "T1",
+          "RH_1",
+          "T2",
+          "RH_2",
+          "T3",
+          "RH_3",
+          "T4",
+          "RH_4",
+          "T5",
+          "RH_5",
+          "T6",
+          "RH_6",
+          "T7",
+          "RH_7",
+          "T8",
+          "RH_8",
+          "T9",
+          "RH_9",
+          "T_out",
+          "Press_mm_hg",
+          "RH_out",
+          "Windspeed",
+          "Visibility",
+          "Tdewpoint"
+        ],
+        "comparisons": {
+          "nativeVsSaved": {
+            "rows": 3947,
+            "maxAbsoluteError": 0,
+            "maxRelativeError": 0,
+            "failures": 0
+          },
+          "typescriptVsNative": {
+            "rows": 3947,
+            "maxAbsoluteError": 4.547473508864641e-13,
+            "maxRelativeError": 1.268188369287175e-13,
+            "failures": 0
+          },
+          "typescriptVsSaved": {
+            "rows": 3947,
+            "maxAbsoluteError": 4.547473508864641e-13,
+            "maxRelativeError": 1.268188369287175e-13,
+            "failures": 0
+          },
+          "extraCases": {
+            "rows": 78,
+            "maxAbsoluteError": 2.2737367544323206e-13,
+            "maxRelativeError": 2.023720970132103e-14,
+            "failures": 0
+          }
+        }
+      },
+      "appliances-energy--mutual_information": {
+        "status": "PASS",
+        "features": [
+          "T3",
+          "T4",
+          "T5",
+          "RH_6",
+          "T8",
+          "T9"
+        ],
+        "comparisons": {
+          "nativeVsSaved": {
+            "rows": 3947,
+            "maxAbsoluteError": 0,
+            "maxRelativeError": 0,
+            "failures": 0
+          },
+          "typescriptVsNative": {
+            "rows": 3947,
+            "maxAbsoluteError": 5.684341886080802e-14,
+            "maxRelativeError": 9.477677675742147e-16,
+            "failures": 0
+          },
+          "typescriptVsSaved": {
+            "rows": 3947,
+            "maxAbsoluteError": 5.684341886080802e-14,
+            "maxRelativeError": 9.477677675742147e-16,
+            "failures": 0
+          },
+          "extraCases": {
+            "rows": 28,
+            "maxAbsoluteError": 5.684341886080802e-14,
+            "maxRelativeError": 2.498996472510002e-15,
+            "failures": 0
+          }
+        }
+      },
+      "automobile-price--baseline": {
+        "status": "PASS",
+        "features": [
+          "normalized-losses",
+          "wheel-base",
+          "length",
+          "width",
+          "height",
+          "curb-weight",
+          "engine-size",
+          "bore",
+          "stroke",
+          "horsepower",
+          "city-mpg",
+          "highway-mpg",
+          "fuel-type",
+          "aspiration"
+        ],
+        "comparisons": {
+          "nativeVsSaved": {
+            "rows": 41,
+            "maxAbsoluteError": 0,
+            "maxRelativeError": 0,
+            "failures": 0
+          },
+          "typescriptVsNative": {
+            "rows": 41,
+            "maxAbsoluteError": 7.275957614183426e-12,
+            "maxRelativeError": 2.7327887503865826e-16,
+            "failures": 0
+          },
+          "typescriptVsSaved": {
+            "rows": 41,
+            "maxAbsoluteError": 7.275957614183426e-12,
+            "maxRelativeError": 2.7327887503865826e-16,
+            "failures": 0
+          },
+          "extraCases": {
+            "rows": 56,
+            "maxAbsoluteError": 7.275957614183426e-12,
+            "maxRelativeError": 4.0400790604220715e-16,
+            "failures": 0
+          }
+        }
+      },
+      "automobile-price--mutual_information": {
+        "status": "PASS",
+        "features": [
+          "length",
+          "width",
+          "curb-weight",
+          "engine-size",
+          "horsepower",
+          "city-mpg",
+          "highway-mpg"
+        ],
+        "comparisons": {
+          "nativeVsSaved": {
+            "rows": 41,
+            "maxAbsoluteError": 0,
+            "maxRelativeError": 0,
+            "failures": 0
+          },
+          "typescriptVsNative": {
+            "rows": 41,
+            "maxAbsoluteError": 3.637978807091713e-12,
+            "maxRelativeError": 2.6573894555344385e-16,
+            "failures": 0
+          },
+          "typescriptVsSaved": {
+            "rows": 41,
+            "maxAbsoluteError": 3.637978807091713e-12,
+            "maxRelativeError": 2.6573894555344385e-16,
+            "failures": 0
+          },
+          "extraCases": {
+            "rows": 32,
+            "maxAbsoluteError": 3.637978807091713e-12,
+            "maxRelativeError": 1.851014069364394e-16,
+            "failures": 0
+          }
+        }
+      },
+      "student-performance--baseline": {
+        "status": "PASS",
+        "features": [
+          "age",
+          "Medu",
+          "Fedu",
+          "traveltime",
+          "studytime",
+          "failures",
+          "famrel",
+          "freetime",
+          "goout",
+          "Dalc",
+          "Walc",
+          "health",
+          "absences",
+          "G1",
+          "G2"
+        ],
+        "comparisons": {
+          "nativeVsSaved": {
+            "rows": 130,
+            "maxAbsoluteError": 0,
+            "maxRelativeError": 0,
+            "failures": 0
+          },
+          "typescriptVsNative": {
+            "rows": 130,
+            "maxAbsoluteError": 3.552713678800501e-15,
+            "maxRelativeError": 5.0368649347425255e-15,
+            "failures": 0
+          },
+          "typescriptVsSaved": {
+            "rows": 130,
+            "maxAbsoluteError": 3.552713678800501e-15,
+            "maxRelativeError": 5.0368649347425255e-15,
+            "failures": 0
+          },
+          "extraCases": {
+            "rows": 53,
+            "maxAbsoluteError": 3.552713678800501e-15,
+            "maxRelativeError": 1.8733825480405198e-16,
+            "failures": 0
+          }
+        }
+      },
+      "student-performance--mutual_information": {
+        "status": "PASS",
+        "features": [
+          "Fedu",
+          "studytime",
+          "failures",
+          "Dalc",
+          "Walc",
+          "G1",
+          "G2"
+        ],
+        "comparisons": {
+          "nativeVsSaved": {
+            "rows": 130,
+            "maxAbsoluteError": 0,
+            "maxRelativeError": 0,
+            "failures": 0
+          },
+          "typescriptVsNative": {
+            "rows": 130,
+            "maxAbsoluteError": 3.552713678800501e-15,
+            "maxRelativeError": 2.093123439807917e-16,
+            "failures": 0
+          },
+          "typescriptVsSaved": {
+            "rows": 130,
+            "maxAbsoluteError": 3.552713678800501e-15,
+            "maxRelativeError": 2.093123439807917e-16,
+            "failures": 0
+          },
+          "extraCases": {
+            "rows": 27,
+            "maxAbsoluteError": 0,
+            "maxRelativeError": 0,
+            "failures": 0
+          }
+        }
+      }
+    }
+  },
+  "checks": {
+    "typecheck": "PASS",
+    "lint": "PASS",
+    "webTests": {
+      "passed": 216,
+      "failed": 0,
+      "skipped": 0
+    },
+    "productionBuild": "PASS",
+    "httpRegression": {
+      "status": "PASS",
+      "checks": 26,
+      "records": [
+        {
+          "path": "/",
+          "dataset": "automobile-price",
+          "state": "overview-ready",
+          "energyResultsAbsent": true
+        },
+        {
+          "path": "/",
+          "dataset": "student-performance",
+          "state": "overview-ready",
+          "energyResultsAbsent": true
+        },
+        {
+          "path": "/",
+          "query": "",
+          "state": "energy"
+        },
+        {
+          "path": "/",
+          "query": "?dataset=appliances-energy",
+          "state": "energy"
+        },
+        {
+          "path": "/",
+          "query": "?dataset=invalid",
+          "state": "energy"
+        },
+        {
+          "path": "/",
+          "query": "?dataset=student-performance&dataset=automobile-price",
+          "state": "energy"
+        },
+        {
+          "path": "/feature-selection",
+          "dataset": "automobile-price",
+          "state": "feature-selection-ready",
+          "energyResultsAbsent": true
+        },
+        {
+          "path": "/feature-selection",
+          "dataset": "student-performance",
+          "state": "feature-selection-ready",
+          "energyResultsAbsent": true
+        },
+        {
+          "path": "/feature-selection",
+          "query": "",
+          "state": "energy"
+        },
+        {
+          "path": "/feature-selection",
+          "query": "?dataset=appliances-energy",
+          "state": "energy"
+        },
+        {
+          "path": "/feature-selection",
+          "query": "?dataset=invalid",
+          "state": "energy"
+        },
+        {
+          "path": "/feature-selection",
+          "query": "?dataset=student-performance&dataset=automobile-price",
+          "state": "energy"
+        },
+        {
+          "path": "/model-evaluation",
+          "dataset": "automobile-price",
+          "state": "model-evaluation-ready",
+          "energyResultsAbsent": true
+        },
+        {
+          "path": "/model-evaluation",
+          "dataset": "student-performance",
+          "state": "model-evaluation-ready",
+          "energyResultsAbsent": true
+        },
+        {
+          "path": "/model-evaluation",
+          "query": "",
+          "state": "energy"
+        },
+        {
+          "path": "/model-evaluation",
+          "query": "?dataset=appliances-energy",
+          "state": "energy"
+        },
+        {
+          "path": "/model-evaluation",
+          "query": "?dataset=invalid",
+          "state": "energy"
+        },
+        {
+          "path": "/model-evaluation",
+          "query": "?dataset=student-performance&dataset=automobile-price",
+          "state": "energy"
+        },
+        {
+          "path": "/prediction-explorer",
+          "dataset": "automobile-price",
+          "state": "prediction-explorer-ready",
+          "energyResultsAbsent": true
+        },
+        {
+          "path": "/prediction-explorer",
+          "dataset": "student-performance",
+          "state": "prediction-explorer-ready",
+          "energyResultsAbsent": true
+        },
+        {
+          "path": "/prediction-explorer",
+          "query": "",
+          "state": "energy"
+        },
+        {
+          "path": "/prediction-explorer",
+          "query": "?dataset=appliances-energy",
+          "state": "energy"
+        },
+        {
+          "path": "/prediction-explorer",
+          "query": "?dataset=invalid",
+          "state": "energy"
+        },
+        {
+          "path": "/prediction-explorer",
+          "query": "?dataset=student-performance&dataset=automobile-price",
+          "state": "energy"
+        },
+        {
+          "path": "/custom-dataset",
+          "queryDataset": "automobile-price",
+          "state": "independent",
+          "serverDefault": true
+        },
+        {
+          "path": "/custom-dataset",
+          "queryDataset": "student-performance",
+          "state": "independent",
+          "serverDefault": true
+        }
+      ],
+      "energyPredictionApiUnchanged": true
+    },
+    "browserRuntime": {
+      "status": "PASS",
+      "totalRows": 8236,
+      "records": [
+        {
+          "key": "appliances-energy--baseline",
+          "httpStatus": 200,
+          "contentType": "application/json; charset=UTF-8",
+          "hashVerified": true,
+          "rows": 3947,
+          "extraCases": 78,
+          "maxAbsoluteError": 4.547473508864641e-13,
+          "maxRelativeError": 1.268188369287175e-13,
+          "failures": 0,
+          "invalidRejected": 3
+        },
+        {
+          "key": "appliances-energy--mutual_information",
+          "httpStatus": 200,
+          "contentType": "application/json; charset=UTF-8",
+          "hashVerified": true,
+          "rows": 3947,
+          "extraCases": 28,
+          "maxAbsoluteError": 5.684341886080802e-14,
+          "maxRelativeError": 9.477677675742147e-16,
+          "failures": 0,
+          "invalidRejected": 3
+        },
+        {
+          "key": "automobile-price--baseline",
+          "httpStatus": 200,
+          "contentType": "application/json; charset=UTF-8",
+          "hashVerified": true,
+          "rows": 41,
+          "extraCases": 56,
+          "maxAbsoluteError": 7.275957614183426e-12,
+          "maxRelativeError": 2.7327887503865826e-16,
+          "failures": 0,
+          "invalidRejected": 3
+        },
+        {
+          "key": "automobile-price--mutual_information",
+          "httpStatus": 200,
+          "contentType": "application/json; charset=UTF-8",
+          "hashVerified": true,
+          "rows": 41,
+          "extraCases": 32,
+          "maxAbsoluteError": 3.637978807091713e-12,
+          "maxRelativeError": 2.6573894555344385e-16,
+          "failures": 0,
+          "invalidRejected": 3
+        },
+        {
+          "key": "student-performance--baseline",
+          "httpStatus": 200,
+          "contentType": "application/json; charset=UTF-8",
+          "hashVerified": true,
+          "rows": 130,
+          "extraCases": 53,
+          "maxAbsoluteError": 3.552713678800501e-15,
+          "maxRelativeError": 5.0368649347425255e-15,
+          "failures": 0,
+          "invalidRejected": 3
+        },
+        {
+          "key": "student-performance--mutual_information",
+          "httpStatus": 200,
+          "contentType": "application/json; charset=UTF-8",
+          "hashVerified": true,
+          "rows": 130,
+          "extraCases": 27,
+          "maxAbsoluteError": 3.552713678800501e-15,
+          "maxRelativeError": 2.093123439807917e-16,
+          "failures": 0,
+          "invalidRejected": 3
+        }
+      ],
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36",
+      "secureContext": true,
+      "runtime": "Same core.ts transpiled without algorithm changes; ES module loaded only in this test page memory. Production JSON fetched from port 3018.",
+      "pythonOrWorkerInvoked": false
+    },
+    "diffCheck": "PASS",
+    "productionExperimentDependencies": 0
+  },
+  "runtime": {
+    "core": "web/lib/fixed-models/core.ts",
+    "catalog": "web/lib/fixed-models/catalog.ts",
+    "manifest": "web/data/fixed-models/v1/manifest.json",
+    "staticModels": "web/public/research-models/v1/",
+    "modelJsonTotalBytes": 60190,
+    "publicAssetsContainRawRows": false,
+    "testFixtureIsPublicAsset": false,
+    "modelHashVerification": "SHA-256 exact text against trusted bundled manifest before strict metadata validation",
+    "modelMutationProtection": "Detached deep-frozen parsed models",
+    "inference": "Validate, encode, Training median where allowed, saved scaler, original coefficients/intercept. No clipping."
+  },
+  "scope": {
+    "researchLivePredictorUIAdded": false,
+    "existingResearchPagesModified": false,
+    "customDatasetOrWorkerModified": false,
+    "newPredictionIntervalOrSingleInputR2Provided": false,
+    "fixture": "Deterministic compressed test-only source inputs without source-row or subject identifiers; not imported by production application"
+  },
+  "limitations": [
+    "Research Live Predictor UI intentionally deferred; this milestone only supplies artifacts/core/tests.",
+    "Automobile currency and unverified feature units remain explicitly unverified.",
+    "Student G1/G2 known-grade precondition and uncertain absences accumulation cutoff remain. Mathematical imputation does not establish a known real grade.",
+    "Student failures legal codes describe supplied CSV version 0–3, not all possible external codebooks.",
+    "Browser runtime acceptance used Chromium; Safari was not rerun. No UI integration is implied by this numerical harness."
+  ],
+  "remainingImplementationFailures": [],
+  "localProductionServer": {
+    "url": "http://127.0.0.1:3018",
+    "leftRunning": true
+  }
+}

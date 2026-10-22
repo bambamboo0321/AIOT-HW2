@@ -1,0 +1,1125 @@
+{
+  "task": "M17 multi-k comparison 180 second evaluation",
+  "created_at": "2026-10-21T01:56:18.756621+00:00",
+  "status": "PARTIAL PASS",
+  "decision": {
+    "timeout_and_model_preservation": "PASS",
+    "higher_work_cap": "NO-GO",
+    "reason": "Native synthetic comparisons completed, but the first six-method Browser synthetic comparison timed out during SFS at 180 seconds. Retain production hard protection."
+  },
+  "branch": "experiment/m17-pyodide",
+  "head": "4555ec599fffa0f6a3c8f16c68c1a5131c72a7c4",
+  "limits": {
+    "comparison_ms": 180000,
+    "work_hard": 100000000,
+    "explicit_confirmation_above_work": 10000000,
+    "browser_training_rows": 2000,
+    "browser_training_features": 15,
+    "browser_csv_bytes": 3145728,
+    "ordinary_training_method_ms": 60000,
+    "ordinary_browser_job_ms": 90000,
+    "selector_safety_limits": "Unchanged, including SFS 2000 rows / 15 features and existing per-selector workload guards."
+  },
+  "work_formula": {
+    "formula": "features * sum(outer fold training_rows) * sum(estimated selector fits for every requested method and k)",
+    "fixed_fits": {
+      "f_test": "1",
+      "mutual_information": "1",
+      "rfe": "p-k+2 if k<p, otherwise 1",
+      "forward_sfs": "3 * sum(p-j for j in range(k)) + 1 if k<p, otherwise 1"
+    },
+    "automatic_fits": {
+      "rfecv": "4*p+2, or 1 when p=1",
+      "lasso_cv": 30
+    },
+    "user_work": 238714560,
+    "user_csv_available": false,
+    "note": "The scalar cannot uniquely reveal rows, candidate count, methods, k or CV folds. No original user CSV was benchmarked. 12 * 11841 * 1680 is an arithmetic factorization only, not inferred user settings."
+  },
+  "synthetic_settings": {
+    "seed": 42,
+    "rows": [
+      500,
+      1000,
+      2000,
+      5000
+    ],
+    "features": [
+      10,
+      15,
+      25
+    ],
+    "target": "linear relationship plus Gaussian noise; independent varying numeric inputs; no missing",
+    "split": "random 20% holdout seed 42",
+    "outer_cv": 5,
+    "inner_cv": 3,
+    "k_values": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "auto": "unchanged RFECV / LassoCV",
+    "preprocessing": "median imputation, StandardScaler, original formal implementation",
+    "methods": [
+      "f_test",
+      "mutual_information",
+      "rfe",
+      "forward_sfs",
+      "rfecv",
+      "lasso_cv"
+    ],
+    "bounded_probe_work_cap": 300000000,
+    "probe_scope": "Only the independent experiment adapter/native harness temporarily probes a bounded candidate cap. Production cap stays 100 million; original selector safety rules and fit implementations remain unchanged.",
+    "additional_predeclared_stress": "2000x15, k1..11, work245376000; separate from original grid, not the user case."
+  },
+  "native": {
+    "environment": {
+      "python": "3.10.17",
+      "numpy": "2.2.6",
+      "pandas": "2.3.3",
+      "scipy": "1.15.3",
+      "sklearn": "1.7.2",
+      "joblib": "1.6.0"
+    },
+    "cases": [
+      {
+        "name": "n500-p10",
+        "rows": 500,
+        "features": 10,
+        "work": 18496000,
+        "fits": 1156,
+        "sum_cv_training": 1600,
+        "allowed_candidate": true,
+        "reason": null,
+        "methods": [
+          {
+            "method": "f_test",
+            "ms": 843.1549159577116,
+            "status": "compared",
+            "errors": [],
+            "points": 10,
+            "automatic": 0
+          },
+          {
+            "method": "mutual_information",
+            "ms": 1224.6331670321524,
+            "status": "compared",
+            "errors": [],
+            "points": 10,
+            "automatic": 0
+          },
+          {
+            "method": "rfe",
+            "ms": 2582.8862090129405,
+            "status": "compared",
+            "errors": [],
+            "points": 10,
+            "automatic": 0
+          },
+          {
+            "method": "forward_sfs",
+            "ms": 23534.668582957238,
+            "status": "compared",
+            "errors": [],
+            "points": 10,
+            "automatic": 0
+          },
+          {
+            "method": "rfecv",
+            "ms": 1376.2531670508906,
+            "status": "compared",
+            "errors": [],
+            "points": 0,
+            "automatic": 1
+          },
+          {
+            "method": "lasso_cv",
+            "ms": 299.8144159791991,
+            "status": "compared",
+            "errors": [],
+            "points": 0,
+            "automatic": 1
+          }
+        ],
+        "k_values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "cv_splits": 5,
+        "inner_cv": 3,
+        "seed": 42,
+        "environment": "native Python",
+        "elapsed_ms": 29862.874666927382,
+        "peak_process_rss_bytes": 148946944,
+        "status": "PASS"
+      },
+      {
+        "name": "n500-p15",
+        "rows": 500,
+        "features": 15,
+        "work": 53208000,
+        "fits": 2217,
+        "sum_cv_training": 1600,
+        "allowed_candidate": true,
+        "reason": null,
+        "methods": [
+          {
+            "method": "f_test",
+            "ms": 1245.4730829922482,
+            "status": "compared",
+            "errors": [],
+            "points": 10,
+            "automatic": 0
+          },
+          {
+            "method": "mutual_information",
+            "ms": 1808.8467499474064,
+            "status": "compared",
+            "errors": [],
+            "points": 10,
+            "automatic": 0
+          },
+          {
+            "method": "rfe",
+            "ms": 6079.162791953422,
+            "status": "compared",
+            "errors": [],
+            "points": 10,
+            "automatic": 0
+          },
+          {
+            "method": "forward_sfs",
+            "ms": 52405.89341695886,
+            "status": "compared",
+            "errors": [],
+            "points": 10,
+            "automatic": 0
+          },
+          {
+            "method": "rfecv",
+            "ms": 2924.1301249712706,
+            "status": "compared",
+            "errors": [],
+            "points": 0,
+            "automatic": 1
+          },
+          {
+            "method": "lasso_cv",
+            "ms": 427.21641599200666,
+            "status": "compared",
+            "errors": [],
+            "points": 0,
+            "automatic": 1
+          }
+        ],
+        "k_values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "cv_splits": 5,
+        "inner_cv": 3,
+        "seed": 42,
+        "environment": "native Python",
+        "elapsed_ms": 64892.41854194552,
+        "peak_process_rss_bytes": 149782528,
+        "status": "PASS"
+      },
+      {
+        "name": "n500-p25",
+        "rows": 500,
+        "features": 25,
+        "work": 160280000,
+        "fits": 4007,
+        "sum_cv_training": 1600,
+        "allowed_candidate": false,
+        "reason": "Forward SFS 較慢，限 2,000 筆、15 個候選欄；請縮小資料或候選欄位。",
+        "methods": [
+          "f_test",
+          "mutual_information",
+          "rfe",
+          "forward_sfs",
+          "rfecv",
+          "lasso_cv"
+        ],
+        "k_values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "cv_splits": 5,
+        "inner_cv": 3,
+        "seed": 42,
+        "status": "REJECTED_BEFORE_FIT",
+        "elapsed_ms": null,
+        "timing_note": "No model fit performed; rejected by original selector shape guards."
+      },
+      {
+        "name": "n1000-p10",
+        "rows": 1000,
+        "features": 10,
+        "work": 36992000,
+        "fits": 1156,
+        "sum_cv_training": 3200,
+        "allowed_candidate": true,
+        "reason": null,
+        "methods": [
+          {
+            "method": "f_test",
+            "ms": 876.0152079630643,
+            "status": "compared",
+            "errors": [],
+            "points": 10,
+            "automatic": 0
+          },
+          {
+            "method": "mutual_information",
+            "ms": 1531.663625035435,
+            "status": "compared",
+            "errors": [],
+            "points": 10,
+            "automatic": 0
+          },
+          {
+            "method": "rfe",
+            "ms": 2664.5146659575403,
+            "status": "compared",
+            "errors": [],
+            "points": 10,
+            "automatic": 0
+          },
+          {
+            "method": "forward_sfs",
+            "ms": 24180.543833994307,
+            "status": "compared",
+            "errors": [],
+            "points": 10,
+            "automatic": 0
+          },
+          {
+            "method": "rfecv",
+            "ms": 1439.9746250128374,
+            "status": "compared",
+            "errors": [],
+            "points": 0,
+            "automatic": 1
+          },
+          {
+            "method": "lasso_cv",
+            "ms": 318.5900839744136,
+            "status": "compared",
+            "errors": [],
+            "points": 0,
+            "automatic": 1
+          }
+        ],
+        "k_values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "cv_splits": 5,
+        "inner_cv": 3,
+        "seed": 42,
+        "environment": "native Python",
+        "elapsed_ms": 31012.8319170326,
+        "peak_process_rss_bytes": 149962752,
+        "status": "PASS"
+      },
+      {
+        "name": "n1000-p15",
+        "rows": 1000,
+        "features": 15,
+        "work": 106416000,
+        "fits": 2217,
+        "sum_cv_training": 3200,
+        "allowed_candidate": true,
+        "reason": null,
+        "methods": [
+          {
+            "method": "f_test",
+            "ms": 1271.2388329673558,
+            "status": "compared",
+            "errors": [],
+            "points": 10,
+            "automatic": 0
+          },
+          {
+            "method": "mutual_information",
+            "ms": 2326.0123330401257,
+            "status": "compared",
+            "errors": [],
+            "points": 10,
+            "automatic": 0
+          },
+          {
+            "method": "rfe",
+            "ms": 6140.610167058185,
+            "status": "compared",
+            "errors": [],
+            "points": 10,
+            "automatic": 0
+          },
+          {
+            "method": "forward_sfs",
+            "ms": 53668.20837499108,
+            "status": "compared",
+            "errors": [],
+            "points": 10,
+            "automatic": 0
+          },
+          {
+            "method": "rfecv",
+            "ms": 3004.932333016768,
+            "status": "compared",
+            "errors": [],
+            "points": 0,
+            "automatic": 1
+          },
+          {
+            "method": "lasso_cv",
+            "ms": 441.94566702935845,
+            "status": "compared",
+            "errors": [],
+            "points": 0,
+            "automatic": 1
+          }
+        ],
+        "k_values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "cv_splits": 5,
+        "inner_cv": 3,
+        "seed": 42,
+        "environment": "native Python",
+        "elapsed_ms": 66854.5637089992,
+        "peak_process_rss_bytes": 151257088,
+        "status": "PASS"
+      },
+      {
+        "name": "n1000-p25",
+        "rows": 1000,
+        "features": 25,
+        "work": 320560000,
+        "fits": 4007,
+        "sum_cv_training": 3200,
+        "allowed_candidate": false,
+        "reason": "Forward SFS 較慢，限 2,000 筆、15 個候選欄；請縮小資料或候選欄位。",
+        "methods": [
+          "f_test",
+          "mutual_information",
+          "rfe",
+          "forward_sfs",
+          "rfecv",
+          "lasso_cv"
+        ],
+        "k_values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "cv_splits": 5,
+        "inner_cv": 3,
+        "seed": 42,
+        "status": "REJECTED_BEFORE_FIT",
+        "elapsed_ms": null,
+        "timing_note": "No model fit performed; rejected by original selector shape guards."
+      },
+      {
+        "name": "n2000-p10",
+        "rows": 2000,
+        "features": 10,
+        "work": 73984000,
+        "fits": 1156,
+        "sum_cv_training": 6400,
+        "allowed_candidate": true,
+        "reason": null,
+        "methods": [
+          {
+            "method": "f_test",
+            "ms": 929.5542920008302,
+            "status": "compared",
+            "errors": [],
+            "points": 10,
+            "automatic": 0
+          },
+          {
+            "method": "mutual_information",
+            "ms": 2201.884916983545,
+            "status": "compared",
+            "errors": [],
+            "points": 10,
+            "automatic": 0
+          },
+          {
+            "method": "rfe",
+            "ms": 2833.3395830122754,
+            "status": "compared",
+            "errors": [],
+            "points": 10,
+            "automatic": 0
+          },
+          {
+            "method": "forward_sfs",
+            "ms": 24816.423667012714,
+            "status": "compared",
+            "errors": [],
+            "points": 10,
+            "automatic": 0
+          },
+          {
+            "method": "rfecv",
+            "ms": 1525.192583911121,
+            "status": "compared",
+            "errors": [],
+            "points": 0,
+            "automatic": 1
+          },
+          {
+            "method": "lasso_cv",
+            "ms": 340.7735840883106,
+            "status": "compared",
+            "errors": [],
+            "points": 0,
+            "automatic": 1
+          }
+        ],
+        "k_values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "cv_splits": 5,
+        "inner_cv": 3,
+        "seed": 42,
+        "environment": "native Python",
+        "elapsed_ms": 32648.797292029485,
+        "peak_process_rss_bytes": 152698880,
+        "status": "PASS"
+      },
+      {
+        "name": "n2000-p15",
+        "rows": 2000,
+        "features": 15,
+        "work": 212832000,
+        "fits": 2217,
+        "sum_cv_training": 6400,
+        "allowed_candidate": true,
+        "reason": null,
+        "methods": [
+          {
+            "method": "f_test",
+            "ms": 1338.6501249624416,
+            "status": "compared",
+            "errors": [],
+            "points": 10,
+            "automatic": 0
+          },
+          {
+            "method": "mutual_information",
+            "ms": 3447.7717500412837,
+            "status": "compared",
+            "errors": [],
+            "points": 10,
+            "automatic": 0
+          },
+          {
+            "method": "rfe",
+            "ms": 6472.303875023499,
+            "status": "compared",
+            "errors": [],
+            "points": 10,
+            "automatic": 0
+          },
+          {
+            "method": "forward_sfs",
+            "ms": 55183.068790938705,
+            "status": "compared",
+            "errors": [],
+            "points": 10,
+            "automatic": 0
+          },
+          {
+            "method": "rfecv",
+            "ms": 3130.0732500385493,
+            "status": "compared",
+            "errors": [],
+            "points": 0,
+            "automatic": 1
+          },
+          {
+            "method": "lasso_cv",
+            "ms": 488.14849997870624,
+            "status": "compared",
+            "errors": [],
+            "points": 0,
+            "automatic": 1
+          }
+        ],
+        "k_values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "cv_splits": 5,
+        "inner_cv": 3,
+        "seed": 42,
+        "environment": "native Python",
+        "elapsed_ms": 70061.71058304608,
+        "peak_process_rss_bytes": 156303360,
+        "status": "PASS"
+      },
+      {
+        "name": "n2000-p25",
+        "rows": 2000,
+        "features": 25,
+        "work": 641120000,
+        "fits": 4007,
+        "sum_cv_training": 6400,
+        "allowed_candidate": false,
+        "reason": "Forward SFS 較慢，限 2,000 筆、15 個候選欄；請縮小資料或候選欄位。",
+        "methods": [
+          "f_test",
+          "mutual_information",
+          "rfe",
+          "forward_sfs",
+          "rfecv",
+          "lasso_cv"
+        ],
+        "k_values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "cv_splits": 5,
+        "inner_cv": 3,
+        "seed": 42,
+        "status": "REJECTED_BEFORE_FIT",
+        "elapsed_ms": null,
+        "timing_note": "No model fit performed; rejected by original selector shape guards."
+      },
+      {
+        "name": "n5000-p10",
+        "rows": 5000,
+        "features": 10,
+        "work": 184960000,
+        "fits": 1156,
+        "sum_cv_training": 16000,
+        "allowed_candidate": false,
+        "reason": "Forward SFS 較慢，限 2,000 筆、15 個候選欄；請縮小資料或候選欄位。",
+        "methods": [
+          "f_test",
+          "mutual_information",
+          "rfe",
+          "forward_sfs",
+          "rfecv",
+          "lasso_cv"
+        ],
+        "k_values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "cv_splits": 5,
+        "inner_cv": 3,
+        "seed": 42,
+        "status": "REJECTED_BEFORE_FIT",
+        "elapsed_ms": null,
+        "timing_note": "No model fit performed; rejected by original selector shape guards."
+      },
+      {
+        "name": "n5000-p15",
+        "rows": 5000,
+        "features": 15,
+        "work": 532080000,
+        "fits": 2217,
+        "sum_cv_training": 16000,
+        "allowed_candidate": false,
+        "reason": "Forward SFS 較慢，限 2,000 筆、15 個候選欄；請縮小資料或候選欄位。",
+        "methods": [
+          "f_test",
+          "mutual_information",
+          "rfe",
+          "forward_sfs",
+          "rfecv",
+          "lasso_cv"
+        ],
+        "k_values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "cv_splits": 5,
+        "inner_cv": 3,
+        "seed": 42,
+        "status": "REJECTED_BEFORE_FIT",
+        "elapsed_ms": null,
+        "timing_note": "No model fit performed; rejected by original selector shape guards."
+      },
+      {
+        "name": "n5000-p25",
+        "rows": 5000,
+        "features": 25,
+        "work": 1602800000,
+        "fits": 4007,
+        "sum_cv_training": 16000,
+        "allowed_candidate": false,
+        "reason": "Forward SFS 較慢，限 2,000 筆、15 個候選欄；請縮小資料或候選欄位。",
+        "methods": [
+          "f_test",
+          "mutual_information",
+          "rfe",
+          "forward_sfs",
+          "rfecv",
+          "lasso_cv"
+        ],
+        "k_values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "cv_splits": 5,
+        "inner_cv": 3,
+        "seed": 42,
+        "status": "REJECTED_BEFORE_FIT",
+        "elapsed_ms": null,
+        "timing_note": "No model fit performed; rejected by original selector shape guards."
+      },
+      {
+        "name": "n2000-p15-k11",
+        "rows": 2000,
+        "features": 15,
+        "work": 245376000,
+        "fits": 2556,
+        "sum_cv_training": 6400,
+        "allowed_candidate": true,
+        "reason": null,
+        "methods": [
+          {
+            "method": "f_test",
+            "ms": 1468.8227910082787,
+            "status": "compared",
+            "errors": [],
+            "points": 11,
+            "automatic": 0
+          },
+          {
+            "method": "mutual_information",
+            "ms": 3835.621083038859,
+            "status": "compared",
+            "errors": [],
+            "points": 11,
+            "automatic": 0
+          },
+          {
+            "method": "rfe",
+            "ms": 6941.703082993627,
+            "status": "compared",
+            "errors": [],
+            "points": 11,
+            "automatic": 0
+          },
+          {
+            "method": "forward_sfs",
+            "ms": 67428.49716695491,
+            "status": "compared",
+            "errors": [],
+            "points": 11,
+            "automatic": 0
+          },
+          {
+            "method": "rfecv",
+            "ms": 3156.640166998841,
+            "status": "compared",
+            "errors": [],
+            "points": 0,
+            "automatic": 1
+          },
+          {
+            "method": "lasso_cv",
+            "ms": 498.9435001043603,
+            "status": "compared",
+            "errors": [],
+            "points": 0,
+            "automatic": 1
+          }
+        ],
+        "k_values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "cv_splits": 5,
+        "inner_cv": 3,
+        "seed": 42,
+        "scope": "Additional predefined stress case, not a replacement/reduction of any original k grid or a reconstruction of user CSV.",
+        "environment": "native Python",
+        "elapsed_ms": 83331.9429999683,
+        "peak_process_rss_bytes": 156614656,
+        "status": "PASS"
+      }
+    ],
+    "memory_note": "Per-case peak process RSS, not whole-system RAM; rejected cases performed no fit."
+  },
+  "browser": {
+    "status": "stopped_on_timeout",
+    "cases": [
+      {
+        "name": "n500-p10",
+        "rows": 500,
+        "features": 10,
+        "work": 18496000,
+        "fits": 1156,
+        "sum_cv_training": 1600,
+        "allowed_candidate": true,
+        "reason": null,
+        "methods": [
+          {
+            "method": "f_test",
+            "elapsed_ms": 11089.999999999996,
+            "status": "compared",
+            "points": 10,
+            "automatic": 0,
+            "warnings": [
+              "原始候選輸入少於 13 欄；此為作業資料規範，與選取後 k 分開。"
+            ],
+            "errors": [],
+            "worker_ms": 11095.200000047684,
+            "memory": {
+              "wasm_capacity_bytes": 195624960,
+              "worker_js_heap": null
+            },
+            "round_trip_ms": 11095.899999976158
+          },
+          {
+            "method": "mutual_information",
+            "elapsed_ms": 16012.700000000003,
+            "status": "compared",
+            "points": 10,
+            "automatic": 0,
+            "warnings": [
+              "原始候選輸入少於 13 欄；此為作業資料規範，與選取後 k 分開。"
+            ],
+            "errors": [],
+            "worker_ms": 16028.100000023842,
+            "memory": {
+              "wasm_capacity_bytes": 234749952,
+              "worker_js_heap": null
+            },
+            "round_trip_ms": 16031.299999952316
+          },
+          {
+            "method": "rfe",
+            "elapsed_ms": 34112.3,
+            "status": "compared",
+            "points": 10,
+            "automatic": 0,
+            "warnings": [
+              "原始候選輸入少於 13 欄；此為作業資料規範，與選取後 k 分開。"
+            ],
+            "errors": [],
+            "worker_ms": 34128.10000002384,
+            "memory": {
+              "wasm_capacity_bytes": 234749952,
+              "worker_js_heap": null
+            },
+            "round_trip_ms": 34132.90000009537
+          }
+        ],
+        "k_values": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "cv_splits": 5,
+        "inner_cv": 3,
+        "seed": 42,
+        "methods_requested": [
+          "f_test",
+          "mutual_information",
+          "rfe",
+          "forward_sfs",
+          "rfecv",
+          "lasso_cv"
+        ],
+        "status": "TIMEOUT",
+        "memory": [
+          {
+            "wasm_capacity_bytes": 195624960,
+            "worker_js_heap": null
+          },
+          {
+            "wasm_capacity_bytes": 195624960,
+            "worker_js_heap": null
+          },
+          {
+            "wasm_capacity_bytes": 234749952,
+            "worker_js_heap": null
+          },
+          {
+            "wasm_capacity_bytes": 234749952,
+            "worker_js_heap": null
+          }
+        ],
+        "admission": {
+          "status": "admitted",
+          "admission_ms": 95.90000000000032,
+          "elapsed_ms": 420.2000000476837,
+          "memory": {
+            "wasm_capacity_bytes": 195624960,
+            "worker_js_heap": null
+          }
+        },
+        "elapsed_ms": 180002,
+        "last_stage": "n500-p10:forward_sfs"
+      }
+    ],
+    "events": [
+      {
+        "kind": "stage",
+        "at": 71682.39999997616
+      },
+      {
+        "kind": "ready",
+        "at": 108734.10000002384
+      },
+      {
+        "kind": "admission",
+        "at": 109178.79999995232
+      },
+      {
+        "kind": "method_start",
+        "at": 109179.39999997616,
+        "method": "f_test"
+      },
+      {
+        "kind": "method_result",
+        "at": 120275,
+        "method": "f_test"
+      },
+      {
+        "kind": "method_start",
+        "at": 120281.39999997616,
+        "method": "mutual_information"
+      },
+      {
+        "kind": "method_result",
+        "at": 136306.29999995232,
+        "method": "mutual_information"
+      },
+      {
+        "kind": "method_start",
+        "at": 136312.20000004768,
+        "method": "rfe"
+      },
+      {
+        "kind": "method_result",
+        "at": 170439.20000004768,
+        "method": "rfe"
+      },
+      {
+        "kind": "method_start",
+        "at": 170439.39999997616,
+        "method": "forward_sfs"
+      }
+    ],
+    "cache": "Uncontrolled HTTP cache; not cold-start benchmark",
+    "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36",
+    "hardware_concurrency": 8,
+    "device_memory_gib": 16,
+    "initialization": {
+      "runtime_ms": 4971.700000047684,
+      "packages_ms": 8455.699999928474,
+      "total_ms": 37051.700000047684,
+      "memory": {
+        "wasm_capacity_bytes": 162988032,
+        "worker_js_heap": null
+      }
+    },
+    "stage": "n500-p10:forward_sfs",
+    "remaining_workers": 0
+  },
+  "browser_interpretation": {
+    "result": "TIMEOUT / performance FAIL",
+    "completed_methods": 3,
+    "last_stage": "forward_sfs",
+    "larger_browser_cases": "Not executed after the first timeout; do not claim these were measured in Browser Mode.",
+    "case_watchdog_scope": "180 seconds of the six-method case, after environment initialization. Production compare client instead includes worker startup and loading in its 180 second job budget.",
+    "approx_environment_plus_case_ms": 217053.70000004768,
+    "memory": "Largest sampled WASM allocated capacity 234749952 bytes; not live heap or process RSS and not an observed peak during synchronous SFS. No actual OOM observed.",
+    "cache": "Uncontrolled; not a cold-start benchmark.",
+    "hardware": "Apple M2, 16 GiB physical RAM; browser reports 8 logical CPUs.",
+    "version": "Pyodide 314.0.7 / sklearn 1.8.0"
+  },
+  "acceptance": {
+    "web_tests": {
+      "passed": 165,
+      "failed": 0
+    },
+    "related_python_tests": {
+      "passed": 67,
+      "failed": 0
+    },
+    "m16_gateway_tests": {
+      "passed": 9,
+      "failed": 0
+    },
+    "typecheck": "PASS",
+    "lint": "PASS",
+    "production_build": "PASS",
+    "real_production_worker": "PASS; original missing-value fixture validation, RFE training, prediction and disposable comparison ran in the build on port3018",
+    "model_retention_record": "web/verification/m17-comparison-retention.json",
+    "high_load_ui_record": "web/verification/m17-comparison-ui.json",
+    "legacy_python_head_contract": "Known historical HEAD contract mismatch; full legacy suite not re-run or bypassed in this task.",
+    "safari": "This task used Chromium automated checks. New confirmation UI not manually re-tested in Safari."
+  },
+  "integrity": {
+    "changed_tracked_files": [
+      "src/custom_dataset_comparison.py",
+      "tests/test_custom_dataset_comparison.py",
+      "web/README.md",
+      "web/browser-compute/README.md",
+      "web/components/custom-comparison-panel.tsx",
+      "web/components/custom-compute-provider.tsx",
+      "web/components/custom-prediction-form.tsx",
+      "web/components/custom-training-panel.tsx",
+      "web/lib/browser-compute/client.ts",
+      "web/lib/browser-compute/source-lock.ts",
+      "web/lib/custom-comparison-work.ts",
+      "web/lib/custom-compute-proxy.ts",
+      "web/lib/custom-validation-service.ts",
+      "web/public/browser-compute/modules/lib/browser-compute/client.mjs",
+      "web/public/browser-compute/modules/lib/browser-compute/source-lock.mjs",
+      "web/public/browser-compute/python-manifest.json",
+      "web/public/browser-compute/worker.mjs",
+      "web/tests/custom-prediction.test.ts"
+    ],
+    "staged_files": [],
+    "historical_experiments_checked": 188,
+    "historical_experiments_changed": [],
+    "protected_changes": [],
+    "comparison_python_change": "Only optional high-load confirmation policy and MemoryError report; no selector/fit/CV/numerical code changed.",
+    "boston_housing_tracked": false,
+    "git_commit_push_deploy_performed": false
+  },
+  "limitations": [
+    "Work estimate is a guard, not a time predictor; Browser SFS multi-k is substantially more costly than one-k six-method training.",
+    "The existing 100 million cap does not guarantee completion within 180 seconds.",
+    "Disposable comparison Worker increases combined runtime memory while preserving the primary model Worker. A whole renderer/OS OOM kill or existing model TTL expiration can still invalidate in-memory models.",
+    "Remote host execution/network limits may end a Server request before the application 180 second watchdog. No cloud benchmark or deployment was performed."
+  ],
+  "cleanup": {
+    "benchmark_server_8773": "stopped",
+    "browser_workers_remaining": 0,
+    "production_server_3018": "left running as previously requested"
+  }
+}

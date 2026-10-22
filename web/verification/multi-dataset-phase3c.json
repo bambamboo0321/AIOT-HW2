@@ -1,0 +1,906 @@
+{
+  "task": "Multi-Dataset Phase 3C: Feature Selection Integration",
+  "status": "PASS",
+  "recordedAt": "2026-10-21T07:59:21.925694+00:00",
+  "branch": "experiment/m17-pyodide",
+  "head": "4555ec599fffa0f6a3c8f16c68c1a5131c72a7c4",
+  "modifiedFiles": [
+    "web/app/feature-selection/page.tsx",
+    "web/components/dataset-navigation.tsx",
+    "web/components/study-overview.tsx",
+    "web/lib/dataset-registry.ts",
+    "web/tests/dataset-registry.test.ts",
+    "web/tests/multi-dataset-production.mjs",
+    "web/tests/study-overview.test.ts"
+  ],
+  "addedFiles": [
+    "web/components/study-feature-explorer.tsx",
+    "web/components/study-feature-selection.tsx",
+    "web/data/research-feature-selection/README.md",
+    "web/data/research-feature-selection/v1/automobile-price.json",
+    "web/data/research-feature-selection/v1/manifest.json",
+    "web/data/research-feature-selection/v1/student-performance.json",
+    "web/lib/load-study-feature-selection.ts",
+    "web/lib/study-feature-selection-data.ts",
+    "web/scripts/export-study-feature-selection.py",
+    "web/tests/study-feature-selection.test.ts",
+    "web/verification/multi-dataset-phase3c.json"
+  ],
+  "checks": {
+    "typecheck": "PASS",
+    "lint": "PASS",
+    "webTests": {
+      "pass": 190,
+      "fail": 0,
+      "skip": 0
+    },
+    "relatedTestsAfterFinalChartAdjustment": {
+      "pass": 9,
+      "fail": 0
+    },
+    "productionBuild": "PASS",
+    "sourceExportReproduction": "PASS",
+    "sixMethodSources": 12,
+    "outerFoldEvidenceChecked": 60,
+    "cvMeanAndStdRecomputed": "PASS",
+    "trainingHoldoutAndInnerPartitionsChecked": "PASS",
+    "productionHttp": {
+      "status": "PASS",
+      "checks": 26,
+      "records": [
+        {
+          "path": "/",
+          "dataset": "automobile-price",
+          "state": "overview-ready",
+          "energyResultsAbsent": true
+        },
+        {
+          "path": "/",
+          "dataset": "student-performance",
+          "state": "overview-ready",
+          "energyResultsAbsent": true
+        },
+        {
+          "path": "/",
+          "query": "",
+          "state": "energy"
+        },
+        {
+          "path": "/",
+          "query": "?dataset=appliances-energy",
+          "state": "energy"
+        },
+        {
+          "path": "/",
+          "query": "?dataset=invalid",
+          "state": "energy"
+        },
+        {
+          "path": "/",
+          "query": "?dataset=student-performance&dataset=automobile-price",
+          "state": "energy"
+        },
+        {
+          "path": "/feature-selection",
+          "dataset": "automobile-price",
+          "state": "feature-selection-ready",
+          "energyResultsAbsent": true
+        },
+        {
+          "path": "/feature-selection",
+          "dataset": "student-performance",
+          "state": "feature-selection-ready",
+          "energyResultsAbsent": true
+        },
+        {
+          "path": "/feature-selection",
+          "query": "",
+          "state": "energy"
+        },
+        {
+          "path": "/feature-selection",
+          "query": "?dataset=appliances-energy",
+          "state": "energy"
+        },
+        {
+          "path": "/feature-selection",
+          "query": "?dataset=invalid",
+          "state": "energy"
+        },
+        {
+          "path": "/feature-selection",
+          "query": "?dataset=student-performance&dataset=automobile-price",
+          "state": "energy"
+        },
+        {
+          "path": "/model-evaluation",
+          "dataset": "automobile-price",
+          "state": "not-connected",
+          "energyResultsAbsent": true
+        },
+        {
+          "path": "/model-evaluation",
+          "dataset": "student-performance",
+          "state": "not-connected",
+          "energyResultsAbsent": true
+        },
+        {
+          "path": "/model-evaluation",
+          "query": "",
+          "state": "energy"
+        },
+        {
+          "path": "/model-evaluation",
+          "query": "?dataset=appliances-energy",
+          "state": "energy"
+        },
+        {
+          "path": "/model-evaluation",
+          "query": "?dataset=invalid",
+          "state": "energy"
+        },
+        {
+          "path": "/model-evaluation",
+          "query": "?dataset=student-performance&dataset=automobile-price",
+          "state": "energy"
+        },
+        {
+          "path": "/prediction-explorer",
+          "dataset": "automobile-price",
+          "state": "not-connected",
+          "energyResultsAbsent": true
+        },
+        {
+          "path": "/prediction-explorer",
+          "dataset": "student-performance",
+          "state": "not-connected",
+          "energyResultsAbsent": true
+        },
+        {
+          "path": "/prediction-explorer",
+          "query": "",
+          "state": "energy"
+        },
+        {
+          "path": "/prediction-explorer",
+          "query": "?dataset=appliances-energy",
+          "state": "energy"
+        },
+        {
+          "path": "/prediction-explorer",
+          "query": "?dataset=invalid",
+          "state": "energy"
+        },
+        {
+          "path": "/prediction-explorer",
+          "query": "?dataset=student-performance&dataset=automobile-price",
+          "state": "energy"
+        },
+        {
+          "path": "/custom-dataset",
+          "queryDataset": "automobile-price",
+          "state": "independent",
+          "serverDefault": true
+        },
+        {
+          "path": "/custom-dataset",
+          "queryDataset": "student-performance",
+          "state": "independent",
+          "serverDefault": true
+        }
+      ],
+      "energyPredictionApiUnchanged": true
+    },
+    "productionBrowser": {
+      "methodChecks": [
+        {
+          "dataset": "student-performance",
+          "method": "f_test",
+          "featureCount": 7,
+          "foldK": [
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "status": "PASS"
+        },
+        {
+          "dataset": "student-performance",
+          "method": "mutual_information",
+          "featureCount": 7,
+          "foldK": [
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "status": "PASS"
+        },
+        {
+          "dataset": "student-performance",
+          "method": "forward_sfs",
+          "featureCount": 7,
+          "foldK": [
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "status": "PASS"
+        },
+        {
+          "dataset": "student-performance",
+          "method": "rfe",
+          "featureCount": 7,
+          "foldK": [
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "status": "PASS"
+        },
+        {
+          "dataset": "student-performance",
+          "method": "lasso_cv",
+          "featureCount": 5,
+          "foldK": [
+            4,
+            15,
+            8,
+            14,
+            3
+          ],
+          "status": "PASS"
+        },
+        {
+          "dataset": "student-performance",
+          "method": "rfecv",
+          "featureCount": 2,
+          "foldK": [
+            2,
+            5,
+            2,
+            2,
+            2
+          ],
+          "status": "PASS"
+        },
+        {
+          "dataset": "automobile-price",
+          "method": "f_test",
+          "featureCount": 7,
+          "foldK": [
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "status": "PASS"
+        },
+        {
+          "dataset": "automobile-price",
+          "method": "mutual_information",
+          "featureCount": 7,
+          "foldK": [
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "status": "PASS"
+        },
+        {
+          "dataset": "automobile-price",
+          "method": "forward_sfs",
+          "featureCount": 7,
+          "foldK": [
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "status": "PASS"
+        },
+        {
+          "dataset": "automobile-price",
+          "method": "rfe",
+          "featureCount": 7,
+          "foldK": [
+            7,
+            7,
+            7,
+            7,
+            7
+          ],
+          "status": "PASS"
+        },
+        {
+          "dataset": "automobile-price",
+          "method": "lasso_cv",
+          "featureCount": 9,
+          "foldK": [
+            10,
+            8,
+            8,
+            9,
+            10
+          ],
+          "status": "PASS"
+        },
+        {
+          "dataset": "automobile-price",
+          "method": "rfecv",
+          "featureCount": 3,
+          "foldK": [
+            3,
+            4,
+            3,
+            5,
+            7
+          ],
+          "status": "PASS"
+        }
+      ],
+      "methodAndMetricResetOnDatasetChange": true,
+      "resetOnRefresh": true,
+      "historyBackForward": true,
+      "overviewNavigation": true,
+      "mobile": {
+        "width": 390,
+        "overflow": false,
+        "finalFeatures": [
+          "studytime",
+          "failures",
+          "freetime",
+          "G1",
+          "G2"
+        ],
+        "foldK": [
+          4,
+          15,
+          8,
+          14,
+          3
+        ],
+        "metric": "r2"
+      },
+      "provenanceOverflow": false,
+      "energy": {
+        "selector": "appliances-energy",
+        "originalKControl": true,
+        "timeCV": true,
+        "phase3d": true,
+        "studyStateAbsent": true
+      },
+      "themeToggle": true,
+      "custom": {
+        "selectorHidden": true,
+        "serverDefault": true,
+        "sameInputNode": true,
+        "target": "target",
+        "confirmationRetained": true,
+        "csvRetained": true,
+        "browserModeRetained": true
+      },
+      "status": "PASS",
+      "browser": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36"
+    },
+    "diffCheck": "PASS"
+  },
+  "methods": {
+    "automobile-price": [
+      {
+        "id": "f_test",
+        "mode": "fixed",
+        "finalK": 7,
+        "features": [
+          "length",
+          "width",
+          "curb-weight",
+          "engine-size",
+          "horsepower",
+          "city-mpg",
+          "highway-mpg"
+        ],
+        "cv": {
+          "status": "ready",
+          "mean": {
+            "rmse": 3032.5185228512773,
+            "mae": 2171.13825015876,
+            "r2": 0.775311396440322
+          },
+          "std": {
+            "rmse": 386.4534279896951,
+            "mae": 174.57704769366688,
+            "r2": 0.07179696061004304
+          },
+          "foldCount": 5,
+          "stdDDoF": 0
+        },
+        "foldK": [
+          7,
+          7,
+          7,
+          7,
+          7
+        ]
+      },
+      {
+        "id": "mutual_information",
+        "mode": "fixed",
+        "finalK": 7,
+        "features": [
+          "length",
+          "width",
+          "curb-weight",
+          "engine-size",
+          "horsepower",
+          "city-mpg",
+          "highway-mpg"
+        ],
+        "cv": {
+          "status": "ready",
+          "mean": {
+            "rmse": 3013.100461350188,
+            "mae": 2166.2889191155036,
+            "r2": 0.7775735647187209
+          },
+          "std": {
+            "rmse": 350.5561907182682,
+            "mae": 177.27583271193384,
+            "r2": 0.07202091848081546
+          },
+          "foldCount": 5,
+          "stdDDoF": 0
+        },
+        "foldK": [
+          7,
+          7,
+          7,
+          7,
+          7
+        ]
+      },
+      {
+        "id": "forward_sfs",
+        "mode": "fixed",
+        "finalK": 7,
+        "features": [
+          "normalized-losses",
+          "width",
+          "height",
+          "engine-size",
+          "horsepower",
+          "city-mpg",
+          "highway-mpg"
+        ],
+        "cv": {
+          "status": "ready",
+          "mean": {
+            "rmse": 3268.7532695010623,
+            "mae": 2278.5303530491224,
+            "r2": 0.7483844998658068
+          },
+          "std": {
+            "rmse": 381.2971908013317,
+            "mae": 217.2878001394883,
+            "r2": 0.045483429015435985
+          },
+          "foldCount": 5,
+          "stdDDoF": 0
+        },
+        "foldK": [
+          7,
+          7,
+          7,
+          7,
+          7
+        ]
+      },
+      {
+        "id": "rfe",
+        "mode": "fixed",
+        "finalK": 7,
+        "features": [
+          "wheel-base",
+          "length",
+          "width",
+          "engine-size",
+          "horsepower",
+          "city-mpg",
+          "highway-mpg"
+        ],
+        "cv": {
+          "status": "ready",
+          "mean": {
+            "rmse": 3217.0176696309272,
+            "mae": 2339.4201226243867,
+            "r2": 0.7435901708906745
+          },
+          "std": {
+            "rmse": 289.79144131862546,
+            "mae": 116.26552767212618,
+            "r2": 0.08715901923604995
+          },
+          "foldCount": 5,
+          "stdDDoF": 0
+        },
+        "foldK": [
+          7,
+          7,
+          7,
+          7,
+          7
+        ]
+      },
+      {
+        "id": "lasso_cv",
+        "mode": "auto",
+        "finalK": 9,
+        "features": [
+          "normalized-losses",
+          "wheel-base",
+          "width",
+          "engine-size",
+          "bore",
+          "stroke",
+          "horsepower",
+          "city-mpg",
+          "fuel-type"
+        ],
+        "cv": {
+          "status": "ready",
+          "mean": {
+            "rmse": 3060.085727619339,
+            "mae": 2150.396239700446,
+            "r2": 0.7761623680051326
+          },
+          "std": {
+            "rmse": 339.8485847399477,
+            "mae": 151.87677978285598,
+            "r2": 0.05353462578345006
+          },
+          "foldCount": 5,
+          "stdDDoF": 0
+        },
+        "foldK": [
+          10,
+          8,
+          8,
+          9,
+          10
+        ]
+      },
+      {
+        "id": "rfecv",
+        "mode": "auto",
+        "finalK": 3,
+        "features": [
+          "width",
+          "engine-size",
+          "horsepower"
+        ],
+        "cv": {
+          "status": "ready",
+          "mean": {
+            "rmse": 3147.9858165081105,
+            "mae": 2249.993320000847,
+            "r2": 0.7552214316289259
+          },
+          "std": {
+            "rmse": 315.40471154242596,
+            "mae": 125.6032109659382,
+            "r2": 0.08170414413173648
+          },
+          "foldCount": 5,
+          "stdDDoF": 0
+        },
+        "foldK": [
+          3,
+          4,
+          3,
+          5,
+          7
+        ]
+      }
+    ],
+    "student-performance": [
+      {
+        "id": "f_test",
+        "mode": "fixed",
+        "finalK": 7,
+        "features": [
+          "Medu",
+          "Fedu",
+          "studytime",
+          "failures",
+          "Dalc",
+          "G1",
+          "G2"
+        ],
+        "cv": {
+          "status": "ready",
+          "mean": {
+            "rmse": 1.2874007283282665,
+            "mae": 0.8242725196173865,
+            "r2": 0.8374620585323802
+          },
+          "std": {
+            "rmse": 0.2678586547799064,
+            "mae": 0.11609343613966111,
+            "r2": 0.040325508183529785
+          },
+          "foldCount": 5,
+          "stdDDoF": 0
+        },
+        "foldK": [
+          7,
+          7,
+          7,
+          7,
+          7
+        ]
+      },
+      {
+        "id": "mutual_information",
+        "mode": "fixed",
+        "finalK": 7,
+        "features": [
+          "Fedu",
+          "studytime",
+          "failures",
+          "Dalc",
+          "Walc",
+          "G1",
+          "G2"
+        ],
+        "cv": {
+          "status": "ready",
+          "mean": {
+            "rmse": 1.287132091493009,
+            "mae": 0.820622278254999,
+            "r2": 0.8375873735883527
+          },
+          "std": {
+            "rmse": 0.26865956174205147,
+            "mae": 0.1100566637252219,
+            "r2": 0.04029695814199603
+          },
+          "foldCount": 5,
+          "stdDDoF": 0
+        },
+        "foldK": [
+          7,
+          7,
+          7,
+          7,
+          7
+        ]
+      },
+      {
+        "id": "forward_sfs",
+        "mode": "fixed",
+        "finalK": 7,
+        "features": [
+          "age",
+          "Medu",
+          "studytime",
+          "failures",
+          "famrel",
+          "G1",
+          "G2"
+        ],
+        "cv": {
+          "status": "ready",
+          "mean": {
+            "rmse": 1.288357064378874,
+            "mae": 0.8224707778624897,
+            "r2": 0.8371304269831293
+          },
+          "std": {
+            "rmse": 0.2612718434817923,
+            "mae": 0.10198371705273321,
+            "r2": 0.039190575987423405
+          },
+          "foldCount": 5,
+          "stdDDoF": 0
+        },
+        "foldK": [
+          7,
+          7,
+          7,
+          7,
+          7
+        ]
+      },
+      {
+        "id": "rfe",
+        "mode": "fixed",
+        "finalK": 7,
+        "features": [
+          "Medu",
+          "studytime",
+          "failures",
+          "freetime",
+          "absences",
+          "G1",
+          "G2"
+        ],
+        "cv": {
+          "status": "ready",
+          "mean": {
+            "rmse": 1.3068138696373528,
+            "mae": 0.843059359154523,
+            "r2": 0.8325227012158243
+          },
+          "std": {
+            "rmse": 0.2691613697311741,
+            "mae": 0.1094322508359977,
+            "r2": 0.04093069627493909
+          },
+          "foldCount": 5,
+          "stdDDoF": 0
+        },
+        "foldK": [
+          7,
+          7,
+          7,
+          7,
+          7
+        ]
+      },
+      {
+        "id": "lasso_cv",
+        "mode": "auto",
+        "finalK": 5,
+        "features": [
+          "studytime",
+          "failures",
+          "freetime",
+          "G1",
+          "G2"
+        ],
+        "cv": {
+          "status": "ready",
+          "mean": {
+            "rmse": 1.313084785055843,
+            "mae": 0.8478942760709198,
+            "r2": 0.8305242532082824
+          },
+          "std": {
+            "rmse": 0.2650883143435507,
+            "mae": 0.11153670068896464,
+            "r2": 0.04147785225802942
+          },
+          "foldCount": 5,
+          "stdDDoF": 0
+        },
+        "foldK": [
+          4,
+          15,
+          8,
+          14,
+          3
+        ]
+      },
+      {
+        "id": "rfecv",
+        "mode": "auto",
+        "finalK": 2,
+        "features": [
+          "G1",
+          "G2"
+        ],
+        "cv": {
+          "status": "ready",
+          "mean": {
+            "rmse": 1.289092544182824,
+            "mae": 0.8236894450822568,
+            "r2": 0.8368188248919889
+          },
+          "std": {
+            "rmse": 0.2540385843945621,
+            "mae": 0.09738194789135002,
+            "r2": 0.03804721178842115
+          },
+          "foldCount": 5,
+          "stdDDoF": 0
+        },
+        "foldK": [
+          2,
+          5,
+          2,
+          2,
+          2
+        ]
+      }
+    ]
+  },
+  "productionTracing": {
+    "page": {
+      "studyDependencies": [
+        "../../../data/research-overviews/v1/automobile-price.json",
+        "../../../data/research-overviews/v1/manifest.json",
+        "../../../data/research-overviews/v1/student-performance.json"
+      ],
+      "experimentDependencies": []
+    },
+    "feature-selection/page": {
+      "studyDependencies": [
+        "../../../../data/research-feature-selection/v1/automobile-price.json",
+        "../../../../data/research-feature-selection/v1/manifest.json",
+        "../../../../data/research-feature-selection/v1/student-performance.json",
+        "../../../../data/research-overviews/v1/automobile-price.json",
+        "../../../../data/research-overviews/v1/manifest.json",
+        "../../../../data/research-overviews/v1/student-performance.json"
+      ],
+      "experimentDependencies": []
+    },
+    "model-evaluation/page": {
+      "studyDependencies": [],
+      "experimentDependencies": []
+    },
+    "prediction-explorer/page": {
+      "studyDependencies": [],
+      "experimentDependencies": []
+    }
+  },
+  "integrity": {
+    "baselineFiles": 765,
+    "authorizedExistingFilesChanged": 7,
+    "otherBaselineFilesUnchanged": 758,
+    "deleted": 0,
+    "energyPageBodyPreserved": true,
+    "energySnapshotsCurveExplorerAndPhase3DUnchanged": true,
+    "overviewOnlyAvailabilityTextUpdated": true,
+    "sfsPendingChangesPreserved": true,
+    "allExistingExperimentsPreserved": true,
+    "customDatasetAndBrowserWorkerUnchanged": true,
+    "modelEvaluationPredictionExplorerLivePredictorGatewaySessionUnchanged": true,
+    "stagingEmpty": true
+  },
+  "scope": {
+    "researchAlgorithmsRerun": false,
+    "researchDataChanged": false,
+    "committed": false,
+    "pushed": false,
+    "merged": false,
+    "deployed": false,
+    "localProductionPort": 3018
+  },
+  "limitations": [
+    "No k sweep exists for Automobile/Student; their pages intentionally show fixed k=7 and auto procedure comparisons, not complete k curves.",
+    "Automobile/Student Model Evaluation, Prediction Explorer and research Live Predictor remain unconnected by scope.",
+    "Browser visual acceptance used Chromium with mobile viewport emulation; Safari and physical devices were not retested.",
+    "Full standalone Python suite and historical research experiments were not rerun. Complete web suite includes real M16 Server regression.",
+    "Fixed-split Training CV winner has selection optimism; results do not establish future performance or causality."
+  ],
+  "fileHashes": {
+    "web/app/feature-selection/page.tsx": "0d99c24dfeb678b87115809c964721e1cf190c52f0041db120e25ffca5bacee1",
+    "web/components/dataset-navigation.tsx": "1437ec4bb24a5e8641f57971bc48263e96f985159d54c500f8b34b4d7f30b94e",
+    "web/components/study-overview.tsx": "6ca35af2ee51848df3618536d9999260332ecaec0582c46d3fde6d87920345dc",
+    "web/lib/dataset-registry.ts": "4cc1128aed3b112ac4072297599ab6b6244911ba67a23edfbfadaa6cd630dcf5",
+    "web/tests/dataset-registry.test.ts": "7b093dd50ab970cf2a4a1632cd2351232922f19518529adea7695196468ff72a",
+    "web/tests/multi-dataset-production.mjs": "6afe78e833bd4136154aa912f29d89e52b959cc157d691ae9519654b02f83c48",
+    "web/tests/study-overview.test.ts": "cffb848aaa6ee75250f6e1869a1d72a7899ccda70f6da81672d2b4c1385f7358",
+    "web/components/study-feature-explorer.tsx": "a43d26fd59e5018c8b1e706ae9f33b3ce88e81d0b525c95f36dd939df230b08b",
+    "web/components/study-feature-selection.tsx": "279db0144d4d493922f7128f122e938d76325de3b6c48a87b96c2e849576fd0f",
+    "web/data/research-feature-selection/README.md": "b456e23426f2dbee44c3335770658b5873e6f1430e4a5dcb55ee217563a3114b",
+    "web/data/research-feature-selection/v1/automobile-price.json": "7f5a544e391ffdf7f0fc1ffe833a245225c3cf822e9b7492e24cc5a9a6a31b85",
+    "web/data/research-feature-selection/v1/manifest.json": "26cc102f5ebc99d1ff2fcdd2b1ae748648b3893f205d56b6de9e5d91a719d821",
+    "web/data/research-feature-selection/v1/student-performance.json": "15feb292f1430b1ed019307dc31488319a577818bd19de3d722139a23f4b68a4",
+    "web/lib/load-study-feature-selection.ts": "d1c8ce466a4e962d512a558383e1a3a3cc5b2b59271e7f6624af7e510799fd6a",
+    "web/lib/study-feature-selection-data.ts": "3af331fd25d770c773715352e87e818a6ad710f89b50d03d12e212bbfb148aac",
+    "web/scripts/export-study-feature-selection.py": "3f04d70c3911d9c19441339d86e3d752228fe1a9b361d9f47615294efaea1730",
+    "web/tests/study-feature-selection.test.ts": "edd5af9d84306d10645ab616d690846723924f6b1c1ac7dd644c0d712723e0e3"
+  }
+}

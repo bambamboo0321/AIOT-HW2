@@ -1,0 +1,195 @@
+{
+  "status": "PASS",
+  "policy": {
+    "schemaVersion": 1,
+    "modelVersion": "1.0.0",
+    "absoluteTolerance": 1e-10,
+    "relativeTolerance": 1e-10,
+    "formula": "abs(actual-reference) <= absoluteTolerance + relativeTolerance*abs(reference)",
+    "relativeErrorReportingFloor": 1e-12,
+    "policy": "Fixed before reconstruction or numerical comparisons; never loosen on failure. Holdout is verification only. No selector fitting, CV search or tuning."
+  },
+  "models": {
+    "appliances-energy--baseline": {
+      "status": "PASS",
+      "holdoutRows": 3947,
+      "features": [
+        "lights",
+        "T1",
+        "RH_1",
+        "T2",
+        "RH_2",
+        "T3",
+        "RH_3",
+        "T4",
+        "RH_4",
+        "T5",
+        "RH_5",
+        "T6",
+        "RH_6",
+        "T7",
+        "RH_7",
+        "T8",
+        "RH_8",
+        "T9",
+        "RH_9",
+        "T_out",
+        "Press_mm_hg",
+        "RH_out",
+        "Windspeed",
+        "Visibility",
+        "Tdewpoint"
+      ],
+      "acquisition": "original-saved-model-no-fit",
+      "nativeVsSaved": {
+        "maxAbsoluteError": 0.0,
+        "maxRelativeError": 0.0,
+        "failures": 0,
+        "rows": 3947
+      },
+      "extraCases": 78
+    },
+    "appliances-energy--mutual_information": {
+      "status": "PASS",
+      "holdoutRows": 3947,
+      "features": [
+        "T3",
+        "T4",
+        "T5",
+        "RH_6",
+        "T8",
+        "T9"
+      ],
+      "acquisition": "original-saved-model-no-fit",
+      "nativeVsSaved": {
+        "maxAbsoluteError": 0.0,
+        "maxRelativeError": 0.0,
+        "failures": 0,
+        "rows": 3947
+      },
+      "extraCases": 28
+    },
+    "automobile-price--baseline": {
+      "status": "PASS",
+      "holdoutRows": 41,
+      "features": [
+        "normalized-losses",
+        "wheel-base",
+        "length",
+        "width",
+        "height",
+        "curb-weight",
+        "engine-size",
+        "bore",
+        "stroke",
+        "horsepower",
+        "city-mpg",
+        "highway-mpg",
+        "fuel-type",
+        "aspiration"
+      ],
+      "acquisition": "training-only-refit-with-frozen-selected-columns-no-selector",
+      "nativeVsSaved": {
+        "maxAbsoluteError": 0.0,
+        "maxRelativeError": 0.0,
+        "failures": 0,
+        "rows": 41
+      },
+      "extraCases": 56
+    },
+    "automobile-price--mutual_information": {
+      "status": "PASS",
+      "holdoutRows": 41,
+      "features": [
+        "length",
+        "width",
+        "curb-weight",
+        "engine-size",
+        "horsepower",
+        "city-mpg",
+        "highway-mpg"
+      ],
+      "acquisition": "training-only-refit-with-frozen-selected-columns-no-selector",
+      "nativeVsSaved": {
+        "maxAbsoluteError": 0.0,
+        "maxRelativeError": 0.0,
+        "failures": 0,
+        "rows": 41
+      },
+      "extraCases": 32
+    },
+    "student-performance--baseline": {
+      "status": "PASS",
+      "holdoutRows": 130,
+      "features": [
+        "age",
+        "Medu",
+        "Fedu",
+        "traveltime",
+        "studytime",
+        "failures",
+        "famrel",
+        "freetime",
+        "goout",
+        "Dalc",
+        "Walc",
+        "health",
+        "absences",
+        "G1",
+        "G2"
+      ],
+      "acquisition": "training-only-refit-with-frozen-selected-columns-no-selector",
+      "nativeVsSaved": {
+        "maxAbsoluteError": 0.0,
+        "maxRelativeError": 0.0,
+        "failures": 0,
+        "rows": 130
+      },
+      "extraCases": 53
+    },
+    "student-performance--mutual_information": {
+      "status": "PASS",
+      "holdoutRows": 130,
+      "features": [
+        "Fedu",
+        "studytime",
+        "failures",
+        "Dalc",
+        "Walc",
+        "G1",
+        "G2"
+      ],
+      "acquisition": "training-only-refit-with-frozen-selected-columns-no-selector",
+      "nativeVsSaved": {
+        "maxAbsoluteError": 0.0,
+        "maxRelativeError": 0.0,
+        "failures": 0,
+        "rows": 130
+      },
+      "extraCases": 27
+    }
+  },
+  "selectorFits": 0,
+  "energyFits": 0,
+  "reconstructedLinearRegressionFits": 4,
+  "holdoutUsedForFitting": false,
+  "versions": {
+    "python": "3.10.17",
+    "numpy": "2.2.6",
+    "pandas": "2.3.3",
+    "scipy": "1.15.3",
+    "scikit-learn": "1.7.2",
+    "joblib": "1.6.0",
+    "threadpoolctl": "3.7.0"
+  },
+  "totalHoldoutPredictions": 8236,
+  "artifactHashes": {
+    "appliances-energy--baseline": "097cf67f9a69eafb2741b615b39a43549eab5d8db46d09732c2723edbee1878c",
+    "appliances-energy--mutual_information": "5426069510189104b04cd09a3eca07833ece7430d90f5b7f87ade8bb531fb876",
+    "automobile-price--baseline": "0f4a2cecbd9312ed685cc3234009bee78ce8446a1a11c5ff9414102b0b550eed",
+    "automobile-price--mutual_information": "57fe7bb1f175a3d5c06dbc774daadf4a63af57a7638fcfd804aab3ef60510cb4",
+    "student-performance--baseline": "46b94e2ee6976ad4c4880afaba4e816b7fcebbcb130cf3cb9536badc371f45e2",
+    "student-performance--mutual_information": "a6a737d8f48686cca1b9d5f9d228d3af4bdb499d2d50b45dd32add9ab950ab9d"
+  },
+  "fixtureBytes": 420130
+}

@@ -1,0 +1,50 @@
+{
+  "status": "PASS",
+  "fixture": "synthetic compact.csv 2000x15",
+  "work": 12960000,
+  "checks": [
+    {
+      "stage": "initial",
+      "normal": false,
+      "heavy": false,
+      "disabled": true,
+      "kMin": "1",
+      "kMax": "10",
+      "cv": "5",
+      "guide": "比較限制：目前預估 12,960,000／100,000,000 工作量，計入所有方法、k 與外層 folds。資料符合訓練上限，不代表任意多 k 比較都可執行；超限時只阻止這次比較，不會自動減少 k、folds 或抽樣。"
+    },
+    {
+      "stage": "regular-confirmation-only",
+      "normal": true,
+      "heavy": false,
+      "disabled": true,
+      "kMin": "1",
+      "kMax": "10",
+      "cv": "5",
+      "guide": "比較限制：目前預估 12,960,000／100,000,000 工作量，計入所有方法、k 與外層 folds。資料符合訓練上限，不代表任意多 k 比較都可執行；超限時只阻止這次比較，不會自動減少 k、folds 或抽樣。"
+    },
+    {
+      "stage": "both-confirmations",
+      "normal": true,
+      "heavy": true,
+      "disabled": false,
+      "kMin": "1",
+      "kMax": "10",
+      "cv": "5",
+      "guide": "比較限制：目前預估 12,960,000／100,000,000 工作量，計入所有方法、k 與外層 folds。資料符合訓練上限，不代表任意多 k 比較都可執行；超限時只阻止這次比較，不會自動減少 k、folds 或抽樣。"
+    },
+    {
+      "stage": "k-change-requires-reconfirmation",
+      "normal": false,
+      "heavy": false,
+      "disabled": true,
+      "kMin": "1",
+      "kMax": "9",
+      "cv": "5",
+      "guide": "比較限制：目前預估 12,096,000／100,000,000 工作量，計入所有方法、k 與外層 folds。資料符合訓練上限，不代表任意多 k 比較都可執行；超限時只阻止這次比較，不會自動減少 k、folds 或抽樣。"
+    }
+  ],
+  "large_comparison_executed": false,
+  "pointer_note": "Tool auto-scroll clicks were intercepted by other elements for selection/confirmation. Used known DOM click events for gating assertions; k input used regular fill.",
+  "training_limit_unchanged": "2000 rows, 15 features, 3 MiB"
+}
