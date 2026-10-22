@@ -45,7 +45,7 @@ export function createComputeRoute(local: (request: Request) => Promise<Response
     try { config = settings(env); } catch { return Response.json({ error: "遠端運算連線尚未設定完整，請聯絡網站管理者。" }, { status: 503, headers }); }
     const controller = new AbortController(); let expired = false;
     const abort = () => controller.abort(); request.signal.addEventListener("abort", abort, { once: true });
-    const timer = setTimeout(() => { expired = true; controller.abort(); }, options.timeoutMs ?? (operation === "train" || operation === "compare" ? 140_000 : 45_000));
+    const timer = setTimeout(() => { expired = true; controller.abort(); }, options.timeoutMs ?? (operation === "compare" ? 180_000 : operation === "train" ? 140_000 : 45_000));
     try {
       const allowed = operation === "predict" ? ["POST", "DELETE"] : ["POST"];
       if (!allowed.includes(request.method)) return Response.json({ error: "不支援此操作方式。" }, { status: 405, headers: { ...headers, Allow: allowed.join(", ") } });

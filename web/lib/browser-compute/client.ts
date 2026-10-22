@@ -3,10 +3,11 @@ import { parseTrainingReport, type TrainingReport } from "../custom-training-res
 import { parseComparisonReport, type ComparisonReport } from "../custom-comparison-result.ts";
 import { parsePredictionResult, type PredictionModel, type PredictionResult } from "../custom-prediction-types.ts";
 import { parseBatchResult, type BatchRows, type BatchResult } from "../custom-batch-types.ts";
+import { COMPARISON_LIMITS } from "../custom-comparison-work.ts";
 import { BROWSER_LIMITS, BrowserComputeError, type Operation, type DatasetInput, type ComputeResult, type Progress, type WorkerReply, type WorkerRequest } from "./protocol.ts";
 export { BROWSER_LIMITS, BrowserComputeError } from "./protocol.ts";
 export type WorkerPort = { postMessage(message:WorkerRequest, transfer:Transferable[]):void; terminate():void; onmessage:((event:MessageEvent<WorkerReply>)=>void)|null; onerror:((event:ErrorEvent)=>void)|null; onmessageerror:((event:MessageEvent)=>void)|null };
-type Options = { workerFactory?:()=>WorkerPort; onProgress?:(progress:Progress)=>void; onReset?:()=>void; initializationTimeoutMs?:number; jobTimeoutMs?:number; methodTimeoutMs?:number };
+type Options = { workerFactory?:()=>WorkerPort; onProgress?:(progress:Progress)=>void; onReset?:()=>void; initializationTimeoutMs?:number; jobTimeoutMs?:number; methodTimeoutMs?:number; comparisonTimeoutMs?:number };
 type Pending = { id:string; operation:Operation; resolve:(v:ComputeResult<unknown>)=>void; reject:(e:Error)=>void; timer:ReturnType<typeof setTimeout>; methodTimer?:ReturnType<typeof setTimeout>; cleanup:()=>void };
 type JobOptions = { signal?:AbortSignal };
 function stable(value:unknown):string {
@@ -20,6 +21,7 @@ export class BrowserComputeClient {
   private worker:WorkerPort|null=null;
   private pending:Pending|null=null;
   private closed=false;
+  private comparison:BrowserComputeClient|null=null;
   private epoch=0;
   private ready:ComputeResult<unknown>|null=null;
   private binding:{key:string;dataset:string;config:string}|null=null;
@@ -27,7 +29,7 @@ export class BrowserComputeClient {
   private initialization:Promise<ComputeResult<unknown>>|null=null;
   private readonly options:Options;
   constructor(options:Options={}){this.options=options;}
-  get busy(){return !!this.pending;}
+  get busy(){return !!this.pending||!!this.comparison;}
   get initialized(){return !!this.ready;}
   hasModel(id:string){const m=this.models.get(id);return !!m&&m.expires_at>Date.now();}
   releaseModels(){if(this.models.size){const binding=this.binding;this.reset(new BrowserComputeError("STALE","舊模型已清除。"));this.binding=binding;}}
@@ -42,7 +44,7 @@ export class BrowserComputeClient {
       if(!p||!message||message.jobId!==p.id)return;
       if(message.kind==="progress"){
         if(message.progress.phase==="started"){
-          clearTimeout(p.methodTimer);p.methodTimer=setTimeout(()=>this.reset(new BrowserComputeError("TIMEOUT","此方法超過 60 秒上限，Worker 與模型已清除。")),this.options.methodTimeoutMs??60_000);
+          clearTimeout(p.methodTimer);const ms=p.operation==="compare"?(this.options.comparisonTimeoutMs??COMPARISON_LIMITS.timeoutMs):(this.options.methodTimeoutMs??60_000);p.methodTimer=setTimeout(()=>this.reset(new BrowserComputeError("TIMEOUT",p.operation==="compare"?"比較超過 180 秒，已終止比較 Worker。":"此方法超過 60 秒上限，Worker 與模型已清除。")),ms);
         }else if(message.progress.phase==="completed")clearTimeout(p.methodTimer);
         this.options.onProgress?.(message.progress);return;
       }
@@ -59,22 +61,22 @@ export class BrowserComputeClient {
     return worker;
   }
   private reset(error:BrowserComputeError){
-    this.epoch++;const p=this.pending;this.pending=null;
+    this.epoch++;this.comparison?.dispose();this.comparison=null;const p=this.pending;this.pending=null;
     this.worker?.terminate();this.worker=null;this.ready=null;this.binding=null;this.models.clear();this.initialization=null;
     if(p){clearTimeout(p.timer);clearTimeout(p.methodTimer);p.cleanup();p.reject(error);}
     this.options.onReset?.();
   }
-  cancel(){this.reset(new BrowserComputeError("ABORTED","已取消 Browser 運算；記憶體模型已清除。"));}
+  cancel(){if(this.comparison){this.comparison.cancel();return;}this.reset(new BrowserComputeError("ABORTED","已取消 Browser 運算；記憶體模型已清除。"));}
   invalidate(){this.reset(new BrowserComputeError("STALE","資料、設定或模式已變更；請重新驗證與確認。"));}
   dispose(){this.closed=true;this.reset(new BrowserComputeError("DISPOSED","Browser 運算已關閉，模型與資料已清除。"));}
   private job(operation:Operation,prepare:()=>Promise<{payload:Record<string,unknown>;csv?:ArrayBuffer}>,options:JobOptions={}):Promise<ComputeResult<unknown>> {
     if(this.closed)return Promise.reject(new BrowserComputeError("DISPOSED","Browser 運算已關閉。"));
-    if(this.pending)return Promise.reject(new BrowserComputeError("BUSY","已有 Browser 工作執行中，請先取消或等待完成。"));
+    if(this.busy)return Promise.reject(new BrowserComputeError("BUSY","已有 Browser 工作執行中，請先取消或等待完成。"));
     if(options.signal?.aborted)return Promise.reject(new BrowserComputeError("ABORTED","工作已取消。"));
     return new Promise((resolve,reject)=>{
       const id=crypto.randomUUID();
       const abort=()=>{if(this.pending?.id===id)this.cancel();};
-      const timer=setTimeout(()=>{if(this.pending?.id===id)this.reset(new BrowserComputeError("TIMEOUT","Browser 等待逾時，Worker 與模型已清除；可手動重試。"));},operation==="initialize"?(this.options.initializationTimeoutMs??45_000):(this.options.jobTimeoutMs??90_000));
+      const timer=setTimeout(()=>{if(this.pending?.id===id)this.reset(new BrowserComputeError("TIMEOUT","Browser 等待逾時，Worker 與模型已清除；可手動重試。"));},operation==="initialize"?(this.options.initializationTimeoutMs??45_000):operation==="compare"?(this.options.comparisonTimeoutMs??COMPARISON_LIMITS.timeoutMs):(this.options.jobTimeoutMs??90_000));
       this.pending={id,operation,resolve,reject,timer,cleanup:()=>options.signal?.removeEventListener("abort",abort)};
       options.signal?.addEventListener("abort",abort,{once:true});
       void (async()=>{
@@ -112,7 +114,8 @@ export class BrowserComputeClient {
     },options);
   }
   async validate(input:DatasetInput,options:JobOptions={}):Promise<ComputeResult<ValidationReport>> {
-    if(!this.pending&&(this.binding||this.models.size))this.invalidate();
+    if(this.busy)throw new BrowserComputeError("BUSY","已有 Browser 工作，請先等待或取消。");
+    if(this.binding||this.models.size)this.invalidate();
     const snapshot={...input,config:structuredClone(input.config),review:structuredClone(input.review)};
     const epoch=this.epoch;
     const result=await this.dataset("validate",snapshot,options),report=parseValidationReport(result.report);
@@ -133,9 +136,23 @@ export class BrowserComputeClient {
     return {report,metadata:result.metadata};
   }
   async compare(input:DatasetInput,options:JobOptions={}):Promise<ComputeResult<ComparisonReport>> {
-    const result=await this.dataset("compare",input,options),report=parseComparisonReport(result.report);
-    if(report.status==="compared"&&(report.validation.dataset.sha256!==this.binding?.dataset||report.validation.config_sha256!==this.binding.config))throw new BrowserComputeError("PROTOCOL","Browser 比較來源不一致。");
-    return {report,metadata:result.metadata};
+    if(this.closed)throw new BrowserComputeError("DISPOSED","Browser 運算已關閉。");
+    if(this.busy)throw new BrowserComputeError("BUSY","已有 Browser 工作，請先等待或取消。");
+    // Comparison has no saved model. A disposable Worker protects the primary
+    // Worker/MEMFS models from compare timeout, cancellation and memory failures.
+    const epoch=this.epoch,isolated=new BrowserComputeClient({...this.options,onReset:undefined});
+    isolated.binding=this.binding?{...this.binding}:null;this.comparison=isolated;
+    try{
+      const result=await isolated.dataset("compare",input,options),report=parseComparisonReport(result.report);
+      if(epoch!==this.epoch)throw new BrowserComputeError("STALE","資料或模式已變更。");
+      if(report.status==="compared"&&(report.validation.dataset.sha256!==this.binding?.dataset||report.validation.config_sha256!==this.binding.config))throw new BrowserComputeError("PROTOCOL","Browser 比較來源不一致。");
+      return {report,metadata:result.metadata};
+    }catch(error){
+      if(epoch!==this.epoch)throw new BrowserComputeError("STALE","資料或模式已變更。");
+      const code=error instanceof BrowserComputeError?error.code:"EXECUTION_FAILED";
+      const message=code==="TIMEOUT"?"比較達到 180 秒上限":code==="ABORTED"?"比較已取消":code==="WORKER_FAILED"||code==="RESOURCE_EXHAUSTED"?"比較 Worker 執行失敗，可能為記憶體／資源不足":"比較未完成，請檢查輸入與載入狀態";
+      throw new BrowserComputeError(code,message+"；比較 Worker 已停止，未刪除既有訓練模型。可調整比較設定後手動重試。");
+    }finally{isolated.dispose();if(this.comparison===isolated)this.comparison=null;}
   }
   private model(id:string):PredictionModel {
     const model=this.models.get(id);if(!model||model.expires_at<=Date.now())throw new BrowserComputeError("MODEL_EXPIRED","Browser 模型已清除或到期，請重新訓練。");return model;

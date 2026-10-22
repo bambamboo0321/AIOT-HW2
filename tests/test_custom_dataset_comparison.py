@@ -35,6 +35,13 @@ class ComparisonTests(unittest.TestCase):
 
     def run_comparison(self):return compare_custom_dataset(self.csv,self.cfg,self.review,self.exp)
 
+    def test_memory_error_is_explicit_without_partial_results_or_model_output(self):
+        with patch('src.custom_dataset_comparison.fit_selected_regression',side_effect=MemoryError):
+            r=self.run_comparison()
+        self.assertEqual(r['status'],'failed');self.assertTrue(r['comparison_started'])
+        self.assertIn('記憶體不足',r['errors'][0]['message']);self.assertNotIn('points',r)
+        self.assertNotIn('prediction_model',r)
+
     def test_all_points_match_independent_sklearn_fits_with_shared_splits(self):
         r=self.run_comparison();self.assertEqual(r['status'],'compared',r);self.assertEqual(len(r['points']),9)
         split=split_dataset(self.frame,self.config);partitions=list(KFold(3,shuffle=True,random_state=42).split(split.X_train))

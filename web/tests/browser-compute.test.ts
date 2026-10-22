@@ -27,7 +27,8 @@ test('packaged Python matches production source, manifest lock and complete stat
  const {createHash}=await import('node:crypto');const {resolve,dirname}=await import('node:path');const {fileURLToPath}=await import('node:url');
  const web=resolve(dirname(fileURLToPath(import.meta.url)),'..'),root=resolve(web,'..'),assets=resolve(web,'public/browser-compute');
  const sha=(data:string|Uint8Array)=>createHash('sha256').update(data).digest('hex');
- const bytes=await readFile(resolve(assets,'python-manifest.json')),manifest=JSON.parse(bytes.toString());assert.equal(manifest.modules.length,11);
+ const bytes=await readFile(resolve(assets,'python-manifest.json')),manifest=JSON.parse(bytes.toString());assert.equal(manifest.modules.length,12);
+ assert.ok(manifest.modules.some((row:{path:string})=>row.path==='src/custom_sfs_comparison.py'));
  for(const row of manifest.modules){const original=await readFile(resolve(root,row.path));assert.equal(row.source,original.toString());assert.equal(row.sha256,sha(original));}
  assert.equal(manifest.adapter.sha256,sha(await readFile(resolve(web,'browser-compute/bridge.py'))));
  assert.ok((await readFile(resolve(web,'lib/browser-compute/source-lock.ts'),'utf8')).includes(sha(bytes)));

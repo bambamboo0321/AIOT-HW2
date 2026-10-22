@@ -15,10 +15,12 @@ from .custom_dataset_training import metrics, summary
 from .data_splitting import split_dataset
 from .feature_selection import SelectionSpec, fit_selected_regression
 from .preprocessing_config import PreprocessingConfig
+from .custom_sfs_comparison import SFSPrefixCache
 
 METHODS = ('f_test', 'mutual_information', 'rfe', 'forward_sfs', 'rfecv', 'lasso_cv')
 SCOPE = 'custom_feature_comparison'
 MAX_WORK = 100_000_000
+HIGH_WORK = 10_000_000
 
 
 class ComparisonRequestError(ValueError):
@@ -27,9 +29,10 @@ class ComparisonRequestError(ValueError):
 
 def settings(experiment, config, validation):
     keys = {'schema_version', 'confirmed', 'dataset_sha256', 'config_sha256', 'methods', 'k_values'}
-    if (not isinstance(experiment, dict) or set(experiment) != keys
+    if (not isinstance(experiment, dict) or set(experiment) not in (keys, keys | {'heavy_confirmed'})
             or type(experiment.get('schema_version')) is not int or experiment['schema_version'] != 1
             or experiment.get('confirmed') is not True
+            or ('heavy_confirmed' in experiment and type(experiment['heavy_confirmed']) is not bool)
             or experiment['dataset_sha256'] != validation['dataset']['sha256']
             or experiment['config_sha256'] != validation['config_sha256']):
         raise ComparisonRequestError('確認與資料版本不一致。')
@@ -57,10 +60,12 @@ def settings(experiment, config, validation):
     work = fits * p * sum(f['training_rows'] for f in validation['split']['cv_folds'])
     if work > MAX_WORK:
         raise ComparisonRequestError('比較運算量過大；請縮小 k 範圍、減少方法／folds 或資料筆數。')
+    if work > HIGH_WORK and experiment.get('heavy_confirmed') is not True:
+        raise ComparisonRequestError('比較運算量較高；需明確確認高負擔比較後才能執行，保留原方法、k、CV 與資料。')
     return [m for m in METHODS if m in methods], ks
 
 
-def compare_custom_dataset(csv_path, config_path, review_path, experiment_path):
+def compare_custom_dataset(csv_path, config_path, review_path, experiment_path, *, reuse_sfs_prefixes=True):
     common = {'schema_version': 1, 'scope': SCOPE}
     started, stage = False, 'confirmation'
     try:
@@ -92,6 +97,8 @@ def compare_custom_dataset(csv_path, config_path, review_path, experiment_path):
         with warnings.catch_warnings(record=True) as caught:
             warnings.simplefilter('always')
             for method in methods:
+                # Scope caches to this request and one outer Training fold.
+                prefixes = {i: SFSPrefixCache() for i in range(1, len(partitions)+1)} if reuse_sfs_prefixes and method == 'forward_sfs' and len(ks) > 1 else {}
                 for k in (ks if method not in AUTO_METHODS else [None]):
                     folds = []
                     for i, (train, valid) in enumerate(partitions, 1):
@@ -99,7 +106,7 @@ def compare_custom_dataset(csv_path, config_path, review_path, experiment_path):
                         spec = SelectionSpec(method=method, k=k, random_state=config.random_state, gap=config.cv_gap)
                         details = None
                         if method in NESTED_METHODS:
-                            selected = fit_custom_selection(X, y, config, spec)
+                            selected = fit_custom_selection(X, y, config, spec, sfs_prefix_cache=prefixes[i]) if prefixes else fit_custom_selection(X, y, config, spec)
                             names = [config.feature_columns[int(j)] for j in selected.indices]
                             details = selected.metadata['custom_details']
                             if len(names):
@@ -133,6 +140,9 @@ def compare_custom_dataset(csv_path, config_path, review_path, experiment_path):
                            '各 fold 等權平均與標準差 ddof=0；標準差不是信賴區間，R² 無法定義時為 null。',
                            '依曲線挑選方法或 k 屬於探索性調參，最佳 CV 分數可能偏樂觀；需固定設定後再做一次獨立 Holdout 評估。',
                            '固定方法為 F-test、MI、RFE、SFS 的 k 曲線；RFECV／LassoCV 為內部 3-fold 自動選 k 的外層 CV 結果，不補造完整 k 曲線。Lasso alpha 固定候選為 10000 到 0.0001 的 9 個十倍級距。']}
+    except MemoryError:
+        return {**common, 'status': 'failed' if started else 'rejected', 'comparison_started': started,
+                'errors': [{'stage': stage, 'message': '比較記憶體不足，已停止；未刪除既有訓練模型。請調整比較設定後手動重試。'}]}
     except (ValueError, TypeError, KeyError, OverflowError, FloatingPointError, OSError, np.linalg.LinAlgError) as error:
         message = (str(error) if stage == 'confirmation' and isinstance(error, (ComparisonRequestError, CustomSelectionError))
                    else '資料版本不一致或無法讀取。' if not started

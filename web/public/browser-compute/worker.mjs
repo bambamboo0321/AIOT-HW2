@@ -67,6 +67,7 @@ self.onmessage=async({data})=>{
  }catch(error){
   // Do not forward Python tracebacks or raw CSV cells into the UI.
   const limit=String(error).includes("Browser Mode 限");
-  send({jobId:data.jobId,kind:"error",code:limit?"LIMIT":"EXECUTION_FAILED",message:limit?"Browser 訓練 CSV 限 2,000 列、15 個數值候選特徵、3 MiB；不會自動抽樣或上傳。":"Browser 在「"+stage+"」階段失敗；請檢查網路、輸入與套件載入後手動重試。",stage});
+  const memory=/out of memory|memory access|allocation failed|Cannot enlarge memory/i.test(String(error));
+  send({jobId:data.jobId,kind:"error",code:memory?"RESOURCE_EXHAUSTED":limit?"LIMIT":"EXECUTION_FAILED",message:memory?"比較或運算記憶體不足，已停止此 Worker；請降低同時開啟的工作或調整比較範圍。":limit?"Browser 訓練 CSV 限 2,000 列、15 個數值候選特徵、3 MiB；不會自動抽樣或上傳。":"Browser 在「"+stage+"」階段失敗；請檢查網路、輸入與套件載入後手動重試。",stage});
  }finally{busy=false;}
 };

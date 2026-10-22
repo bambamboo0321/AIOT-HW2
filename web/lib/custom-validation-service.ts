@@ -48,7 +48,7 @@ export async function runPython(python: string, root: string, directory: string,
     const stop = (error: RequestError) => { if (!failure) { failure = error; child.kill("SIGKILL"); } };
     const abort = () => stop(new RequestError(499, "驗證已取消。"));
     signal.addEventListener("abort", abort, { once: true });
-    const timer = setTimeout(() => stop(new RequestError(504, "Python 運算超過時間限制，請縮小資料或調整設定。")), timeoutMs);
+    const timer = setTimeout(() => stop(new RequestError(504, operation==="compare"?"比較達到 180 秒上限，已停止計算；既有訓練模型不受影響。":"Python 運算超過時間限制，請縮小資料或調整設定。")), timeoutMs);
     const clean = () => { clearTimeout(timer); signal.removeEventListener("abort", abort); };
     child.stdout.on("data", (chunk: Buffer) => { bytes += chunk.length; if (bytes > (operation==="batch_predict" || operation==="compare" || operation==="train" ? 8 : 1) * 1024 * 1024) stop(new RequestError(500, "驗證結果過大，無法顯示。")); else chunks.push(chunk); });
     child.stderr.on("data", (chunk: Buffer) => { stderrBytes += chunk.length; if (stderrBytes > 64 * 1024) stop(new RequestError(500, "Python 環境回傳異常，請檢查本機依賴。")); });
@@ -61,7 +61,7 @@ export async function runPython(python: string, root: string, directory: string,
         const value = JSON.parse(Buffer.concat(chunks).toString("utf8"));
         if ((code === 0) !== (["valid", "completed", "compared", "predicted", "batch_predicted"].includes(value.status))) throw new Error("status");
         done(value);
-      } catch { reject(new RequestError(500, "Python 未回傳有效的驗證結果，請檢查本機依賴。")); }
+      } catch { reject(new RequestError(500, operation==="compare"?"比較程序意外中止或回應無效（可能為記憶體／資源不足）；既有訓練模型未刪除，請手動重試。":"Python 未回傳有效的驗證結果，請檢查本機依賴。")); }
     });
     if (signal.aborted) abort();
   });
@@ -114,7 +114,7 @@ export function createValidationHandler(options: Options = {}) {
       await writeFile(join(directory, "config.json"), config, { mode: 0o600 });
       await writeFile(join(directory, "review.json"), review, { mode: 0o600 });
       if (operation !== "validate") await writeFile(join(directory, "experiment.json"), experiment as string, { mode: 0o600 });
-      const output = await runPython(python, root, directory, request.signal, options.timeoutMs ?? (operation !== "validate" ? 120_000 : 30_000), operation, undefined, options.retainModels === true);
+      const output = await runPython(python, root, directory, request.signal, options.timeoutMs ?? (operation === "compare" ? 180_000 : operation === "train" ? 120_000 : 30_000), operation, undefined, options.retainModels === true);
       const report = operation === "compare" ? parseComparisonReport(output) : operation === "train" ? parseTrainingReport(output) : parseValidationReport(output);
       const validated = report.status === "completed" || report.status === "compared" ? report.validation : report.status === "valid" ? report : null;
       if (validated && (!validated.review_checked || validated.dataset.sha256 !== createHash("sha256").update(raw).digest("hex") || validated.dataset.bytes !== raw.length)) throw new RequestError(500, "驗證結果與傳送的資料版本不一致。");

@@ -5,7 +5,7 @@ import { resolve, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { createHash } from "node:crypto";
 import { ModelStore } from "../lib/custom-model-store.ts";
-import { createTrainingHandler, createValidationHandler } from "../lib/custom-validation-service.ts";
+import { createTrainingHandler, createValidationHandler, createComparisonHandler } from "../lib/custom-validation-service.ts";
 import { createPredictionHandler } from "../lib/custom-prediction-service.ts";
 import { parseFeatureInput, parsePredictionResult, parsePredictionModel, type PredictionModel } from "../lib/custom-prediction-types.ts";
 import { parseTrainingReport } from "../lib/custom-training-result.ts";
@@ -69,3 +69,12 @@ test("prediction parser rejects model/result mismatches and feature input never 
  const good={schema_version:1,status:"predicted",training_started:false,...metadata,prediction:4,imputed:[],out_of_range:[],warnings:[]};assert.equal(parsePredictionResult(good,model).prediction,4);
  for(const change of [{training_started:true},{target:"other"},{features:["y","x"]},{prediction:Infinity},{dataset_sha256:"b".repeat(64)},{imputed:[{feature:"other",value:2}]},{out_of_range:["other"]}])assert.throws(()=>parsePredictionResult({...good,...change},model));
 });
+
+ test("comparison timeout and cancel leave Server fitted model usable",async()=>fixture(async(_,options)=>{
+ const report=await trained(options);const model=report.prediction_model;
+ const formForCompare=()=>{const f=form();f.append("experiment",JSON.stringify({schema_version:1,confirmed:true,dataset_sha256:sha,config_sha256:model.config_sha256,methods:["f_test"],k_values:[1,2]}));return f;};
+ const compareRequest=(signal?:AbortSignal)=>new Request(origin+"/api/custom-dataset/compare",{method:"POST",headers:{Origin:origin},body:formForCompare(),signal});
+ const timed=await createComparisonHandler({...options,timeoutMs:1})(compareRequest());assert.equal(timed.status,504);assert.match((await timed.json()).error,/180/);
+ const abort=new AbortController();const cancelled=createComparisonHandler(options)(compareRequest(abort.signal));abort.abort();assert.equal((await cancelled).status,499);
+ const response=await createPredictionHandler(options)(req({model_id:model.id,values:{x:.5,y:.2}}));assert.equal(response.status,200);assert.equal((await response.json()).training_started,false);
+}));

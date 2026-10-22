@@ -68,7 +68,7 @@ def check_nested_request(method, k, config, validation, include_final=True):
         raise CustomSelectionError('選欄運算量過大；請減少資料／候選特徵／folds 或縮小比較範圍。')
 
 
-def fit_custom_selection(X, y, config, spec):
+def fit_custom_selection(X, y, config, spec, *, sfs_prefix_cache=None):
     if spec.method not in NESTED_METHODS:
         return fit_selection(X, y, config, spec)
     started = perf_counter()
@@ -89,6 +89,8 @@ def fit_custom_selection(X, y, config, spec):
     elif spec.method == 'forward_sfs':
         selector = SequentialFeatureSelector(NumericFoldRegressor(config), n_features_to_select=spec.k,
                                              direction='forward', scoring='neg_root_mean_squared_error', cv=partitions, n_jobs=1)
+        if sfs_prefix_cache is not None:
+            selector = sfs_prefix_cache.wrap(selector, values, y)
         selector.fit(values, y)
         support = selector.get_support()
     elif spec.method == 'rfecv':
@@ -117,7 +119,10 @@ def fit_custom_selection(X, y, config, spec):
         support = np.abs(chosen.coef_) > 1e-8
         details['alpha'] = float(selector.alpha_)
     if processor is None:
-        processor, _ = fit_preprocessor(X, y, config)
+        if spec.method == 'forward_sfs' and sfs_prefix_cache is not None and sfs_prefix_cache.supported():
+            processor = sfs_prefix_cache.preprocessor(X, y, config, values, fit_preprocessor)
+        else:
+            processor, _ = fit_preprocessor(X, y, config)
     indices = np.flatnonzero(support)
     metadata = {'method': spec.method, 'selected_k': len(indices), 'custom_details': details}
     return FittedSelection(processor, selector, indices, metadata,
