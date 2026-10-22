@@ -1,12 +1,12 @@
-# M17 Browser Mode：Vercel 發布準備
+# M17 Browser Mode：Vercel 部署與正式發布
 
-狀態：2026-10-20。Browser Mode 已完成本機功能與數值驗收，尚未 Commit／Push／公開部署。M16 Gateway 與 API 保留；本文件取代較早的「必須先部署 Python 後端」計畫。歷史 M15／M16 紀錄仍保留。
+狀態：2026-10-22，Phase 3K 已正式上線：[AIOT-HW2](https://aiot-hw-2.vercel.app/)。Production Branch 為 `main`；核准 Commit `0c935027aa236dea99ea23793ad939cd85dd2cda` 經一般 Push 自動建立 Production Deployment，狀態 READY。M16 Gateway 與 API 保留，正式站未配置 Server Mode 後端。驗收與未測項目見 [發布收尾](release_closure.md) 及 [正式紀錄](../web/verification/multi-dataset-phase3k.json)。歷史 M15／M16 紀錄不改寫。
 
 ## Vercel Hobby 必要設定
 
 | 設定 | 本專案建議 |
 | --- | --- |
-| Git Repository | 既有 bambamboo0321/AIOT-HW2；需要先由使用者授權提交及 Push M17，不能部署目前只有 M16 的遠端當成 M17 |
+| Git Repository | 既有 bambamboo0321/AIOT-HW2；已發布版本見上方完整 SHA，後續提交／Push 仍需明確授權 |
 | Framework Preset | Next.js |
 | Root Directory | web |
 | Include source files outside of the Root Directory in the Build Step | 開啟；建置需要 ../src、dashboard_data 與 reports，不可只上傳 web |
@@ -15,7 +15,7 @@
 | Build Command | npm run build；保留 prebuild 的 sync-data 與 build-browser-compute，不直接 next build 跳過前置步驟 |
 | Output Directory | 使用 Next.js 預設；不要填 public、out 或使用靜態匯出 |
 | Environment Variables | Browser-only 部署不需要任何 Secret 或 AEP_* 設定；不要填假的後端值；保留 Vercel 自動提供的 VERCEL 系統變數 |
-| Branch | 經確認後的 M17 commit；先用 Preview，確認結果後才決定 Production Branch，不能只靠 main 現有 M16 發布 M17 |
+| Branch | 已確認 Production Branch 為 main，Push main 會自動建立 Production Deployment 並指派正式網域；未來變更仍應先驗收 Preview |
 
 以上設定依 [Vercel 建置說明](https://vercel.com/docs/builds/configure-a-build)、[上層來源存取](https://vercel.com/docs/monorepos/monorepo-faq)、[Node 版本](https://vercel.com/docs/functions/runtimes/node-js/node-js-versions) 查核。Hobby 適合個人非商業作業展示，仍受用量限制，不保證無限免費資源；見 [Hobby 官方說明](https://vercel.com/docs/plans/hobby)。不需另租 Python 伺服器即可使用 Browser Mode。
 
@@ -37,12 +37,14 @@
 - 不使用 basePath／CDN assetPrefix 或全站重寫；目前 Worker 路徑固定網站根目錄。public 資源保留重新驗證策略，Worker no-store；不能把無內容 hash 的 manifest／Worker 改成 immutable。混合版本應失敗並要求重新載入，不能跳過 hash。
 - 正式服務使用 HTTPS；本機 loopback 為測試例外。Web Crypto、module Worker 與 WASM 必須在實際瀏覽器可用。Vercel 網域憑證與自訂網域 DNS 的關係見 [SSL 官方文件](https://vercel.com/docs/domains/working-with-ssl)。
 
-## 部署後 HTTPS 驗收清單（尚未執行）
+## 後續部署與補測的 HTTPS 檢查清單
+
+Phase 3K 的 26 組 HTTP、六模型數值、六模型 Live Predictor、Custom Browser Mode 代表流程與 24 組 Chromium 響應式檢查已完成。以下保留為下次部署及擴充驗收的通用清單，未勾選不表示本次全部未做，也不能據此宣稱全部做完；逐項實際範圍以正式紀錄為準。Production Safari、實體 iPhone、正式站完整六方法／多 k 工作負載及額外故障注入不可用 Preview／本機結果代替。
 
 - [ ] 確認部署 commit SHA 為核准 M17；五頁與 /api/predictions 所需研究快照正常，沒有 unavailable 或缺檔。
 - [ ] HTTPS 憑證有效、HTTP 轉址、無 mixed content；自訂網域按 Vercel 要求設 DNS。訪客可開啟頁面，Preview 存取保護按展示需求設定。
 - [ ] Server 預設且無 Gateway 時明確提示不可用；直接 API 回應 503；頁面不誤稱 Server 可用。
-- [ ] Worker、manifest、9 個模組均 200／正確 MIME；Worker CSP／nosniff／快取標頭符合設定，無 CSP／CORS／WASM console 錯誤。
+- [ ] Worker、manifest 與 manifest 列出的模組均 200／正確 MIME；Worker CSP／nosniff／快取標頭符合設定，無 CSP／CORS／WASM console 錯誤。
 - [ ] 官方固定 CDN runtime、WASM、科學套件均成功；版本與 source hash 正確。記錄新快取分區、停用快取與暖快取各自條件，不混稱冷啟動。
 - [ ] Browser 輸入 CSV 後驗證、六方法、多 k、LR、Holdout 指標、單筆與批次推論、圖表／下載均可用；Network 中不得出現 Browser 資料的 /api/custom-dataset 請求或任何 CSV 上傳。
 - [ ] 2,000 列／15 候選特徵／3 MiB 訓練資料邊界與超限提示、比較超限不阻止合法訓練、缺失值及時間切分正常，Server 限制不變。
@@ -52,16 +54,16 @@
 
 ## Python 歷史保護與新發布驗收
 
-既有 tests/test_phase3d.py 的 test_all_original_models_data_research_and_dashboard_unchanged 呼叫 src/phase3d_search.py:check_protected，要求 main／4619bd493a337f32d34593f12686035f2c70a630／空 staging。現行 experiment/m17-pyodide／61478fc 不符合，因此全套 211 中有 1 項歷史 Git 契約錯誤（先前 210 通過），不是 Browser 演算法錯誤，不能標示全套 PASS。
+既有 tests/test_phase3d.py 的 test_all_original_models_data_research_and_dashboard_unchanged 呼叫 src/phase3d_search.py:check_protected，要求 main／4619bd493a337f32d34593f12686035f2c70a630／空 staging。現行 main／0c935027aa236dea99ea23793ad939cd85dd2cda 不符合固定歷史 HEAD。Phase 3G 全套為 227 項中 226 PASS／1 ERROR；Phase 3J-A／3J-B 的單項重跑仍為同一個 ERROR。210／211 是更早的 M17 歷史紀錄，不代表本次數量。正式模型與現行研究完整性另有獨立驗證，不能將補充驗證當成舊測試 PASS。
 
 reports/phase3/phase3d/integrity_baseline.json 的 125 檔仍有獨立歷史意義；README.md 與 .gitignore 在 M16 公開整理已變更，其餘研究保護檔須另外比對。不要改舊 manifest、刪測試、skip、mock Git 或切回舊 HEAD 偽造驗收。
 
 正確處理是保留原 guard 供原 Phase 3D 流程使用，另建立本次 release attestation：以 M16 Stable SHA 比對研究／src／Gateway 完整性，明列核准網站與文件差異，再記錄 Browser／M16 回歸結果。這份新發布紀錄是補充，不能把歷史失敗改寫成通過。若學校／CI 要求整套無錯，仍須另行核准拆分「歷史重現契約」與「現行發布完整性」的測試設計；本階段不變更研究保護。
 
-## 提交範圍
+## 歷史提交範圍與文件收尾
 
-完整明確清單見 web/verification/m17-release-candidates.json；建議訊息：
+下列訊息與 web/verification/m17-release-candidates.json 是早期 M17 提交紀錄，不可沿用為目前或未來的 staging 清單：
 
     feat: add verified Pyodide browser compute mode
 
-只提交 M17 web 程式、可重現公開資源、小型合成 fixture、驗收紀錄與必要 README／部署文件／ignore 規則。排除 BostonHousing.csv、Secrets、experiments/ 歷史及原生環境、下載的 WASM／wheel、快取、截圖與大型測試產物。現有 M16 已追蹤研究檔不需要重新加入。本階段未執行任何 staging、Commit、Push 或部署。
+只提交 M17 web 程式、可重現公開資源、小型合成 fixture、驗收紀錄與必要 README／部署文件／ignore 規則。排除 BostonHousing.csv、Secrets、experiments/ 歷史及原生環境、下載的 WASM／wheel、快取、截圖與大型測試產物。現有 M16 已追蹤研究檔不需要重新加入。Phase 3H 另經 27／67／21 共 115 檔精確提交，Phase 3K 已完成 main Push 與自動 Production 部署；Phase 3L 文件收尾不執行新的 staging、Commit、Push 或部署。

@@ -1,8 +1,8 @@
-# Appliances Energy Prediction Lab — M17 Browser Mode
+# AIOT Research Lab — Multi-Dataset & M17 Browser Mode
 
 研究 Dashboard 與自訂 CSV 線性迴歸工具。M17 Browser Mode 已完成：CSV 正式驗證、六種特徵選擇、多 k 比較、CV／Holdout 評估、單筆與批次推論可在瀏覽器 Worker 執行，不需要 Python Gateway。M16 Server Mode 仍為預設；無後端時明確提示無法運算，請使用者自行切換 Browser Mode，不會自動上傳或回退。
 
-**尚未公開部署。** 已完成本機功能驗收與發布準備；公開 HTTPS 驗收仍待部署後執行。部署設定、資源與 HTTPS 清單見 [部署說明](../docs/vercel_deployment_plan.md)，本次提交候選與驗收見 [發布紀錄](verification/m17-release-result.json)。下方 M1～M16 段落保留各階段歷史，最新狀態以本節與部署說明為準。
+**已正式部署：[AIOT-HW2](https://aiot-hw-2.vercel.app/)。** Phase 3K Production Commit：`0c935027aa236dea99ea23793ad939cd85dd2cda`。正式站支援 Energy、Automobile、Student 的 Overview、Feature Selection、Model Evaluation、Holdout Explorer 與六模型 Research Live Predictor；Research Live Predictor 使用固定 TypeScript 模型，與 Custom Dataset Worker 完全隔離。部署設定見 [部署說明](../docs/vercel_deployment_plan.md)，驗收範圍與已知限制見 [發布收尾](../docs/release_closure.md) 及 [Production 紀錄](verification/multi-dataset-phase3k.json)。下方 M1～M16 段落保留歷史狀態，不作為現行部署結論。
 
 Browser 訓練資料上限：2,000 列、15 個數值候選特徵、每份 CSV ≤3 MiB；每次訓練仍受原有方法／工作量保護。Pyodide 314.0.7 與套件版本固定；載入官方 HTTPS CDN 後，運算和暫存 joblib 模型留在 Worker 記憶體。模型最多 3 個、30 分鐘；比較取消或超時不刪除原模型，離頁／切換模式／改資料設定以及一般訓練或推論取消仍會清除。不同網路與裝置不保證 60 秒完成。詳見 [核心說明](browser-compute/README.md)。
 

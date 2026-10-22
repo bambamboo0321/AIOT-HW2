@@ -1,18 +1,19 @@
 # AIOT HW2：家庭家電耗能預測與特徵選擇
 
-目前網站版本為 **M17 Browser Mode（已完成本機驗收，尚未公開部署）**。預設仍是 M16 Server Mode；沒有 Python 後端時會提示不可運算，使用者可自行切換 Browser Mode，在瀏覽器完成自訂數值 CSV 六方法選欄、多 k 比較、LR 訓練與單筆／批次推論。Browser 上限 500 列／10 特徵／1 MiB，不影響 Server 原限制。研究資料、演算法與既有成果不變。
+**正式網站已上線：[AIOT-HW2 Research Lab](https://aiot-hw-2.vercel.app/)。** Phase 3K Production 版本為 `0c935027aa236dea99ea23793ad939cd85dd2cda`（2026-10-22），包含 Energy、Automobile、Student 三資料集研究頁面與六個固定模型的 Research Live Predictor。Custom Dataset 支援 Browser Mode 六方法選欄、多 k 比較、Linear Regression 訓練及單筆／批次推論；訓練上限 **2,000 列／15 個數值候選特徵／3 MiB**，保留工作量與逾時保護。Server Mode 仍為預設，正式站未配置 Python Gateway 時明確提示不可用，請手動選擇 Browser Mode。
 
 - [網站現況與操作](web/README.md)
 - [Vercel 設定及部署後 HTTPS 驗收](docs/vercel_deployment_plan.md)
-- [M17 提交候選檔案](web/verification/m17-release-candidates.json)
-- [發布驗收與歷史 Python 保護說明](web/verification/m17-release-result.json)
+- [Phase 3L 發布收尾與已知限制](docs/release_closure.md)
+- [Phase 3K Production 驗收紀錄](web/verification/multi-dataset-phase3k.json)
+- [M17 歷史發布準備紀錄](web/verification/m17-release-result.json)（不是目前的 staging 清單）
 
 下方研究與里程碑敘述保留歷史背景；M14 的 211／211 不代表目前分支重新通過所有 Python 測試。
 
 
 本專案研究 **Appliances Energy Prediction Using Multiple Linear Regression and Feature Selection**，依作業要求使用 `sklearn.linear_model.LinearRegression`。已完成 Phase 1～3C 的資料驗證、EDA、可設定前處理、六種 Feature Selection、正式實驗與固定模型的 95% Prediction Interval，以及 M1～M14 的五頁互動網站、自訂數值 CSV 六方法比較、訓練與新資料推論。既有 Phase 4B-2 CLI 與 Dashboard JSON 仍保留。
 
-目前可讀取、核對與匯出既有成果，也可透過 Next.js 本機 API 呼叫 Python 進行自訂 CSV 實驗；使用者已確認本機操作驗收可接受。**獨立雲端後端、Vercel 正式部署、最終 PDF 與 ZIP 尚未完成**。使用者已選定 Vercel 前端＋獨立 Python 後端，部署計畫見下方文件；本機成功不等於雲端已上線。GitHub 是 Optional，不是必要交付條件。
+目前可讀取、核對與匯出既有研究成果；正式網站的 Browser Mode 不需另設 Python 伺服器。M16 Gateway 保留供本機或日後獨立後端使用，目前正式站的 Server Mode 尚未配置服務。最終 PDF、學號命名與 ZIP 等作業交付項目仍須另外核對；網站上線不代表附件已完成。GitHub 是 Optional，不是必要交付條件。
 
 ## Dataset 與作業規範
 
@@ -36,7 +37,7 @@
 | Data Preparation | 設定驗證、補值、OneHot、縮放、IQR、日期衍生及 fold-local fit：[Wizard 契約](docs/preprocessing_wizard.md) |
 | Modeling | 六種 Feature Selection，下游固定 LinearRegression：[Phase 3B](reports/phase3/phase3b_report.md) |
 | Evaluation | 分開報告 Training CV、Nested CV、固定 Holdout、殘差及 OLS PI：[Phase 3C](reports/phase3/phase3c_report.md) |
-| Deployment | 已有 CLI、五頁網站、本機 API 與自訂資料訓練／推論；Vercel 前端＋獨立後端待實作雲端接線與部署 |
+| Deployment | Vercel Production 已上線；三資料集研究、固定模型即時推論與 Custom Dataset Browser Mode 可用；M16 Gateway 保留，正式站 Server Mode 尚未配置 |
 
 ## Feature Selection 與驗證層級
 
@@ -148,16 +149,16 @@ git diff --check
 
 已完成：Phase 1～3C、公開研究準備、成果 CLI、Dashboard JSON 匯出、M1～M14 本機網站與自訂 CSV 流程，以及操作指南／成果報告 Markdown 草稿。9 張 EDA、7 張 Baseline 評估、7 張選特徵與 5 張 Phase 3C 圖皆沿用既有成果，不重新產圖。M14 測試紀錄為網站 127／127、Python 211／211，詳見 web/verification/m14-result.json；本次文件整理未重跑該批測試。
 
-待完成：完整學號命名、NotebookLM 實際摘要的正式保存與來源留存、GPT 輔助範圍與全部對話 PDF、最終報告 PDF、學號 ZIP，以及獨立雲端後端與 Vercel 部署；網站與本機 API 已完成。使用者已實際取得 NotebookLM 摘要，但尚未正式保存至 Repository；`references/notebooklm_research_plan.md` 為先前準備階段紀錄，**不得把 GPT 回答當成 NotebookLM 成果，也不得自行補寫摘要**。
+待完成：完整學號命名、NotebookLM 實際摘要的正式保存與來源留存、GPT 輔助範圍與全部對話 PDF、最終報告 PDF、學號 ZIP；Vercel Production 已完成，獨立雲端後端僅於未來啟用 Server Mode 時另行部署。使用者已實際取得 NotebookLM 摘要，但尚未正式保存至 Repository；`references/notebooklm_research_plan.md` 為先前準備階段紀錄，**不得把 GPT 回答當成 NotebookLM 成果，也不得自行補寫摘要**。
 
 ## 操作、成果與交付文件
 
 - [操作指南](docs/user_guide.md)：頁面導覽、CSV 到預測的操作、k／CV／Holdout／三指標與圖表解讀。
 - [成果報告草稿](docs/final_report_draft.md)：引用既有能源結果，保留限制、個人資料及附件待補項目；尚非正式 PDF。
 - [交付核對清單](docs/submission_checklist.md)：依既有紀錄暫定核對，仍需老師原始完整作業單、學號與實際 NotebookLM 產物。
-- [Vercel 部署計畫](docs/vercel_deployment_plan.md)：使用者選定完整 CSV 雲端功能，列出前端／後端接線、容量及模型管理改動；尚未部署。
+- [Vercel 部署說明](docs/vercel_deployment_plan.md)：已上線的 Browser Mode、既有部署設定、後續 HTTPS 檢查及可選 Server Mode 接線。
 
-本次未 commit 或 push，未修改既有研究結果與模型。
+Phase 3K 已完成核准版本的 main Push 與自動 Production 部署；Phase 3L 僅整理文件與發布紀錄，尚未 Commit／Push，不修改研究結果或模型。
 
 ### M15：獨立運算後端封裝
 

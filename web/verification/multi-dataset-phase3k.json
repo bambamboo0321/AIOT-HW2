@@ -1,0 +1,554 @@
+{
+  "schemaVersion": 1,
+  "task": "Phase 3K — Production Release",
+  "recordPurpose": "Phase 3L documentation-only archival of existing Production evidence; no new test run",
+  "releaseDate": "2026-10-22",
+  "origin": "https://aiot-hw-2.vercel.app",
+  "releaseCommit": "0c935027aa236dea99ea23793ad939cd85dd2cda",
+  "deployment": {
+    "id": "5c4zhkMYgrPZfGksim2Wg5Bypazm",
+    "status": "READY",
+    "environment": "Production",
+    "sourceBranch": "main",
+    "autoTriggeredByAuthorizedPush": true
+  },
+  "evidenceProvenance": {
+    "kind": "existing local Phase 3K verification output",
+    "sourceFileName": "aiot-phase3k-production-verification.json",
+    "sha256": "9a2e3ca3132811164d66ffa5a75f6c5566025a7b8588aae39037b5965c0183ad",
+    "historicalRecordsRewritten": false
+  },
+  "http": {
+    "status": "PASS",
+    "checks": 26,
+    "publicProductionAccess": true
+  },
+  "fixedModels": {
+    "models": 6,
+    "holdoutRows": 8236,
+    "extraCases": 274,
+    "failures": 0,
+    "maxAbsoluteError": 7.275957614183426e-12,
+    "absoluteTolerance": 1e-10,
+    "relativeTolerance": 1e-10,
+    "totalCases": 8510
+  },
+  "researchLive": {
+    "results": [
+      {
+        "dataset": "appliances-energy",
+        "model": "baseline",
+        "fields": 25,
+        "prediction": 172.09828635912464,
+        "difference": 0,
+        "console": {
+          "errors": [],
+          "warnings": [],
+          "unhandled": []
+        },
+        "status": "PASS"
+      },
+      {
+        "dataset": "appliances-energy",
+        "model": "mutual_information",
+        "fields": 6,
+        "prediction": 126.1393376089562,
+        "difference": 0,
+        "console": {
+          "errors": [],
+          "warnings": [],
+          "unhandled": []
+        },
+        "status": "PASS"
+      },
+      {
+        "dataset": "automobile-price",
+        "model": "baseline",
+        "fields": 14,
+        "prediction": 10836.929134737366,
+        "difference": 0,
+        "console": {
+          "errors": [],
+          "warnings": [],
+          "unhandled": []
+        },
+        "status": "PASS"
+      },
+      {
+        "dataset": "automobile-price",
+        "model": "mutual_information",
+        "fields": 7,
+        "prediction": 10985.325618550976,
+        "difference": 0,
+        "console": {
+          "errors": [],
+          "warnings": [],
+          "unhandled": []
+        },
+        "status": "PASS"
+      },
+      {
+        "dataset": "student-performance",
+        "model": "baseline",
+        "fields": 15,
+        "prediction": 18.624321974767277,
+        "difference": 0,
+        "console": {
+          "errors": [],
+          "warnings": [],
+          "unhandled": []
+        },
+        "status": "PASS"
+      },
+      {
+        "dataset": "student-performance",
+        "model": "mutual_information",
+        "fields": 7,
+        "prediction": 18.58989340438086,
+        "difference": 0,
+        "console": {
+          "errors": [],
+          "warnings": [],
+          "unhandled": []
+        },
+        "status": "PASS"
+      }
+    ],
+    "interactions": "PASS"
+  },
+  "customBrowser": {
+    "status": "PASS",
+    "cache": "uncontrolled; not a cold-start benchmark",
+    "secure_context": true,
+    "server_default": true,
+    "server_unavailable": true,
+    "server_api_status": 503,
+    "initialization": {
+      "report": {
+        "ready": true
+      },
+      "metadata": {
+        "engine": "browser",
+        "runtime": "314.0.7",
+        "versions": {
+          "python": "3.14.2",
+          "numpy": "2.4.6",
+          "pandas": "3.0.2",
+          "scipy": "1.18.0",
+          "sklearn": "1.8.0",
+          "joblib": "1.5.3"
+        },
+        "source_sha256": "53d2264f1ca72e1cf91c671d5e459100671afa266481eead3bde36c7dbae001f",
+        "elapsed_ms": 29327.100000023842,
+        "timings": {
+          "runtime_ms": 1405.3000000715256,
+          "packages_ms": 24233.5,
+          "modules_ms": 3687.899999976158
+        }
+      }
+    },
+    "holdout_predictions": 16,
+    "max_prediction_difference": 3.552713678800501e-15,
+    "single": true,
+    "batch_rows": 2,
+    "metrics": {
+      "rmse": 0.18683499380828994,
+      "mae": 0.15254170720649685,
+      "r2": 0.998458023055371
+    },
+    "model_deleted": true,
+    "api_calls": []
+  },
+  "customUI": {
+    "status": "PASS",
+    "fixture": "80 rows x 3 numeric features with missing values",
+    "trainingRows": 64,
+    "holdoutRows": 16,
+    "method": "rfe",
+    "k": 2,
+    "extrapolationRawInputRetained": 999,
+    "modeSwitchCleanup": "PASS",
+    "evidenceBasis": "Phase 3K executed browser UI output; separate from the underlying BrowserComputeClient smoke"
+  },
+  "remainingWorkers": 0,
+  "responsive": {
+    "records": [
+      {
+        "url": "/?dataset=appliances-energy",
+        "width": 1440,
+        "scrollWidth": 1425,
+        "theme": "light",
+        "console": {
+          "errors": [],
+          "warnings": [],
+          "unhandled": []
+        },
+        "secure": true,
+        "charts": 1,
+        "status": "PASS"
+      },
+      {
+        "url": "/feature-selection?dataset=appliances-energy",
+        "width": 1440,
+        "scrollWidth": 1425,
+        "theme": "light",
+        "console": {
+          "errors": [],
+          "warnings": [],
+          "unhandled": []
+        },
+        "secure": true,
+        "charts": 1,
+        "status": "PASS"
+      },
+      {
+        "url": "/model-evaluation?dataset=appliances-energy",
+        "width": 1440,
+        "scrollWidth": 1425,
+        "theme": "light",
+        "console": {
+          "errors": [],
+          "warnings": [],
+          "unhandled": []
+        },
+        "secure": true,
+        "charts": 3,
+        "status": "PASS"
+      },
+      {
+        "url": "/prediction-explorer?dataset=appliances-energy",
+        "width": 1440,
+        "scrollWidth": 1425,
+        "theme": "light",
+        "console": {
+          "errors": [],
+          "warnings": [],
+          "unhandled": []
+        },
+        "secure": true,
+        "charts": 1,
+        "status": "PASS"
+      },
+      {
+        "url": "/?dataset=automobile-price",
+        "width": 1440,
+        "scrollWidth": 1425,
+        "theme": "light",
+        "console": {
+          "errors": [],
+          "warnings": [],
+          "unhandled": []
+        },
+        "secure": true,
+        "charts": 1,
+        "status": "PASS"
+      },
+      {
+        "url": "/feature-selection?dataset=automobile-price",
+        "width": 1440,
+        "scrollWidth": 1425,
+        "theme": "light",
+        "console": {
+          "errors": [],
+          "warnings": [],
+          "unhandled": []
+        },
+        "secure": true,
+        "charts": 1,
+        "status": "PASS"
+      },
+      {
+        "url": "/model-evaluation?dataset=automobile-price",
+        "width": 1440,
+        "scrollWidth": 1425,
+        "theme": "light",
+        "console": {
+          "errors": [],
+          "warnings": [],
+          "unhandled": []
+        },
+        "secure": true,
+        "charts": 4,
+        "status": "PASS"
+      },
+      {
+        "url": "/prediction-explorer?dataset=automobile-price",
+        "width": 1440,
+        "scrollWidth": 1425,
+        "theme": "light",
+        "console": {
+          "errors": [],
+          "warnings": [],
+          "unhandled": []
+        },
+        "secure": true,
+        "charts": 1,
+        "status": "PASS"
+      },
+      {
+        "url": "/?dataset=student-performance",
+        "width": 1440,
+        "scrollWidth": 1425,
+        "theme": "light",
+        "console": {
+          "errors": [],
+          "warnings": [],
+          "unhandled": []
+        },
+        "secure": true,
+        "charts": 1,
+        "status": "PASS"
+      },
+      {
+        "url": "/feature-selection?dataset=student-performance",
+        "width": 1440,
+        "scrollWidth": 1425,
+        "theme": "light",
+        "console": {
+          "errors": [],
+          "warnings": [],
+          "unhandled": []
+        },
+        "secure": true,
+        "charts": 1,
+        "status": "PASS"
+      },
+      {
+        "url": "/model-evaluation?dataset=student-performance",
+        "width": 1440,
+        "scrollWidth": 1425,
+        "theme": "light",
+        "console": {
+          "errors": [],
+          "warnings": [],
+          "unhandled": []
+        },
+        "secure": true,
+        "charts": 4,
+        "status": "PASS"
+      },
+      {
+        "url": "/prediction-explorer?dataset=student-performance",
+        "width": 1440,
+        "scrollWidth": 1425,
+        "theme": "light",
+        "console": {
+          "errors": [],
+          "warnings": [],
+          "unhandled": []
+        },
+        "secure": true,
+        "charts": 1,
+        "status": "PASS"
+      },
+      {
+        "url": "/?dataset=appliances-energy",
+        "width": 390,
+        "scrollWidth": 390,
+        "theme": "dark",
+        "console": {
+          "errors": [],
+          "warnings": [],
+          "unhandled": []
+        },
+        "secure": true,
+        "charts": 1,
+        "status": "PASS"
+      },
+      {
+        "url": "/feature-selection?dataset=appliances-energy",
+        "width": 390,
+        "scrollWidth": 390,
+        "theme": "dark",
+        "console": {
+          "errors": [],
+          "warnings": [],
+          "unhandled": []
+        },
+        "secure": true,
+        "charts": 1,
+        "status": "PASS"
+      },
+      {
+        "url": "/model-evaluation?dataset=appliances-energy",
+        "width": 390,
+        "scrollWidth": 390,
+        "theme": "dark",
+        "console": {
+          "errors": [],
+          "warnings": [],
+          "unhandled": []
+        },
+        "secure": true,
+        "charts": 3,
+        "status": "PASS"
+      },
+      {
+        "url": "/prediction-explorer?dataset=appliances-energy",
+        "width": 390,
+        "scrollWidth": 390,
+        "theme": "dark",
+        "console": {
+          "errors": [],
+          "warnings": [],
+          "unhandled": []
+        },
+        "secure": true,
+        "charts": 1,
+        "status": "PASS"
+      },
+      {
+        "url": "/?dataset=automobile-price",
+        "width": 390,
+        "scrollWidth": 390,
+        "theme": "dark",
+        "console": {
+          "errors": [],
+          "warnings": [],
+          "unhandled": []
+        },
+        "secure": true,
+        "charts": 1,
+        "status": "PASS"
+      },
+      {
+        "url": "/feature-selection?dataset=automobile-price",
+        "width": 390,
+        "scrollWidth": 390,
+        "theme": "dark",
+        "console": {
+          "errors": [],
+          "warnings": [],
+          "unhandled": []
+        },
+        "secure": true,
+        "charts": 1,
+        "status": "PASS"
+      },
+      {
+        "url": "/model-evaluation?dataset=automobile-price",
+        "width": 390,
+        "scrollWidth": 390,
+        "theme": "dark",
+        "console": {
+          "errors": [],
+          "warnings": [],
+          "unhandled": []
+        },
+        "secure": true,
+        "charts": 4,
+        "status": "PASS"
+      },
+      {
+        "url": "/prediction-explorer?dataset=automobile-price",
+        "width": 390,
+        "scrollWidth": 390,
+        "theme": "dark",
+        "console": {
+          "errors": [],
+          "warnings": [],
+          "unhandled": []
+        },
+        "secure": true,
+        "charts": 1,
+        "status": "PASS"
+      },
+      {
+        "url": "/?dataset=student-performance",
+        "width": 390,
+        "scrollWidth": 390,
+        "theme": "dark",
+        "console": {
+          "errors": [],
+          "warnings": [],
+          "unhandled": []
+        },
+        "secure": true,
+        "charts": 1,
+        "status": "PASS"
+      },
+      {
+        "url": "/feature-selection?dataset=student-performance",
+        "width": 390,
+        "scrollWidth": 390,
+        "theme": "dark",
+        "console": {
+          "errors": [],
+          "warnings": [],
+          "unhandled": []
+        },
+        "secure": true,
+        "charts": 1,
+        "status": "PASS"
+      },
+      {
+        "url": "/model-evaluation?dataset=student-performance",
+        "width": 390,
+        "scrollWidth": 390,
+        "theme": "dark",
+        "console": {
+          "errors": [],
+          "warnings": [],
+          "unhandled": []
+        },
+        "secure": true,
+        "charts": 4,
+        "status": "PASS"
+      },
+      {
+        "url": "/prediction-explorer?dataset=student-performance",
+        "width": 390,
+        "scrollWidth": 390,
+        "theme": "dark",
+        "console": {
+          "errors": [],
+          "warnings": [],
+          "unhandled": []
+        },
+        "secure": true,
+        "charts": 1,
+        "status": "PASS"
+      }
+    ],
+    "priorIncident": {
+      "page": "/feature-selection?dataset=appliances-energy",
+      "navigationTimeoutMs": 15000,
+      "additionalWaitMs": 30000,
+      "independentHttp": {
+        "status": 200,
+        "seconds": 1.447,
+        "bytes": 66719
+      },
+      "networkErrorObserved": "net::ERR_HTTP2_PING_FAILED",
+      "initialRootCause": "not conclusively determined",
+      "controlledReloads": 1,
+      "reloadResult": "HTTP 200; document complete; chart rendered"
+    }
+  },
+  "browserScope": {
+    "executed": "Chromium 154; mobile viewport simulation",
+    "previewMacOSSafari": "7/7 PASS, user-reported manual acceptance",
+    "productionMacOSSafari": "NOT TESTED",
+    "physicalIphoneSafari": "NOT TESTED"
+  },
+  "historicalPython": {
+    "status": "KNOWN ERROR PRESERVED",
+    "phase3gTotal": 227,
+    "phase3gPassed": 226,
+    "phase3gErrors": 1,
+    "test": "test_phase3d.SavedExperimentTests.test_all_original_models_data_research_and_dashboard_unchanged",
+    "requiredHistoricalBranch": "main",
+    "requiredHistoricalHead": "4619bd493a337f32d34593f12686035f2c70a630",
+    "guardOrTestModified": false,
+    "currentResearchHashCheck": {
+      "files": 123,
+      "changed": 0
+    }
+  },
+  "incidentNotes": {
+    "exactWallClockTime": "not recorded",
+    "fullHar": "not captured",
+    "networkErrorObservedDoesNotProveInitialRootCause": true
+  },
+  "releaseStatus": "DEPLOYED; executed Production checks PASS; known incident and NOT TESTED browser coverage retained"
+}
