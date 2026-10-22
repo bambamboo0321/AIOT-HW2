@@ -1,0 +1,288 @@
+{
+  "schemaVersion": 1,
+  "modelVersion": "1.0.0",
+  "datasetId": "automobile-price",
+  "modelId": "mutual_information",
+  "target": "price",
+  "unit": "原始價格單位（幣別未核實）",
+  "featureOrder": [
+    "length",
+    "width",
+    "curb-weight",
+    "engine-size",
+    "horsepower",
+    "city-mpg",
+    "highway-mpg"
+  ],
+  "features": [
+    {
+      "name": "length",
+      "kind": "number",
+      "unit": "原始欄位單位（未另行核實）",
+      "trainingMin": 141.1,
+      "trainingMax": 208.1,
+      "domainMin": null,
+      "domainMax": null,
+      "allowedValues": null,
+      "encoding": null,
+      "imputer": {
+        "strategy": "median",
+        "value": 173.2
+      },
+      "scaler": {
+        "mean": 174.02437500000002,
+        "scale": 11.997727633155163,
+        "withMean": true,
+        "withStd": true
+      },
+      "outliers": "keep",
+      "description": "length"
+    },
+    {
+      "name": "width",
+      "kind": "number",
+      "unit": "原始欄位單位（未另行核實）",
+      "trainingMin": 60.3,
+      "trainingMax": 72.0,
+      "domainMin": null,
+      "domainMax": null,
+      "allowedValues": null,
+      "encoding": null,
+      "imputer": {
+        "strategy": "median",
+        "value": 65.5
+      },
+      "scaler": {
+        "mean": 65.8,
+        "scale": 2.00848201386022,
+        "withMean": true,
+        "withStd": true
+      },
+      "outliers": "keep",
+      "description": "width"
+    },
+    {
+      "name": "curb-weight",
+      "kind": "number",
+      "unit": "原始欄位單位（未另行核實）",
+      "trainingMin": 1488.0,
+      "trainingMax": 4066.0,
+      "domainMin": null,
+      "domainMax": null,
+      "allowedValues": null,
+      "encoding": null,
+      "imputer": {
+        "strategy": "median",
+        "value": 2417.0
+      },
+      "scaler": {
+        "mean": 2539.475,
+        "scale": 490.3489822310229,
+        "withMean": true,
+        "withStd": true
+      },
+      "outliers": "keep",
+      "description": "curb-weight"
+    },
+    {
+      "name": "engine-size",
+      "kind": "number",
+      "unit": "原始欄位單位（未另行核實）",
+      "trainingMin": 61.0,
+      "trainingMax": 326.0,
+      "domainMin": null,
+      "domainMax": null,
+      "allowedValues": null,
+      "encoding": null,
+      "imputer": {
+        "strategy": "median",
+        "value": 110.5
+      },
+      "scaler": {
+        "mean": 124.6875,
+        "scale": 39.63224500012584,
+        "withMean": true,
+        "withStd": true
+      },
+      "outliers": "keep",
+      "description": "engine-size"
+    },
+    {
+      "name": "horsepower",
+      "kind": "number",
+      "unit": "原始欄位單位（未另行核實）",
+      "trainingMin": 48.0,
+      "trainingMax": 262.0,
+      "domainMin": null,
+      "domainMax": null,
+      "allowedValues": null,
+      "encoding": null,
+      "imputer": {
+        "strategy": "median",
+        "value": 95.0
+      },
+      "scaler": {
+        "mean": 101.80625,
+        "scale": 35.64854430320402,
+        "withMean": true,
+        "withStd": true
+      },
+      "outliers": "keep",
+      "description": "horsepower"
+    },
+    {
+      "name": "city-mpg",
+      "kind": "number",
+      "unit": "原始欄位單位（未另行核實）",
+      "trainingMin": 13.0,
+      "trainingMax": 49.0,
+      "domainMin": null,
+      "domainMax": null,
+      "allowedValues": null,
+      "encoding": null,
+      "imputer": {
+        "strategy": "median",
+        "value": 24.5
+      },
+      "scaler": {
+        "mean": 25.29375,
+        "scale": 6.306342913091549,
+        "withMean": true,
+        "withStd": true
+      },
+      "outliers": "keep",
+      "description": "city-mpg"
+    },
+    {
+      "name": "highway-mpg",
+      "kind": "number",
+      "unit": "原始欄位單位（未另行核實）",
+      "trainingMin": 16.0,
+      "trainingMax": 54.0,
+      "domainMin": null,
+      "domainMax": null,
+      "allowedValues": null,
+      "encoding": null,
+      "imputer": {
+        "strategy": "median",
+        "value": 30.0
+      },
+      "scaler": {
+        "mean": 30.76875,
+        "scale": 6.6701029555397415,
+        "withMean": true,
+        "withStd": true
+      },
+      "outliers": "keep",
+      "description": "highway-mpg"
+    }
+  ],
+  "originalPreprocessorSchema": [
+    "normalized-losses",
+    "wheel-base",
+    "length",
+    "width",
+    "height",
+    "curb-weight",
+    "engine-size",
+    "bore",
+    "stroke",
+    "horsepower",
+    "city-mpg",
+    "highway-mpg",
+    "fuel-type",
+    "aspiration"
+  ],
+  "coefficients": [
+    -127.61696539064788,
+    1532.2335279093859,
+    811.9224014972689,
+    3179.304532305914,
+    996.10974406859,
+    -693.7895626512858,
+    341.50232639580787
+  ],
+  "intercept": 12573.681249999996,
+  "preprocessingOrder": [
+    "validate",
+    "encode",
+    "impute",
+    "scale",
+    "linear"
+  ],
+  "outlierStrategy": "keep",
+  "predictionClipped": false,
+  "trainingSplit": {
+    "strategy": "fixed_saved_random_80_20",
+    "randomSeed": 42,
+    "trainingRows": 160,
+    "holdoutRows": 41,
+    "trainingIndexSha256": "4e6dfc652db0385e7e8140417dcb6165f810836c8bd2013c68a572dd448e1622",
+    "holdoutIndexSha256": "de7b49bb26112eb470eb93a12fcbaad4a4253954a0283108679b757955eaa19d",
+    "holdoutUsedForFitting": false
+  },
+  "versions": {
+    "python": "3.10.17",
+    "numpy": "2.2.6",
+    "pandas": "2.3.3",
+    "scipy": "1.15.3",
+    "scikit-learn": "1.7.2",
+    "joblib": "1.6.0",
+    "threadpoolctl": "3.7.0"
+  },
+  "sourceHashes": [
+    {
+      "path": "web/scripts/export-fixed-models.py",
+      "sha256": "362a54aa2f5d84bffd936bea01bd5006a77eb9b0db16bf4814f33384232bdbdc"
+    },
+    {
+      "path": "web/data/fixed-models/v1/policy.json",
+      "sha256": "da73480718d166a857d05166947be82e457de1de2ab6b982de9b8f070222c2b8"
+    },
+    {
+      "path": "src/preprocessing.py",
+      "sha256": "d7c0513846367c373e44e99c8074b4974b40a1ea1e752d706bba055431179716"
+    },
+    {
+      "path": "src/preprocessing_config.py",
+      "sha256": "6dc5821d8cfdfbd7a67b25212d7e10b3538e7b1ad9367ad1df4331646df3b2de"
+    },
+    {
+      "path": "src/feature_selection.py",
+      "sha256": "3bb3c28b4041730084c0e53de1be0193fc30259e7afcc9dbb14ba60f1f631364"
+    },
+    {
+      "path": "Automobile_data.csv",
+      "sha256": "2c7c43bd00c53112d7766dd825b986b57aa15a0450815ef568d60216fbe5e587"
+    },
+    {
+      "path": "experiments/multi-dataset-phase2/config.json",
+      "sha256": "ef5ce51bcaa192d5117b1e1e92a5a7304d28915dca0626702f48e92ec308b8bc"
+    },
+    {
+      "path": "experiments/multi-dataset-phase2/automobile/results.json",
+      "sha256": "8f5a97cb28823e03f67df5485953d95e6cc39347507fb140aaad93af6ee47642"
+    },
+    {
+      "path": "experiments/multi-dataset-phase2/automobile/profile-and-split.json",
+      "sha256": "f5014737e82e7e6e5f750b4f99e40d20f6c1845981c740cf2d2526c96e54a029"
+    },
+    {
+      "path": "experiments/multi-dataset-phase2/automobile/live-predictor-schema.json",
+      "sha256": "38c8263645e887a8a83b25942bb02fa679b8a49d27b91d7f54f26f810e3a3e73"
+    },
+    {
+      "path": "experiments/multi-dataset-phase2/automobile/locked-training-decision.json",
+      "sha256": "f20ebff9f642752672680bb5a4eb5b0a4ff59b06846d6281c1723beb8992ad03"
+    },
+    {
+      "path": "experiments/multi-dataset-phase2/environment.json",
+      "sha256": "af1c0bbfa796028e8629ec6fa76d6238719b8f0c7545d5afea3f84e73923344b"
+    }
+  ],
+  "limitations": [
+    "固定研究模型；不是因果效果；外插可靠性可能降低；預測與輸入不裁切。",
+    "價格幣別未核實。"
+  ],
+  "acquisition": "training-only-refit-with-frozen-selected-columns-no-selector"
+}

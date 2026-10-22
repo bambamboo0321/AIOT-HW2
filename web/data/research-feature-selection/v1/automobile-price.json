@@ -1,0 +1,769 @@
+{
+  "schemaVersion": 1,
+  "artifactType": "study-feature-selection",
+  "datasetId": "automobile-price",
+  "overviewSha256": "d7016a6584966f6b4ed979f8b50fa0f9296d766dc6466b7282533127b8bd7b1b",
+  "sources": [
+    {
+      "path": "experiments/multi-dataset-phase2/automobile/results.json",
+      "sha256": "8f5a97cb28823e03f67df5485953d95e6cc39347507fb140aaad93af6ee47642"
+    },
+    {
+      "path": "experiments/multi-dataset-phase2/automobile/locked-training-decision.json",
+      "sha256": "f20ebff9f642752672680bb5a4eb5b0a4ff59b06846d6281c1723beb8992ad03"
+    },
+    {
+      "path": "experiments/multi-dataset-phase2/config.json",
+      "sha256": "ef5ce51bcaa192d5117b1e1e92a5a7304d28915dca0626702f48e92ec308b8bc"
+    },
+    {
+      "path": "experiments/multi-dataset-phase2/verification.json",
+      "sha256": "08b2c362c6f61e5037b7bb916153d1de335c4042e83b7155323f3130f00651e7"
+    },
+    {
+      "path": "experiments/multi-dataset-phase2/artifact-manifest.json",
+      "sha256": "2300bca8e4c5b1b03d5861a59895a5eb236ef0fef8a4a23eb9a0a33e68d20bcc"
+    }
+  ],
+  "methods": [
+    {
+      "id": "f_test",
+      "mode": "fixed",
+      "requestedK": 7,
+      "status": "ready",
+      "finalK": 7,
+      "features": [
+        "length",
+        "width",
+        "curb-weight",
+        "engine-size",
+        "horsepower",
+        "city-mpg",
+        "highway-mpg"
+      ],
+      "cv": {
+        "status": "ready",
+        "mean": {
+          "rmse": 3032.5185228512773,
+          "mae": 2171.13825015876,
+          "r2": 0.775311396440322
+        },
+        "std": {
+          "rmse": 386.4534279896951,
+          "mae": 174.57704769366688,
+          "r2": 0.07179696061004304
+        },
+        "foldCount": 5,
+        "stdDDoF": 0
+      },
+      "folds": [
+        {
+          "fold": 1,
+          "k": 7,
+          "features": [
+            "length",
+            "width",
+            "curb-weight",
+            "engine-size",
+            "horsepower",
+            "city-mpg",
+            "highway-mpg"
+          ],
+          "scores": {
+            "rmse": 3051.682552459221,
+            "mae": 2331.9601569668703,
+            "r2": 0.6695560366554716
+          }
+        },
+        {
+          "fold": 2,
+          "k": 7,
+          "features": [
+            "length",
+            "width",
+            "curb-weight",
+            "engine-size",
+            "horsepower",
+            "city-mpg",
+            "highway-mpg"
+          ],
+          "scores": {
+            "rmse": 2762.579193552633,
+            "mae": 1931.335176772804,
+            "r2": 0.8370454316829073
+          }
+        },
+        {
+          "fold": 3,
+          "k": 7,
+          "features": [
+            "length",
+            "width",
+            "curb-weight",
+            "engine-size",
+            "horsepower",
+            "city-mpg",
+            "highway-mpg"
+          ],
+          "scores": {
+            "rmse": 2842.2630647905926,
+            "mae": 2171.460307093869,
+            "r2": 0.8669873161134108
+          }
+        },
+        {
+          "fold": 4,
+          "k": 7,
+          "features": [
+            "length",
+            "width",
+            "curb-weight",
+            "engine-size",
+            "horsepower",
+            "city-mpg",
+            "highway-mpg"
+          ],
+          "scores": {
+            "rmse": 2733.396742485711,
+            "mae": 2028.915062358496,
+            "r2": 0.7265965912938321
+          }
+        },
+        {
+          "fold": 5,
+          "k": 7,
+          "features": [
+            "wheel-base",
+            "length",
+            "width",
+            "curb-weight",
+            "engine-size",
+            "horsepower",
+            "highway-mpg"
+          ],
+          "scores": {
+            "rmse": 3772.6710609682314,
+            "mae": 2392.0205476017622,
+            "r2": 0.7763716064559884
+          }
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "id": "mutual_information",
+      "mode": "fixed",
+      "requestedK": 7,
+      "status": "ready",
+      "finalK": 7,
+      "features": [
+        "length",
+        "width",
+        "curb-weight",
+        "engine-size",
+        "horsepower",
+        "city-mpg",
+        "highway-mpg"
+      ],
+      "cv": {
+        "status": "ready",
+        "mean": {
+          "rmse": 3013.100461350188,
+          "mae": 2166.2889191155036,
+          "r2": 0.7775735647187209
+        },
+        "std": {
+          "rmse": 350.5561907182682,
+          "mae": 177.27583271193384,
+          "r2": 0.07202091848081546
+        },
+        "foldCount": 5,
+        "stdDDoF": 0
+      },
+      "folds": [
+        {
+          "fold": 1,
+          "k": 7,
+          "features": [
+            "length",
+            "width",
+            "curb-weight",
+            "engine-size",
+            "horsepower",
+            "city-mpg",
+            "highway-mpg"
+          ],
+          "scores": {
+            "rmse": 3051.682552459221,
+            "mae": 2331.9601569668703,
+            "r2": 0.6695560366554716
+          }
+        },
+        {
+          "fold": 2,
+          "k": 7,
+          "features": [
+            "length",
+            "width",
+            "curb-weight",
+            "engine-size",
+            "horsepower",
+            "city-mpg",
+            "highway-mpg"
+          ],
+          "scores": {
+            "rmse": 2762.579193552633,
+            "mae": 1931.335176772804,
+            "r2": 0.8370454316829073
+          }
+        },
+        {
+          "fold": 3,
+          "k": 7,
+          "features": [
+            "wheel-base",
+            "width",
+            "curb-weight",
+            "engine-size",
+            "horsepower",
+            "city-mpg",
+            "highway-mpg"
+          ],
+          "scores": {
+            "rmse": 2839.9301477752347,
+            "mae": 2138.738564669928,
+            "r2": 0.86720557895319
+          }
+        },
+        {
+          "fold": 4,
+          "k": 7,
+          "features": [
+            "length",
+            "width",
+            "curb-weight",
+            "engine-size",
+            "horsepower",
+            "city-mpg",
+            "highway-mpg"
+          ],
+          "scores": {
+            "rmse": 2733.396742485711,
+            "mae": 2028.915062358496,
+            "r2": 0.7265965912938321
+          }
+        },
+        {
+          "fold": 5,
+          "k": 7,
+          "features": [
+            "length",
+            "width",
+            "curb-weight",
+            "engine-size",
+            "horsepower",
+            "city-mpg",
+            "highway-mpg"
+          ],
+          "scores": {
+            "rmse": 3677.9136704781417,
+            "mae": 2400.495634809423,
+            "r2": 0.7874641850082029
+          }
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "id": "forward_sfs",
+      "mode": "fixed",
+      "requestedK": 7,
+      "status": "ready",
+      "finalK": 7,
+      "features": [
+        "normalized-losses",
+        "width",
+        "height",
+        "engine-size",
+        "horsepower",
+        "city-mpg",
+        "highway-mpg"
+      ],
+      "cv": {
+        "status": "ready",
+        "mean": {
+          "rmse": 3268.7532695010623,
+          "mae": 2278.5303530491224,
+          "r2": 0.7483844998658068
+        },
+        "std": {
+          "rmse": 381.2971908013317,
+          "mae": 217.2878001394883,
+          "r2": 0.045483429015435985
+        },
+        "foldCount": 5,
+        "stdDDoF": 0
+      },
+      "folds": [
+        {
+          "fold": 1,
+          "k": 7,
+          "features": [
+            "length",
+            "width",
+            "height",
+            "curb-weight",
+            "engine-size",
+            "bore",
+            "city-mpg"
+          ],
+          "scores": {
+            "rmse": 3037.9720757254318,
+            "mae": 2295.5219232883883,
+            "r2": 0.6725185773981166
+          }
+        },
+        {
+          "fold": 2,
+          "k": 7,
+          "features": [
+            "width",
+            "height",
+            "engine-size",
+            "bore",
+            "stroke",
+            "horsepower",
+            "fuel-type"
+          ],
+          "scores": {
+            "rmse": 3151.3392686287757,
+            "mae": 2131.7532460081834,
+            "r2": 0.7879553158700126
+          }
+        },
+        {
+          "fold": 3,
+          "k": 7,
+          "features": [
+            "width",
+            "curb-weight",
+            "stroke",
+            "horsepower",
+            "highway-mpg",
+            "fuel-type",
+            "aspiration"
+          ],
+          "scores": {
+            "rmse": 3561.2024651451397,
+            "mae": 2649.7323846903023,
+            "r2": 0.7911868502371012
+          }
+        },
+        {
+          "fold": 4,
+          "k": 7,
+          "features": [
+            "normalized-losses",
+            "wheel-base",
+            "width",
+            "engine-size",
+            "bore",
+            "stroke",
+            "aspiration"
+          ],
+          "scores": {
+            "rmse": 2761.457421194995,
+            "mae": 2004.02711619221,
+            "r2": 0.7209543335459898
+          }
+        },
+        {
+          "fold": 5,
+          "k": 7,
+          "features": [
+            "normalized-losses",
+            "wheel-base",
+            "length",
+            "curb-weight",
+            "engine-size",
+            "stroke",
+            "horsepower"
+          ],
+          "scores": {
+            "rmse": 3831.7951168109694,
+            "mae": 2311.6170950665273,
+            "r2": 0.7693074222778138
+          }
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "id": "rfe",
+      "mode": "fixed",
+      "requestedK": 7,
+      "status": "ready",
+      "finalK": 7,
+      "features": [
+        "wheel-base",
+        "length",
+        "width",
+        "engine-size",
+        "horsepower",
+        "city-mpg",
+        "highway-mpg"
+      ],
+      "cv": {
+        "status": "ready",
+        "mean": {
+          "rmse": 3217.0176696309272,
+          "mae": 2339.4201226243867,
+          "r2": 0.7435901708906745
+        },
+        "std": {
+          "rmse": 289.79144131862546,
+          "mae": 116.26552767212618,
+          "r2": 0.08715901923604995
+        },
+        "foldCount": 5,
+        "stdDDoF": 0
+      },
+      "folds": [
+        {
+          "fold": 1,
+          "k": 7,
+          "features": [
+            "normalized-losses",
+            "width",
+            "engine-size",
+            "stroke",
+            "horsepower",
+            "city-mpg",
+            "highway-mpg"
+          ],
+          "scores": {
+            "rmse": 3041.060212880025,
+            "mae": 2354.8702414725894,
+            "r2": 0.6718524609712164
+          }
+        },
+        {
+          "fold": 2,
+          "k": 7,
+          "features": [
+            "width",
+            "engine-size",
+            "bore",
+            "stroke",
+            "horsepower",
+            "city-mpg",
+            "fuel-type"
+          ],
+          "scores": {
+            "rmse": 3104.284039060383,
+            "mae": 2129.8452174431013,
+            "r2": 0.7942404645049492
+          }
+        },
+        {
+          "fold": 3,
+          "k": 7,
+          "features": [
+            "wheel-base",
+            "length",
+            "width",
+            "engine-size",
+            "stroke",
+            "horsepower",
+            "city-mpg"
+          ],
+          "scores": {
+            "rmse": 2939.583772822951,
+            "mae": 2374.1930202945,
+            "r2": 0.8577225095448199
+          }
+        },
+        {
+          "fold": 4,
+          "k": 7,
+          "features": [
+            "wheel-base",
+            "width",
+            "curb-weight",
+            "engine-size",
+            "horsepower",
+            "city-mpg",
+            "fuel-type"
+          ],
+          "scores": {
+            "rmse": 3236.444823269679,
+            "mae": 2488.097338493494,
+            "r2": 0.6167033756210136
+          }
+        },
+        {
+          "fold": 5,
+          "k": 7,
+          "features": [
+            "wheel-base",
+            "width",
+            "curb-weight",
+            "engine-size",
+            "horsepower",
+            "city-mpg",
+            "highway-mpg"
+          ],
+          "scores": {
+            "rmse": 3763.7155001215992,
+            "mae": 2350.0947954182475,
+            "r2": 0.7774320438113731
+          }
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "id": "lasso_cv",
+      "mode": "auto",
+      "requestedK": null,
+      "status": "ready",
+      "finalK": 9,
+      "features": [
+        "normalized-losses",
+        "wheel-base",
+        "width",
+        "engine-size",
+        "bore",
+        "stroke",
+        "horsepower",
+        "city-mpg",
+        "fuel-type"
+      ],
+      "cv": {
+        "status": "ready",
+        "mean": {
+          "rmse": 3060.085727619339,
+          "mae": 2150.396239700446,
+          "r2": 0.7761623680051326
+        },
+        "std": {
+          "rmse": 339.8485847399477,
+          "mae": 151.87677978285598,
+          "r2": 0.05353462578345006
+        },
+        "foldCount": 5,
+        "stdDDoF": 0
+      },
+      "folds": [
+        {
+          "fold": 1,
+          "k": 10,
+          "features": [
+            "normalized-losses",
+            "wheel-base",
+            "width",
+            "height",
+            "engine-size",
+            "stroke",
+            "horsepower",
+            "city-mpg",
+            "fuel-type",
+            "aspiration"
+          ],
+          "scores": {
+            "rmse": 2956.548419478888,
+            "mae": 2242.842455576868,
+            "r2": 0.689837631245579
+          }
+        },
+        {
+          "fold": 2,
+          "k": 8,
+          "features": [
+            "wheel-base",
+            "width",
+            "engine-size",
+            "bore",
+            "stroke",
+            "horsepower",
+            "city-mpg",
+            "fuel-type"
+          ],
+          "scores": {
+            "rmse": 3050.06709878834,
+            "mae": 2076.4396674959357,
+            "r2": 0.801364963718956
+          }
+        },
+        {
+          "fold": 3,
+          "k": 8,
+          "features": [
+            "normalized-losses",
+            "wheel-base",
+            "width",
+            "engine-size",
+            "stroke",
+            "horsepower",
+            "city-mpg",
+            "fuel-type"
+          ],
+          "scores": {
+            "rmse": 3020.559379376111,
+            "mae": 2361.4404651886416,
+            "r2": 0.8497760182059783
+          }
+        },
+        {
+          "fold": 4,
+          "k": 9,
+          "features": [
+            "normalized-losses",
+            "wheel-base",
+            "width",
+            "engine-size",
+            "bore",
+            "stroke",
+            "horsepower",
+            "city-mpg",
+            "fuel-type"
+          ],
+          "scores": {
+            "rmse": 2610.6109339569757,
+            "mae": 1912.2714109136925,
+            "r2": 0.7506077892120656
+          }
+        },
+        {
+          "fold": 5,
+          "k": 10,
+          "features": [
+            "normalized-losses",
+            "wheel-base",
+            "width",
+            "curb-weight",
+            "engine-size",
+            "bore",
+            "stroke",
+            "horsepower",
+            "city-mpg",
+            "fuel-type"
+          ],
+          "scores": {
+            "rmse": 3662.642806496381,
+            "mae": 2158.9871993270945,
+            "r2": 0.7892254376430846
+          }
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "id": "rfecv",
+      "mode": "auto",
+      "requestedK": null,
+      "status": "ready",
+      "finalK": 3,
+      "features": [
+        "width",
+        "engine-size",
+        "horsepower"
+      ],
+      "cv": {
+        "status": "ready",
+        "mean": {
+          "rmse": 3147.9858165081105,
+          "mae": 2249.993320000847,
+          "r2": 0.7552214316289259
+        },
+        "std": {
+          "rmse": 315.40471154242596,
+          "mae": 125.6032109659382,
+          "r2": 0.08170414413173648
+        },
+        "foldCount": 5,
+        "stdDDoF": 0
+      },
+      "folds": [
+        {
+          "fold": 1,
+          "k": 3,
+          "features": [
+            "width",
+            "engine-size",
+            "city-mpg"
+          ],
+          "scores": {
+            "rmse": 3085.86650554799,
+            "mae": 2359.0860396888133,
+            "r2": 0.6621115222709866
+          }
+        },
+        {
+          "fold": 2,
+          "k": 4,
+          "features": [
+            "width",
+            "engine-size",
+            "stroke",
+            "horsepower"
+          ],
+          "scores": {
+            "rmse": 2922.8978785313925,
+            "mae": 2014.965676052003,
+            "r2": 0.8175834024161539
+          }
+        },
+        {
+          "fold": 3,
+          "k": 3,
+          "features": [
+            "wheel-base",
+            "engine-size",
+            "horsepower"
+          ],
+          "scores": {
+            "rmse": 2913.7577020922045,
+            "mae": 2236.5696838005906,
+            "r2": 0.8602115199418928
+          }
+        },
+        {
+          "fold": 4,
+          "k": 5,
+          "features": [
+            "wheel-base",
+            "width",
+            "curb-weight",
+            "engine-size",
+            "horsepower"
+          ],
+          "scores": {
+            "rmse": 3053.691496247366,
+            "mae": 2289.2504050445787,
+            "r2": 0.658768669704223
+          }
+        },
+        {
+          "fold": 5,
+          "k": 7,
+          "features": [
+            "wheel-base",
+            "width",
+            "curb-weight",
+            "engine-size",
+            "horsepower",
+            "city-mpg",
+            "highway-mpg"
+          ],
+          "scores": {
+            "rmse": 3763.7155001215992,
+            "mae": 2350.0947954182475,
+            "r2": 0.7774320438113731
+          }
+        }
+      ],
+      "warnings": []
+    }
+  ]
+}

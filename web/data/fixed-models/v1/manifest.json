@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "modelVersion": "1.0.0",
+  "policy": {
+    "schemaVersion": 1,
+    "modelVersion": "1.0.0",
+    "absoluteTolerance": 1e-10,
+    "relativeTolerance": 1e-10,
+    "formula": "abs(actual-reference) <= absoluteTolerance + relativeTolerance*abs(reference)",
+    "relativeErrorReportingFloor": 1e-12,
+    "policy": "Fixed before reconstruction or numerical comparisons; never loosen on failure. Holdout is verification only. No selector fitting, CV search or tuning."
+  },
+  "models": {
+    "appliances-energy--baseline": {
+      "path": "/research-models/v1/appliances-energy--baseline.json",
+      "sha256": "097cf67f9a69eafb2741b615b39a43549eab5d8db46d09732c2723edbee1878c",
+      "bytes": 13510
+    },
+    "appliances-energy--mutual_information": {
+      "path": "/research-models/v1/appliances-energy--mutual_information.json",
+      "sha256": "5426069510189104b04cd09a3eca07833ece7430d90f5b7f87ade8bb531fb876",
+      "bytes": 6720
+    },
+    "automobile-price--baseline": {
+      "path": "/research-models/v1/automobile-price--baseline.json",
+      "sha256": "0f4a2cecbd9312ed685cc3234009bee78ce8446a1a11c5ff9414102b0b550eed",
+      "bytes": 11820
+    },
+    "automobile-price--mutual_information": {
+      "path": "/research-models/v1/automobile-price--mutual_information.json",
+      "sha256": "57fe7bb1f175a3d5c06dbc774daadf4a63af57a7638fcfd804aab3ef60510cb4",
+      "bytes": 7637
+    },
+    "student-performance--baseline": {
+      "path": "/research-models/v1/student-performance--baseline.json",
+      "sha256": "46b94e2ee6976ad4c4880afaba4e816b7fcebbcb130cf3cb9536badc371f45e2",
+      "bytes": 12704
+    },
+    "student-performance--mutual_information": {
+      "path": "/research-models/v1/student-performance--mutual_information.json",
+      "sha256": "a6a737d8f48686cca1b9d5f9d228d3af4bdb499d2d50b45dd32add9ab950ab9d",
+      "bytes": 7799
+    }
+  },
+  "fixtureSha256": "3fe3708a3b673c4ddeb2a343fe3841049d9c29bb6a23a9b2cb7f76da3031f6fa"
+}

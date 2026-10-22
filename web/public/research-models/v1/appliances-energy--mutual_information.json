@@ -1,0 +1,267 @@
+{
+  "schemaVersion": 1,
+  "modelVersion": "1.0.0",
+  "datasetId": "appliances-energy",
+  "modelId": "mutual_information",
+  "target": "Appliances",
+  "unit": "Wh",
+  "featureOrder": [
+    "T3",
+    "T4",
+    "T5",
+    "RH_6",
+    "T8",
+    "T9"
+  ],
+  "features": [
+    {
+      "name": "T3",
+      "kind": "number",
+      "unit": "原始欄位單位（未另行核實）",
+      "trainingMin": 17.2,
+      "trainingMax": 27.6,
+      "domainMin": null,
+      "domainMax": null,
+      "allowedValues": null,
+      "encoding": null,
+      "imputer": {
+        "strategy": "median",
+        "value": 21.6333333333333
+      },
+      "scaler": {
+        "mean": 21.588743161678867,
+        "scale": 1.4981387897965337,
+        "withMean": true,
+        "withStd": true
+      },
+      "outliers": "keep",
+      "description": "T3"
+    },
+    {
+      "name": "T4",
+      "kind": "number",
+      "unit": "原始欄位單位（未另行核實）",
+      "trainingMin": 15.1,
+      "trainingMax": 23.76,
+      "domainMin": null,
+      "domainMax": null,
+      "allowedValues": null,
+      "encoding": null,
+      "imputer": {
+        "strategy": "median",
+        "value": 20.26
+      },
+      "scaler": {
+        "mean": 20.148708318800953,
+        "scale": 1.5082616070955155,
+        "withMean": true,
+        "withStd": true
+      },
+      "outliers": "keep",
+      "description": "T4"
+    },
+    {
+      "name": "T5",
+      "kind": "number",
+      "unit": "原始欄位單位（未另行核實）",
+      "trainingMin": 15.33,
+      "trainingMax": 22.9677777777778,
+      "domainMin": null,
+      "domainMax": null,
+      "allowedValues": null,
+      "encoding": null,
+      "imputer": {
+        "strategy": "median",
+        "value": 18.89
+      },
+      "scaler": {
+        "mean": 18.957726893602104,
+        "scale": 1.2927371659411426,
+        "withMean": true,
+        "withStd": true
+      },
+      "outliers": "keep",
+      "description": "T5"
+    },
+    {
+      "name": "RH_6",
+      "kind": "number",
+      "unit": "原始欄位單位（未另行核實）",
+      "trainingMin": 1.0,
+      "trainingMax": 99.9,
+      "domainMin": null,
+      "domainMax": null,
+      "allowedValues": null,
+      "encoding": null,
+      "imputer": {
+        "strategy": "median",
+        "value": 66.79499999999999
+      },
+      "scaler": {
+        "mean": 62.969014530775084,
+        "scale": 27.659859238958166,
+        "withMean": true,
+        "withStd": true
+      },
+      "outliers": "keep",
+      "description": "RH_6"
+    },
+    {
+      "name": "T8",
+      "kind": "number",
+      "unit": "原始欄位單位（未另行核實）",
+      "trainingMin": 16.3066666666667,
+      "trainingMax": 25.2,
+      "domainMin": null,
+      "domainMax": null,
+      "allowedValues": null,
+      "encoding": null,
+      "imputer": {
+        "strategy": "median",
+        "value": 21.7
+      },
+      "scaler": {
+        "mean": 21.470472398379385,
+        "scale": 1.699313899728555,
+        "withMean": true,
+        "withStd": true
+      },
+      "outliers": "keep",
+      "description": "T8"
+    },
+    {
+      "name": "T9",
+      "kind": "number",
+      "unit": "原始欄位單位（未另行核實）",
+      "trainingMin": 14.89,
+      "trainingMax": 23.84,
+      "domainMin": null,
+      "domainMax": null,
+      "allowedValues": null,
+      "encoding": null,
+      "imputer": {
+        "strategy": "median",
+        "value": 18.7
+      },
+      "scaler": {
+        "mean": 18.7685343517379,
+        "scale": 1.4255468604797694,
+        "withMean": true,
+        "withStd": true
+      },
+      "outliers": "keep",
+      "description": "T9"
+    }
+  ],
+  "originalPreprocessorSchema": [
+    "lights",
+    "T1",
+    "RH_1",
+    "T2",
+    "RH_2",
+    "T3",
+    "RH_3",
+    "T4",
+    "RH_4",
+    "T5",
+    "RH_5",
+    "T6",
+    "RH_6",
+    "T7",
+    "RH_7",
+    "T8",
+    "RH_8",
+    "T9",
+    "RH_9",
+    "T_out",
+    "Press_mm_hg",
+    "RH_out",
+    "Windspeed",
+    "Visibility",
+    "Tdewpoint",
+    "date"
+  ],
+  "coefficients": [
+    37.61691638936094,
+    5.342186225906018,
+    -13.74166320863436,
+    -15.34063577326688,
+    12.50250932455796,
+    -42.479861610476
+  ],
+  "intercept": 98.02444894856868,
+  "preprocessingOrder": [
+    "validate",
+    "encode",
+    "impute",
+    "scale",
+    "linear"
+  ],
+  "outlierStrategy": "keep",
+  "predictionClipped": false,
+  "trainingSplit": {
+    "strategy": "chronological_first_80_percent",
+    "randomSeed": null,
+    "trainingRows": 15788,
+    "holdoutRows": 3947,
+    "trainingIndexSha256": "a8c264fbdd2df4924ef8a40b0ea186cd094ae323d85f305db58a4ce627122775",
+    "holdoutIndexSha256": "3286310e01cbf9c6588ad13b742a741daa6a9b0c9854f50d1ada2ba66b69cf09",
+    "holdoutUsedForFitting": false
+  },
+  "versions": {
+    "python": "3.10.17",
+    "numpy": "2.2.6",
+    "pandas": "2.3.3",
+    "scipy": "1.15.3",
+    "scikit-learn": "1.7.2",
+    "joblib": "1.6.0",
+    "threadpoolctl": "3.7.0"
+  },
+  "sourceHashes": [
+    {
+      "path": "web/scripts/export-fixed-models.py",
+      "sha256": "362a54aa2f5d84bffd936bea01bd5006a77eb9b0db16bf4814f33384232bdbdc"
+    },
+    {
+      "path": "web/data/fixed-models/v1/policy.json",
+      "sha256": "da73480718d166a857d05166947be82e457de1de2ab6b982de9b8f070222c2b8"
+    },
+    {
+      "path": "src/preprocessing.py",
+      "sha256": "d7c0513846367c373e44e99c8074b4974b40a1ea1e752d706bba055431179716"
+    },
+    {
+      "path": "src/preprocessing_config.py",
+      "sha256": "6dc5821d8cfdfbd7a67b25212d7e10b3538e7b1ad9367ad1df4331646df3b2de"
+    },
+    {
+      "path": "src/feature_selection.py",
+      "sha256": "3bb3c28b4041730084c0e53de1be0193fc30259e7afcc9dbb14ba60f1f631364"
+    },
+    {
+      "path": "data/raw/KAG_energydata_complete.csv",
+      "sha256": "2820bf712ad0275cb18b85a05250926100d8e65ebb9f4d2d016ca91ea152a25d"
+    },
+    {
+      "path": "reports/phase2/split_indices.json",
+      "sha256": "d764a17eea8862590c362141cdc075fc08ccaa6480d46a3eb063ce78fa83ba63"
+    },
+    {
+      "path": "reports/phase3/phase3c/prediction_interval_predictions.csv",
+      "sha256": "471ef6bfc9e08ff2d2e7999e133d116ac59bc2e86c1b140afbbb1974566e33b9"
+    },
+    {
+      "path": "web/data/prediction-explorer.json",
+      "sha256": "cf8a8ca5eff949e44f9c2c5c86ddef39ff17b376084d59bb38d739e44cccffb9"
+    },
+    {
+      "path": "reports/phase3/results/models/final_linear_regression.joblib",
+      "sha256": "8be97c965b56fed6d4a665703b44faf57508fd9a759b837d48cf3a2ad418eb12"
+    }
+  ],
+  "limitations": [
+    "固定研究模型；不是因果效果；外插可靠性可能降低；預測與輸入不裁切。",
+    "同時點耗能估計，非多步未來預報；date 不參與數值推論。"
+  ],
+  "acquisition": "original-saved-model-no-fit"
+}

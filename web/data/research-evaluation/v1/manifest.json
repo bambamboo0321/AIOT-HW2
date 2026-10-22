@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "snapshots": {
+    "automobile-price": {
+      "file": "automobile-price.json",
+      "sha256": "48b849b872b9a09097150923a339396fa29e5ab8817b176b8d6038744d120297"
+    },
+    "student-performance": {
+      "file": "student-performance.json",
+      "sha256": "5fc5be58b02804f909ba3c12bd3e2d4211d844d335c86c1278d7d0a8a1a6588c"
+    }
+  }
+}

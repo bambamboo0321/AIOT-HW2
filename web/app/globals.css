@@ -451,3 +451,58 @@ html[data-theme="dark"] { --comparison-sfs: #90bde5; }
 .cd-live-range { color: var(--muted); font-size: 12px; overflow-wrap: anywhere; }
 .cd-live-warning { color: var(--text); border-left: 3px solid var(--accent); padding-left: 10px; font-size: 12px; line-height: 1.7; }
 .cd-live-consent { display: flex; align-items: center; gap: 8px; margin: 18px 0; }
+
+/* Research dataset navigation: existing theme tokens and sidebar layout. */
+.sidebar { overflow-y: auto; }
+.sidebar > * { flex-shrink: 0; }
+.dataset-picker { margin: 23px 8px 0; }
+.dataset-picker label { display: block; color: var(--text-secondary); font-size: 10px; font-weight: 650; margin-bottom: 8px; }
+.dataset-picker select { display: block; width: 100%; min-width: 0; padding: 9px 5px; border: 1px solid var(--border); border-radius: 7px; background: var(--surface-soft); color: var(--text); font: inherit; font-size: 11px; }
+.dataset-picker p, .dataset-independent { color: var(--muted); font-size: 10px; line-height: 1.7; margin: 7px 0 0; }
+.dataset-independent { margin: 23px 8px 0; }
+.dataset-picker + .nav-section-label, .dataset-independent + .nav-section-label { margin-top: 24px; }
+.dataset-pending { padding: 28px; margin-top: 25px; }
+.dataset-pending > svg { color: var(--accent); margin-bottom: 14px; }
+.dataset-pending h2 { font-size: 22px; margin-bottom: 12px; }
+.dataset-pending > p { color: var(--text-secondary); line-height: 1.9; font-size: 13px; margin-bottom: 14px; }
+.dataset-pending dl { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin: 22px 0; }
+.dataset-pending dl div { padding: 14px; border: 1px solid var(--border); border-radius: 8px; background: var(--surface-soft); }
+.dataset-pending dt { color: var(--muted); font-size: 11px; margin-bottom: 8px; }
+.dataset-pending dd { margin: 0; font-size: 14px; line-height: 1.7; overflow-wrap: anywhere; }
+@media (max-width: 760px) { .dataset-pending { padding: 20px; }.dataset-pending dl { grid-template-columns: 1fr; } }
+
+/* Non-temporal saved Holdout explorer; isolated from Energy and Custom Dataset. */
+.study-prediction-filters { display:flex; flex-wrap:wrap; gap:12px; align-items:end; }
+.study-prediction-filters label { display:flex; flex-direction:column; gap:7px; color:var(--muted); font-size:12px; max-width:100%; }
+.study-prediction-filters input,.study-prediction-filters select { border:1px solid var(--border); border-radius:7px; padding:9px 12px; background:var(--surface-soft); color:var(--text); max-width:100%; min-width:0; }
+.study-sample-button { padding:8px 12px; border:1px solid var(--border); border-radius:7px; background:var(--surface-soft); color:var(--accent); font-size:12px; cursor:pointer; }
+.study-sample-button[aria-pressed="true"] { background:var(--accent-soft); border-color:var(--accent); }
+.study-sample-button:disabled { opacity:.45; cursor:default; }
+.study-sample-inspector { margin:20px 0; padding:16px; border:1px solid var(--border); border-radius:10px; background:var(--surface-soft); }
+.study-sample-inspector h3 { margin:18px 0 12px; font-size:15px; }
+.study-sample-values { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; margin:0; }
+.study-sample-values dt { font-size:11px; color:var(--muted); }
+.study-sample-values dd { font-size:16px; margin:6px 0 0; font-variant-numeric:tabular-nums; overflow-wrap:anywhere; }
+.study-prediction-table { max-height:480px; }
+.study-prediction-table table { min-width:760px; }
+@media(max-width:760px) { .study-sample-values { grid-template-columns:repeat(2,minmax(0,1fr)); }.study-prediction-page .panel-header { flex-wrap:wrap; gap:12px; }.study-prediction-page .px-global strong { font-size:22px; } }
+
+/* Research fixed-model live UI, independent of Custom Dataset. */
+.rlp-panel { margin:24px 0; }.rlp-panel .panel-header { flex-wrap:wrap; gap:12px; }
+.rlp-body { padding:22px; }.rlp-intro,.rlp-note { color:var(--text-secondary); font-size:12px; line-height:1.9; margin-bottom:16px; }
+.rlp-model-meta { display:flex; flex-wrap:wrap; gap:8px 18px; margin:16px 0; font-size:12px; }.rlp-model-meta span { color:var(--muted); }
+.rlp-limitations { padding:12px 16px; background:var(--warning-bg); color:var(--warning-text); border-radius:8px; font-size:12px; line-height:1.8; margin:15px 0; }
+.rlp-fields { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px; }
+.rlp-feature { min-width:0; padding:15px; border:1px solid var(--border); border-radius:9px; background:var(--surface-soft); }
+.rlp-feature label { display:grid; gap:6px; color:var(--text); font-size:13px; margin-bottom:10px; overflow-wrap:anywhere; }.rlp-feature label small { font-size:10px; color:var(--muted); }
+.rlp-feature input[type="number"],.rlp-feature select { width:100%; min-width:0; border:1px solid var(--border); background:var(--surface); color:var(--text); border-radius:6px; padding:9px 10px; font-size:13px; }
+.rlp-feature input[type="range"] { width:100%; accent-color:var(--accent); margin:14px 0 6px; }
+.rlp-field-help { font-size:10px; line-height:1.8; color:var(--muted); overflow-wrap:anywhere; margin-top:9px; }
+.rlp-warning { color:var(--text); border-left:3px solid var(--accent); padding-left:10px; margin-top:12px; font-size:12px; line-height:1.8; }
+.rlp-actions { display:flex; flex-wrap:wrap; align-items:center; gap:14px; margin:20px 0; color:var(--muted); font-size:12px; }
+.rlp-button { background:var(--accent-soft); color:var(--accent); border:1px solid var(--accent); border-radius:7px; padding:10px 14px; font-size:12px; cursor:pointer; }
+.rlp-status { color:var(--muted); font-size:13px; margin:15px 0; }.rlp-input-error { color:var(--warning-text); padding:13px; background:var(--warning-bg); border:1px solid var(--border); border-radius:8px; font-size:13px; }
+.rlp-result { margin:20px 0; padding:22px; border:1px solid var(--accent); background:var(--accent-soft); border-radius:10px; line-height:1.9; overflow-wrap:anywhere; }.rlp-result>span { color:var(--muted); font-size:12px; }.rlp-result>strong { display:block; font-size:36px; color:var(--accent); font-variant-numeric:tabular-nums; }.rlp-result>p { font-size:12px; }
+.rlp-holdout-heading { margin:32px 0 16px; font-size:20px; }
+@media(max-width:1100px) { .rlp-fields { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+@media(max-width:760px) { .rlp-fields { grid-template-columns:minmax(0,1fr); }.rlp-body { padding:16px; }.rlp-holdout-heading { font-size:18px; }.rlp-result>strong { font-size:30px; } }

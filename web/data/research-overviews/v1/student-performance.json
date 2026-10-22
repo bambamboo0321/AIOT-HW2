@@ -1,0 +1,142 @@
+{
+  "schemaVersion": 1,
+  "datasetId": "student-performance",
+  "dataset": {
+    "name": "Student Performance",
+    "target": "G3",
+    "unit": "分數（0–20）",
+    "rawRows": 649,
+    "rows": 649,
+    "candidates": [
+      "age",
+      "Medu",
+      "Fedu",
+      "traveltime",
+      "studytime",
+      "failures",
+      "famrel",
+      "freetime",
+      "goout",
+      "Dalc",
+      "Walc",
+      "health",
+      "absences",
+      "G1",
+      "G2"
+    ],
+    "removedTargets": 0,
+    "rawFile": "student-por.csv",
+    "rawSha256": "5be7b02f13f5800fddd66e2c8d834cd00ece14c552fb404def2397b31b63236b"
+  },
+  "protocol": {
+    "trainRows": 519,
+    "holdoutRows": 130,
+    "seed": 42,
+    "outerFolds": 5,
+    "innerFolds": 3,
+    "fixedK": 7,
+    "split": "random",
+    "scaling": "standard",
+    "imputation": "median",
+    "selectionLockedBeforeHoldout": true,
+    "selectedMethod": "mutual_information"
+  },
+  "sources": [
+    {
+      "path": "experiments/student-performance-phase2/results.json",
+      "sha256": "cb96bf0f8254193242e8a1373f55be62fdf8e003c5503453bedaa9b7064cee4f"
+    },
+    {
+      "path": "experiments/student-performance-phase2/locked-training-decision.json",
+      "sha256": "5517fe6fbafb9408d7810eb2c7babaabc9277af56a1ef42377473af0d15fbae7"
+    },
+    {
+      "path": "experiments/student-performance-phase2/config.json",
+      "sha256": "bad6fcbd19b83e9a0b8680fb320bae528615a2e655bba30a93daef98c2946f08"
+    },
+    {
+      "path": "experiments/student-performance-phase2/verification.json",
+      "sha256": "0d62b10b83eb294d7af0c709f436e3d9459a0b25b623ee6085d4c90a74b9157e"
+    },
+    {
+      "path": "experiments/student-performance-phase2/artifact-manifest.json",
+      "sha256": "e1e51f4de46d8b3c3cedd314c1e5f42a903422944b2332543118dfcb7a03e49a"
+    }
+  ],
+  "models": [
+    {
+      "id": "baseline",
+      "label": "Baseline LR",
+      "status": "ready",
+      "features": [
+        "age",
+        "Medu",
+        "Fedu",
+        "traveltime",
+        "studytime",
+        "failures",
+        "famrel",
+        "freetime",
+        "goout",
+        "Dalc",
+        "Walc",
+        "health",
+        "absences",
+        "G1",
+        "G2"
+      ],
+      "k": 15,
+      "holdout": {
+        "rmse": 1.1664402826147413,
+        "mae": 0.7348086550074645,
+        "r2": 0.8604775881282163
+      },
+      "cv": {
+        "mae": 0.8439946684582665,
+        "rmse": 1.31124972830665,
+        "r2": 0.8311457674244007
+      },
+      "interval": {
+        "status": "ready",
+        "nominal": 0.95,
+        "coverage": 0.9923076923076923,
+        "averageWidth": 5.120599206283538,
+        "covered": 129,
+        "total": 130
+      }
+    },
+    {
+      "id": "mutual_information",
+      "label": "MI + LR",
+      "status": "ready",
+      "features": [
+        "Fedu",
+        "studytime",
+        "failures",
+        "Dalc",
+        "Walc",
+        "G1",
+        "G2"
+      ],
+      "k": 7,
+      "holdout": {
+        "rmse": 1.1557841973700598,
+        "mae": 0.7360348555838029,
+        "r2": 0.8630151745464493
+      },
+      "cv": {
+        "mae": 0.820622278254999,
+        "rmse": 1.287132091493009,
+        "r2": 0.8375873735883527
+      },
+      "interval": {
+        "status": "ready",
+        "nominal": 0.95,
+        "coverage": 0.9923076923076923,
+        "averageWidth": 5.09677717662349,
+        "covered": 129,
+        "total": 130
+      }
+    }
+  ]
+}

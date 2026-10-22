@@ -1,3 +1,5 @@
+import { datasetFromPageParams, researchHref, type ResearchPageProps } from "@/lib/dataset-routing";
+import { StudyOverview } from "@/components/study-overview";
 import Link from "next/link";
 import { ResearchConclusion } from "@/components/research-conclusion";
 import { Icon, type IconName } from "@/components/icon";
@@ -16,7 +18,13 @@ const workflow: { name: string; subtitle: string; icon: IconName; developing?: b
   { name: "Deployment", subtitle: "本機介面開發中", icon: "prediction", developing: true },
 ];
 
-export default async function OverviewPage() {
+export async function generateMetadata({ searchParams }: ResearchPageProps) {
+  const dataset = datasetFromPageParams(await searchParams);
+  return { title: `Overview · ${dataset.name}` };
+}
+export default async function OverviewPage({ searchParams }: ResearchPageProps) {
+  const researchDataset = datasetFromPageParams(await searchParams);
+  if (researchDataset.id !== "appliances-energy") return <StudyOverview id={researchDataset.id}/>;
   const snapshot = await loadOverview();
   if (snapshot.status !== "ready") return <div className="page-container"><div className="eyebrow">RESEARCH WORKSPACE</div><h1>Research overview</h1>
     <section className="data-error" role="alert"><Icon name="info" size={28}/><h2>研究資料尚未就緒</h2><p>無法顯示已核實的結果，因此沒有填入替代數值。</p><ul>{snapshot.issues.map(issue => <li key={issue}>{issue}</li>)}</ul></section>
@@ -45,7 +53,7 @@ export default async function OverviewPage() {
       <StatCard label="Prediction target" value={dataset.target} icon="energy" note="Appliance energy consumption" tag={dataset.targetUnit} compact/>
     </section>
 
-    <ResearchConclusion baseline={baseline} selected={selected}/>
+    <ResearchConclusion datasetId={researchDataset.id} baseline={baseline} selected={selected}/>
 
     <div className="overview-grid">
       <section className="panel performance-panel" aria-labelledby="performance-title">
@@ -94,7 +102,7 @@ export default async function OverviewPage() {
       </article></div>
     </section>
 
-    <details className="provenance"><summary><Icon name="check" size={15}/>{snapshot.sources.length} source artifacts<span>資料來源與追溯</span></summary><div className="provenance-body"><p>Dataset：{dataset.name}。保留成果快照，未重新訓練；網站不公開原始 CSV 或模型檔。</p>{snapshot.sources.map(source => <div className="provenance-item" key={source.path}><code>{source.path}</code><span>SHA-256 {source.sha256.slice(0, 16)}…</span></div>)}<p>四個研究頁面與自訂 CSV 檢查已可瀏覽；自訂資料模型訓練尚未串接。<Link href="/feature-selection">查看 Feature Selection 成果 →</Link></p></div></details>
+    <details className="provenance"><summary><Icon name="check" size={15}/>{snapshot.sources.length} source artifacts<span>資料來源與追溯</span></summary><div className="provenance-body"><p>Dataset：{dataset.name}。保留成果快照，未重新訓練；網站不公開原始 CSV 或模型檔。</p>{snapshot.sources.map(source => <div className="provenance-item" key={source.path}><code>{source.path}</code><span>SHA-256 {source.sha256.slice(0, 16)}…</span></div>)}<p>四個研究頁面與自訂 CSV 檢查已可瀏覽；自訂資料模型訓練尚未串接。<Link href={researchHref("/feature-selection", researchDataset.id)}>查看 Feature Selection 成果 →</Link></p></div></details>
   </div>;
 }
 

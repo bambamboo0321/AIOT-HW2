@@ -1,0 +1,754 @@
+{
+  "schemaVersion": 1,
+  "artifactType": "study-feature-selection",
+  "datasetId": "student-performance",
+  "overviewSha256": "a47c7c8d59490d4fa730769721210c3284158ebb008516fc4fd6ec91dd55abab",
+  "sources": [
+    {
+      "path": "experiments/student-performance-phase2/results.json",
+      "sha256": "cb96bf0f8254193242e8a1373f55be62fdf8e003c5503453bedaa9b7064cee4f"
+    },
+    {
+      "path": "experiments/student-performance-phase2/locked-training-decision.json",
+      "sha256": "5517fe6fbafb9408d7810eb2c7babaabc9277af56a1ef42377473af0d15fbae7"
+    },
+    {
+      "path": "experiments/student-performance-phase2/config.json",
+      "sha256": "bad6fcbd19b83e9a0b8680fb320bae528615a2e655bba30a93daef98c2946f08"
+    },
+    {
+      "path": "experiments/student-performance-phase2/verification.json",
+      "sha256": "0d62b10b83eb294d7af0c709f436e3d9459a0b25b623ee6085d4c90a74b9157e"
+    },
+    {
+      "path": "experiments/student-performance-phase2/artifact-manifest.json",
+      "sha256": "e1e51f4de46d8b3c3cedd314c1e5f42a903422944b2332543118dfcb7a03e49a"
+    }
+  ],
+  "methods": [
+    {
+      "id": "f_test",
+      "mode": "fixed",
+      "requestedK": 7,
+      "status": "ready",
+      "finalK": 7,
+      "features": [
+        "Medu",
+        "Fedu",
+        "studytime",
+        "failures",
+        "Dalc",
+        "G1",
+        "G2"
+      ],
+      "cv": {
+        "status": "ready",
+        "mean": {
+          "rmse": 1.2874007283282665,
+          "mae": 0.8242725196173865,
+          "r2": 0.8374620585323802
+        },
+        "std": {
+          "rmse": 0.2678586547799064,
+          "mae": 0.11609343613966111,
+          "r2": 0.040325508183529785
+        },
+        "foldCount": 5,
+        "stdDDoF": 0
+      },
+      "folds": [
+        {
+          "fold": 1,
+          "k": 7,
+          "features": [
+            "Medu",
+            "Fedu",
+            "studytime",
+            "failures",
+            "Dalc",
+            "G1",
+            "G2"
+          ],
+          "scores": {
+            "rmse": 1.1569282373116574,
+            "mae": 0.7906847058358105,
+            "r2": 0.8397973646678272
+          }
+        },
+        {
+          "fold": 2,
+          "k": 7,
+          "features": [
+            "Medu",
+            "Fedu",
+            "studytime",
+            "failures",
+            "Dalc",
+            "G1",
+            "G2"
+          ],
+          "scores": {
+            "rmse": 1.1087378331633513,
+            "mae": 0.794274837078366,
+            "r2": 0.8384748495268131
+          }
+        },
+        {
+          "fold": 3,
+          "k": 7,
+          "features": [
+            "Medu",
+            "Fedu",
+            "studytime",
+            "failures",
+            "Dalc",
+            "G1",
+            "G2"
+          ],
+          "scores": {
+            "rmse": 1.2566236699681443,
+            "mae": 0.7315655029330835,
+            "r2": 0.8761335110173676
+          }
+        },
+        {
+          "fold": 4,
+          "k": 7,
+          "features": [
+            "Medu",
+            "Fedu",
+            "studytime",
+            "failures",
+            "Walc",
+            "G1",
+            "G2"
+          ],
+          "scores": {
+            "rmse": 1.8116734273421813,
+            "mae": 1.0516705125051011,
+            "r2": 0.7628521384884914
+          }
+        },
+        {
+          "fold": 5,
+          "k": 7,
+          "features": [
+            "Medu",
+            "Fedu",
+            "studytime",
+            "failures",
+            "Dalc",
+            "G1",
+            "G2"
+          ],
+          "scores": {
+            "rmse": 1.1030404738559982,
+            "mae": 0.7531670397345713,
+            "r2": 0.8700524289614021
+          }
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "id": "mutual_information",
+      "mode": "fixed",
+      "requestedK": 7,
+      "status": "ready",
+      "finalK": 7,
+      "features": [
+        "Fedu",
+        "studytime",
+        "failures",
+        "Dalc",
+        "Walc",
+        "G1",
+        "G2"
+      ],
+      "cv": {
+        "status": "ready",
+        "mean": {
+          "rmse": 1.287132091493009,
+          "mae": 0.820622278254999,
+          "r2": 0.8375873735883527
+        },
+        "std": {
+          "rmse": 0.26865956174205147,
+          "mae": 0.1100566637252219,
+          "r2": 0.04029695814199603
+        },
+        "foldCount": 5,
+        "stdDDoF": 0
+      },
+      "folds": [
+        {
+          "fold": 1,
+          "k": 7,
+          "features": [
+            "Medu",
+            "failures",
+            "goout",
+            "Dalc",
+            "health",
+            "G1",
+            "G2"
+          ],
+          "scores": {
+            "rmse": 1.159248019475607,
+            "mae": 0.7980195257879003,
+            "r2": 0.839154268940673
+          }
+        },
+        {
+          "fold": 2,
+          "k": 7,
+          "features": [
+            "Medu",
+            "Fedu",
+            "studytime",
+            "failures",
+            "Dalc",
+            "G1",
+            "G2"
+          ],
+          "scores": {
+            "rmse": 1.1087378331633513,
+            "mae": 0.794274837078366,
+            "r2": 0.8384748495268131
+          }
+        },
+        {
+          "fold": 3,
+          "k": 7,
+          "features": [
+            "Fedu",
+            "studytime",
+            "failures",
+            "goout",
+            "Dalc",
+            "G1",
+            "G2"
+          ],
+          "scores": {
+            "rmse": 1.2668761183248565,
+            "mae": 0.7407227252778837,
+            "r2": 0.8741040803502074
+          }
+        },
+        {
+          "fold": 4,
+          "k": 7,
+          "features": [
+            "age",
+            "studytime",
+            "failures",
+            "goout",
+            "absences",
+            "G1",
+            "G2"
+          ],
+          "scores": {
+            "rmse": 1.8102522154221286,
+            "mae": 1.034499831213391,
+            "r2": 0.763224065529945
+          }
+        },
+        {
+          "fold": 5,
+          "k": 7,
+          "features": [
+            "Medu",
+            "studytime",
+            "failures",
+            "Dalc",
+            "absences",
+            "G1",
+            "G2"
+          ],
+          "scores": {
+            "rmse": 1.090546271079102,
+            "mae": 0.7355944719174534,
+            "r2": 0.8729796035941253
+          }
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "id": "forward_sfs",
+      "mode": "fixed",
+      "requestedK": 7,
+      "status": "ready",
+      "finalK": 7,
+      "features": [
+        "age",
+        "Medu",
+        "studytime",
+        "failures",
+        "famrel",
+        "G1",
+        "G2"
+      ],
+      "cv": {
+        "status": "ready",
+        "mean": {
+          "rmse": 1.288357064378874,
+          "mae": 0.8224707778624897,
+          "r2": 0.8371304269831293
+        },
+        "std": {
+          "rmse": 0.2612718434817923,
+          "mae": 0.10198371705273321,
+          "r2": 0.039190575987423405
+        },
+        "foldCount": 5,
+        "stdDDoF": 0
+      },
+      "folds": [
+        {
+          "fold": 1,
+          "k": 7,
+          "features": [
+            "studytime",
+            "failures",
+            "famrel",
+            "Walc",
+            "absences",
+            "G1",
+            "G2"
+          ],
+          "scores": {
+            "rmse": 1.1425020169553832,
+            "mae": 0.7847441500752375,
+            "r2": 0.8437677221971644
+          }
+        },
+        {
+          "fold": 2,
+          "k": 7,
+          "features": [
+            "studytime",
+            "famrel",
+            "freetime",
+            "Dalc",
+            "absences",
+            "G1",
+            "G2"
+          ],
+          "scores": {
+            "rmse": 1.149241263115897,
+            "mae": 0.7897622173183911,
+            "r2": 0.8264579027059822
+          }
+        },
+        {
+          "fold": 3,
+          "k": 7,
+          "features": [
+            "age",
+            "Fedu",
+            "famrel",
+            "freetime",
+            "absences",
+            "G1",
+            "G2"
+          ],
+          "scores": {
+            "rmse": 1.2840361330405758,
+            "mae": 0.7919353076455933,
+            "r2": 0.870670426342177
+          }
+        },
+        {
+          "fold": 4,
+          "k": 7,
+          "features": [
+            "Fedu",
+            "traveltime",
+            "studytime",
+            "famrel",
+            "goout",
+            "G1",
+            "G2"
+          ],
+          "scores": {
+            "rmse": 1.7927420560464309,
+            "mae": 1.0204015079756943,
+            "r2": 0.7677824720661198
+          }
+        },
+        {
+          "fold": 5,
+          "k": 7,
+          "features": [
+            "traveltime",
+            "studytime",
+            "failures",
+            "health",
+            "absences",
+            "G1",
+            "G2"
+          ],
+          "scores": {
+            "rmse": 1.0732638527360836,
+            "mae": 0.7255107062975321,
+            "r2": 0.8769736116042034
+          }
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "id": "rfe",
+      "mode": "fixed",
+      "requestedK": 7,
+      "status": "ready",
+      "finalK": 7,
+      "features": [
+        "Medu",
+        "studytime",
+        "failures",
+        "freetime",
+        "absences",
+        "G1",
+        "G2"
+      ],
+      "cv": {
+        "status": "ready",
+        "mean": {
+          "rmse": 1.3068138696373528,
+          "mae": 0.843059359154523,
+          "r2": 0.8325227012158243
+        },
+        "std": {
+          "rmse": 0.2691613697311741,
+          "mae": 0.1094322508359977,
+          "r2": 0.04093069627493909
+        },
+        "foldCount": 5,
+        "stdDDoF": 0
+      },
+      "folds": [
+        {
+          "fold": 1,
+          "k": 7,
+          "features": [
+            "Medu",
+            "failures",
+            "freetime",
+            "Dalc",
+            "absences",
+            "G1",
+            "G2"
+          ],
+          "scores": {
+            "rmse": 1.1670030437468988,
+            "mae": 0.8020563498273094,
+            "r2": 0.8369950506036195
+          }
+        },
+        {
+          "fold": 2,
+          "k": 7,
+          "features": [
+            "Medu",
+            "studytime",
+            "freetime",
+            "Dalc",
+            "absences",
+            "G1",
+            "G2"
+          ],
+          "scores": {
+            "rmse": 1.1413299105618209,
+            "mae": 0.7921927629391171,
+            "r2": 0.8288389989472171
+          }
+        },
+        {
+          "fold": 3,
+          "k": 7,
+          "features": [
+            "traveltime",
+            "studytime",
+            "freetime",
+            "Dalc",
+            "absences",
+            "G1",
+            "G2"
+          ],
+          "scores": {
+            "rmse": 1.2871824223761417,
+            "mae": 0.7929437258701181,
+            "r2": 0.870035854192665
+          }
+        },
+        {
+          "fold": 4,
+          "k": 7,
+          "features": [
+            "traveltime",
+            "studytime",
+            "failures",
+            "famrel",
+            "Dalc",
+            "G1",
+            "G2"
+          ],
+          "scores": {
+            "rmse": 1.8313082586501825,
+            "mae": 1.0607096573797061,
+            "r2": 0.7576838880952929
+          }
+        },
+        {
+          "fold": 5,
+          "k": 7,
+          "features": [
+            "Medu",
+            "freetime",
+            "goout",
+            "Dalc",
+            "absences",
+            "G1",
+            "G2"
+          ],
+          "scores": {
+            "rmse": 1.1072457128517206,
+            "mae": 0.767394299756365,
+            "r2": 0.8690597142403262
+          }
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "id": "lasso_cv",
+      "mode": "auto",
+      "requestedK": null,
+      "status": "ready",
+      "finalK": 5,
+      "features": [
+        "studytime",
+        "failures",
+        "freetime",
+        "G1",
+        "G2"
+      ],
+      "cv": {
+        "status": "ready",
+        "mean": {
+          "rmse": 1.313084785055843,
+          "mae": 0.8478942760709198,
+          "r2": 0.8305242532082824
+        },
+        "std": {
+          "rmse": 0.2650883143435507,
+          "mae": 0.11153670068896464,
+          "r2": 0.04147785225802942
+        },
+        "foldCount": 5,
+        "stdDDoF": 0
+      },
+      "folds": [
+        {
+          "fold": 1,
+          "k": 4,
+          "features": [
+            "Dalc",
+            "absences",
+            "G1",
+            "G2"
+          ],
+          "scores": {
+            "rmse": 1.170744389757712,
+            "mae": 0.8082974397180915,
+            "r2": 0.8359482058580091
+          }
+        },
+        {
+          "fold": 2,
+          "k": 15,
+          "features": [
+            "age",
+            "Medu",
+            "Fedu",
+            "traveltime",
+            "studytime",
+            "failures",
+            "famrel",
+            "freetime",
+            "goout",
+            "Dalc",
+            "Walc",
+            "health",
+            "absences",
+            "G1",
+            "G2"
+          ],
+          "scores": {
+            "rmse": 1.1761745893769768,
+            "mae": 0.8243649099054456,
+            "r2": 0.8182284104505441
+          }
+        },
+        {
+          "fold": 3,
+          "k": 8,
+          "features": [
+            "studytime",
+            "failures",
+            "freetime",
+            "Dalc",
+            "health",
+            "absences",
+            "G1",
+            "G2"
+          ],
+          "scores": {
+            "rmse": 1.2851024831373963,
+            "mae": 0.7815857762749191,
+            "r2": 0.8704555291676054
+          }
+        },
+        {
+          "fold": 4,
+          "k": 14,
+          "features": [
+            "age",
+            "Medu",
+            "Fedu",
+            "traveltime",
+            "studytime",
+            "failures",
+            "famrel",
+            "freetime",
+            "goout",
+            "Dalc",
+            "Walc",
+            "health",
+            "G1",
+            "G2"
+          ],
+          "scores": {
+            "rmse": 1.8302771161094922,
+            "mae": 1.0664088138974064,
+            "r2": 0.7579566899088672
+          }
+        },
+        {
+          "fold": 5,
+          "k": 3,
+          "features": [
+            "Dalc",
+            "G1",
+            "G2"
+          ],
+          "scores": {
+            "rmse": 1.1031253468976374,
+            "mae": 0.758814440558737,
+            "r2": 0.870032430656386
+          }
+        }
+      ],
+      "warnings": []
+    },
+    {
+      "id": "rfecv",
+      "mode": "auto",
+      "requestedK": null,
+      "status": "ready",
+      "finalK": 2,
+      "features": [
+        "G1",
+        "G2"
+      ],
+      "cv": {
+        "status": "ready",
+        "mean": {
+          "rmse": 1.289092544182824,
+          "mae": 0.8236894450822568,
+          "r2": 0.8368188248919889
+        },
+        "std": {
+          "rmse": 0.2540385843945621,
+          "mae": 0.09738194789135002,
+          "r2": 0.03804721178842115
+        },
+        "foldCount": 5,
+        "stdDDoF": 0
+      },
+      "folds": [
+        {
+          "fold": 1,
+          "k": 2,
+          "features": [
+            "G1",
+            "G2"
+          ],
+          "scores": {
+            "rmse": 1.1627268089728229,
+            "mae": 0.8045319178279606,
+            "r2": 0.8381874559628913
+          }
+        },
+        {
+          "fold": 2,
+          "k": 5,
+          "features": [
+            "freetime",
+            "Dalc",
+            "absences",
+            "G1",
+            "G2"
+          ],
+          "scores": {
+            "rmse": 1.1376880002291212,
+            "mae": 0.7898562477022332,
+            "r2": 0.8299295836639355
+          }
+        },
+        {
+          "fold": 3,
+          "k": 2,
+          "features": [
+            "G1",
+            "G2"
+          ],
+          "scores": {
+            "rmse": 1.2597941822766259,
+            "mae": 0.7521995884989371,
+            "r2": 0.8755076822003095
+          }
+        },
+        {
+          "fold": 4,
+          "k": 2,
+          "features": [
+            "G1",
+            "G2"
+          ],
+          "scores": {
+            "rmse": 1.7859797500022356,
+            "mae": 1.014471588088786,
+            "r2": 0.7695310385330598
+          }
+        },
+        {
+          "fold": 5,
+          "k": 2,
+          "features": [
+            "G1",
+            "G2"
+          ],
+          "scores": {
+            "rmse": 1.099273979433315,
+            "mae": 0.7573878832933674,
+            "r2": 0.8709383640997485
+          }
+        }
+      ],
+      "warnings": []
+    }
+  ]
+}

@@ -3,7 +3,7 @@ import { Shell } from "@/components/shell";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: { default: "Overview | Appliances Energy Prediction Lab", template: "%s | Appliances Energy Prediction Lab" },
+  title: { default: "Overview | Appliances Energy Prediction Lab", template: "%s | AIOT Research Lab" },
   description: "Machine Learning · Feature Selection · Model Evaluation. A traceable AIOT research workspace.",
   robots: { index: false, follow: false },
 };

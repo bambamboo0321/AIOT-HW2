@@ -1,11 +1,11 @@
 "use client";
 
-import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
-import { Icon, type IconName } from "./icon";
+import { Suspense, useEffect, useState } from "react";
+import { Icon } from "./icon";
+import { DatasetNavigation, DatasetNavigationFallback, type NavigationItem } from "./dataset-navigation";
 
-const navigation: { href: string; label: string; icon: IconName }[] = [
+const navigation: NavigationItem[] = [
   { href: "/", label: "Overview", icon: "overview" },
   { href: "/feature-selection", label: "Feature Selection", icon: "features" },
   { href: "/model-evaluation", label: "Model Evaluation", icon: "evaluation" },
@@ -37,16 +37,9 @@ export function Shell({ children }: { children: React.ReactNode }) {
     <a href="#main-content" className="skip-link">跳至主要內容</a>
     {open && <button className="nav-backdrop" aria-label="關閉導覽選單" onClick={() => setOpen(false)}/>}
     <aside id="sidebar" className={`sidebar ${open ? "is-open" : ""}`} aria-label="Research navigation">
-      <Link href="/" className="brand" onClick={() => setOpen(false)}>
-        <span className="brand-mark"><Icon name="energy" size={23}/></span>
-        <span><strong>Energy Prediction<span className="brand-lab">Lab</span></strong><small>AIOT RESEARCH WORKSPACE</small></span>
-      </Link>
-      <div className="nav-section-label">WORKSPACE</div>
-      <nav>{navigation.map(item => <Link key={item.href} href={item.href} prefetch={false}
-        className={`nav-link ${pathname === item.href ? "active" : ""}`}
-        aria-current={pathname === item.href ? "page" : undefined} onClick={() => setOpen(false)}>
-        <Icon name={item.icon}/><span>{item.label}</span>
-      </Link>)}</nav>
+      <Suspense fallback={<DatasetNavigationFallback items={navigation} pathname={pathname} onNavigate={() => setOpen(false)}/>}>
+        <DatasetNavigation items={navigation} onNavigate={() => setOpen(false)}/>
+      </Suspense>
       <div className="sidebar-note"><span className="tiny-label">THE RESEARCH APPROACH</span>
         <Icon name="book" size={22}/><strong>Evidence before conclusions.</strong>
         <p>以可追溯資料，理解模型的能力與限制。</p><span className="outline-tag">CRISP-DM framework</span>
@@ -60,7 +53,7 @@ export function Shell({ children }: { children: React.ReactNode }) {
         <div className="header-actions"><span className="milestone-badge">MILESTONE <b>M14</b></span><span className="header-divider"/><ThemeToggle/></div>
       </header>
       <main id="main-content" tabIndex={-1}>{children}</main>
-      <footer className="site-footer"><span>Appliances Energy Prediction Lab</span><span>Research in progress <span className="footer-dot">·</span> Local development</span></footer>
+      <footer className="site-footer"><span>AIOT Research Workspace</span><span>Research in progress <span className="footer-dot">·</span> Local development</span></footer>
     </div>
   </div>;
 }

@@ -1,0 +1,318 @@
+{
+  "schemaVersion": 1,
+  "modelVersion": "1.0.0",
+  "datasetId": "student-performance",
+  "modelId": "mutual_information",
+  "target": "G3",
+  "unit": "分數（0–20）",
+  "featureOrder": [
+    "Fedu",
+    "studytime",
+    "failures",
+    "Dalc",
+    "Walc",
+    "G1",
+    "G2"
+  ],
+  "features": [
+    {
+      "name": "Fedu",
+      "kind": "integer",
+      "unit": "序數編碼",
+      "trainingMin": 0.0,
+      "trainingMax": 4.0,
+      "domainMin": 0,
+      "domainMax": null,
+      "allowedValues": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "encoding": null,
+      "imputer": {
+        "strategy": "median",
+        "value": 2.0
+      },
+      "scaler": {
+        "mean": 2.277456647398844,
+        "scale": 1.08239212954871,
+        "withMean": true,
+        "withStd": true
+      },
+      "outliers": "keep",
+      "description": "Fedu"
+    },
+    {
+      "name": "studytime",
+      "kind": "integer",
+      "unit": "序數編碼",
+      "trainingMin": 1.0,
+      "trainingMax": 4.0,
+      "domainMin": 0,
+      "domainMax": null,
+      "allowedValues": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "encoding": null,
+      "imputer": {
+        "strategy": "median",
+        "value": 2.0
+      },
+      "scaler": {
+        "mean": 1.9017341040462428,
+        "scale": 0.8117495073190221,
+        "withMean": true,
+        "withStd": true
+      },
+      "outliers": "keep",
+      "description": "studytime"
+    },
+    {
+      "name": "failures",
+      "kind": "integer",
+      "unit": "序數編碼",
+      "trainingMin": 0.0,
+      "trainingMax": 3.0,
+      "domainMin": 0,
+      "domainMax": null,
+      "allowedValues": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "encoding": null,
+      "imputer": {
+        "strategy": "median",
+        "value": 0.0
+      },
+      "scaler": {
+        "mean": 0.2254335260115607,
+        "scale": 0.589935298135171,
+        "withMean": true,
+        "withStd": true
+      },
+      "outliers": "keep",
+      "description": "此供應 CSV 版本保留的 0–3 編碼；不推廣為任意失敗次數"
+    },
+    {
+      "name": "Dalc",
+      "kind": "integer",
+      "unit": "序數編碼",
+      "trainingMin": 1.0,
+      "trainingMax": 5.0,
+      "domainMin": 0,
+      "domainMax": null,
+      "allowedValues": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "encoding": null,
+      "imputer": {
+        "strategy": "median",
+        "value": 1.0
+      },
+      "scaler": {
+        "mean": 1.5240847784200386,
+        "scale": 0.9711135576983607,
+        "withMean": true,
+        "withStd": true
+      },
+      "outliers": "keep",
+      "description": "Dalc"
+    },
+    {
+      "name": "Walc",
+      "kind": "integer",
+      "unit": "序數編碼",
+      "trainingMin": 1.0,
+      "trainingMax": 5.0,
+      "domainMin": 0,
+      "domainMax": null,
+      "allowedValues": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "encoding": null,
+      "imputer": {
+        "strategy": "median",
+        "value": 2.0
+      },
+      "scaler": {
+        "mean": 2.2870905587668595,
+        "scale": 1.3052609619141262,
+        "withMean": true,
+        "withStd": true
+      },
+      "outliers": "keep",
+      "description": "Walc"
+    },
+    {
+      "name": "G1",
+      "kind": "integer",
+      "unit": "分",
+      "trainingMin": 0.0,
+      "trainingMax": 18.0,
+      "domainMin": 0,
+      "domainMax": 20,
+      "allowedValues": null,
+      "encoding": null,
+      "imputer": {
+        "strategy": "median",
+        "value": 11.0
+      },
+      "scaler": {
+        "mean": 11.248554913294798,
+        "scale": 2.6732588615070836,
+        "withMean": true,
+        "withStd": true
+      },
+      "outliers": "keep",
+      "description": "已知的第一期成績"
+    },
+    {
+      "name": "G2",
+      "kind": "integer",
+      "unit": "分",
+      "trainingMin": 0.0,
+      "trainingMax": 19.0,
+      "domainMin": 0,
+      "domainMax": 20,
+      "allowedValues": null,
+      "encoding": null,
+      "imputer": {
+        "strategy": "median",
+        "value": 11.0
+      },
+      "scaler": {
+        "mean": 11.458574181117534,
+        "scale": 2.8780142429207625,
+        "withMean": true,
+        "withStd": true
+      },
+      "outliers": "keep",
+      "description": "已知的第二期成績"
+    }
+  ],
+  "originalPreprocessorSchema": [
+    "age",
+    "Medu",
+    "Fedu",
+    "traveltime",
+    "studytime",
+    "failures",
+    "famrel",
+    "freetime",
+    "goout",
+    "Dalc",
+    "Walc",
+    "health",
+    "absences",
+    "G1",
+    "G2"
+  ],
+  "coefficients": [
+    -0.026586549221182032,
+    0.08458196034626693,
+    -0.08202044721125767,
+    -0.07662835366278219,
+    0.02941465685753148,
+    0.46535973824296234,
+    2.5129041120715083
+  ],
+  "intercept": 11.79383429672447,
+  "preprocessingOrder": [
+    "validate",
+    "encode",
+    "impute",
+    "scale",
+    "linear"
+  ],
+  "outlierStrategy": "keep",
+  "predictionClipped": false,
+  "trainingSplit": {
+    "strategy": "fixed_saved_random_80_20",
+    "randomSeed": 42,
+    "trainingRows": 519,
+    "holdoutRows": 130,
+    "trainingIndexSha256": "0ce5189769056d278f4b4567d6ddbd37c486bf1054dc2fc12f46cadd5443a792",
+    "holdoutIndexSha256": "e633e960612a2ae2f3c8130114bac68f49be6b0a870de5162f57adb9ccecbc7b",
+    "holdoutUsedForFitting": false
+  },
+  "versions": {
+    "python": "3.10.17",
+    "numpy": "2.2.6",
+    "pandas": "2.3.3",
+    "scipy": "1.15.3",
+    "scikit-learn": "1.7.2",
+    "joblib": "1.6.0",
+    "threadpoolctl": "3.7.0"
+  },
+  "sourceHashes": [
+    {
+      "path": "web/scripts/export-fixed-models.py",
+      "sha256": "362a54aa2f5d84bffd936bea01bd5006a77eb9b0db16bf4814f33384232bdbdc"
+    },
+    {
+      "path": "web/data/fixed-models/v1/policy.json",
+      "sha256": "da73480718d166a857d05166947be82e457de1de2ab6b982de9b8f070222c2b8"
+    },
+    {
+      "path": "src/preprocessing.py",
+      "sha256": "d7c0513846367c373e44e99c8074b4974b40a1ea1e752d706bba055431179716"
+    },
+    {
+      "path": "src/preprocessing_config.py",
+      "sha256": "6dc5821d8cfdfbd7a67b25212d7e10b3538e7b1ad9367ad1df4331646df3b2de"
+    },
+    {
+      "path": "src/feature_selection.py",
+      "sha256": "3bb3c28b4041730084c0e53de1be0193fc30259e7afcc9dbb14ba60f1f631364"
+    },
+    {
+      "path": "student-por.csv",
+      "sha256": "5be7b02f13f5800fddd66e2c8d834cd00ece14c552fb404def2397b31b63236b"
+    },
+    {
+      "path": "experiments/student-performance-phase2/config.json",
+      "sha256": "bad6fcbd19b83e9a0b8680fb320bae528615a2e655bba30a93daef98c2946f08"
+    },
+    {
+      "path": "experiments/student-performance-phase2/results.json",
+      "sha256": "cb96bf0f8254193242e8a1373f55be62fdf8e003c5503453bedaa9b7064cee4f"
+    },
+    {
+      "path": "experiments/student-performance-phase2/profile-and-split.json",
+      "sha256": "5bca5b4d5775a9a4584065681550bb315a415cfcbc50d5d9ade83d8e2fe7a16a"
+    },
+    {
+      "path": "experiments/student-performance-phase2/live-predictor-schema.json",
+      "sha256": "9a93de846e3260df74dd62f07a490496165366b1996c42384dae37f0ee89bf57"
+    },
+    {
+      "path": "experiments/student-performance-phase2/locked-training-decision.json",
+      "sha256": "5517fe6fbafb9408d7810eb2c7babaabc9277af56a1ef42377473af0d15fbae7"
+    },
+    {
+      "path": "experiments/student-performance-phase2/environment.json",
+      "sha256": "6e0aa88c0c790ec8d65ea16ff7613b4d365326f036e21c9baffa2468609ebe0d"
+    }
+  ],
+  "limitations": [
+    "固定研究模型；不是因果效果；外插可靠性可能降低；預測與輸入不裁切。",
+    "必須已知 G1、G2；非學期開始前預測。補值不代表實際已知成績。",
+    "absences 累計截止時點未明。"
+  ],
+  "acquisition": "training-only-refit-with-frozen-selected-columns-no-selector"
+}
